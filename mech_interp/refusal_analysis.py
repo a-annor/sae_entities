@@ -220,7 +220,7 @@ N=100
 max_new_tokens = 30
 batch_size = 100
 top_latents = {'known': 0, 'unknown': 0}
-coeff_values = {'known': 15, 'unknown': 20}
+coeff_values = {'known': 400, 'unknown': 400}
 split = 'test'
 
 categories = ['original', 'steered_unknown', 'steered_unknown_random', 'orthogonalized_unknown', 'steered_known', 'steered_known_random']
@@ -230,6 +230,7 @@ known_latent, unknown_latent, random_latents_known, random_latents_unknown = loa
                                                                                           filter_with_pile=True)
 print(unknown_latent)
 print(known_latent)
+
 counter_refusal = {}
 params_args = {'model_alias': model_alias, 'coeff_values': coeff_values, 'split': split, 'top_latents': top_latents, 'pos_type': pos_type, 'known_label': known_label}
 

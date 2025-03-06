@@ -613,7 +613,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--model_engine', type=str, default='vllm') # ['hf', 'vllm', 'api']
     parser.add_argument('--model_path', type=str, default='google/gemma-2-9b-it')
-    parser.add_argument('--free_generation', type=bool, default=True, help='Enable free generation mode')
+    parser.add_argument('--free_generation', action='store_true', help='Enable free generation mode')
     parser.add_argument('--max_new_tokens', type=int, default=32, help='Maximum number of new tokens to generate')
     parser.add_argument('--max_num_queries', type=int, default=None, help='Maximum number of queries to generate')
     parser.add_argument('--num_sampled_generations', type=int, default=10, help='Number of sampled generations to run')
