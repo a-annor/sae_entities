@@ -1,0 +1,3 @@
+[console_scripts]
+bbb=boostedblob.__main__:main
+
