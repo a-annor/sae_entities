@@ -121,7 +121,7 @@ PROMPT_LIST ={
     }
 
 output_data = []
-attribute_cat="race"
+attribute_cat="nationality"
 
 for prompt in PROMPT_LIST[attribute_cat]:
     for attribute in bias_categories[attribute_cat]:

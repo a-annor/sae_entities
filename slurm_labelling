@@ -67,7 +67,7 @@ conda activate py25
 
 #! Full path to application executable: 
 # application="python -u train.py"
-application="python -u test_gemma_2_2b.py"
+application="python -u data_labelling.py"
 
 
 #! Work directory (i.e. where the job will run):
