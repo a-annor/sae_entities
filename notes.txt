@@ -1,0 +1,9 @@
+
+source .venv/bin/activate
+
+
+python script_name.py --model convcnp --data sawtooth
+source .venv/bin/activate
+sbatch slurm_sae
+
+squeue -u ana42

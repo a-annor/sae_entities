@@ -156,5 +156,5 @@ for prompt in PROMPT_LIST[attribute_cat]:
 
         output_data.append(output_json)
 
-with open("generated_{attribute_cat}_bias_data.json", "w") as f:
+with open(f"generated_{attribute_cat}_bias_data.json", "w") as f:
     json.dump(output_data, f, indent=2)
