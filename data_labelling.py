@@ -71,6 +71,7 @@ import torch
 
 # Load the model locally from HF (downloaded model path or name)
 model_id = "mistralai/Mistral-7B-Instruct-v0.3"
+model_id = "gemma-3-27b-it"
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 model = AutoModelForCausalLM.from_pretrained(
     model_id,
