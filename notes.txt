@@ -6,7 +6,9 @@ python script_name.py --model convcnp --data sawtooth
 source .venv/bin/activate
 sbatch slurm_sae
 sbatch slurm_sentiment
-sbatch slurm_labelling
+sbatch slurm_labelling - gemma needs this version pip install git+https://github.com/huggingface/transformers@v4.49.0-Gemma-3, https://huggingface.co/google/gemma-3-27b-it/discussions/36
 
 
 squeue -u ana42
+
+rm -rf ~/.cache/huggingface/hub/models--google--gemma-3-27b-it

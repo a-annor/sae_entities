@@ -152,6 +152,7 @@ def generate_prompts(attribute_cat):
                 "category": attribute_cat,
                 "attribute": attribute,
                 "lowercase": "no",
+                "prompt_template": prompt,
                 "prompt": formatted_prompt,
                 "completion": completion,
             }
@@ -168,6 +169,7 @@ def generate_prompts(attribute_cat):
                 "category": attribute_cat,
                 "attribute": attribute_low,
                 "lowercase": "yes",
+                "prompt_template": prompt,
                 "prompt": formatted_prompt,
                 "completion": completion,
             }

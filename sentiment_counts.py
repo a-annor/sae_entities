@@ -73,4 +73,5 @@ def append_senitment_count(input_file):
     with open(f"{input_file}_rule_based.json", "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
-append_senitment_count("./generated_race_bias_data_updated")
+# append_senitment_count("./generated_race_bias_data_updated")
+append_senitment_count("./generated_nationality_bias_data_updated")
