@@ -176,10 +176,10 @@ def generate_prompts(attribute_cat):
 
             output_data.append(output_json)
 
-    with open(f"generated_{attribute_cat}_bias_data_updated.json", "w") as f:
+    with open(f"z_data/generated_data/generated_{attribute_cat}_bias_data_updated.json", "w") as f:
         json.dump(output_data, f, indent=2, ensure_ascii=False)
 
 
 # generate_prompts("nationality")
-generate_prompts("gender_1")
+# generate_prompts("gender_1")
 generate_prompts("race")

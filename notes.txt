@@ -1,8 +1,5 @@
 
-source .venv/bin/activate
 
-
-python script_name.py --model convcnp --data sawtooth
 source .venv/bin/activate
 sbatch slurm_sae
 sbatch slurm_sentiment
@@ -11,4 +8,6 @@ sbatch slurm_labelling - gemma needs this version pip install git+https://github
 
 squeue -u ana42
 
+sintr -A MLMI-ana42-SL2-CPU -p icelake -N1 -n1 -t 1:0:0 --qos=INTR
 rm -rf ~/.cache/huggingface/hub/models--google--gemma-3-27b-it
+/home/ana42/rds/hpc-work/sae_entities/notes.txt

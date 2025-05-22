@@ -35,17 +35,26 @@ def count_protected_terms(text):
 
 def text_sentiment_counts(text):
     protect_attr_counts=0
-    result = sentiment_pipeline(text)[0]
+    result = sentiment_pipeline(text, top_k=3)
+    for r in result:
+        if r["label"] == "LABEL_2":
+            sentiment_scores= r["score"]
+    # for r in result:
+    #     if r["label"] == "LABEL_2":
+    #         sentiment_scores = r["score"]
+    #     else:
+    #         sentiment_scores = "error"
+    # result = sentiment_pipeline(text)[0]
  
-    label = result["label"].upper()
-    score = result["score"]
+    # label = result["label"].upper()
+    # score = result["score"]
 
-    if "LABEL_2" in label:
-        sentiment_scores=score
-    elif "LABEL_0" in label:
-        sentiment_scores=-score
-    else:
-        sentiment_scores=0.0
+    # if "LABEL_2" in label:
+    #     sentiment_scores=score
+    # elif "LABEL_0" in label:
+    #     sentiment_scores=-score
+    # else:
+    #     sentiment_scores=0.0
 
     protect_attr_counts = count_protected_terms(text)
     # doc = nlp(text)
@@ -61,7 +70,7 @@ def text_sentiment_counts(text):
 
 
 def append_senitment_count(input_file):
-    with open(f"{input_file}.json", "r", encoding="utf-8") as f:
+    with open(f"z_data/generated_data/{input_file}.json", "r", encoding="utf-8") as f:
         data = json.load(f)
 
     for entry in data:
@@ -70,8 +79,8 @@ def append_senitment_count(input_file):
         entry["protect_attr_count"] = count
     
 
-    with open(f"{input_file}_rule_based.json", "w", encoding="utf-8") as f:
+    with open(f"z_data/sentiment_counts_2/{input_file}_rule_based.json", "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
-# append_senitment_count("./generated_race_bias_data_updated")
-append_senitment_count("./generated_nationality_bias_data_updated")
+append_senitment_count("generated_race_bias_data_updated")
+append_senitment_count("generated_nationality_bias_data_updated")
