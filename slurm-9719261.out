@@ -1,0 +1,83 @@
+Loading rhel8/default-amp
+  Loading requirement: rhel8/slurm singularity/current rhel8/global cuda/11.4
+    libpciaccess/0.16/gcc-9.4.0-6fonbj6 libiconv/1.16/gcc-9.4.0-ahebbov
+    libxml2/2.9.12/gcc-9.4.0-gnknt5e ncurses/6.2/gcc-9.4.0-aiirok7
+    hwloc/2.5.0/gcc-9.4.0-7sqomga libevent/2.1.12/gcc-9.4.0-hgny7cm
+    numactl/2.0.14/gcc-9.4.0-52dwc6n cuda/11.4.0/gcc-9.4.0-3hnxhjt
+    gdrcopy/2.2/gcc-9.4.0-e4igtfp knem/1.1.4/gcc-9.4.0-bpbxgva
+    libnl/3.3.0/gcc-9.4.0-whwhrwb rdma-core/34.0/gcc-9.4.0-5eo5n2u
+    ucx/1.11.1/gcc-9.4.0-lktqyl4 openmpi/4.1.1/gcc-9.4.0-epagguv
+/var/spool/slurm/slurmd/job9719261/slurm_script: line 65: conda: command not found
+Changed directory to /rds/user/ana42/hpc-work/sae_entities.
+
+JobID: 9719261
+======
+Time: Thu May 22 08:40:51 BST 2025
+Running on master node: gpu-q-32
+Current directory: /rds/user/ana42/hpc-work/sae_entities
+
+Nodes allocated:
+================
+gpu-q-32
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+python -u sentiment_counts.py  > logs/out.9719261
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:01<00:03,  1.77s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:03<00:01,  1.54s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.05it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.13s/it]
+/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/generation/configuration_utils.py:567: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/generation/configuration_utils.py:567: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/rds/user/ana42/hpc-work/sae_entities/sentiment_counts.py", line 6, in <module>
+    sentiment_pipeline = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment", device_map="gpu", torch_dtype=torch.bfloat16)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/pipelines/__init__.py", line 895, in pipeline
+    framework, model = infer_framework_load_model(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/pipelines/base.py", line 299, in infer_framework_load_model
+    raise ValueError(
+ValueError: Could not load model cardiffnlp/twitter-roberta-base-sentiment with any of the following classes: (<class 'transformers.models.auto.modeling_auto.AutoModelForSequenceClassification'>, <class 'transformers.models.roberta.modeling_roberta.RobertaForSequenceClassification'>). See the original errors:
+
+while loading with AutoModelForSequenceClassification, an error is thrown:
+Traceback (most recent call last):
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/modeling_utils.py", line 3292, in from_pretrained
+    device_map = {"": torch.device(device_map)}
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Expected one of cpu, cuda, ipu, xpu, mkldnn, opengl, opencl, ideep, hip, ve, fpga, maia, xla, lazy, vulkan, mps, meta, hpu, mtia, privateuseone device type at start of device string: gpu
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/pipelines/base.py", line 286, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 564, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/modeling_utils.py", line 3294, in from_pretrained
+    raise ValueError(
+ValueError: When passing device_map as a string, the value needs to be a device name (e.g. cpu, cuda:0) or 'auto', 'balanced', 'balanced_low_0', 'sequential' but found gpu.
+
+while loading with RobertaForSequenceClassification, an error is thrown:
+Traceback (most recent call last):
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/modeling_utils.py", line 3292, in from_pretrained
+    device_map = {"": torch.device(device_map)}
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Expected one of cpu, cuda, ipu, xpu, mkldnn, opengl, opencl, ideep, hip, ve, fpga, maia, xla, lazy, vulkan, mps, meta, hpu, mtia, privateuseone device type at start of device string: gpu
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/pipelines/base.py", line 286, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/modeling_utils.py", line 3294, in from_pretrained
+    raise ValueError(
+ValueError: When passing device_map as a string, the value needs to be a device name (e.g. cpu, cuda:0) or 'auto', 'balanced', 'balanced_low_0', 'sequential' but found gpu.
+
+
+

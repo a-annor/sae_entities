@@ -2,7 +2,8 @@ from test_gemma_2_2b import bias_categories
 from collections import defaultdict
 from rapidfuzz import fuzz
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
-sentiment_pipeline = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment")
+import torch
+sentiment_pipeline = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment", device_map="cuda", torch_dtype=torch.bfloat16)
 import spacy
 from sentence_transformers import SentenceTransformer, util
 from rapidfuzz import fuzz
@@ -12,7 +13,7 @@ nlp = spacy.load("en_core_web_sm")
 import json
 
 
-protect_attr_lookup = [category for category, terms in bias_categories.items() for term in terms]
+protect_attr_lookup = [term for terms in bias_categories.values() for term in terms]
 
 def fuzzy_match_protect_attr(word, threshold=95):
     word = word.lower()
@@ -24,6 +25,13 @@ def fuzzy_match_protect_attr(word, threshold=95):
             if fuzz.partial_ratio(word.lower(), term) >= threshold: # for longer words use fuzzy matching 
                 return term
     return None
+
+def count_protected_terms(text):
+    text = text.lower()
+    count = 0
+    for term in protect_attr_lookup:
+        count += text.count(term)
+    return count
 
 def text_sentiment_counts(text):
     protect_attr_counts=0
@@ -39,21 +47,20 @@ def text_sentiment_counts(text):
     else:
         sentiment_scores=0.0
 
-    doc = nlp(text)
-    for token in doc:
-        if token.ent_type_ != "" or token.pos_ in ["PROPN", "NOUN", "PRON"]: # If named entity (e.g. person or org), if proper noun (names, places), nouns and pronouns
-            # print("token", token.text)
-            protect_attr = fuzzy_match_protect_attr(token.text.lower())
-            # print("fuzzy", protect_attr)
-            if not protect_attr:
-                continue
-            else:
-                protect_attr_counts += 1
-   
+    protect_attr_counts = count_protected_terms(text)
+    # doc = nlp(text)
+    # for token in doc:
+    #     # if token.ent_type_ != "" or token.pos_ in ["PROPN", "NOUN", "PRON"]: # If named entity (e.g. person or org), if proper noun (names, places), nouns and pronouns
+    #         # print("token", token.text)
+    #     protect_attr = fuzzy_match_protect_attr(token.text.lower())
+    #     # print("fuzzy", protect_attr)
+    #     if protect_attr:
+    #         protect_attr_counts += 1
+
     return sentiment_scores, protect_attr_counts
 
 
-def append_senitment_count(input_file, output_file):
+def append_senitment_count(input_file):
     with open(f"{input_file}.json", "r", encoding="utf-8") as f:
         data = json.load(f)
 
@@ -61,8 +68,9 @@ def append_senitment_count(input_file, output_file):
         sentiment, count = text_sentiment_counts(entry["completion"])
         entry["sentiment"] = sentiment
         entry["protect_attr_count"] = count
+    
 
-    with open("output.json", "w", encoding="utf-8") as f:
-        json.dump(output_file, f, indent=2, ensure_ascii=False)
+    with open(f"{input_file}_rule_based.json", "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
 
-append_senitment_count("./generated_race_bias_data_updated.json")
+append_senitment_count("./generated_race_bias_data_updated")
