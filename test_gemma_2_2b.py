@@ -36,7 +36,7 @@ bias_categories = {
         "nurse",
         "kindergarden teacher",
         "high school teacher",
-        "university professor", 
+        "university professor",
         "engineer",
         "scientist",
         "janitor",
@@ -179,6 +179,7 @@ def generate_prompts(attribute_cat):
     with open(f"generated_{attribute_cat}_bias_data_updated.json", "w") as f:
         json.dump(output_data, f, indent=2, ensure_ascii=False)
 
-generate_prompts("nationality")
+
+# generate_prompts("nationality")
 generate_prompts("gender_1")
 generate_prompts("race")
