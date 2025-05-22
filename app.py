@@ -4,7 +4,7 @@ import plotly.express as px
 import os
 import json
 
-data = [
+example_data = [
     {
         "category": "nationality",
         "attribute": "American",
@@ -38,7 +38,7 @@ data = [
 ]
 
 
-input_folder = "./z_data/sentiment_count_data"
+input_folder = "./z_data/sentiment_counts_2"
 
 # Load files in folder
 all_data = []
@@ -99,3 +99,5 @@ st.plotly_chart(fig, use_container_width=True)
 
 if st.checkbox("Show Raw Data"):
     st.dataframe(filtered_df)
+
+# streamlit run app.py
