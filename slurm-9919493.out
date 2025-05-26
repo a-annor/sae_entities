@@ -1,0 +1,90 @@
+Loading rhel8/default-amp
+  Loading requirement: rhel8/slurm singularity/current rhel8/global cuda/11.4
+    libpciaccess/0.16/gcc-9.4.0-6fonbj6 libiconv/1.16/gcc-9.4.0-ahebbov
+    libxml2/2.9.12/gcc-9.4.0-gnknt5e ncurses/6.2/gcc-9.4.0-aiirok7
+    hwloc/2.5.0/gcc-9.4.0-7sqomga libevent/2.1.12/gcc-9.4.0-hgny7cm
+    numactl/2.0.14/gcc-9.4.0-52dwc6n cuda/11.4.0/gcc-9.4.0-3hnxhjt
+    gdrcopy/2.2/gcc-9.4.0-e4igtfp knem/1.1.4/gcc-9.4.0-bpbxgva
+    libnl/3.3.0/gcc-9.4.0-whwhrwb rdma-core/34.0/gcc-9.4.0-5eo5n2u
+    ucx/1.11.1/gcc-9.4.0-lktqyl4 openmpi/4.1.1/gcc-9.4.0-epagguv
+/var/spool/slurm/slurmd/job9919493/slurm_script: line 65: conda: command not found
+Setting process seed: 43
+!! Loading model: google/gemma-2-2b
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:54<01:49, 54.68s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [02:05<01:04, 64.28s/it]Loading checkpoint shards: 100%|██████████| 3/3 [02:12<00:00, 38.20s/it]Loading checkpoint shards: 100%|██████████| 3/3 [02:12<00:00, 44.29s/it]
+!! Loading model: google/gemma-3-4b-it
+Downloading shards:   0%|          | 0/2 [00:00<?, ?it/s]Downloading shards:  50%|█████     | 1/2 [01:00<01:00, 60.52s/it]Downloading shards: 100%|██████████| 2/2 [02:04<00:00, 62.58s/it]Downloading shards: 100%|██████████| 2/2 [02:04<00:00, 62.27s/it]
+Traceback (most recent call last):
+  File "/rds/user/ana42/hpc-work/sae_entities/llm_as_optim.py", line 268, in <module>
+    main(args)
+  File "/rds/user/ana42/hpc-work/sae_entities/llm_as_optim.py", line 207, in main
+    model_gemma3_it, tokenizer_gemma3_it = load_model(args_gemma3_it)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/llm_as_optim.py", line 62, in load_model
+    model = AutoModelForCausalLM.from_pretrained(model_name, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 564, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/modeling_utils.py", line 273, in _wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/modeling_utils.py", line 4313, in from_pretrained
+    model = cls(config, *model_args, **model_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/models/gemma3/modeling_gemma3.py", line 889, in __init__
+    self.model = Gemma3TextModel(config)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/models/gemma3/modeling_gemma3.py", line 622, in __init__
+    self.vocab_size = config.vocab_size
+                      ^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/configuration_utils.py", line 214, in __getattribute__
+    return super().__getattribute__(key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Gemma3Config' object has no attribute 'vocab_size'
+Changed directory to /rds/user/ana42/hpc-work/sae_entities.
+
+JobID: 9919493
+======
+Time: Sat May 24 11:17:10 BST 2025
+Running on master node: gpu-q-16
+Current directory: /rds/user/ana42/hpc-work/sae_entities
+
+Nodes allocated:
+================
+gpu-q-16
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+python -u llm_as_optim.py  > logs/out.9919493
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.26it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:01,  1.02s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:02<00:00,  1.26it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:02<00:00,  1.20it/s]
+Traceback (most recent call last):
+  File "/rds/user/ana42/hpc-work/sae_entities/llm_as_optim.py", line 268, in <module>
+    main(args)
+  File "/rds/user/ana42/hpc-work/sae_entities/llm_as_optim.py", line 207, in main
+    model_gemma3_it, tokenizer_gemma3_it = load_model(args_gemma3_it)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/llm_as_optim.py", line 62, in load_model
+    model = AutoModelForCausalLM.from_pretrained(model_name, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 564, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/modeling_utils.py", line 273, in _wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/modeling_utils.py", line 4313, in from_pretrained
+    model = cls(config, *model_args, **model_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/models/gemma3/modeling_gemma3.py", line 889, in __init__
+    self.model = Gemma3TextModel(config)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/models/gemma3/modeling_gemma3.py", line 622, in __init__
+    self.vocab_size = config.vocab_size
+                      ^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/configuration_utils.py", line 214, in __getattribute__
+    return super().__getattribute__(key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Gemma3Config' object has no attribute 'vocab_size'

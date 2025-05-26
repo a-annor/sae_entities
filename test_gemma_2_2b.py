@@ -3,8 +3,11 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from utils.hf_models.gemma_model import format_instruction_gemma_chat
 from functools import partial
 import json
+from transformers import AutoConfig
+
 
 # HF load model and tokeniser
+
 model_name = "google/gemma-2-2b"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(
@@ -12,6 +15,12 @@ model = AutoModelForCausalLM.from_pretrained(
     torch_dtype=torch.bfloat16,  # use bfloat16 for cuda, paper used cuda
     device_map="cuda",
 )
+
+# config = AutoConfig.from_pretrained(model_name)
+# config.parallelization_config = {"style": "none"}
+# model = AutoModelForCausalLM.from_pretrained(
+#     model_name, config=config, torch_dtype=torch.bfloat16, device_map="cuda"
+# )
 
 
 def run_gemma_completion(input_prompt: str, max_tokens=50):

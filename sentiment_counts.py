@@ -37,7 +37,7 @@ def text_sentiment_counts(text):
     protect_attr_counts=0
     result = sentiment_pipeline(text, top_k=3)
     for r in result:
-        if r["label"] == "LABEL_2":
+        if r["label"] == "LABEL_0":
             sentiment_scores= r["score"]
     # for r in result:
     #     if r["label"] == "LABEL_2":

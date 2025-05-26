@@ -10,4 +10,6 @@ squeue -u ana42
 
 sintr -A MLMI-ana42-SL2-CPU -p icelake -N1 -n1 -t 1:0:0 --qos=INTR
 rm -rf ~/.cache/huggingface/hub/models--google--gemma-3-27b-it
+rm -rf ~/.cache/huggingface/hub/models--google--gemma-2-2b
+
 /home/ana42/rds/hpc-work/sae_entities/notes.txt
