@@ -5,10 +5,14 @@ sbatch slurm_sae
 sbatch slurm_sentiment
 sbatch slurm_labelling - gemma needs this version pip install git+https://github.com/huggingface/transformers@v4.49.0-Gemma-3, https://huggingface.co/google/gemma-3-27b-it/discussions/36
 
+sbatch slurm_llm_opt
+sbatch slurm_llm_opt_test
+sbatch slurm_gen_comp
 
 squeue -u ana42
 
 sintr -A MLMI-ana42-SL2-CPU -p icelake -N1 -n1 -t 1:0:0 --qos=INTR
+sintr -A MLMI-ana42-SL2-GPU -p ampere --gres=gpu:1 -N1 -n1 -t 1:0:0 --qos=INTR
 rm -rf ~/.cache/huggingface/hub/models--google--gemma-3-27b-it
 rm -rf ~/.cache/huggingface/hub/models--google--gemma-2-2b
 

@@ -1,0 +1,36 @@
+Loading rhel8/default-amp
+  Loading requirement: rhel8/slurm singularity/current rhel8/global cuda/11.4
+    libpciaccess/0.16/gcc-9.4.0-6fonbj6 libiconv/1.16/gcc-9.4.0-ahebbov
+    libxml2/2.9.12/gcc-9.4.0-gnknt5e ncurses/6.2/gcc-9.4.0-aiirok7
+    hwloc/2.5.0/gcc-9.4.0-7sqomga libevent/2.1.12/gcc-9.4.0-hgny7cm
+    numactl/2.0.14/gcc-9.4.0-52dwc6n cuda/11.4.0/gcc-9.4.0-3hnxhjt
+    gdrcopy/2.2/gcc-9.4.0-e4igtfp knem/1.1.4/gcc-9.4.0-bpbxgva
+    libnl/3.3.0/gcc-9.4.0-whwhrwb rdma-core/34.0/gcc-9.4.0-5eo5n2u
+    ucx/1.11.1/gcc-9.4.0-lktqyl4 openmpi/4.1.1/gcc-9.4.0-epagguv
+/var/spool/slurm/slurmd/job10033565/slurm_script: line 65: conda: command not found
+Setting process seed: 43
+!! Loading model: google/gemma-2-2b
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:51<01:43, 51.80s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [01:48<00:54, 54.59s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:54<00:00, 32.48s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:54<00:00, 38.17s/it]
+Input dir: z_data/test_prompt_data
+Output dir: z_data/test_prompt_data_completions
+Found 0 JSONL files to process
+No JSONL files found in z_data/test_prompt_data
+Changed directory to /rds/user/ana42/hpc-work/sae_entities.
+
+JobID: 10033565
+======
+Time: Wed May 28 16:37:08 BST 2025
+Running on master node: gpu-q-2
+Current directory: /rds/user/ana42/hpc-work/sae_entities
+
+Nodes allocated:
+================
+gpu-q-2
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+python -u z_my_data/generate_completions.py  > logs/out.10033565
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:01<00:02,  1.09s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:02<00:01,  1.11s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:02<00:00,  1.52it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:02<00:00,  1.29it/s]
