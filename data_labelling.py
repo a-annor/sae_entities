@@ -66,6 +66,6 @@ for entry in dataset:
 
 # Save updated data
 with open(f".z_data/labelled_data/labelled_{attribute_cat}_bias_data.json", "w") as f:
-    json.dump(dataset, f, indent=2)
+    json.dump(dataset, f, indent=2,  ensure_ascii=False)
 
 print("Completetion Data labelling finished. Saved to labeled_bias_data.json.")

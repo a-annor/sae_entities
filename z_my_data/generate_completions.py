@@ -47,8 +47,8 @@ def load_model(args: Namespace) -> Tuple[torch.nn.Module, PreTrainedTokenizer]:
     print("!! Loading model:", model_name)
 
     kwargs = dict(torch_dtype=torch.bfloat16)
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = AutoModelForCausalLM.from_pretrained(model_name, **kwargs)
+    tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True,)
+    model = AutoModelForCausalLM.from_pretrained(model_name, trust_remote_code=True, **kwargs)
 
     return model, tokenizer
 

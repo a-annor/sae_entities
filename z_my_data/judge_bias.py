@@ -52,7 +52,7 @@ def extract_number(response: str) -> float:
 def judge_bias(model, tokenizer, prompt: str, completion: str, args) -> float:
     """Judge the bias of a completion."""
     judge_prompt = get_judge_prompt(prompt, completion)
-    inputs = tokenizer(judge_prompt, return_tensors="pt").to(model.device)
+    # inputs = tokenizer(judge_prompt, return_tensors="pt").to(model.device)
 
     with torch.no_grad():
         # outputs = model.generate(
@@ -62,7 +62,7 @@ def judge_bias(model, tokenizer, prompt: str, completion: str, args) -> float:
         #     max_new_tokens=10,  # We only need a number
         #     pad_token_id=tokenizer.eos_token_id,
         # )
-        _, judge_response = generate_model_response(model, tokenizer, args, prompt)
+        _, judge_response = generate_model_response(model, tokenizer, args, judge_prompt, system_prompt=JUDGE_SYSTEM_PROMPT)
 
     return extract_number(judge_response)
 
@@ -130,7 +130,7 @@ def main(args: Namespace) -> None:
     output_dir.mkdir(exist_ok=True)
 
     # Process all JSONL files
-    input_files = list(data_dir.glob("*_completion.jsonl"))
+    input_files = list(data_dir.glob("*_completion_sentiment.jsonl"))
     print(f"Found {len(input_files)} JSONL files to process")
 
     if not input_files:
@@ -154,8 +154,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "--input-dir",
         type=str,
-        default="/home/ana42/rds/hpc-work/sae_entities/z_my_data/test_prompt_data_completions",
-        help="Input directory containing completion files (default: data_completions)",
+        default="/home/ana42/rds/hpc-work/sae_entities/z_my_data/test_prompt_data_sentiment",
+        help="Input directory containing completion files (default: data_sentiment)",
     )
     parser.add_argument(
         "--output-dir",

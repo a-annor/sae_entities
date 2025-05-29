@@ -66,7 +66,7 @@ def text_sentiment_counts(text):
     #     if protect_attr:
     #         protect_attr_counts += 1
 
-    return sentiment_scores, protect_attr_counts
+    return sentiment_scores #, protect_attr_counts
 
 
 def append_senitment_count(input_file):
@@ -74,9 +74,9 @@ def append_senitment_count(input_file):
         data = json.load(f)
 
     for entry in data:
-        sentiment, count = text_sentiment_counts(entry["completion"])
+        sentiment= text_sentiment_counts(entry["completion"])
         entry["sentiment"] = sentiment
-        entry["protect_attr_count"] = count
+        # entry["protect_attr_count"] = count
     
 
     with open(f"z_data/sentiment_counts_2/{input_file}_rule_based.json", "w", encoding="utf-8") as f:
