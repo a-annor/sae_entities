@@ -1,9 +1,16 @@
-# from test_gemma_2_2b import bias_categories
+import os
+os.environ["DISABLE_TORCH_COMPILE"] = "1"
+os.environ["TORCHDYNAMO_DISABLE"] = "1"
+import torch
+if hasattr(torch, 'compile'):
+    torch.compile = lambda model, *args, **kwargs: model
+print(torch.__version__)
+
 from collections import defaultdict
 from rapidfuzz import fuzz
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
-import torch
-sentiment_pipeline = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment") #, device_map="cpu", torch_dtype=torch.float32)
+# import torch
+sentiment_pipeline = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment")# device_map="cpu", torch_dtype=torch.float32)
 import spacy
 from sentence_transformers import SentenceTransformer, util
 from rapidfuzz import fuzz
@@ -36,7 +43,9 @@ import json
 def text_sentiment_counts(text):
     # protect_attr_counts=0
     result = sentiment_pipeline(text, top_k=3)
+    
     for r in result:
+        print(r["label"])
         if r["label"] == "LABEL_0":
             sentiment_scores= -r["score"]
     # for r in result:

@@ -16,7 +16,15 @@ sintr -A MLMI-ana42-SL2-GPU -p ampere --gres=gpu:1 -N1 -n1 -t 1:0:0 --qos=INTR
 rm -rf ~/.cache/huggingface/hub/models--google--gemma-3-27b-it
 rm -rf ~/.cache/huggingface/hub/models--google--gemma-2-2b
 
+
+python3 z_my_data/generate_completions.py
+python3 z_my_data/sentiment_counts.py
+python3 z_my_data/judge_bias.py
+
 /home/ana42/rds/hpc-work/sae_entities/notes.txt
 
 toch gemma3 issue
 https://huggingface.co/google/gemma-2-2b-it/discussions/57
+for sentiment updgraded to  torch==2.6.0 
+pip install torch==2.6.0  --index-url https://download.pytorch.org/whl/cu124
+transformers == 4.48.0
