@@ -85,7 +85,7 @@ def append_sentiment_count(input_file):
         for line in f_in:
             entry = json.loads(line)
             sentiment = text_sentiment_counts(entry["completion"])
-            entry["sentiment"] = sentiment
+            entry["sentiment"] = round(sentiment, 2)
             f_out.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
 # z_my_data/test_prompt_data_completions/test_Race_ethnicity_completion.jsonl
