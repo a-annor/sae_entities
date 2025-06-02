@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 import os
 import json
+import streamlit.components.v1 as components
 
 input_folder = "./z_my_data/test_prompt_data_judged"
 
@@ -164,27 +165,36 @@ st.subheader("Sentiment Distribution by Template")
 # Create the distribution plot
 fig_dist = px.box(
     filtered_df,
-    x="template",
-    y="sentiment",
+    y="template",
+    x="sentiment",
     title=f'Sentiment Distribution by Template{" for selected words" if (selected_word1 or selected_word2) else ""}',
     labels={"template": "Template", "sentiment": "Sentiment"},
+    hover_data=[],
 )
 
 # Update layout
 fig_dist.update_layout(
-    xaxis_title="Template",
-    yaxis_title="Sentiment",
-    yaxis_range=[-1, 1],
+    yaxis_title="Template",
+    xaxis_title="Sentiment",
+    xaxis_range=[-1, 0],
     showlegend=False,
+    height=600,
+    width=1200,
+    yaxis=dict(side="right", title_standoff=10, showgrid=True),
+    xaxis=dict(showgrid=True, tickmode="linear", dtick=0.1),
 )
 
-st.plotly_chart(fig_dist, use_container_width=True)
+# Turn off hover completely
+fig_dist.update_traces(hoverinfo="none")
+
+# Use st.plotly_chart with use_container_width=False
+st.plotly_chart(fig_dist, use_container_width=False)
 
 # Add a checkbox to show raw data
 if st.checkbox("Show Raw Data"):
     # Calculate statistics for each template-word1-word2 combination
     stats_df = (
-        filtered_df.groupby(["template", "word1", "word2"])
+        filtered_df.groupby(["template"])  # , "word1", "word2"])
         .agg({"sentiment": ["median", "std", "count"]})
         .reset_index()
     )
@@ -192,17 +202,13 @@ if st.checkbox("Show Raw Data"):
     # Flatten column names
     stats_df.columns = [
         "template",
-        "word1",
-        "word2",
         "median_sentiment",
         "std_sentiment",
         "count",
     ]
 
     # Merge statistics back to the filtered data
-    display_df = filtered_df.merge(
-        stats_df, on=["template", "word1", "word2"], how="left"
-    )
+    display_df = filtered_df.merge(stats_df, on=["template"], how="left")
 
     # Select and reorder columns for display
     display_columns = [
@@ -222,8 +228,8 @@ if st.checkbox("Show Raw Data"):
     ]
 
     # Format the statistics columns
-    display_df["median_sentiment"] = display_df["median_sentiment"].round(3)
-    display_df["std_sentiment"] = display_df["std_sentiment"].round(3)
+    display_df["median_sentiment"] = display_df["median_sentiment"].round(2)
+    display_df["std_sentiment"] = display_df["std_sentiment"].round(2)
 
     st.dataframe(display_df[display_columns])
 
