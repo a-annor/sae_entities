@@ -42,7 +42,7 @@ import json
 
 def text_sentiment_counts(text):
     # protect_attr_counts=0
-    result = sentiment_pipeline(text, top_k=3)
+    result = sentiment_pipeline(text.lower(), top_k=3)
     
     for r in result:
         print(r["label"])

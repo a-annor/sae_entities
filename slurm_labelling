@@ -22,7 +22,7 @@
 #! Note that the job submission script will enforce no more than 32 cpus per GPU.
 #SBATCH --gres=gpu:1
 #! How much wallclock time will be required?
-#SBATCH --time=01:00:00
+#SBATCH --time=03:00:00
 #! What types of email messages do you wish to receive?
 #SBATCH --mail-type=NONE
 #! Uncomment this to prevent the job from being requeued (e.g. if
@@ -67,7 +67,7 @@ conda activate py25
 
 #! Full path to application executable: 
 # application="python -u train.py"
-application="python -u data_labelling.py"
+application="python -u z_my_data/judge_bias.py"
 
 
 #! Work directory (i.e. where the job will run):

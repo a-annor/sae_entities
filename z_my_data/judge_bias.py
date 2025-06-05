@@ -84,7 +84,7 @@ def process_file(input_file: Path, output_file: Path, model, tokenizer, args):
     for item in tqdm(data, desc=f"Processing {input_file.name}"):
         if "bias_score" not in item and "completion" in item:
             prompt = item["context"]
-            completion = item["completion"]
+            completion = item["completion"].lower()
             print(f"\nProcessing prompt: {prompt}")
             print(f"Generated completion: {completion}")
             item["bias_score"] = judge_bias(model, tokenizer, prompt, completion, args)
