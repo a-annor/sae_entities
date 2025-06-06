@@ -170,6 +170,7 @@ fig_dist = px.box(
     title=f'Sentiment Distribution by Template{" for selected words" if (selected_word1 or selected_word2) else ""}',
     labels={"template": "Template", "sentiment": "Sentiment"},
     hover_data=[],
+    color="template",
 )
 
 # Update layout
@@ -190,9 +191,31 @@ fig_dist.update_traces(hoverinfo="none")
 # Use st.plotly_chart with use_container_width=False
 st.plotly_chart(fig_dist, use_container_width=False)
 
+# Add bias score box plot
+st.subheader("Bias Score Distribution")
+fig_box_bias = px.box(
+    filtered_df,
+    x="bias_score",
+    title="Distribution of Bias Scores",
+    labels={"bias_score": "Bias Score"},
+    range_x=[-1, 1],
+)
+
+# Update layout
+fig_box_bias.update_layout(
+    xaxis_title="Bias Score",
+    showlegend=False,
+    height=300,
+    width=1200,
+    xaxis=dict(showgrid=True, tickmode="linear", dtick=0.1),
+)
+
+st.plotly_chart(fig_box_bias, use_container_width=False)
+
 # Add a checkbox to show raw data
 if st.checkbox("Show Raw Data"):
     # Calculate statistics for each template-word1-word2 combination
+
     stats_df = (
         filtered_df.groupby(["template"])  # , "word1", "word2"])
         .agg({"sentiment": ["median", "std", "count"]})
