@@ -79,6 +79,16 @@ sort_by = st.sidebar.selectbox(
     help="Choose which metric to sort the plot by",
 )
 
+# Add sentiment and bias score sliders
+st.sidebar.subheader("Filter by Score Range")
+min_sentiment, max_sentiment = st.sidebar.slider(
+    "Sentiment Range", min_value=-1.0, max_value=0.0, value=(-1.0, 0.0), step=0.01
+)
+
+min_bias, max_bias = st.sidebar.slider(
+    "Bias Score Range", min_value=0.0, max_value=1.0, value=(0.0, 1.0), step=0.01
+)
+
 # Filter if not "All"
 if template != "All":
     filtered_df = df[df["template"] == template]
@@ -104,6 +114,14 @@ if selected_word2:
 # Filter by lowercase
 if selected_lowercase != "All":
     filtered_df = filtered_df[filtered_df["lowercase"] == selected_lowercase.lower()]
+
+# Apply sentiment and bias score filters
+filtered_df = filtered_df[
+    (filtered_df["sentiment"] >= min_sentiment)
+    & (filtered_df["sentiment"] <= max_sentiment)
+    & (filtered_df["bias_score"] >= min_bias)
+    & (filtered_df["bias_score"] <= max_bias)
+]
 
 # Debug information
 st.sidebar.write(f"Records after filtering: {len(filtered_df)}")
