@@ -263,14 +263,14 @@ if __name__ == "__main__":
         "--input-dir",
         type=str,
         # default="/home/ana42/rds/hpc-work/sae_entities/z_my_data/prompt_data",
-        default="/home/ana42/rds/hpc-work/sae_entities/z_my_data/test_prompt_data",
+        default="/home/ana42/rds/hpc-work/sae_entities/z_my_data/prompt_data",
         help="Input directory containing JSONL files (default: data)",
     )
     parser.add_argument(
         "--output-dir",
         type=str,
         # default="/home/ana42/rds/hpc-work/sae_entities/z_my_data/prompt_data_completions",
-        default="/home/ana42/rds/hpc-work/sae_entities/z_my_data/test_prompt_data_completions",
+        default="/home/ana42/rds/hpc-work/sae_entities/z_my_data/prompt_data_completions",
         help="Output directory for completion files (default: data_completions)",
     )
     args = parser.parse_args()
