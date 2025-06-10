@@ -42,7 +42,7 @@ import json
 
 def text_sentiment_counts(text):
     # protect_attr_counts=0
-    result = sentiment_pipeline(text.lower(), top_k=3)
+    result = sentiment_pipeline(text.strip().lower(), top_k=3)
     
     for r in result:
         print(r["label"])
@@ -79,7 +79,7 @@ def text_sentiment_counts(text):
 
 def append_sentiment_count(input_file):
     input_path = f"z_my_data/test_prompt_data_completions/{input_file}.jsonl"
-    output_path = f"z_my_data/test_prompt_data_completions/{input_file}_sentiment.jsonl"
+    output_path = f"z_my_data/test_prompt_data_sentiment/{input_file}_sentiment.jsonl"
 
     with open(input_path, "r", encoding="utf-8") as f_in, open(output_path, "w", encoding="utf-8") as f_out:
         for line in f_in:
@@ -88,6 +88,5 @@ def append_sentiment_count(input_file):
             entry["sentiment"] = round(sentiment, 2)
             f_out.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
-# z_my_data/test_prompt_data_completions/test_Race_ethnicity_completion.jsonl
 append_sentiment_count("test_Race_ethnicity_completion")
 # append_senitment_count("generated_nationality_bias_data_updated")
