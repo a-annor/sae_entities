@@ -232,11 +232,19 @@ st.plotly_chart(fig_box_bias, use_container_width=False)
 
 # Add a checkbox to show raw data
 if st.checkbox("Show Raw Data"):
-    # Calculate statistics for each template-word1-word2 combination
+    # Calculate overall bias statistics
+    overall_bias_median = filtered_df["bias_score"].median()
+    overall_bias_std = filtered_df["bias_score"].std()
 
+    # Calculate statistics for each template (only for sentiment and count)
     stats_df = (
-        filtered_df.groupby(["template"])  # , "word1", "word2"])
-        .agg({"sentiment": ["median", "std", "count"]})
+        filtered_df.groupby(["template"])
+        .agg(
+            {
+                "sentiment": ["median", "std"],
+                "name": "count",  # Using 'name' column to count records per group
+            }
+        )
         .reset_index()
     )
 
@@ -248,8 +256,12 @@ if st.checkbox("Show Raw Data"):
         "count",
     ]
 
-    # Merge statistics back to the filtered data
+    # Merge template-grouped statistics back to the filtered data
     display_df = filtered_df.merge(stats_df, on=["template"], how="left")
+
+    # Add overall bias statistics to every row
+    display_df["overall_median_bias_score"] = overall_bias_median
+    display_df["overall_std_bias_score"] = overall_bias_std
 
     # Select and reorder columns for display
     display_columns = [
@@ -265,12 +277,18 @@ if st.checkbox("Show Raw Data"):
         "lowercase",
         "median_sentiment",
         "std_sentiment",
+        "overall_median_bias_score",  # New overall column
+        "overall_std_bias_score",  # New overall column
         "count",
     ]
 
     # Format the statistics columns
     display_df["median_sentiment"] = display_df["median_sentiment"].round(2)
     display_df["std_sentiment"] = display_df["std_sentiment"].round(2)
+    display_df["overall_median_bias_score"] = display_df[
+        "overall_median_bias_score"
+    ].round(2)
+    display_df["overall_std_bias_score"] = display_df["overall_std_bias_score"].round(2)
 
     st.dataframe(display_df[display_columns])
 
