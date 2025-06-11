@@ -14,7 +14,7 @@ from sklearn.metrics import confusion_matrix
 from collections import defaultdict
 from utils.hf_models.model_factory import construct_model_base
 from utils.utils import model_alias_to_model_name, paper_plot
-from sae_entities.utils.activation_cache import CachedDataset
+from utils.activation_cache import CachedDataset
 
 SAE_WIDTH = "16k"
 
@@ -53,13 +53,58 @@ def get_dataloader(
     Returns:
         torch.utils.data.DataLoader: A DataLoader containing the cached dataset.
     """
-    if dataset_name == "bias_test":
-        shard_size = 1000  # Adjust based on your data size
+    # Set default shard size
+    shard_size = 1000  # Default shard size
 
-    cached_acts_path = "../dataset/cached_activations"
+    # Define shard sizes for different bias categories
+    bias_shard_sizes = {
+        "Race_ethnicity": 1000,
+        # "Nationality": 1000,
+        # "Gender_identity": 1000,
+        # "Religion": 1000,
+    }
+
+    # Adjust shard size based on dataset type
+    if "bias_test" in dataset_name:
+        # Extract category from dataset name (e.g., "bias_test_Race_ethnicity" -> "Race_ethnicity")
+        category = (
+            "_".join(dataset_name.split("_")[2:])
+            if len(dataset_name.split("_")) > 2
+            else "Race_ethnicity"
+        )
+        if category in bias_shard_sizes:
+            shard_size = bias_shard_sizes[category]
+        # Load the data to get the actual number of prompts
+        bias_data = load_bias_test_data(
+            f"z_my_data/test_prompt_final/test_{category}_completion_sentiment_judged_final.jsonl"
+        )
+        # Use the minimum of actual prompts and shard size
+        shard_size = min(len(bias_data), shard_size)
+    elif dataset_name == "pile":
+        shard_size = 10000  # Typical shard size for Pile dataset
+
+    # Get absolute path to the project root
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.dirname(current_dir)
+
+    # Use absolute path for cached activations
+    cached_acts_path = os.path.join(project_root, "dataset", "cached_activations")
     seq_len = 64
     n_positions = 1
-    foldername = f"{cached_acts_path}/{tokens_to_cache}/{model_alias}_{dataset_name}/{tokens_to_cache}_npositions_{n_positions}_shard_size_{shard_size}"
+
+    # For bias test data, append the category to the dataset name
+    if "bias_test" in dataset_name:
+        dataset_name = f"{dataset_name}_{category}"
+
+    foldername = os.path.join(
+        cached_acts_path,
+        tokens_to_cache,
+        f"{model_alias}_{dataset_name}",
+        f"{tokens_to_cache}_npositions_{n_positions}_shard_size_{shard_size}",
+    )
+
+    print(f"Loading cached activations from: {foldername}")  # Debug print
+
     dataset = CachedDataset(
         foldername,
         range(0, n_layers),
@@ -91,14 +136,21 @@ def get_acts_labels_dict_(model_alias, tokenizer, dataloader, sae_layers, **kwar
     """
     dataset_name = kwargs["dataset_name"]
 
-    if dataset_name == "bias_test":
+    if "bias_test" in dataset_name:
         acts_labels_dict = {}
         labels = []
         activations_list = []
 
+        # Extract category from dataset name (e.g., "bias_test_Race_ethnicity" -> "Race_ethnicity")
+        category = (
+            "_".join(dataset_name.split("_")[2:])
+            if len(dataset_name.split("_")) > 2
+            else "Race_ethnicity"
+        )
+
         # Load bias test data from the final test file
         bias_data = load_bias_test_data(
-            "z_my_data/test_prompt_final/test_Race_ethnicity_completion_sentiment_judged_final.jsonl"
+            f"z_my_data/test_prompt_final/test_{category}_completion_sentiment_judged_final.jsonl"
         )
 
         # Process each example

@@ -30,3 +30,103 @@ https://huggingface.co/google/gemma-2-2b-it/discussions/57
 for sentiment updgraded to  torch==2.6.0 
 pip install torch==2.6.0  --index-url https://download.pytorch.org/whl/cu124
 transformers == 4.48.0
+
+
+python -m utils.activation_cache --model_alias gemma-2-2b --tokens_to_cache random --batch_size 128 --dataset bias_test
+python -m mech_interp.bias_feature_analysis
+python -m utils.activation_cache --model_alias gemma-2b-it --tokens_to_cache model --batch_size 128 --dataset bias_test
+
+
+python -m utils.activation_cache --model_alias gemma-2-2b --tokens_to_cache entity --batch_size 128 --dataset bias
+python -m utils.activation_cache --model_alias gemma-2-2b --tokens_to_cache random --batch_size 128 --dataset pile
+
+python -m mech_interp.feature_analysis
+
+import glob
+⌘K to generate a command
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis.py", line 68, in <module>
+    get_per_layer_latent_scores(
+  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis_utils.py", line 273, in get_per_layer_latent_scores
+    dataloader = get_dataloader(
+                 ^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis_utils.py", line 70, in get_dataloader
+    dataset = CachedDataset(
+              ^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/utils/activation_cache.py", line 444, in __init__
+    acts = np.memmap(
+           ^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/numpy/core/memmap.py", line 229, in __new__
+    f_ctx = open(os_fspath(filename), ('r' if mode == 'c' else mode)+'b')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '../dataset/cached_activations/random/gemma-2-2b_pile/random_npositions_1_shard_size_10000/acts.dat'
+
+
+but its size 121 that was saved
+
+Ah, I see the issue. The feature analysis script is looking for the Pile dataset in the wrong location and with the wrong shard size. Let me check the get_dataloader function in feature_analysis_utils.py:
+I see the issue. The get_dataloader function is looking for the Pile dataset in the wrong location and with the wrong shard size. Let me fix that:
+hmm the entity shard shards are wrong
+
+Ah yes, I see the issue. The entity shard sizes in feature_analysis_utils.py are still using the old values for movies, songs, etc., but we need to update them to match the bias categories we're using. Let me fix that:
+Now the shard sizes match what we're using in activation_cache.py. Try running the feature analysis again:
+Apply to feature_anal...
+Run
+feature_analysis
+This should now correctly find the cached activations for both the bias data and Pile dataset. Let me know if you encounter any other issues!
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis.py", line 68, in <module>
+    get_per_layer_latent_scores(
+  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis_utils.py", line 289, in get_per_layer_latent_scores
+    dataloader = get_dataloader(
+                 ^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis_utils.py", line 63, in get_dataloader
+    matching_folders = glob.glob(foldername)
+                       ^^^^
+NameError: name 'glob' is not defined
+
+
+I'll break down the main scripts and their purposes:
+utils/activation_cache.py:
+Main script for caching model activations
+Takes prompts and saves the model's hidden states (activations) to disk
+Handles different datasets:
+Bias data (Race_ethnicity, Nationality, Religion, Gender_identity)
+Pile dataset (general language data)
+Wikidata (entity knowledge)
+TriviaQA (question answering)
+Saves activations in memory-mapped files for efficient loading
+For bias data, also saves bias labels (1 for biased, 0 for unbiased)
+mech_interp/feature_analysis.py:
+Main analysis script that orchestrates the feature analysis
+Computes latent scores for each layer
+Generates scatter plots of latent separation scores
+Identifies top general latents with Pile filtering
+Creates layerwise latent score plots
+Saves results in:
+./plots/scatter_plots/ for scatter plots
+./plots/layerwise_evolution/ for layerwise plots
+./train_latents_layers_entities/ for JSON files
+mech_interp/feature_analysis_utils.py:
+Helper functions for feature analysis
+get_dataloader: Loads cached activations from disk
+get_acts_labels_dict_: Processes activations and labels
+get_per_layer_latent_scores: Computes latent scores per layer
+get_general_latents: Identifies general latents across categories
+get_layerwise_latent_scores: Analyzes how latents evolve across layers
+plot_layerwise_latent_scores: Creates visualizations of layerwise scores
+The workflow is:
+First run activation_cache.py to cache activations for both bias data and Pile dataset
+Then run feature_analysis.py to analyze the cached activations
+The analysis will help identify:
+Which features in the model are most sensitive to bias
+How these features evolve across layers
+Which features are specific to bias vs. general language patterns
+How well the model separates biased from unbiased content
+Would you like me to explain any particular part in more detail?
+
+test

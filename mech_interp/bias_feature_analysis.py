@@ -7,30 +7,28 @@ if ipython is not None:
 
 import sys
 
-sys.path.append("..")
-sys.path.append("../..")
-sys.path.append("../../..")
+import os
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(current_dir)
+
+sys.path.append(project_root)
+
 
 import json
 import torch
 from collections import defaultdict
 from utils.hf_models.model_factory import construct_model_base
 from utils.utils import model_alias_to_model_name
-from feature_analysis_utils import (
-    get_per_layer_latent_scores,
-    scatter_plot_latent_separation_scores_experiment,
-)
-from feature_analysis_utils import (
-    get_general_latents,
-    get_layerwise_latent_scores,
-    plot_layerwise_latent_scores,
-)
+from mech_interp.bias_feature_analysis_utils import get_per_layer_latent_scores,scatter_plot_latent_separation_scores_experiment
+from mech_interp.bias_feature_analysis_utils import  get_general_latents,get_layerwise_latent_scores,plot_layerwise_latent_scores
+
 
 # %%
 model_alias = "gemma-2-2b"
 model_alias = model_alias.replace("/", "_")
 model_path = model_alias_to_model_name[model_alias]
-
+#REPO_ID = model_alias_to_sae_repo_id[model_alias]
 # Load model to load tokenizer and config data
 model_base = construct_model_base(model_path)
 d_model = model_base.model.config.hidden_size
