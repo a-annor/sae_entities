@@ -7,12 +7,17 @@ sbatch slurm_labelling - gemma needs this version pip install git+https://github
 
 sbatch slurm_opt_prompt
 sbatch slurm_llm_opt_test
+
 sbatch slurm_gen_comp
+sbatch slurm_sentiment
+sbatch slurm_labelling
 
 squeue -u ana42
 
 sintr -A MLMI-ana42-SL2-CPU -p icelake -N1 -n1 -t 1:0:0 --qos=INTR
 sintr -A MLMI-ana42-SL2-GPU -p ampere --gres=gpu:1 -N1 -n1 -t 1:0:0 --qos=INTR
+sintr -A MLMI-ana42-SL2-GPU -p ampere --gres=gpu:1 -N1 -n1 -t 0:30:0 --qos=INTR
+
 sintr -A MLMI-ana42-SL2-GPU -p ampere --gres=gpu:2 -N1 -n1 -t 1:0:0 --qos=INTR
 
 rm -rf ~/.cache/huggingface/hub/models--google--gemma-3-27b-it
@@ -42,55 +47,68 @@ python -m utils.activation_cache --model_alias gemma-2-2b --tokens_to_cache rand
 
 python -m mech_interp.feature_analysis
 
-import glob
-⌘K to generate a command
+
+
+Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:02<00:00,  1.19it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 625/625 [00:01<00:00, 583.06it/s]
+Loading SAE for layer 1
+Loading SAE for layer 2
+Loading SAE for layer 3
+Loading SAE for layer 4
+Loading SAE for layer 5
+Loading SAE for layer 6
+Loading SAE for layer 7
+Loading SAE for layer 8
+Loading SAE for layer 9
+Loading SAE for layer 10
+Loading SAE for layer 11
+Loading SAE for layer 12
+Loading SAE for layer 13
+Loading SAE for layer 14
+Loading SAE for layer 15
+Loading SAE for layer 16
+Loading SAE for layer 17
+Loading SAE for layer 18
+Loading SAE for layer 19
+Loading SAE for layer 20
+Loading SAE for layer 21
+Loading SAE for layer 22
+Loading SAE for layer 23
+Loading SAE for layer 24
+Loading SAE for layer 25
 Traceback (most recent call last):
   File "<frozen runpy>", line 198, in _run_module_as_main
   File "<frozen runpy>", line 88, in _run_code
-  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis.py", line 68, in <module>
+  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis.py", line 96, in <module>
     get_per_layer_latent_scores(
-  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis_utils.py", line 273, in get_per_layer_latent_scores
+  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis_utils.py", line 290, in get_per_layer_latent_scores
     dataloader = get_dataloader(
                  ^^^^^^^^^^^^^^^
-  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis_utils.py", line 70, in get_dataloader
+  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis_utils.py", line 87, in get_dataloader
     dataset = CachedDataset(
               ^^^^^^^^^^^^^^
   File "/rds/user/ana42/hpc-work/sae_entities/utils/activation_cache.py", line 444, in __init__
     acts = np.memmap(
            ^^^^^^^^^^
-  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/numpy/core/memmap.py", line 229, in __new__
-    f_ctx = open(os_fspath(filename), ('r' if mode == 'c' else mode)+'b')
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-FileNotFoundError: [Errno 2] No such file or directory: '../dataset/cached_activations/random/gemma-2-2b_pile/random_npositions_1_shard_size_10000/acts.dat'
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/numpy/core/memmap.py", line 268, in __new__
+    mm = mmap.mmap(fid.fileno(), bytes, access=acc, offset=start)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: mmap length is greater than file size
 
 
-but its size 121 that was saved
-
-Ah, I see the issue. The feature analysis script is looking for the Pile dataset in the wrong location and with the wrong shard size. Let me check the get_dataloader function in feature_analysis_utils.py:
-I see the issue. The get_dataloader function is looking for the Pile dataset in the wrong location and with the wrong shard size. Let me fix that:
-hmm the entity shard shards are wrong
-
-Ah yes, I see the issue. The entity shard sizes in feature_analysis_utils.py are still using the old values for movies, songs, etc., but we need to update them to match the bias categories we're using. Let me fix that:
-Now the shard sizes match what we're using in activation_cache.py. Try running the feature analysis again:
-Apply to feature_anal...
-Run
-feature_analysis
-This should now correctly find the cached activations for both the bias data and Pile dataset. Let me know if you encounter any other issues!
-Traceback (most recent call last):
-  File "<frozen runpy>", line 198, in _run_module_as_main
-  File "<frozen runpy>", line 88, in _run_code
-  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis.py", line 68, in <module>
-    get_per_layer_latent_scores(
-  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis_utils.py", line 289, in get_per_layer_latent_scores
-    dataloader = get_dataloader(
-                 ^^^^^^^^^^^^^^^
-  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis_utils.py", line 63, in get_dataloader
-    matching_folders = glob.glob(foldername)
-                       ^^^^
-NameError: name 'glob' is not defined
 
 
-I'll break down the main scripts and their purposes:
+
+
+
+
+
+
+
+
+
+
+notes
 utils/activation_cache.py:
 Main script for caching model activations
 Takes prompts and saves the model's hidden states (activations) to disk

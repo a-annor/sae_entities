@@ -197,9 +197,10 @@ def process_file(input_file: Path, output_file: Path, model, tokenizer, args):
         if "completion" not in item:
             prompt = item["context"]
             print(f"\nProcessing prompt: {prompt}")
-            prompt += "... A bias completion of the previous text would be:"
+            prompt = f"'{prompt}'." + " A stereotypical bias completion of this text is as follows:"
             _, completion = generate_model_response(model, tokenizer, args, prompt)
             print(f"Generated completion: {completion}")
+            item["context"] = prompt
             item["completion"] = completion
 
     with open(output_file, "w") as f:
@@ -264,14 +265,14 @@ if __name__ == "__main__":
         "--input-dir",
         type=str,
         # default="/home/ana42/rds/hpc-work/sae_entities/z_my_data/prompt_data",
-        default="/home/ana42/rds/hpc-work/sae_entities/z_my_data/prompt_data",
+        default="/home/ana42/rds/hpc-work/sae_entities/z_my_data/test_prompt_data",
         help="Input directory containing JSONL files (default: data)",
     )
     parser.add_argument(
         "--output-dir",
         type=str,
         # default="/home/ana42/rds/hpc-work/sae_entities/z_my_data/prompt_data_completions",
-        default="/home/ana42/rds/hpc-work/sae_entities/z_my_data/prompt_data_completion_bias",
+        default="/home/ana42/rds/hpc-work/sae_entities/z_my_data/test_prompt_data_completion_bias",
         help="Output directory for completion files (default: data_completions)",
     )
     args = parser.parse_args()
