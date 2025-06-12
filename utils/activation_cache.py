@@ -407,7 +407,7 @@ def load_bias_instructions_to_cache(
                     prompts.append(data["context"])
                     substrings.append(data["name"])
                     # Convert bias_cat to binary label
-                    label = 1 if data["bias_cat"] == "bias" else 0
+                    label = 'bias' if data["bias_cat"] == "bias" else 'unbias'
                     bias_labels.append(label)
 
         print(

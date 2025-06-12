@@ -342,7 +342,7 @@ def scatter_plot_latent_separation_scores_experiment(
         tokens_to_cache,
         n_layers,
         d_model,
-        f"wikidata_{entity_type}",
+        f"bias_{entity_type}",
         batch_size=16,
     )
     test_acts_labels_dict = get_acts_labels_dict_(
@@ -350,7 +350,7 @@ def scatter_plot_latent_separation_scores_experiment(
         tokenizer,
         dataloader,
         testing_layers,
-        dataset_name=f"wikidata_{entity_type}",
+        dataset_name=f"bias_{entity_type}",
         evaluate_on=evaluate_on,
         split=split,
         free_generation=False,
@@ -367,7 +367,7 @@ def scatter_plot_latent_separation_scores_experiment(
         save,
         scoring_method=scoring_method,
         min_activations=min_activations,
-        dataset_name=f"wikidata_{entity_type}",
+        dataset_name=f"bias_{entity_type}",
     )
 
     test_final_feats_dict = get_top_k_features(test_feats_layers, k=None)
@@ -535,7 +535,7 @@ def get_layerwise_latent_scores(
     scores_min = {}
     top_scores_layers = {}
     minmax_layerwise_scores = {}
-    for known_label in ["known", "unknown"]:
+    for known_label in ["bias", "unbias"]:
         scores_min[known_label] = {}
         top_scores_layers[known_label] = {}
         scores[known_label] = {}
@@ -593,6 +593,8 @@ def plot_layerwise_latent_scores(
     minmax_layerwise_scores,
     known_label,
     top_k,
+    tokens_to_cache,
+    scoring_method,
 ):
 
     entity_types = list(top_scores_layers[known_label].keys())
@@ -689,10 +691,22 @@ def plot_layerwise_latent_scores(
     )
 
     fig = paper_plot(fig, tickangle=0)
-    os.makedirs(f"plots/layerwise_evolution", exist_ok=True)
+
+    # Dynamic plot saving directory
+    plot_dir = os.path.join(
+        "results",
+        model_alias.split("/")[-1],
+        tokens_to_cache,
+        scoring_method,
+        "layerwise_evolution",
+    )
+    os.makedirs(plot_dir, exist_ok=True)
+
     pio.write_image(
         fig,
-        f"plots/layerwise_evolution/{model_alias}_entities_top_scores_layers_{known_label}.png",
+        os.path.join(
+            plot_dir, f"{model_alias}_entities_top_scores_layers_{known_label}.png"
+        ),
         scale=10,
         width=500,
         height=315,
@@ -700,7 +714,9 @@ def plot_layerwise_latent_scores(
 
     pio.write_image(
         fig,
-        f"plots/layerwise_evolution/{model_alias}_entities_top_scores_layers_{known_label}.pdf",
+        os.path.join(
+            plot_dir, f"{model_alias}_entities_top_scores_layers_{known_label}.pdf"
+        ),
         scale=10,
         width=500,
         height=315,

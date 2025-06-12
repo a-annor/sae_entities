@@ -31,7 +31,7 @@ from mech_interp.feature_analysis_utils import (
 model_alias = "gemma-2-2b"
 model_alias = model_alias.replace("/", "_")
 # REPO_ID = model_alias_to_sae_repo_id[model_alias]
-ALL_ENTITY_TYPES = ["Race_ethnicity", "Nationality", "Religion", "Gender_identity"]
+ALL_ENTITY_TYPES = ["Race_ethnicity"] #, "Nationality", "Religion", "Gender_identity"]
 model_path = model_alias_to_model_name[model_alias]
 # Load model to load tokenizer and config data
 model_base = construct_model_base(model_path)
@@ -121,7 +121,7 @@ for entity_type in ALL_ENTITY_TYPES:
 
 
 # %%
-### Searching for the top general latents ###
+### Searching for the top general latents ###
 tokens_to_cache = "entity"  # 'model' 'last_eoi' '?' 'entity'
 evaluate_on = "entities"  # prompts or entities
 scoring_method = (
@@ -162,6 +162,8 @@ for bias_label in ["bias", "unbias"]:
         minmax_layerwise_scores,
         bias_label,
         top_k,
+        tokens_to_cache,
+        scoring_method,
     )
 
 # %%
