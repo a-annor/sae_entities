@@ -1,8 +1,12 @@
+# import sys
+# sys.path.append('./')
+# sys.path.append('../')
+# sys.path.append('../..')
+# sys.path.append('../../..')
+
+import os
 import sys
-sys.path.append('./')
-sys.path.append('../')
-sys.path.append('../..')
-sys.path.append('../../..')
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import argparse
 import os

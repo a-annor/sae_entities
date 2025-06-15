@@ -16,11 +16,11 @@ from utils.hf_models.model_factory import construct_model_base
 from utils.utils import model_alias_to_model_name, paper_plot
 
 from dataset.load_data import load_wikidata_queries, load_triviaqa_queries
-from mech_interp_utils import get_known_unknown_splits
-from mech_interp_utils import get_acts_labels_dict, get_features_layers, get_top_k_features
-from mech_interp_utils import plot_all_features, read_layer_features
-from mech_interp_utils import html_colors, model_alias_to_sae_repo_id
-from sae_entities.utils.activation_cache import CachedDataset
+from mech_interp.mech_interp_utils import get_known_unknown_splits
+from mech_interp.mech_interp_utils import get_acts_labels_dict, get_features_layers, get_top_k_features
+from mech_interp.mech_interp_utils import plot_all_features, read_layer_features
+from mech_interp.mech_interp_utils import html_colors, model_alias_to_sae_repo_id
+from utils.activation_cache import CachedDataset
 
 SAE_WIDTH = '16k'
 
@@ -49,7 +49,7 @@ def get_dataloader(model_alias, tokens_to_cache, n_layers, d_model, dataset_name
     elif 'pile' in dataset_name:
         shard_size = 10000
     
-    cached_acts_path = '../dataset/cached_activations'
+    cached_acts_path = '/home/ana42/rds/hpc-work/sae_entities/dataset/cached_activations'#../dataset/cached_activations'
     seq_len = 128 if 'triviaqa' in dataset_name else 64
     n_positions = 1
     foldername = f"{cached_acts_path}/{tokens_to_cache}/{model_alias}_{dataset_name}/{tokens_to_cache}_npositions_{n_positions}_shard_size_{shard_size}"
