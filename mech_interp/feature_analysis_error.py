@@ -5,18 +5,21 @@ if ipython is not None:
     ipython.run_line_magic('load_ext', 'autoreload')
     ipython.run_line_magic('autoreload', '2')
     
+# import sys
+# sys.path.append("..")
+# sys.path.append("../..")
+# sys.path.append("../../..")
+import os
 import sys
-sys.path.append("..")
-sys.path.append("../..")
-sys.path.append("../../..")
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 
 from collections import defaultdict
 from utils.hf_models.model_factory import construct_model_base
 from utils.utils import model_alias_to_model_name
 
-from feature_analysis_utils import get_per_layer_latent_scores, scatter_plot_latent_separation_scores_experiment
-from feature_analysis_utils import get_general_latents, get_layerwise_latent_scores, plot_layerwise_latent_scores
+from mech_interp.feature_analysis_utils import get_per_layer_latent_scores, scatter_plot_latent_separation_scores_experiment
+from mech_interp.feature_analysis_utils import get_general_latents, get_layerwise_latent_scores, plot_layerwise_latent_scores
 
 # %%
 model_alias = 'gemma-2-2b'

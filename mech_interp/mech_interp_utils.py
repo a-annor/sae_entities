@@ -638,12 +638,9 @@ def get_features_layers(model_alias, acts_labels_dict, layers, sae_width, repo_i
         tokens_to_cache = kwargs['tokens_to_cache']
         folder = f'./train_latents_layers_{evaluate_on}/{scoring_method}/{model_alias}/{tokens_to_cache}'
         os.makedirs(folder, exist_ok=True)
-        if 'bias' or 'bias_test' in dataset_name:
-            # entity_type = dataset_name.split('_')[1]
-            entity_type = "_".join(dataset_name.split("_")[1:])
-            filename_prefix = f'{folder}/{entity_type}'
-        elif 'wikidata' in dataset_name:
+        if 'wikidata' in dataset_name:
             entity_type = dataset_name.split('_')[1]
+            filename_prefix = f'{folder}/{entity_type}'
         else:
             filename_prefix = f'{folder}/{dataset_name}'
     else:
@@ -816,9 +813,9 @@ def plot_top_k_features(final_feats_dict, entity_type):
 
     plt.figure(figsize=(7, 7))
 
-    colors = {'bias': html_colors['green_drawio'], 'unbias': html_colors['red_drawio']}
+    colors = {'known': html_colors['green_drawio'], 'unknown': html_colors['red_drawio']}
 
-    for label in ['bias', 'unbias']:
+    for label in ['known', 'unknown']:
         x = []
         y = []
         for feature_id in final_feats_dict[label].keys():
@@ -853,9 +850,9 @@ def plot_all_features(final_feats_dict, train_feats_dict, entity_type, k=10, lab
 
     plt.figure(figsize=(4.5, 4.5), dpi=500)
 
-    colors = {'bias': html_colors['green_drawio'], 'unbias': html_colors['dark_red_drawio']}
+    colors = {'known': html_colors['green_drawio'], 'unknown': html_colors['dark_red_drawio']}
     texts = []
-    for label in ['bias', 'unbias']:
+    for label in ['known', 'unknown']:
         layer_feat_top_k_training = [(train_feats_dict[label][i]['layer'], train_feats_dict[label][i]['latent_idx']) for i in list(train_feats_dict[label].keys())[:k]]
         x = []
         y = []
@@ -864,7 +861,7 @@ def plot_all_features(final_feats_dict, train_feats_dict, entity_type, k=10, lab
         for i, feature_id in enumerate(final_feats_dict[label].keys()):
             
             x_ = final_feats_dict[label][feature_id]['freq_acts_known']*100
-            y_ = final_feats_dict[label][feature_id]['freq_acts_unbias']*100
+            y_ = final_feats_dict[label][feature_id]['freq_acts_unknown']*100
 
             
             #if (final_feats_dict[label][feature_id]['layer'], final_feats_dict[label][feature_id]['latent_idx']) in layer_feat_top_k_training and i < k:
@@ -895,8 +892,8 @@ def plot_all_features(final_feats_dict, train_feats_dict, entity_type, k=10, lab
     plt.xlim(0, 105)
     plt.ylim(0, 105)
     # Add labels and title
-    plt.xlabel('Activation Frequency Bias Entities (%)', fontsize=10)
-    plt.ylabel('Activation Frequency Unbias Entities (%)', fontsize=10)
+    plt.xlabel('Activation Frequency Known Entities (%)', fontsize=10)
+    plt.ylabel('Activation Frequency Unknown Entities (%)', fontsize=10)
     plt.title(f'Activation Frequencies of SAE Latents: {entity_type.capitalize()}', fontsize=10)
     return plt
 
