@@ -11,6 +11,8 @@ sbatch slurm_llm_opt_test
 sbatch slurm_gen_comp
 sbatch slurm_sentiment
 sbatch slurm_labelling
+sbatch slurm_mech
+
 
 squeue -u ana42
 
@@ -37,15 +39,35 @@ pip install torch==2.6.0  --index-url https://download.pytorch.org/whl/cu124
 transformers == 4.48.0
 
 
-python -m utils.activation_cache --model_alias gemma-2-2b --tokens_to_cache random --batch_size 128 --dataset bias_test
-python -m mech_interp.bias_feature_analysis
-python -m utils.activation_cache --model_alias gemma-2b-it --tokens_to_cache model --batch_size 128 --dataset bias_test
-
-
-python -m utils.activation_cache --model_alias gemma-2-2b --tokens_to_cache entity --batch_size 128 --dataset bias
+python -m utils.activation_cache --model_alias gemma-2-2b --tokens_to_cache bias --batch_size 128 --dataset bias
 python -m utils.activation_cache --model_alias gemma-2-2b --tokens_to_cache random --batch_size 128 --dataset pile
 
 python -m mech_interp.feature_analysis
+
+
+
+TODO
+in activation_cache.py - model_alias upate and data_path = f"z_my_data/test_prompt_final/test_{category}_completion_sentiment_judged_final.jsonl" # TO UPDATE AND MOVE TO laod_data.py
+ABOVE created load_bias_queries(path_prefix: str = "z_my_data/test_prompt_final") in dataset/load_data.py, called in utils/activation_cache.py and 
+mech_interp/feature_analysis_utils.py
+
+
+
+bias_bias_Race_ethnicity
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis.py", line 146, in <module>
+    scatter_plot_latent_separation_scores_experiment(model_alias, tokenizer, bias_type_update,
+  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis_utils.py", line 266, in scatter_plot_latent_separation_scores_experiment
+    dataloader = get_dataloader(model_alias, tokens_to_cache, n_layers, d_model, f'bias_{entity_type}', batch_size=16)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis_utils.py", line 50, in get_dataloader
+    shard_size = bias_shard_size_entities[bias_type]
+                 ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'bias_Race_ethnicity'
+
+
 
 
 

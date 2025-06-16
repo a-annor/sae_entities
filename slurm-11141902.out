@@ -1,0 +1,42 @@
+Loading rhel8/default-amp
+  Loading requirement: rhel8/slurm singularity/current rhel8/global cuda/11.4
+    libpciaccess/0.16/gcc-9.4.0-6fonbj6 libiconv/1.16/gcc-9.4.0-ahebbov
+    libxml2/2.9.12/gcc-9.4.0-gnknt5e ncurses/6.2/gcc-9.4.0-aiirok7
+    hwloc/2.5.0/gcc-9.4.0-7sqomga libevent/2.1.12/gcc-9.4.0-hgny7cm
+    numactl/2.0.14/gcc-9.4.0-52dwc6n cuda/11.4.0/gcc-9.4.0-3hnxhjt
+    gdrcopy/2.2/gcc-9.4.0-e4igtfp knem/1.1.4/gcc-9.4.0-bpbxgva
+    libnl/3.3.0/gcc-9.4.0-whwhrwb rdma-core/34.0/gcc-9.4.0-5eo5n2u
+    ucx/1.11.1/gcc-9.4.0-lktqyl4 openmpi/4.1.1/gcc-9.4.0-epagguv
+/var/spool/slurm/slurmd/job11141902/slurm_script: line 65: conda: command not found
+Changed directory to /rds/user/ana42/hpc-work/sae_entities.
+
+JobID: 11141902
+======
+Time: Mon Jun 16 00:26:17 BST 2025
+Running on master node: gpu-q-7
+Current directory: /rds/user/ana42/hpc-work/sae_entities
+
+Nodes allocated:
+================
+gpu-q-7
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+python -u mech_interp/feature_analysis.py  > logs/out.11141902
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:43<01:27, 43.56s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [01:26<00:43, 43.21s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:30<00:00, 25.39s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:30<00:00, 30.24s/it]
+  0%|          | 0/625 [00:00<?, ?it/s]  9%|▉         | 56/625 [00:00<00:01, 555.43it/s] 19%|█▊        | 117/625 [00:00<00:00, 583.62it/s] 28%|██▊       | 178/625 [00:00<00:00, 593.66it/s] 38%|███▊      | 238/625 [00:00<00:00, 583.16it/s] 48%|████▊     | 297/625 [00:00<00:00, 577.33it/s] 57%|█████▋    | 355/625 [00:00<00:00, 570.50it/s] 66%|██████▌   | 413/625 [00:00<00:00, 566.08it/s] 75%|███████▌  | 470/625 [00:00<00:00, 566.16it/s] 84%|████████▍ | 527/625 [00:00<00:00, 565.79it/s] 94%|█████████▎| 585/625 [00:01<00:00, 567.02it/s]100%|██████████| 625/625 [00:01<00:00, 570.71it/s]
+  0%|          | 0/8 [00:00<?, ?it/s]100%|██████████| 8/8 [00:00<00:00, 452.28it/s]
+  0%|          | 0/8 [00:00<?, ?it/s]100%|██████████| 8/8 [00:00<00:00, 442.95it/s]
+Traceback (most recent call last):
+  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis.py", line 146, in <module>
+    scatter_plot_latent_separation_scores_experiment(model_alias, tokenizer, bias_type_update,
+  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis_utils.py", line 278, in scatter_plot_latent_separation_scores_experiment
+    test_final_feats_dict = get_top_k_features(test_feats_layers, k=None, type='bias')
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/mech_interp_utils.py", line 835, in get_top_k_features
+    layer_known_label_dict = feats_layers[layer][known_label]
+                             ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+KeyError: 'bias'

@@ -516,7 +516,7 @@ def get_acts_labels_dict(model_alias, tokenizer, dataloader, queries, prompts: L
         prompts = set(prompts)
         known_prompts = set([prompt.replace('<bos>', '') if prompt.startswith('<bos>') else prompt for prompt in known_prompts_or_entities])
         unknown_prompts = set([prompt.replace('<bos>', '') if prompt.startswith('<bos>') else prompt for prompt in unknown_prompts_or_entities])
-    elif input_data_type == 'entities':
+    elif input_data_type == 'entities' or input_data_type == 'bias':
         known_entities = set(known_prompts_or_entities)
         unknown_entities = set(unknown_prompts_or_entities)
 
@@ -543,6 +543,17 @@ def get_acts_labels_dict(model_alias, tokenizer, dataloader, queries, prompts: L
                 elif input_data_type == 'entities':
                     # We check entities instead of prompts
                     entity = queries[prompts.index(clean_string)]['entity']
+                    if entity in unknown_entities:
+                        labels.append(1)
+                        activations_list.append(batch_activations[j][:,0].to('cuda'))
+                        final_prompts.append(clean_string)
+                    elif entity in known_entities:
+                        labels.append(0)
+                        activations_list.append(batch_activations[j][:,0].to('cuda'))
+                        final_prompts.append(clean_string)
+                elif input_data_type == 'bias':
+                    # We check entities instead of prompts
+                    entity = queries[prompts.index(clean_string)]['name']
                     if entity in unknown_entities:
                         labels.append(1)
                         activations_list.append(batch_activations[j][:,0].to('cuda'))
@@ -610,7 +621,7 @@ def get_features_layers(model_alias, acts_labels_dict, layers, sae_width, repo_i
         acts_labels = acts_labels_dict[layer]
         # Get activations
         sae_acts = sae.encode(acts_labels['acts'])
-
+        
         # Get labels
         label_indices_1 = torch.where(acts_labels['labels'] == 1.0)[0]
         label_indices_0 = torch.where(acts_labels['labels'] == 0.0)[0]
@@ -618,7 +629,13 @@ def get_features_layers(model_alias, acts_labels_dict, layers, sae_width, repo_i
         sae_acts_1 = sae_acts[label_indices_1, :].detach() # known activations
         sae_acts_0 = sae_acts[label_indices_0, :].detach() # unknown activations
 
-        sae_acts = {'known': sae_acts_0, 'unknown': sae_acts_1}
+        # sae_acts = {'known': sae_acts_0, 'unknown': sae_acts_1}
+        evaluate_on = kwargs.get('evaluate_on', 'entities')
+        if evaluate_on == 'bias':
+            sae_acts = {'unbias': sae_acts_0, 'bias': sae_acts_1}
+        else:
+            sae_acts = {'known': sae_acts_0, 'unknown': sae_acts_1}
+
 
         # We return all features
         scores_dict, freq_acts_dict, mean_features_acts = get_features(sae_acts,
@@ -641,6 +658,9 @@ def get_features_layers(model_alias, acts_labels_dict, layers, sae_width, repo_i
         if 'wikidata' in dataset_name:
             entity_type = dataset_name.split('_')[1]
             filename_prefix = f'{folder}/{entity_type}'
+        elif 'bias' in dataset_name:
+            bias_type = dataset_name[len('bias_'):]
+            filename_prefix = f'{folder}/{bias_type}'
         else:
             filename_prefix = f'{folder}/{dataset_name}'
     else:
@@ -655,18 +675,31 @@ def get_features(
     min_activations: Optional[List[float]] = None,
     eps: float = 1e-6,
 ):
+    # Support both 'known/unknown' and 'unbias/bias'
+    if 'bias' in sae_acts:
+        label_0, label_1 = 'unbias', 'bias'
+    else:
+        label_0, label_1 = 'known', 'unknown'
 
-    # Compute frequency of activations
-    if sae_acts['known'].shape[0] == 0:
-        # If no activation for known, we set the frequency to zero
-        freq_acts_0 = torch.zeros(sae_acts['unknown'].shape[1]).to('cuda')
+    if sae_acts[label_0].shape[0] == 0:
+        freq_acts_0 = torch.zeros(sae_acts[label_1].shape[1]).to('cuda')
     else:
-        freq_acts_0 = (sae_acts['known']>eps).float().mean(dim=0)
-    if sae_acts['unknown'].shape[0] == 0:
-        # If no activation for unknown, we set the frequency to zero
-        freq_acts_1 = torch.zeros(sae_acts['unknown'].shape[1]).to('cuda')
+        freq_acts_0 = (sae_acts[label_0] > eps).float().mean(dim=0)
+    if sae_acts[label_1].shape[0] == 0:
+        freq_acts_1 = torch.zeros(sae_acts[label_1].shape[1]).to('cuda')
     else:
-        freq_acts_1 = (sae_acts['unknown']>eps).float().mean(dim=0)
+        freq_acts_1 = (sae_acts[label_1] > eps).float().mean(dim=0)
+    # TO REMOVE # Compute frequency of activations
+    # if sae_acts['known'].shape[0] == 0:
+    #     # If no activation for known, we set the frequency to zero
+    #     freq_acts_0 = torch.zeros(sae_acts['unknown'].shape[1]).to('cuda')
+    # else:
+    #     freq_acts_0 = (sae_acts['known']>eps).float().mean(dim=0)
+    # if sae_acts['unknown'].shape[0] == 0:
+    #     # If no activation for unknown, we set the frequency to zero
+    #     freq_acts_1 = torch.zeros(sae_acts['unknown'].shape[1]).to('cuda')
+    # else:
+    #     freq_acts_1 = (sae_acts['unknown']>eps).float().mean(dim=0)
 
     if metric == 'relative_difference':
         scores_0 = (freq_acts_0 - freq_acts_1) / (freq_acts_1 + eps)
@@ -710,7 +743,7 @@ def get_features(
     scores_dict = {}
     freq_acts_dict = {}
     mean_features_acts = {}
-    for known_label, scores in zip(['known', 'unknown'], [scores_0, scores_1]):
+    for known_label, scores in zip([label_0, label_1], [scores_0, scores_1]):
         scores_dict[known_label] = scores.tolist()
         # Frequency of activation in known and unknown entity prompts for each ordered latent ranking (known and unknown)
         freq_acts_dict[known_label] = (freq_acts_0.cpu().tolist(), freq_acts_1.cpu().tolist())
@@ -724,7 +757,9 @@ def format_layer_features(feats_per_layer, filename_prefix, save=False):
     final_feats_dict = {}
     for layer in feats_per_layer.keys():
         final_feats_layer_dict = {}
-        for known_label in ['known', 'unknown']:
+        scores_dict, freq_acts_dict, mean_features_acts_dict = feats_per_layer[layer] # Dynamically determine which labels to process (e.g. ['known', 'unknown'] or ['unbias', 'bias'])
+        labels = scores_dict.keys()
+        for known_label in labels:
             final_feats_layer_dict[known_label] = {}
             full_top_feats = []
             scores_dict, freq_acts_dict, mean_features_acts_dict = feats_per_layer[layer]
@@ -757,23 +792,35 @@ def read_layer_features(model_alias, layers, entity_type, scoring_method, tokens
     Read the layer features from JSON files.
     """
     folder = f'./train_latents_layers_{evaluate_on}/{scoring_method}/{model_alias.split("/")[-1]}/{tokens_to_cache}'
-    filename_prefix = f'{folder}/{entity_type}'
+    if evaluate_on == 'bias':
+        filename_prefix = f'{folder}/{entity_type}'
+    else:
+        filename_prefix = f'{folder}/{entity_type}'
 
     feats_layers = {}
     for layer in layers:
         filename = f'{filename_prefix}_L_{str(layer)}.json'
+        if not os.path.exists(filename):
+            print(f"Warning: Missing feature file {filename} — skipping.")
+            continue
         with open(filename, 'r') as f:
             layer_features_dict = json.load(f)
         feats_layers[layer] = layer_features_dict
     return feats_layers
 
 
-def get_top_k_features(feats_layers, k=10):
+def get_top_k_features(feats_layers, k=10, type='wiki'):
     """
     Get dictionary with {'L2F3214' : [x, y]} with top k known and unknown features
     """
+    if type == 'wiki':
+        labels = ['known', 'unknown']
+    elif type == 'bias': 
+        labels = ['bias', 'unbias']
+    else:
+        raise ValueError(f"Unknown dataset_type: {type}")
     final_feats_dict = {}
-    for known_label in ['known', 'unknown']:
+    for known_label in labels:
         final_feats_dict[known_label] = {}
 
         full_top_mean_features_acts = []
@@ -783,6 +830,8 @@ def get_top_k_features(feats_layers, k=10):
         full_scores = []
         full_latent_ids = []
         for layer in feats_layers.keys():
+            # if known_label not in feats_layers[layer]:
+            #     continue
             layer_known_label_dict = feats_layers[layer][known_label]
             for idx in layer_known_label_dict.keys():
                 full_scores.append(layer_known_label_dict[idx]['score'])
@@ -815,7 +864,7 @@ def plot_top_k_features(final_feats_dict, entity_type):
 
     colors = {'known': html_colors['green_drawio'], 'unknown': html_colors['red_drawio']}
 
-    for label in ['known', 'unknown']:
+    for label in ['known', 'unknown', 'bias', 'unbias']:
         x = []
         y = []
         for feature_id in final_feats_dict[label].keys():
@@ -844,15 +893,95 @@ def plot_top_k_features(final_feats_dict, entity_type):
     plt.title(f'Feature Activation Frequencies: Known vs Unknown, Entity: {entity_type}')
 
 
+# def plot_all_features(final_feats_dict, train_feats_dict, entity_type, k=10, labels=True):
+#     from matplotlib import patches
+#     # final_feats_dict -> {'L2F3214' : [x, y] ...} with top k known and unknown features
+
+#     plt.figure(figsize=(4.5, 4.5), dpi=500)
+
+#     colors = {
+#         'known': html_colors['green_drawio'],
+#         'unknown': html_colors['dark_red_drawio'],
+#         'bias': html_colors['dark_red_drawio'],
+#         'unbias': html_colors['green_drawio'],
+#     }
+#     texts = []
+#     ALL_BIAS_TYPES = ['Race_ethnicity', 'Nationality', 'Religion', 'Gender_identity']
+#     if entity_type in ALL_BIAS_TYPES:
+#         labels = ['bias', 'unbias']
+#     else:
+#         labels = ['known', 'unknown']
+        
+#     for label in labels:
+#         layer_feat_top_k_training = [(train_feats_dict[label][i]['layer'], train_feats_dict[label][i]['latent_idx']) for i in list(train_feats_dict[label].keys())[:k]]
+#         x = []
+#         y = []
+#         x_top = []
+#         y_top = []
+#         for i, feature_id in enumerate(final_feats_dict[label].keys()):
+            
+#             x_ = final_feats_dict[label][feature_id]['freq_acts_known']*100
+#             y_ = final_feats_dict[label][feature_id]['freq_acts_unknown']*100
+
+            
+#             #if (final_feats_dict[label][feature_id]['layer'], final_feats_dict[label][feature_id]['latent_idx']) in layer_feat_top_k_training and i < k:
+#             if (final_feats_dict[label][feature_id]['layer'], final_feats_dict[label][feature_id]['latent_idx']) in layer_feat_top_k_training:
+#                 x_top.append(x_)
+#                 y_top.append(y_)
+#                 text_feature_id = f'L{final_feats_dict[label][feature_id]["layer"]}F{final_feats_dict[label][feature_id]["latent_idx"]}'
+#                 if labels:
+#                     texts.append(plt.text(x_, y_, text_feature_id))
+#             else:
+#                 x.append(x_)
+#                 y.append(y_)
+
+#         plt.scatter(x, y, color='grey', alpha=0.02)
+#         plt.scatter(x_top, y_top, color=colors[label], alpha=0.6)
+
+        
+#         # for i, feature_id in enumerate(list(final_feats_dict[label].keys())[:k]):
+#         #     if (final_feats_dict[label][feature_id]['layer'], final_feats_dict[label][feature_id]['latent_idx']) in layer_feat_top_k_training:
+#         #         text_feature_id = f'L{final_feats_dict[label][feature_id]["layer"]}F{final_feats_dict[label][feature_id]["latent_idx"]}'
+#         #         texts.append(plt.text(final_feats_dict[label][feature_id]['freq_acts_known']*100, final_feats_dict[label][feature_id]['freq_acts_unknown']*100, text_feature_id))
+#     if labels:
+#         adjust_text(texts, only_move={'points':'y', 'texts':'y'}, arrowprops=dict(arrowstyle="->", color='grey', lw=0.5))
+    
+#     # Add a diagonal line for reference
+#     plt.plot([0, 105], [0, 105], color='grey', linestyle='--', alpha=0.25)
+    
+#     plt.xlim(0, 105)
+#     plt.ylim(0, 105)
+#     # Add labels and title
+#     plt.xlabel('Activation Frequency Known Entities (%)', fontsize=10)
+#     plt.ylabel('Activation Frequency Unknown Entities (%)', fontsize=10)
+#     plt.title(f'Activation Frequencies of SAE Latents: {entity_type.capitalize()}', fontsize=10)
+#     return plt
+
 def plot_all_features(final_feats_dict, train_feats_dict, entity_type, k=10, labels=True):
     from matplotlib import patches
-    # final_feats_dict -> {'L2F3214' : [x, y] ...} with top k known and unknown features
 
     plt.figure(figsize=(4.5, 4.5), dpi=500)
 
-    colors = {'known': html_colors['green_drawio'], 'unknown': html_colors['dark_red_drawio']}
+    # Determine label type
+    ALL_BIAS_TYPES = ['Race_ethnicity', 'Nationality', 'Religion', 'Gender_identity']
+    if entity_type in ALL_BIAS_TYPES:
+        label_names = ['bias', 'unbias']
+        xlabel = 'Activation Frequency Unbiased (%)'
+        ylabel = 'Activation Frequency Biased (%)'
+    else:
+        label_names = ['known', 'unknown']
+        xlabel = 'Activation Frequency Known Entities (%)'
+        ylabel = 'Activation Frequency Unknown Entities (%)'
+
+    colors = {
+        'known': html_colors['green_drawio'],
+        'unknown': html_colors['dark_red_drawio'],
+        'bias': html_colors['dark_red_drawio'],
+        'unbias': html_colors['green_drawio'],
+    }
+
     texts = []
-    for label in ['known', 'unknown']:
+    for label in label_names:
         layer_feat_top_k_training = [(train_feats_dict[label][i]['layer'], train_feats_dict[label][i]['latent_idx']) for i in list(train_feats_dict[label].keys())[:k]]
         x = []
         y = []
@@ -891,11 +1020,14 @@ def plot_all_features(final_feats_dict, train_feats_dict, entity_type, k=10, lab
     
     plt.xlim(0, 105)
     plt.ylim(0, 105)
-    # Add labels and title
-    plt.xlabel('Activation Frequency Known Entities (%)', fontsize=10)
-    plt.ylabel('Activation Frequency Unknown Entities (%)', fontsize=10)
+    plt.xlabel(xlabel, fontsize=10)
+    plt.ylabel(ylabel, fontsize=10)
     plt.title(f'Activation Frequencies of SAE Latents: {entity_type.capitalize()}', fontsize=10)
+
     return plt
+
+
+
 
 ## Plot functions
 def plot_heads_heatmaps(mean_attn, title):

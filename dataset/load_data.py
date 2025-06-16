@@ -390,3 +390,27 @@ def balance_data(queries: List[Dict], labels: List[int], shuffle=True):
         random.shuffle(balanced_queries)
     
     return balanced_queries
+
+
+def load_bias_queries(path_prefix: str = "z_my_data/test_prompt_final") -> dict:
+    """
+    Loads bias-labeled data for all fixed bias categories.
+    
+    Returns a dict mapping each category to its list of queries.
+    """
+    BIAS_CATEGORIES = ["Race_ethnicity", "Nationality", "Religion", "Gender_identity"]
+    all_queries = {}
+    for category in BIAS_CATEGORIES:
+        filename = f"{path_prefix}/test_{category}_completion_sentiment_judged_final.jsonl"
+        queries = []
+        try:
+            with open(filename, "r") as f:
+                for line in f:
+                    data = json.loads(line)
+                    if data["bias_cat"] != "undetermined":
+                        queries.append(data)
+            print(f"Loaded {len(queries)} examples from {category}")
+        except FileNotFoundError:
+            print(f"Warning: File not found for category '{category}'")
+        all_queries[category] = queries
+    return all_queries

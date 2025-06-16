@@ -39,9 +39,16 @@ def get_dataloader(model_alias, tokens_to_cache, n_layers, d_model, dataset_name
         torch.utils.data.DataLoader: A DataLoader containing the cached dataset for the specified model and entity type.
     """
     entity_shard_size_entities = {'movie': 65370, 'song': 33792, 'player': 22461, 'city': 31616}
+    bias_shard_size_entities = {'Race_ethnicity': 121, 'Nationality': 121, 'Religion': 121, 'Gender_identity': 121}
     if 'wikidata' in dataset_name:
         entity_type = dataset_name.split('_')[1]
         shard_size = entity_shard_size_entities[entity_type]
+
+    elif 'bias' in dataset_name:
+        print(dataset_name)
+        bias_type = dataset_name[len('bias_'):]
+        shard_size = bias_shard_size_entities[bias_type]
+
 
     elif 'triviaqa' in dataset_name:
         shard_size = 9961
@@ -53,6 +60,13 @@ def get_dataloader(model_alias, tokens_to_cache, n_layers, d_model, dataset_name
     seq_len = 128 if 'triviaqa' in dataset_name else 64
     n_positions = 1
     foldername = f"{cached_acts_path}/{tokens_to_cache}/{model_alias}_{dataset_name}/{tokens_to_cache}_npositions_{n_positions}_shard_size_{shard_size}"
+
+    acts_path = os.path.join(foldername, "acts.dat")
+    ids_path = os.path.join(foldername, "ids.dat")
+    if not os.path.exists(acts_path) or not os.path.exists(ids_path):
+        print(f"Warning: Missing activation files for {dataset_name} — skipping.")
+        return None
+    
     dataset = CachedDataset(foldername, range(0,n_layers), d_model, seq_len, n_positions, shard_size=shard_size)
     dataloader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=False)
 
@@ -109,6 +123,19 @@ def get_acts_labels_dict_(model_alias, tokenizer, dataloader, sae_layers, **kwar
     elif 'triviaqa' in dataset_name:
         queries = load_triviaqa_queries(model_alias, split=None)
         prompts = [q['prompt'] for q in queries]
+    elif 'bias' in dataset_name:
+        from dataset.load_data import load_bias_queries
+        bias_type = dataset_name.split("_", 1)[1]  # e.g. "Race_ethnicity"
+        all_bias_data = load_bias_queries()        
+        if bias_type not in all_bias_data:
+            print(f"Warning: No data for bias category '{bias_type}'")
+            return {}
+
+        queries = all_bias_data[bias_type]
+        prompts = [q["context"] for q in queries]
+        known_entities = [q["name"] for q in queries if q["bias_cat"] == "unbias"]
+        unknown_entities = [q["name"] for q in queries if q["bias_cat"] == "bias"]
+
 
 
     if evaluate_on == 'prompts':
@@ -147,6 +174,10 @@ def get_acts_labels_dict_(model_alias, tokenizer, dataloader, sae_layers, **kwar
     elif evaluate_on == 'entities':
         acts_labels_dict = get_acts_labels_dict(model_alias, tokenizer, dataloader, queries, prompts, known_entities, unknown_entities, input_data_type=evaluate_on, layers=sae_layers)
 
+    elif evaluate_on == 'bias':
+        acts_labels_dict = get_acts_labels_dict(model_alias, tokenizer, dataloader, queries, prompts, known_entities, unknown_entities, input_data_type=evaluate_on, layers=sae_layers)
+
+
 
     return acts_labels_dict
 
@@ -175,6 +206,10 @@ def get_per_layer_latent_scores(model_alias, tokenizer, n_layers, d_model, sae_l
 
     # # Get dataloader
     dataloader = get_dataloader(model_alias, kwargs['tokens_to_cache'], n_layers, d_model, dataset_name=dataset_name, batch_size=batch_size)
+    if dataloader is None:
+        print(f"Skipping feature extraction for {dataset_name} — no cached activations found.")
+        return
+    
     # Get cached activations and labels
     acts_labels_dict = get_acts_labels_dict_(model_alias, tokenizer, dataloader, sae_layers, **kwargs)
     # Get features info per layer and (optionally) save them as JSON files
@@ -185,29 +220,62 @@ def get_per_layer_latent_scores(model_alias, tokenizer, n_layers, d_model, sae_l
 ### Scatter plot latent separation scores ###
 def scatter_plot_latent_separation_scores_experiment(model_alias, tokenizer, entity_type, tokens_to_cache, n_layers, testing_layers, d_model, entity_type_and_entity_name_format=False):
     # Parameters
-    evaluate_on = 'entities' # keep as 'entities' for computing the scatter plot
-    scoring_method = 'absolute_difference' # keep this as 'absolute_difference' for computing the scatter plot
-    min_activations = None
-    split = 'test'
-    save = False # save intermediate results from get_features_layers
-    repo_id = model_alias_to_sae_repo_id[model_alias]
-   
-    # Get features scores for all layers in the training set
-    feats_layers = read_layer_features(model_alias, testing_layers, entity_type, scoring_method, tokens_to_cache, evaluate_on)
-    train_feats_dict = get_top_k_features(feats_layers, k=None)
+    if tokens_to_cache =='entity':
+        evaluate_on = 'entities' # keep as 'entities' for computing the scatter plot
+        scoring_method = 'absolute_difference' # keep this as 'absolute_difference' for computing the scatter plot
+        min_activations = None
+        split = 'test'
+        save = False # save intermediate results from get_features_layers
+        repo_id = model_alias_to_sae_repo_id[model_alias]
+    
+        # Get features scores for all layers in the training set
+        feats_layers = read_layer_features(model_alias, testing_layers, entity_type, scoring_method, tokens_to_cache, evaluate_on)
+        train_feats_dict = get_top_k_features(feats_layers, k=None)
 
-    # Get features scores for all layers in the test set
-    # TODO: add entity_type to dataset_name
-    dataloader = get_dataloader(model_alias, tokens_to_cache, n_layers, d_model, f'wikidata_{entity_type}', batch_size=16)
-    test_acts_labels_dict = get_acts_labels_dict_(model_alias, tokenizer, dataloader, testing_layers,
-                                                  dataset_name=f'wikidata_{entity_type}', evaluate_on=evaluate_on, split=split,
-                                                  free_generation=False, consider_refusal_label=False,
-                                                  further_split=False, entity_type_and_entity_name_format=entity_type_and_entity_name_format)
-    test_feats_layers = get_features_layers(model_alias, test_acts_labels_dict, testing_layers, SAE_WIDTH, repo_id,
-                                            save, scoring_method=scoring_method, min_activations=min_activations,
-                                            dataset_name=f'wikidata_{entity_type}')
+        # Get features scores for all layers in the test set
+        # TODO: add entity_type to dataset_name
 
-    test_final_feats_dict = get_top_k_features(test_feats_layers, k=None)
+        dataloader = get_dataloader(model_alias, tokens_to_cache, n_layers, d_model, f'wikidata_{entity_type}', batch_size=16)
+        if dataloader is None:
+            print(f"Skipping feature extraction for 'wikidata_{entity_type}' — no cached activations found.")
+            return
+        test_acts_labels_dict = get_acts_labels_dict_(model_alias, tokenizer, dataloader, testing_layers,
+                                                    dataset_name=f'wikidata_{entity_type}', evaluate_on=evaluate_on, split=split,
+                                                    free_generation=False, consider_refusal_label=False,
+                                                    further_split=False, entity_type_and_entity_name_format=entity_type_and_entity_name_format)
+        test_feats_layers = get_features_layers(model_alias, test_acts_labels_dict, testing_layers, SAE_WIDTH, repo_id,
+                                                save, scoring_method=scoring_method, min_activations=min_activations,
+                                                dataset_name=f'wikidata_{entity_type}')
+
+        test_final_feats_dict = get_top_k_features(test_feats_layers, k=None)
+    elif tokens_to_cache =='bias':
+        evaluate_on = 'bias' # keep as 'entities' for computing the scatter plot
+        scoring_method = 'absolute_difference' # keep this as 'absolute_difference' for computing the scatter plot
+        min_activations = None
+        split = 'test'
+        save = False # save intermediate results from get_features_layers
+        repo_id = model_alias_to_sae_repo_id[model_alias]
+    
+        # Get features scores for all layers in the training set
+        feats_layers = read_layer_features(model_alias, testing_layers, entity_type, scoring_method, tokens_to_cache, evaluate_on)
+        train_feats_dict = get_top_k_features(feats_layers, k=None, type='bias')
+
+        # Get features scores for all layers in the test set
+        # TODO: add entity_type to dataset_name
+
+        dataloader = get_dataloader(model_alias, tokens_to_cache, n_layers, d_model, f'bias_{entity_type}', batch_size=16)
+        if dataloader is None:
+            print(f"Skipping feature extraction for bias_{entity_type}' — no cached activations found.")
+            return
+        test_acts_labels_dict = get_acts_labels_dict_(model_alias, tokenizer, dataloader, testing_layers,
+                                                    dataset_name=f'bias_{entity_type}', evaluate_on=evaluate_on, split=split,
+                                                    free_generation=False, consider_refusal_label=False,
+                                                    further_split=False, entity_type_and_entity_name_format=entity_type_and_entity_name_format)
+        test_feats_layers = get_features_layers(model_alias, test_acts_labels_dict, testing_layers, SAE_WIDTH, repo_id,
+                                                save, scoring_method=scoring_method, min_activations=min_activations,
+                                                dataset_name=f'bias_{entity_type}', evaluate_on='bias')
+
+        test_final_feats_dict = get_top_k_features(test_feats_layers, k=None, type='bias')
 
     # we always save scatter plots
     fig = plot_all_features(test_final_feats_dict, train_feats_dict, entity_type, k=10, labels=False)
@@ -247,14 +315,21 @@ def get_general_latents(model_alias, entity_types, testing_layers, tokens_to_cac
     """
     scores = {}
     ranks = {}
-    for known_label in ['known', 'unknown']:
+    if evaluate_on == 'bias':
+        labels = ['bias', 'unbias']
+        type='bias'
+    else:
+        labels = ['known', 'unknown']
+        type='wiki'
+
+    for known_label in labels:
 
         scores[known_label] = defaultdict(list)
         ranks[known_label] = defaultdict(list)
 
         for entity_type in entity_types:
             feats_layers = read_layer_features(model_alias, testing_layers, entity_type, scoring_method, tokens_to_cache, evaluate_on)
-            train_feats_dict = get_top_k_features(feats_layers, k=None)
+            train_feats_dict = get_top_k_features(feats_layers, k=None, type=type)
             for latent_idx in train_feats_dict[known_label].keys():
                 latent = train_feats_dict[known_label][latent_idx]
                 full_latent_id = f"L{latent['layer']}F{latent['latent_idx']}"
@@ -312,13 +387,18 @@ def get_layerwise_latent_scores(model_alias, sae_layers, tokens_to_cache, scorin
     """
     Get layerwise latent scores for a given model, tokens to cache, evaluate on, scoring method, and top k.
     """
-    evaluate_on = 'entities'
+    if tokens_to_cache == "entity":
+        evaluate_on = 'entities'
+        labels = ['known', 'unknown']
+    elif tokens_to_cache == "bias":
+        evaluate_on = 'bias'
+        labels = ['bias', 'unbias']
 
     scores = {}
     scores_min = {}
     top_scores_layers = {}
     minmax_layerwise_scores = {}
-    for known_label in ['known', 'unknown']:
+    for known_label in labels:
         scores_min[known_label] = {}
         top_scores_layers[known_label] = {}
         scores[known_label] = {}
@@ -330,7 +410,11 @@ def get_layerwise_latent_scores(model_alias, sae_layers, tokens_to_cache, scorin
         for entity_type in entity_types:
             top_scores_layers[known_label][entity_type] = defaultdict(list)
             feats_layers = read_layer_features(model_alias, sae_layers, entity_type, scoring_method, tokens_to_cache, evaluate_on)
+            if not feats_layers:
+                print(f"Skipping {entity_type} — no feature data.")
+                continue
             for layer in feats_layers.keys():
+                print("entity: ", entity_type)
                 for latent_idx in feats_layers[layer][known_label].keys():
                     latent = feats_layers[layer][known_label][latent_idx]
                     full_latent_id = f"L{latent['layer']}F{latent['latent_idx']}"
@@ -359,6 +443,9 @@ def get_layerwise_latent_scores(model_alias, sae_layers, tokens_to_cache, scorin
 def plot_layerwise_latent_scores(model_alias, sae_layers, top_scores_layers, minmax_layerwise_scores, known_label, top_k):
 
     entity_types = list(top_scores_layers[known_label].keys())
+    print("plot entities: ", entity_types)
+    print("plot top_scores_layers: ", top_scores_layers)
+    print("plot minmax_layerwise_scores: ", minmax_layerwise_scores)
     colors = [html_colors['blue_drawio'], html_colors['grey_drawio'], html_colors['green_drawio'], html_colors['brown_D3']]  # Add more colors if needed
     final_scores = list(minmax_layerwise_scores[known_label].values())
 

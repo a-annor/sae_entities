@@ -62,59 +62,139 @@ pile_prompts_experiment = {
 get_per_layer_latent_scores(model_alias, tokenizer, n_layers, d_model,
                             LAYERS_WITH_SAE, save=True, **pile_prompts_experiment)
 
-# %%
-### Latent scores per layer on Wikidata entities ###
-# Known/Unknown entities (base model)
-# You'll need to have precomputed cached activations
-# python -m utils.activation_cache --model_alias gemma-2-2b --tokens_to_cache entity --batch_size 128 --entity_type_and_entity_name_format
+# # %%
+# ### Latent scores per layer on Wikidata entities ###
+# # Known/Unknown entities (base model)
+# # You'll need to have precomputed cached activations
+# # python -m utils.activation_cache --model_alias gemma-2-2b --tokens_to_cache entity --batch_size 128 --entity_type_and_entity_name_format
 
-wikidata_prompts_experiment = {
-    'dataset_name' : 'wikidata',
-    'evaluate_on' : 'entities',
+# wikidata_prompts_experiment = {
+#     'dataset_name' : 'wikidata',
+#     'evaluate_on' : 'entities',
+#     'scoring_method' : 'absolute_difference',
+#     'tokens_to_cache' : 'entity',# Token whose cached activations we want to access
+#     'free_generation' : False,
+#     'consider_refusal_label' : False,
+#     'split' : None,
+#     'further_split' : False,
+#     'entity_type_and_entity_name_format' : True,
+#     }
+# for entity_type in ALL_ENTITY_TYPES:
+#     wikidata_prompts_experiment['dataset_name'] = f'wikidata_{entity_type}'
+#     get_per_layer_latent_scores(model_alias.split('/')[-1], tokenizer, n_layers, d_model,
+#                                 LAYERS_WITH_SAE, save=True, **wikidata_prompts_experiment)
+
+# # %%
+# ### Scatter plot latent separation scores ###
+# testing_layers = LAYERS_WITH_SAE
+# tokens_to_cache = 'entity'
+# for entity_type in ALL_ENTITY_TYPES:
+#     scatter_plot_latent_separation_scores_experiment(model_alias, tokenizer, entity_type,
+#                                                     tokens_to_cache, n_layers, testing_layers,
+#                                                     d_model, entity_type_and_entity_name_format=True)
+
+
+# # %%
+# ### Searching for the top general latents ###
+# tokens_to_cache = 'entity' # 'model' 'last_eoi' '?' 'entity'
+# evaluate_on = 'entities' # prompts or entities
+# scoring_method = 'absolute_difference' # 'absolute_difference', 'relative_difference', 't_test'
+# testing_layers = LAYERS_WITH_SAE
+# entity_types = ALL_ENTITY_TYPES
+# get_general_latents(model_alias, entity_types, testing_layers, tokens_to_cache, evaluate_on,
+#                     scoring_method, filter_with_pile=True)
+
+# # %%
+# #### Layerwise Latent Scores Analysis ####
+# scoring_method = 'absolute_difference'
+# top_k = 5
+# tokens_to_cache = 'entity'
+# top_scores_layers, minmax_layerwise_scores = get_layerwise_latent_scores(model_alias, LAYERS_WITH_SAE, tokens_to_cache,
+#                                                                          scoring_method, ALL_ENTITY_TYPES, top_k)
+
+# # %%
+# for known_label in ['known', 'unknown']:
+#     plot_layerwise_latent_scores(model_alias, LAYERS_WITH_SAE, top_scores_layers,
+#                                  minmax_layerwise_scores, known_label, top_k)
+
+# %%
+ALL_BIAS_TYPES = ['Race_ethnicity', 'Nationality', 'Religion', 'Gender_identity']
+
+
+bias_prompts_experiment = {
+    'dataset_name' : 'bias',
+    'evaluate_on' : 'bias',
     'scoring_method' : 'absolute_difference',
-    'tokens_to_cache' : 'entity',# Token whose cached activations we want to access
+    'tokens_to_cache' : 'bias',# Token whose cached activations we want to access
     'free_generation' : False,
     'consider_refusal_label' : False,
     'split' : None,
     'further_split' : False,
     'entity_type_and_entity_name_format' : True,
     }
-for entity_type in ALL_ENTITY_TYPES:
-    wikidata_prompts_experiment['dataset_name'] = f'wikidata_{entity_type}'
+for bias_type in ALL_BIAS_TYPES:
+    bias_prompts_experiment['dataset_name'] = f'bias_{bias_type}'
     get_per_layer_latent_scores(model_alias.split('/')[-1], tokenizer, n_layers, d_model,
-                                LAYERS_WITH_SAE, save=True, **wikidata_prompts_experiment)
+                                LAYERS_WITH_SAE, save=True, **bias_prompts_experiment)
 
 # %%
 ### Scatter plot latent separation scores ###
 testing_layers = LAYERS_WITH_SAE
-tokens_to_cache = 'entity'
-for entity_type in ALL_ENTITY_TYPES:
-    scatter_plot_latent_separation_scores_experiment(model_alias, tokenizer, entity_type,
+tokens_to_cache = 'bias'
+for bias_type in ALL_BIAS_TYPES:
+    bias_type_update = f"{bias_type}"
+    scatter_plot_latent_separation_scores_experiment(model_alias, tokenizer, bias_type_update,
                                                     tokens_to_cache, n_layers, testing_layers,
                                                     d_model, entity_type_and_entity_name_format=True)
 
 
 # %%
 ### Searching for the top general latents ###
-tokens_to_cache = 'entity' # 'model' 'last_eoi' '?' 'entity'
-evaluate_on = 'entities' # prompts or entities
+tokens_to_cache = 'bias' # 'model' 'last_eoi' '?' 'entity'
+evaluate_on = 'bias' # prompts or entities
 scoring_method = 'absolute_difference' # 'absolute_difference', 'relative_difference', 't_test'
 testing_layers = LAYERS_WITH_SAE
-entity_types = ALL_ENTITY_TYPES
-get_general_latents(model_alias, entity_types, testing_layers, tokens_to_cache, evaluate_on,
+bias_type_update = [f"{bias_type}" for bias_type in ALL_BIAS_TYPES]
+get_general_latents(model_alias, bias_type_update, testing_layers, tokens_to_cache, evaluate_on,
                     scoring_method, filter_with_pile=True)
 
 # %%
 #### Layerwise Latent Scores Analysis ####
 scoring_method = 'absolute_difference'
 top_k = 5
-tokens_to_cache = 'entity'
+tokens_to_cache = 'bias'
 top_scores_layers, minmax_layerwise_scores = get_layerwise_latent_scores(model_alias, LAYERS_WITH_SAE, tokens_to_cache,
-                                                                         scoring_method, ALL_ENTITY_TYPES, top_k)
+                                                                         scoring_method, ALL_BIAS_TYPES, top_k)
 
 # %%
-for known_label in ['known', 'unknown']:
+for known_label in ['bias', 'unbias']:
     plot_layerwise_latent_scores(model_alias, LAYERS_WITH_SAE, top_scores_layers,
                                  minmax_layerwise_scores, known_label, top_k)
 
-# %%
+
+
+
+# bias_experiment = {
+#     'evaluate_on' : 'entities',
+#     'scoring_method' : 'absolute_difference',
+#     'tokens_to_cache' : 'bias',
+#     'free_generation' : False,
+#     'consider_refusal_label' : False,
+#     'split' : None,
+#     'further_split' : False,
+#     'entity_type_and_entity_name_format' : False,
+# }
+
+# for bias_type in bias_categories:
+#     bias_experiment['dataset_name'] = f'bias_{bias_type}'
+#     get_per_layer_latent_scores(model_alias, tokenizer, n_layers, d_model, LAYERS_WITH_SAE, save=True, **bias_experiment)
+
+# for bias_type in bias_categories:
+#     scatter_plot_latent_separation_scores_experiment(
+#         model_alias, tokenizer, bias_type,
+#         tokens_to_cache='bias',
+#         n_layers=n_layers,
+#         testing_layers=LAYERS_WITH_SAE,
+#         d_model=d_model,
+#         entity_type_and_entity_name_format=False  # unless your prompts depend on special formatting
+#     )

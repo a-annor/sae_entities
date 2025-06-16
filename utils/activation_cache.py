@@ -25,7 +25,8 @@ import numpy as np
 import random
 from torch.utils.data import Dataset, Sampler, DataLoader
 from torch.utils.data import Dataset as TorchDataset
-
+import json
+\
 from utils.hf_patching_utils import add_hooks
 from utils.hf_models.model_base import ModelBase
 from utils.hf_models.model_factory import construct_model_base
@@ -291,6 +292,55 @@ def load_wikidata_instructions_to_cache(model_alias: str, tokens_to_cache: str, 
 
     return prompts, substrings
 
+def load_bias_instructions_to_cache(
+    # model_alias: str, to be updated with load_data func
+    tokens_to_cache: str,
+    category: str,
+    # balance_data: bool = True,
+):
+    """
+    Load bias-related prompts for caching activations.
+    Filter out undetermined cases and convert bias_cat to binary labels.
+    """
+    
+    assert tokens_to_cache == 'bias'
+
+    # data_path = f"z_my_data/test_prompt_final/test_{category}_completion_sentiment_judged_final.jsonl" # TO UPDATE AND MOVE TO laod_data.py
+
+    # prompts = []
+    # substrings = []
+
+    # try:
+    #     with open(data_path, "r") as f:
+    #         for line in f:
+    #             data = json.loads(line)
+    #             # Only include if bias_cat is not undetermined
+    #             if data["bias_cat"] != "undetermined":
+    #                 prompts.append(data["context"])
+    #                 substrings.append(data["name"])   
+
+    #     print(
+    #         f"Loaded {len(prompts)} prompts for category {category} (excluding undetermined cases)"
+    #     )
+    # except FileNotFoundError:
+    #     print(f"Warning: No data file found for category {category}, skipping...")
+    #     return [], []
+    from dataset.load_data import load_bias_queries
+
+    all_bias_data = load_bias_queries()
+
+    if category not in all_bias_data:
+        print(f"Warning: No data found for category {category}, skipping...")
+        return [], []
+
+    queries = all_bias_data[category]
+    prompts = [q["context"] for q in queries if q["bias_cat"] != "undetermined"]
+    substrings = [q["name"] for q in queries if q["bias_cat"] != "undetermined"]
+
+    print(f"Loaded {len(prompts)} prompts for category {category} (excluding undetermined cases)")
+    
+    return prompts, substrings
+
 class CachedDataset(TorchDataset):
     """Torch Dataset backed by a memory-mapped numpy array."""
     def __init__(
@@ -382,6 +432,15 @@ def main(args):
                                                                         entity_type=entity_type, balance_data=False,
                                                                         entity_type_and_entity_name_format=entity_type_and_entity_name_format)
             get_activations(model_base, prompts, substrings, seq_len, batch_size, tokens_to_cache, n_positions, dataset_name, shard_size)
+    elif dataset == "bias":
+            seq_len = 64
+            for bias_type in ['Race_ethnicity', 'Nationality', 'Religion', 'Gender_identity']:
+                dataset_name = f"bias_{bias_type}"
+                prompts, substrings = load_bias_instructions_to_cache(tokens_to_cache,category=bias_type)
+                if len(prompts) == 0:
+                    print(f"Skipping category {bias_type} — no prompts found.")
+                    continue
+                get_activations(model_base, prompts, substrings, seq_len, batch_size, tokens_to_cache, n_positions, dataset_name, shard_size)
 
     elif dataset == 'triviaqa':
         seq_len = 128
@@ -411,7 +470,7 @@ if __name__ == '__main__':
     parser.add_argument('--tokens_to_cache', type=str, default="entity", help='How to find the position to cache. Options: "entity", "last_eoi", "?", "random"')
     parser.add_argument('--batch_size', type=int, default=64, help='Batch size for processing')
     parser.add_argument('--entity_type_and_entity_name_format', action='store_true', help='Whether to format the prompt as: The {entity_type} "{entity}"')
-    parser.add_argument('--dataset', type=str, default="wikidata", help='Dataset to use. Options: "wikidata", "triviaqa", "pile"')
+    parser.add_argument('--dataset', type=str, default="wikidata", help='Dataset to use. Options: "wikidata", "triviaqa", "pile", "bias"')
     args = parser.parse_args()
     
     main(args)
