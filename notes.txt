@@ -18,7 +18,7 @@ squeue -u ana42
 
 sintr -A MLMI-ana42-SL2-CPU -p icelake -N1 -n1 -t 1:0:0 --qos=INTR
 sintr -A MLMI-ana42-SL2-GPU -p ampere --gres=gpu:1 -N1 -n1 -t 1:0:0 --qos=INTR
-sintr -A MLMI-ana42-SL2-GPU -p ampere --gres=gpu:1 -N1 -n1 -t 0:30:0 --qos=INTR
+sintr -A MLMI-ana42-SL2-GPU -p ampere --gres=gpu:1 -N1 -n1 -t 0:20:0 --qos=INTR
 
 sintr -A MLMI-ana42-SL2-GPU -p ampere --gres=gpu:2 -N1 -n1 -t 1:0:0 --qos=INTR
 
@@ -42,9 +42,30 @@ transformers == 4.48.0
 python -m utils.activation_cache --model_alias gemma-2-2b --tokens_to_cache bias --batch_size 128 --dataset bias
 python -m utils.activation_cache --model_alias gemma-2-2b --tokens_to_cache random --batch_size 128 --dataset pile
 
-python -m mech_interp.feature_analysis
+python3 -m mech_interp.feature_analysis
 
+2984867096, 0.2792208194732666, 0.25974026322364807, 0.25, 0.25], 20: [0.350649356842041, 0.26298701763153076, 0.2564935088157654, 0.25, 0.2467532604932785], 21: [0.3636363744735718, 0.27272728085517883, 0.26298701763153076, 0.25, 0.25], 22: [0.29870131611824036, 0.26298701763153076, 0.25974026322364807, 0.24025976657867432, 0.23701298236846924], 23: [0.3181818127632141, 0.31168830394744873, 0.29870131611824036, 0.25, 0.25], 24: [0.25, 0.25, 0.25, 0.2142857164144516, 0.2077922224998474], 25: [0.26298704743385315, 0.25974026322364807, 0.25, 0.25, 0.23701298236846924]}), 'Nationality': defaultdict(<class 'list'>, {}), 'Religion': defaultdict(<class 'list'>, {}), 'Gender_identity': defaultdict(<class 'list'>, {})}}
+plot minmax_layerwise_scores:  {'bias': {}, 'unbias': {}}
+/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/numpy/core/fromnumeric.py:3504: RuntimeWarning:
 
+Mean of empty slice.
+
+/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/numpy/core/_methods.py:129: RuntimeWarning:
+
+invalid value encountered in scalar divide
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis.py", line 171, in <module>
+    plot_layerwise_latent_scores(model_alias, LAYERS_WITH_SAE, top_scores_layers,
+  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis_utils.py", line 457, in plot_layerwise_latent_scores
+    min_scores = [min(top_scores_layers[known_label][entity_type][layer]) for layer in sae_layers]
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/feature_analysis_utils.py", line 457, in <listcomp>
+    min_scores = [min(top_scores_layers[known_label][entity_type][layer]) for layer in sae_layers]
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: min() arg is an empty sequence
 
 TODO
 in activation_cache.py - model_alias upate and data_path = f"z_my_data/test_prompt_final/test_{category}_completion_sentiment_judged_final.jsonl" # TO UPDATE AND MOVE TO laod_data.py
