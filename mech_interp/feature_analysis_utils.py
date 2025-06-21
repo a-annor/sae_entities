@@ -383,6 +383,62 @@ def get_general_latents(model_alias, entity_types, testing_layers, tokens_to_cac
 
 # %%
 #### Layerwise Latent Scores Analysis ####
+# def get_layerwise_latent_scores(model_alias, sae_layers, tokens_to_cache, scoring_method, entity_types, top_k):
+#     """
+#     Get layerwise latent scores for a given model, tokens to cache, evaluate on, scoring method, and top k.
+#     """
+#     if tokens_to_cache == "entity":
+#         evaluate_on = 'entities'
+#         labels = ['known', 'unknown']
+#     elif tokens_to_cache == "bias":
+#         evaluate_on = 'bias'
+#         labels = ['bias', 'unbias']
+
+#     scores = {}
+#     scores_min = {}
+#     top_scores_layers = {}
+#     minmax_layerwise_scores = {}
+#     for known_label in labels:
+#         scores_min[known_label] = {}
+#         top_scores_layers[known_label] = {}
+#         scores[known_label] = {}
+
+#         for layer in sae_layers:
+#             scores[known_label][layer] = defaultdict(list)
+
+#         # Get scores and ranks for all layers. These are computed for each entity type
+#         for entity_type in entity_types:
+#             top_scores_layers[known_label][entity_type] = defaultdict(list)
+#             feats_layers = read_layer_features(model_alias, sae_layers, entity_type, scoring_method, tokens_to_cache, evaluate_on)
+#             if not feats_layers:
+#                 print(f"Skipping {entity_type} — no feature data.")
+#                 continue
+#             for layer in feats_layers.keys():
+#                 print("entity: ", entity_type)
+#                 for latent_idx in feats_layers[layer][known_label].keys():
+#                     latent = feats_layers[layer][known_label][latent_idx]
+#                     full_latent_id = f"L{latent['layer']}F{latent['latent_idx']}"
+#                     scores[known_label][layer][full_latent_id].append(latent['score'])
+#                 for i in range(top_k):
+#                     score = feats_layers[layer][known_label][str(i)]['score']
+#                     top_scores_layers[known_label][entity_type][layer].append(score)
+
+#         # Compute the min score for each latent across entity types. We do it per layer
+#         for layer in feats_layers.keys():
+#             scores_min[known_label][layer] = {}
+#             for full_latent_id in scores[known_label][layer].keys():
+#                 scores_min[known_label][layer][full_latent_id] = np.min(scores[known_label][layer][full_latent_id])
+
+#         # Now compute the max of the min scores of all the latents
+#         minmax_layerwise_scores[known_label] = {}
+#         min_score_of_top_k_rank = defaultdict(list)
+#         for layer in scores_min[known_label].keys():
+#             for i, (latent_id, _) in enumerate(scores_min[known_label][layer].items()):
+#                 min_score_of_top_k_rank[layer].append(scores_min[known_label][layer][latent_id])
+#             minmax_layerwise_scores[known_label][layer] = np.max(min_score_of_top_k_rank[layer])
+
+#     return top_scores_layers, minmax_layerwise_scores
+
 def get_layerwise_latent_scores(model_alias, sae_layers, tokens_to_cache, scoring_method, entity_types, top_k):
     """
     Get layerwise latent scores for a given model, tokens to cache, evaluate on, scoring method, and top k.
@@ -406,13 +462,16 @@ def get_layerwise_latent_scores(model_alias, sae_layers, tokens_to_cache, scorin
         for layer in sae_layers:
             scores[known_label][layer] = defaultdict(list)
 
-        # Get scores and ranks for all layers. These are computed for each entity type
+        # Get scores and ranks for all layers. These are computed for each entity type
         for entity_type in entity_types:
             top_scores_layers[known_label][entity_type] = defaultdict(list)
             feats_layers = read_layer_features(model_alias, sae_layers, entity_type, scoring_method, tokens_to_cache, evaluate_on)
+            
+            # Skip if the entity type does not exist or has no feature data
             if not feats_layers:
                 print(f"Skipping {entity_type} — no feature data.")
                 continue
+                
             for layer in feats_layers.keys():
                 print("entity: ", entity_type)
                 for latent_idx in feats_layers[layer][known_label].keys():
@@ -420,14 +479,18 @@ def get_layerwise_latent_scores(model_alias, sae_layers, tokens_to_cache, scorin
                     full_latent_id = f"L{latent['layer']}F{latent['latent_idx']}"
                     scores[known_label][layer][full_latent_id].append(latent['score'])
                 for i in range(top_k):
-                    score = feats_layers[layer][known_label][str(i)]['score']
-                    top_scores_layers[known_label][entity_type][layer].append(score)
+                    # Ensure the index exists before accessing
+                    if str(i) in feats_layers[layer][known_label]:
+                        score = feats_layers[layer][known_label][str(i)]['score']
+                        top_scores_layers[known_label][entity_type][layer].append(score)
 
         # Compute the min score for each latent across entity types. We do it per layer
-        for layer in feats_layers.keys():
+        # Use scores[known_label].keys() to iterate over layers that have scores.
+        for layer in scores[known_label].keys():
             scores_min[known_label][layer] = {}
             for full_latent_id in scores[known_label][layer].keys():
-                scores_min[known_label][layer][full_latent_id] = np.min(scores[known_label][layer][full_latent_id])
+                if scores[known_label][layer][full_latent_id]:
+                    scores_min[known_label][layer][full_latent_id] = np.min(scores[known_label][layer][full_latent_id])
 
         # Now compute the max of the min scores of all the latents
         minmax_layerwise_scores[known_label] = {}
@@ -435,17 +498,105 @@ def get_layerwise_latent_scores(model_alias, sae_layers, tokens_to_cache, scorin
         for layer in scores_min[known_label].keys():
             for i, (latent_id, _) in enumerate(scores_min[known_label][layer].items()):
                 min_score_of_top_k_rank[layer].append(scores_min[known_label][layer][latent_id])
-            minmax_layerwise_scores[known_label][layer] = np.max(min_score_of_top_k_rank[layer])
+            if min_score_of_top_k_rank[layer]:
+                minmax_layerwise_scores[known_label][layer] = np.max(min_score_of_top_k_rank[layer])
 
     return top_scores_layers, minmax_layerwise_scores
 
+# def plot_layerwise_latent_scores(model_alias, sae_layers, top_scores_layers, minmax_layerwise_scores, known_label, top_k):
+
+#     entity_types = list(top_scores_layers[known_label].keys())
+#     print("plot entities: ", entity_types)
+#     print("plot top_scores_layers: ", top_scores_layers)
+#     print("plot minmax_layerwise_scores: ", minmax_layerwise_scores)
+#     colors = [html_colors['blue_drawio'], html_colors['grey_drawio'], html_colors['green_drawio'], html_colors['brown_D3']]  # Add more colors if needed
+#     final_scores = list(minmax_layerwise_scores[known_label].values())
+
+#     # Create the line plot with error bars
+#     fig = go.Figure()
+
+#     for i, entity_type in enumerate(entity_types):
+#         scores = [np.mean(top_scores_layers[known_label][entity_type][layer]) for layer in sae_layers]
+#         min_scores = [min(top_scores_layers[known_label][entity_type][layer]) for layer in sae_layers]
+#         max_scores = [max(top_scores_layers[known_label][entity_type][layer]) for layer in sae_layers]
+#         error_y = [score - min_score for score, min_score in zip(scores, min_scores)]
+#         error_y_minus = [max_score - score for score, max_score in zip(scores, max_scores)]
+#         # Add error bars to the plot
+#         fig.add_trace(go.Scatter(
+#             x=sae_layers,
+#             y=scores,
+#             error_y=dict(
+#                 type='data',
+#                 array=error_y,
+#                 symmetric=False,
+#                 arrayminus=error_y_minus,
+#                 visible=True,
+#             ),
+#             mode='lines+markers',
+#             opacity=0.6,  # Added opacity to make the line more opaque
+#             name=entity_type.capitalize(),
+#             line=dict(color=colors[i])
+#         ))
+
+#     # Add min_score_of_top_k_rank to the plot
+#     fig.add_trace(go.Scatter(
+#         x=sae_layers,
+#         y=final_scores,
+#         mode='lines+markers',
+#         name=f'MaxMin',
+#         line=dict(color=html_colors['red_drawio'], dash='dash')
+#     ))
+
+#     fig.update_layout(
+#         xaxis_title='Layer',
+#         yaxis_title='Score',
+#         legend_title='',
+#         # legend=dict(
+#         #     yanchor="top",
+#         #     y=0.99,
+#         #     xanchor="left",
+#         #     x=0.01
+#         # )
+#     )
+
+#     fig.update_layout(
+#         title={
+#             'text': f'Top {top_k} {known_label.capitalize()} Separation Scores Latents',
+#             'y': 0.75,  # Moves the title closer to the plot (default is 0.9)
+#             'x': 0.5,
+#             'xanchor': 'center',
+#             'yanchor': 'top'
+#         }
+#     )
+
+#     fig.update_xaxes(tickmode='linear', tick0=1, dtick=1)
+#     fig.update_layout(showlegend=True)
+
+#     # Update x-axis limits
+#     fig.update_xaxes(range=[0.5, len(sae_layers)+1-0.5])
+#     # Update x-axis to show ticks every 5 layers
+#     fig.update_xaxes(
+#         tickmode='array',
+#         tickvals=list(range(0, max(sae_layers)+1, 5)),
+#         ticktext=[str(i) for i in range(0, max(sae_layers)+1, 5)]
+#     )
+
+#     fig = paper_plot(fig, tickangle=0)
+#     os.makedirs(f'plots/layerwise_evolution', exist_ok=True)
+#     pio.write_image(fig, f'plots/layerwise_evolution/{model_alias}_entities_top_scores_layers_{known_label}.png',
+#                         scale=10, width=500, height=315)# width=475, height=300
+    
+#     pio.write_image(fig, f'plots/layerwise_evolution/{model_alias}_entities_top_scores_layers_{known_label}.pdf',
+#                         scale=10, width=500, height=315)# width=475, height=300
+
+#     fig.show()
 
 def plot_layerwise_latent_scores(model_alias, sae_layers, top_scores_layers, minmax_layerwise_scores, known_label, top_k):
 
     entity_types = list(top_scores_layers[known_label].keys())
     print("plot entities: ", entity_types)
     print("plot top_scores_layers: ", top_scores_layers)
-    print("plot minmax_layerwise_scores: ", minmax_layerwise_scores)
+    # print("plot minmax_layerwise_scores: ", minmax_layerwise_scores)
     colors = [html_colors['blue_drawio'], html_colors['grey_drawio'], html_colors['green_drawio'], html_colors['brown_D3']]  # Add more colors if needed
     final_scores = list(minmax_layerwise_scores[known_label].values())
 
@@ -453,27 +604,44 @@ def plot_layerwise_latent_scores(model_alias, sae_layers, top_scores_layers, min
     fig = go.Figure()
 
     for i, entity_type in enumerate(entity_types):
-        scores = [np.mean(top_scores_layers[known_label][entity_type][layer]) for layer in sae_layers]
-        min_scores = [min(top_scores_layers[known_label][entity_type][layer]) for layer in sae_layers]
-        max_scores = [max(top_scores_layers[known_label][entity_type][layer]) for layer in sae_layers]
-        error_y = [score - min_score for score, min_score in zip(scores, min_scores)]
-        error_y_minus = [max_score - score for score, max_score in zip(scores, max_scores)]
-        # Add error bars to the plot
-        fig.add_trace(go.Scatter(
-            x=sae_layers,
-            y=scores,
-            error_y=dict(
-                type='data',
-                array=error_y,
-                symmetric=False,
-                arrayminus=error_y_minus,
-                visible=True,
-            ),
-            mode='lines+markers',
-            opacity=0.6,  # Added opacity to make the line more opaque
-            name=entity_type.capitalize(),
-            line=dict(color=colors[i])
-        ))
+        scores = []
+        min_scores = []
+        max_scores = []
+        for layer in sae_layers:
+            layer_scores = top_scores_layers[known_label][entity_type].get(layer, [])
+            if layer_scores:
+                scores.append(np.mean(layer_scores))
+                min_scores.append(min(layer_scores))
+                max_scores.append(max(layer_scores))
+            else:
+                scores.append(np.nan)
+                min_scores.append(np.nan)
+                max_scores.append(np.nan)
+
+        # Check if there is anything to plot for this entity ---
+        # np.isnan(scores) creates a boolean array [True, True, ...] if all scores are nan.
+        # np.all() checks if all elements in that array are True.
+        # We only plot if NOT ALL scores are nan (i.e., if there's at least one data point).
+        if not np.all(np.isnan(scores)):
+            error_y = [score - min_score for score, min_score in zip(scores, min_scores)]
+            error_y_minus = [max_score - score for score, max_score in zip(scores, max_scores)]
+            
+            # Add error bars to the plot
+            fig.add_trace(go.Scatter(
+                x=sae_layers,
+                y=scores,
+                error_y=dict(
+                    type='data',
+                    array=error_y,
+                    symmetric=False,
+                    arrayminus=error_y_minus,
+                    visible=True,
+                ),
+                mode='lines+markers',
+                opacity=0.6,
+                name=entity_type.capitalize(),
+                line=dict(color=colors[i])
+            ))
 
     # Add min_score_of_top_k_rank to the plot
     fig.add_trace(go.Scatter(
@@ -488,42 +656,39 @@ def plot_layerwise_latent_scores(model_alias, sae_layers, top_scores_layers, min
         xaxis_title='Layer',
         yaxis_title='Score',
         legend_title='',
-        # legend=dict(
-        #     yanchor="top",
-        #     y=0.99,
-        #     xanchor="left",
-        #     x=0.01
-        # )
     )
 
     fig.update_layout(
         title={
             'text': f'Top {top_k} {known_label.capitalize()} Separation Scores Latents',
-            'y': 0.75,  # Moves the title closer to the plot (default is 0.9)
+            'y': 0.75,
             'x': 0.5,
             'xanchor': 'center',
             'yanchor': 'top'
         }
     )
 
-    fig.update_xaxes(tickmode='linear', tick0=1, dtick=1)
-    fig.update_layout(showlegend=True)
-
-    # Update x-axis limits
-    fig.update_xaxes(range=[0.5, len(sae_layers)+1-0.5])
-    # Update x-axis to show ticks every 5 layers
     fig.update_xaxes(
         tickmode='array',
         tickvals=list(range(0, max(sae_layers)+1, 5)),
         ticktext=[str(i) for i in range(0, max(sae_layers)+1, 5)]
     )
 
+    print(f"\nSaving plot for known_label='{known_label}'...")
+    
     fig = paper_plot(fig, tickangle=0)
     os.makedirs(f'plots/layerwise_evolution', exist_ok=True)
-    pio.write_image(fig, f'plots/layerwise_evolution/{model_alias}_entities_top_scores_layers_{known_label}.png',
-                        scale=10, width=500, height=315)# width=475, height=300
     
-    pio.write_image(fig, f'plots/layerwise_evolution/{model_alias}_entities_top_scores_layers_{known_label}.pdf',
-                        scale=10, width=500, height=315)# width=475, height=300
-
-    fig.show()
+    file_path_png = f'plots/layerwise_evolution/{model_alias}_entities_top_scores_layers_{known_label}.png'
+    file_path_pdf = f'plots/layerwise_evolution/{model_alias}_entities_top_scores_layers_{known_label}.pdf'
+    
+    print(f"  - Saving to {file_path_png}")
+    pio.write_image(fig, file_path_png, scale=10, width=500, height=315)
+    
+    print(f"  - Saving to {file_path_pdf}")
+    pio.write_image(fig, file_path_pdf, scale=10, width=500, height=315)
+    
+    # print(f"  - Showing plot for '{known_label}'")
+    # fig.show()
+    
+    print(f"SUCCESS: Plot for '{known_label}' was saved and shown without error.")
