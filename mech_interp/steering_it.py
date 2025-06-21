@@ -6,11 +6,14 @@ if ipython is not None:
     ipython.run_line_magic('autoreload', '2')
 
 # %%
+# import sys
+# sys.path.append("../..")
+# sys.path.append("../dataset")
+# sys.path.append("./")
+# sys.path.append("../")
+import os
 import sys
-sys.path.append("../..")
-sys.path.append("../dataset")
-sys.path.append("./")
-sys.path.append("../")
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import os
 import json
@@ -32,13 +35,13 @@ from utils.hf_models.model_factory import construct_model_base
 from transformer_lens import HookedTransformer, ActivationCache
 from dataset.load_data import load_wikidata_queries
 from utils.utils import compute_cosim
-from mech_interp_utils import load_data
+from mech_interp.mech_interp_utils import load_data
 from utils.utils import find_string_in_tokens, slice_to_list
-from mech_interp_utils import html_colors
-from mech_interp_utils import load_steering_latents, load_latents
+from mech_interp.mech_interp_utils import html_colors
+from mech_interp.mech_interp_utils import load_steering_latents, load_latents
 
-from hooks_utils import compute_logit_diff_steered, compute_logit_diff_original
-from hooks_utils import steered_and_orig_generations
+from mech_interp.hooks_utils import compute_logit_diff_steered, compute_logit_diff_original
+from mech_interp.hooks_utils import steered_and_orig_generations
 from utils.utils import model_alias_to_model_name, model_is_chat_model, paper_plot
 
 import random
@@ -54,7 +57,7 @@ random.seed(random_seed)
 #     return model, tokenizer
 # %%
 
-model_alias = 'meta-llama/Llama-3.1-8B'#'gemma-2-9b'
+model_alias = 'google/gemma-2-2b'#'gemma-2-9b'
 #model_alias = 'gemma-2-2b'
 prompt_template = 'Are you sure you know the {entity_type} {entity_name}? Answer yes or no.'
 
