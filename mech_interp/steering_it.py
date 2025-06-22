@@ -57,7 +57,7 @@ random.seed(random_seed)
 #     return model, tokenizer
 # %%
 
-model_alias = 'google/gemma-2-2b'#'gemma-2-9b'
+model_alias = 'gemma-2-2b'#'gemma-2-9b'
 #model_alias = 'gemma-2-2b'
 prompt_template = 'Are you sure you know the {entity_type} {entity_name}? Answer yes or no.'
 
