@@ -44,8 +44,8 @@ python -m utils.activation_cache --model_alias gemma-2-2b --tokens_to_cache rand
 python3 -m mech_interp.feature_analysis
 
 
-?python -m utils.activation_cache --model_alias gemma-2-2b-it --tokens_to_cache bias --batch_size 128 --dataset bias
-?python -m utils.activation_cache --model_alias gemma-2-2b-it --tokens_to_cache model --batch_size 128 --dataset wikidata
+python -m utils.activation_cache --model_alias gemma-2-2b-it --tokens_to_cache bias --batch_size 128 --dataset bias
+python -m utils.activation_cache --model_alias gemma-2-2b --tokens_to_cache model --batch_size 128 --dataset wikidata
 
 
 python -m dataset.process_data.wikidata.create_wikidata_entity_queries --model_path google/gemma-2-2b-it
@@ -78,6 +78,34 @@ python -m dataset.process_data.wikidata.create_wikidata_entity_queries --model_p
 [rank0]:[W621 15:37:57.694911913 ProcessGroupNCCL.cpp:1496] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
 
 python3 -m mech_interp.steering_it.py
+python3 -m mech_interp.refusal_analysis.py
+python3 -m mech_interp.refusal_analysis_bias.py
+
+
+Number of unknown entities: 532
+tokenized_prompts torch.Size([1596, 33])
+queries 153239
+Number of known entities: 1607
+Number of unknown entities: 532
+tokenized_prompts torch.Size([1596, 32])
+Loading steering latents for model: gemma-2-2b
+Loading steering latents for model: gemma-2-2b
+Loading steering latents for model: gemma-2-2b
+Loading random latents
+Traceback (most recent call last):
+  File "<frozen runpy>", line 189, in _run_module_as_main
+  File "<frozen runpy>", line 112, in _get_module_details
+  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/steering_it.py", line 137, in <module>
+    known_latent, unknown_latent, random_latents_known, random_latents_unknown = load_latents(model_alias, top_latents,
+                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/mech_interp_utils.py", line 1675, in load_latents
+    random_latents_known: List[Tuple[int, float, Tensor]] = load_steering_latents('movie', label='known', topk=kwargs['random_n_latents'],
+                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/mech_interp_utils.py", line 425, in load_steering_latents
+    min_max_scores = json.load(open(f"./train_latents_layers_entities/absolute_difference/{model_alias.split('/')[-1]}/entity/sorted_scores_min_{label}.json"))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: './train_latents_layers_entities/absolute_difference/gemma-2-2b/entity/sorted_scores_min_known.json'
+
 
 Explaination of the layer evolution plot one entity.
 When a latent is processed, its score list only ever has one value: [score_Race_ethnicity].

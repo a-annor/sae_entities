@@ -293,7 +293,7 @@ def create_prompts_and_answers(tokenizer, queries, entity_type, known_label, val
     return prompts_label, answers_label, entities_label
 
 def load_data(model, queries, entity_type, tokenizer, known_label, prompt_template, conversation=None, relations_model_type: Literal['base', 'it']='base', split: Literal['train', 'validation', 'test'] = 'test', fixed_config: Optional[Literal['fixed_entities', 'both']] = None):
-
+    print(entity_type_to_token_pos)
     entity_token_pos = entity_type_to_token_pos[entity_type]
     if fixed_config == 'fixed_entities' or fixed_config == 'both':
         fixed_entities_length = True

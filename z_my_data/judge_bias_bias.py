@@ -78,13 +78,13 @@ def process_file(input_file: Path, output_file: Path, model, tokenizer, args):
         data = [json.loads(line) for line in f]
 
     for item in tqdm(data, desc=f"Processing {input_file.name}"):
-        if "bias_score" not in item and "completion" in item:
+        if "judge_score" not in item and "completion" in item:
             prompt = item["context"]
             completion = item["completion"].lower()
             print(f"\nProcessing prompt: {prompt}")
             print(f"Generated completion: {completion}")
-            item["bias_score"] = judge_bias(model, tokenizer, prompt, completion, args)
-            print(f"Bias Score: {item['bias_score']}")
+            item["judge_score"] = judge_bias(model, tokenizer, prompt, completion, args)
+            print(f"Bias Score: {item['judge_score']}")
 
     with open(output_file, "w") as f:
         for item in data:

@@ -8,7 +8,7 @@ def bias_assignment(input_file):
         for line in f_in:
             entry = json.loads(line)
             sentiment = entry["sentiment"]
-            bias = entry["bias_score"]
+            bias = entry["judge_score"]
             if sentiment <=-0.5 and bias >=0.35:
                 entry["bias_cat"] = "bias"
             elif sentiment >=-0.2 and bias <=0.15:

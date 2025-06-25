@@ -212,7 +212,7 @@ def multi_line_top_k_latents_effect_plot(results_dict, xticks_labels: List[str],
         ),
     )
 
-    fig.show()
+    # fig.show()
 
     return fig
 # %%

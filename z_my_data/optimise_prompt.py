@@ -131,7 +131,7 @@ def main(args: Namespace) -> None:
     data = data_list[0]
     prompt = data["context"].strip()
     response = data["completion"].strip()
-    biased_prob = data["bias_score"]
+    biased_prob = data["judge_score"]
     kept_attribute = data["name"].strip()
 
     prompt_history = [prompt]
@@ -168,7 +168,7 @@ def main(args: Namespace) -> None:
     with open(args.input_json_path, "r") as f:
         data_list = [json.loads(line) for line in f if line.strip()]
 
-    data_list = [d for d in data_list if d["bias_score"] <= 0.35 and d["bias_score"] >= 0.15 and d["sentiment"] <= 0]
+    data_list = [d for d in data_list if d["judge_score"] <= 0.35 and d["judge_score"] >= 0.15 and d["sentiment"] <= 0]
     # Process each example
     for i, data in enumerate(data_list):
         print(f"\n{'='*20} Example {i+1} (ID: {data.get('example_id', 'N/A')}) {'='*20}")
@@ -176,7 +176,7 @@ def main(args: Namespace) -> None:
         # Extract initial fields
         prompt = data["context"].strip()
         response = data["completion"].strip()
-        biased_prob = data["bias_score"]
+        biased_prob = data["judge_score"]
         kept_attribute = data["name"].strip()
 
         # Store history
@@ -234,7 +234,7 @@ def main(args: Namespace) -> None:
         max_bias_idx = int(np.argmax(biased_prob_history))
         data["context"] = prompt_history[max_bias_idx]
         data["completion"] = response
-        data["bias_score"] = biased_prob_history[max_bias_idx]
+        data["judge_score"] = biased_prob_history[max_bias_idx]
         data["additional_metadata"]["version"] = "updated"
 
         # Save updated entry back to list

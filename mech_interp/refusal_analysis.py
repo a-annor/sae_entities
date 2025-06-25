@@ -6,11 +6,14 @@ if ipython is not None:
     ipython.run_line_magic('autoreload', '2')
 
 # %%
+# import sys
+# sys.path.append("../..")
+# sys.path.append("../dataset")
+# sys.path.append("./")
+# sys.path.append("../")
+import os
 import sys
-sys.path.append("../..")
-sys.path.append("../dataset")
-sys.path.append("./")
-sys.path.append("../")
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import os
 import json
@@ -34,10 +37,10 @@ from utils.hf_models.model_factory import construct_model_base
 from utils.utils import model_alias_to_model_name
 from transformer_lens import HookedTransformer, ActivationCache
 from utils.sae_utils import load_sae
-from mech_interp_utils import load_data, load_steering_latents
-from mech_interp_utils import html_colors, load_latents
+from mech_interp.mech_interp_utils import load_data, load_steering_latents
+from mech_interp.mech_interp_utils import html_colors, load_latents
 from utils.generation_utils import is_unknown, is_generation_refusal
-from hooks_utils import steered_and_orig_generations
+from mech_interp.hooks_utils import steered_and_orig_generations
 from utils.utils import tl_orthogonalize_gemma_weights, paper_plot
 from dataset.load_data import load_wikidata_queries
 import random
