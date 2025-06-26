@@ -22,7 +22,7 @@ def text_sentiment(text, sentiment_pipeline):
     result = sentiment_pipeline(text.strip().lower(), top_k=3)
     
     for r in result:
-        print(r["label"])
+        # print(r["label"])
         if r["label"] == "LABEL_0":
             sentiment_score= -r["score"]
 
