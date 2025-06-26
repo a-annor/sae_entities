@@ -231,7 +231,7 @@ for bias_type in BIAS_TYPES_TO_ANALYZE:
     
     # --- This block now uses a series of 'if' statements, matching the reference code ---
 
-    # 1. Handle 'original' and 'steered_bias' (known) together for efficiency
+    #  Handle 'original' and 'steered_bias' together for efficiency
     if 'original' in methods_to_evaluate:
         print("    - Generating: original & steered_bias (known)")
         original_gens, steered_bias_gens = steered_and_orig_generations(
@@ -256,7 +256,7 @@ for bias_type in BIAS_TYPES_TO_ANALYZE:
             all_generations[bias_type]['steered_bias']['completions'] = [g.replace(p, '').strip() for g, p in zip(steered_bias_gens, prompts_for_method)]
             print("      - Stored 'steered_bias' results.")
 
-    # 2. Handle 'steered_unbias' (unknown)
+    #  Handle 'steered_unbias' (unknown)
     if 'steered_unbias' in methods_to_evaluate:
         print("    - Generating: steered_unbias (unknown)")
         _, steered_unbias_gens = steered_and_orig_generations(
@@ -274,9 +274,8 @@ for bias_type in BIAS_TYPES_TO_ANALYZE:
         all_generations[bias_type]['steered_unbias']['completions'] = [g.replace(p, '').strip() for g, p in zip(steered_unbias_gens, prompts_for_method)]
         print("      - Stored 'steered_unbias' results.")
 
-    # 3. Handle random steering methods
+    # Handle random steering methods
     if 'steered_bias_random' in methods_to_evaluate:
-        # (This logic remains the same)
         print("    - Generating: steered_bias_random")
         generations_list = []
         for r_latent in random_latents_bias:
@@ -288,7 +287,6 @@ for bias_type in BIAS_TYPES_TO_ANALYZE:
         print("      - Stored 'steered_bias_random' results.")
 
     if 'steered_unbias_random' in methods_to_evaluate:
-        # (This logic also remains the same)
         print("    - Generating: steered_unbias_random")
         generations_list = []
         for r_latent in random_latents_unbias:
@@ -299,9 +297,8 @@ for bias_type in BIAS_TYPES_TO_ANALYZE:
         all_generations[bias_type]['steered_unbias_random']['completions_per_run'] = [[g.replace(p, '').strip() for g, p in zip(run, prompts_for_method)] for run in generations_list]
         print("      - Stored 'steered_unbias_random' results.")
 
-    # 4. Handle orthogonalization
+    #  Handle orthogonalization
     if 'orthogonalized_unbias' in methods_to_evaluate:
-        # (This logic also remains the same, using deepcopy)
         print("    - Generating: orthogonalized_unbias")
         print("      - Creating a deep copy of the model for orthogonalization...")
         model_for_this_run = copy.deepcopy(main_model)
