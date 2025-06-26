@@ -8,7 +8,7 @@ from dataset.load_data import load_wikidata_queries
 from collections import defaultdict
 import numpy as np
 import copy
-from typing import List, Union, Optional, Literal, Tuple
+from typing import List, Union, Optional, Literal, Tuple, Dict, Optional
 from torch import Tensor
 from fancy_einsum import einsum
 from jaxtyping import Float
@@ -1683,3 +1683,224 @@ def load_latents(model_alias, top_latents, filter_with_pile=False, **kwargs):
                                                                               random_latents=True)
     
     return known_latent, unknown_latent, random_latents_known, random_latents_unknown
+
+def load_steering_latents_bias(
+    entity_type: str,
+    topk: int = 10,
+    label: Literal['bias', 'unbias'] = 'bias',
+    layers_range: List[int] = [5],
+    random_latents: bool = False,
+    scoring_method: Literal['absolute_difference', 'relative_difference'] = 'absolute_difference',
+    specific_latents: Optional[List[Tuple[int, int]]] = None, # Changed to Optional
+    input_latent: bool = False,
+    model_alias: str = 'gemma-2-2b',
+    # These params for read_layer_features_bias are placeholders if not directly used
+    tokens_to_cache: str = 'bias', # A generic name for bias data
+    evaluate_on: str = 'bias' # A generic name for bias data
+) -> List[Tuple[int, int, float, Tensor]]:
+    
+    random.seed(42) # Use the consistent seed
+    print(f'Loading steering latents for model: {model_alias}, Label: {label}, Random: {random_latents}')
+
+    sae_width = '16k' # Example, ensure this matches your SAEs
+    repo_id = model_alias_to_sae_repo_id[model_alias]
+
+    if specific_latents:
+        layers_range = [latent[0] for latent in specific_latents]
+    
+    # Use the new bias-specific feature reader
+    feats_layers = read_layer_features(model_alias, layers_range, entity_type, scoring_method, tokens_to_cache, evaluate_on)
+
+    top_sae_latents = []
+    
+    # Use the new bias-specific top features retriever
+    top_sae_latents_dict = get_top_k_features(feats_layers, k=topk, type='bias') 
+    sae_latent_dict = top_sae_latents_dict[label]
+
+    if specific_latents is not None:
+        indices = []
+        all_sae_latents_dict = get_top_k_features(feats_layers, k=None, type='bias')
+        for layer, latent_idx in specific_latents:
+            found_key = None
+            for k_ranked, info in all_sae_latents_dict[label].items(): # Iterate over the ranked dictionary
+                if info['layer'] == layer and info['latent_idx'] == latent_idx:
+                    found_key = k_ranked # Found by its rank
+                    break
+            if found_key is not None:
+                # Need the original key (LxFy) to retrieve from all_sae_latents_dict correctly
+                # Assuming all_sae_latents_dict[label] is directly mapping rank to latent_info
+                indices.append(found_key)
+            else:
+                print(f"Warning: Specific latent (L{layer}F{latent_idx}) not found for label {label}.")
+        sae_latent_dict = {i: all_sae_latents_dict[label][idx] for i, idx in enumerate(indices)}
+
+
+    if random_latents:
+        all_sae_latents_dict = get_top_k_features(feats_layers, k=None, type='bias')
+        
+        # Collect all possible indices from `all_sae_latents_dict[label]`
+        # These are the *ranked indices* from 0 to N-1, if get_top_k_features_bias returns ranked dict
+        available_indices_ranked = list(all_sae_latents_dict[label].keys()) 
+
+        # Filter out latents that have a non-zero score (i.e., not truly "random" or featureless)
+        # Assuming the score files are located in the bias directory
+        min_max_scores_path = f"./train_latents_layers_bias/{scoring_method}/{model_alias}/bias/sorted_scores_min_{label}.json"
+        try:
+            min_max_scores = json.load(open(min_max_scores_path))
+        except FileNotFoundError:
+            print(f"Warning: `sorted_scores_min_{label}.json` not found at {min_max_scores_path}. Cannot filter random latents by score.")
+            min_max_scores = {} # Empty dict to avoid errors
+
+        indices_to_remove = set()
+        for ranked_idx, info in all_sae_latents_dict[label].items():
+            latent_id_str = f"L{info['layer']}F{info['latent_idx']}"
+            if latent_id_str in min_max_scores and abs(min_max_scores[latent_id_str]) > 0.0:
+                indices_to_remove.add(ranked_idx) # Remove by the ranked index if it has a score
+
+        available_indices_filtered = [idx for idx in available_indices_ranked if idx not in indices_to_remove]
+
+        if len(available_indices_filtered) < topk:
+            print(f"Warning: Not enough random latents available ({len(available_indices_filtered)}) for topk={topk}. Taking all available.")
+            chosen_indices_ranked = available_indices_filtered
+        else:
+            chosen_indices_ranked = random.sample(available_indices_filtered, topk)
+
+        # Reconstruct sae_latent_dict using the chosen ranked indices
+        sae_latent_dict = {i: all_sae_latents_dict[label][idx] for i, idx in enumerate(chosen_indices_ranked)}
+    
+    # Prepare information for loading SAEs
+    sae_info_to_load = []
+    for ranking, latent_info in sae_latent_dict.items():
+        sae_info_to_load.append({
+            'layer': latent_info['layer'],
+            'latent_idx': latent_info['latent_idx'],
+            'mean_act': latent_info['mean_features_acts']
+        })
+
+    latents = []
+    # Group SAEs by layer to load them efficiently
+    layers_to_process = sorted(list(set([l['layer'] for l in sae_info_to_load]))) # Sort for consistent loading order
+
+    from utils.sae_utils import load_sae # Ensure load_sae is imported
+
+    for layer in layers_to_process:
+        # SAE loading logic (from your previous code, adapted slightly for clarity)
+        repo_id = model_alias_to_sae_repo_id.get(model_alias)
+        if not repo_id:
+            raise ValueError(f"repo_id not defined for model_alias: {model_alias}. Add it to model_alias_to_sae_repo_id.")
+
+        sae_id = None
+        if model_alias == 'gemma-2b-it':
+            # assert layer == 13, "Layer 13 is specifically defined for gemma-2b-it. Check latent layers."
+            sae_id = "gemma-2b-it-res-jb"
+        elif model_alias in ['meta-llama/Llama-3.1-8B', 'meta-llama_Llama-3.1-8B']:
+            sae_id = f"l{layer-1}r_8x"
+        elif model_alias in layer_sparisity_widths and (layer-1) in layer_sparisity_widths[model_alias]:
+            # General case for models with sparsity widths defined
+            sae_sparsity = layer_sparisity_widths[model_alias][layer-1].get(sae_width)
+            if sae_sparsity is not None:
+                sae_id = f"layer_{layer-1}/width_{sae_width}/average_l0_{str(sae_sparsity)}"
+            else:
+                print(f"Warning: Sparsity for layer {layer-1} width {sae_width} not found for {model_alias}. Using default SAE ID format.")
+                sae_id = f"layer_{layer-1}/width_{sae_width}"
+        else:
+             print(f"Warning: Model {model_alias} or layer {layer-1} not in layer_sparisity_widths. Using general SAE ID format.")
+             sae_id = f"layer_{layer-1}/width_{sae_width}" # Fallback for other models/layers
+
+        if not sae_id:
+            raise ValueError(f"SAE ID could not be determined for model {model_alias}, layer {layer}. Check SAE configuration.")
+
+        sae = load_sae(repo_id, sae_id)
+
+        for latent_info in sae_info_to_load:
+            if latent_info['layer'] == layer:
+                latent_idx = latent_info['latent_idx']
+                latent_idx = int(latent_info['latent_idx'])
+                mean_act = latent_info['mean_act']
+                direction = sae.W_enc[:,latent_idx].detach() if input_latent else sae.W_dec[latent_idx].detach()
+                latents.append((layer, latent_idx, mean_act, direction))
+        del sae # Free memory after loading for the layer
+
+    return latents
+
+
+# # --- New Top-Level Bias Latents Loader: load_latents_bias ---
+# def load_latents_bias(model_alias: str, top_latents: Dict[str, int], filter_with_pile: bool = False, **kwargs) -> Tuple[List[Tuple[int, int, float, Tensor]], List[Tuple[int, int, float, Tensor]], List[Tuple[int, int, float, Tensor]], List[Tuple[int, int, float, Tensor]]]:
+#     """
+#     Loads specific 'bias' and 'unbias' steering latents, and corresponding random latents.
+#     Uses new, separate functions for bias-specific latent loading.
+    
+#     Args:
+#         model_alias (str): The alias of the model (e.g., 'gemma-2-2b').
+#         top_latents (Dict[str, int]): Dictionary with 'bias' and 'unbias' keys,
+#                                       specifying the rank of the latent to load (e.g., {'bias': 0, 'unbias': 0} for the top 1).
+#         filter_with_pile (bool): Whether to use pile-filtered scores.
+#         kwargs: Additional keyword arguments, notably 'random_n_latents' for random latents.
+        
+#     Returns:
+#         Tuple of Lists of Tuples: (bias_latent, unbias_latent, random_latents_bias, random_latents_unbias)
+#                                   Each latent is (layer, latent_idx, mean_act, direction_tensor)
+#     """
+    
+#     # Base directory for scores, now explicitly for bias data
+#     scores_base_path = f'./train_latents_layers_bias/absolute_difference/{model_alias}/bias'
+#     file_prefix = 'pile_filtered_scores_min_' if filter_with_pile else 'sorted_scores_min_'
+
+#     try:
+#         with open(f'{scores_base_path}/{file_prefix}bias.json', 'r') as f:
+#             sorted_scores_bias = json.load(f)
+#         with open(f'{scores_base_path}/{file_prefix}unbias.json', 'r') as f:
+#             sorted_scores_unbias = json.load(f)
+#     except FileNotFoundError as e:
+#         raise FileNotFoundError(f"Bias/Unbias score files not found. Please ensure you have pre-calculated "
+#                                 f"and saved bias/unbias latent scores in {scores_base_path} for model {model_alias}. Error: {e}")
+
+
+
+def load_latents_bias(model_alias, top_latents, filter_with_pile=False, **kwargs):
+    # Load steering latents
+    # Read the sorted scores for unknown entities
+    if filter_with_pile == True:
+        with open(f'./train_latents_layers_bias/absolute_difference/{model_alias}/bias/pile_filtered_scores_min_bias.json', 'r') as f:
+            sorted_scores_bias = json.load(f)
+        with open(f'./train_latents_layers_bias/absolute_difference/{model_alias}/bias/pile_filtered_scores_min_unbias.json', 'r') as f:
+            sorted_scores_unbias = json.load(f)
+    else:
+        with open(f'./train_latents_layers_bias/absolute_difference/{model_alias}/bias/sorted_scores_min_bias.json', 'r') as f:
+            sorted_scores_bias = json.load(f)
+        with open(f'./train_latents_layers_bias/absolute_difference/{model_alias}/bias/sorted_scores_min_unbias.json', 'r') as f:
+            sorted_scores_unbias = json.load(f)
+    
+    bias_latent_ = list(sorted_scores_bias.keys())[top_latents['bias']]
+    layer_bias = int(bias_latent_[1:bias_latent_.find('F')])
+    head_bias = int(bias_latent_[bias_latent_.find('F')+1:-2])
+    bias_latent_id = [(layer_bias, head_bias)]
+    # Unknown latent
+    unbias_latent_ = list(sorted_scores_unbias.keys())[top_latents['unbias']]
+    layer_unbias = int(unbias_latent_[1:unbias_latent_.find('F')])
+    head_unbias = int(unbias_latent_[unbias_latent_.find('F')+1:-2])
+    unbias_latent_id = [(layer_unbias, head_unbias)]
+
+    bias_latent: List[Tuple[int, float, Tensor]] = load_steering_latents_bias('Race_ethnicity', label='bias', topk=1,
+                                                                            #layers_range=[known_latent[0]],
+                                                                            specific_latents=bias_latent_id,
+                                                                            model_alias=model_alias,
+                                                                            random_latents=False)
+
+    unbias_latent: List[Tuple[int, float, Tensor]] = load_steering_latents_bias('Race_ethnicity', label='unbias', topk=1,
+                                                                            #layers_range=[unknown_latent[0]],
+                                                                            specific_latents=unbias_latent_id,
+                                                                            model_alias=model_alias,
+                                                                            random_latents=False)
+
+    random_latents_bias: List[Tuple[int, float, Tensor]] = load_steering_latents_bias('Race_ethnicity', label='bias', topk=kwargs['random_n_latents'],
+                                                                              layers_range=[layer_bias],
+                                                                              model_alias=model_alias,
+                                                                              random_latents=True)
+    
+    random_latents_unbias: List[Tuple[int, float, Tensor]] = load_steering_latents_bias('Race_ethnicity', label='unbias', topk=kwargs['random_n_latents'],
+                                                                              layers_range=[layer_unbias],
+                                                                              model_alias=model_alias,
+                                                                              random_latents=True)
+    
+    return bias_latent, unbias_latent, random_latents_bias, random_latents_unbias

@@ -18,7 +18,7 @@ nlp = spacy.load("en_core_web_sm")
 import json
 
 
-def text_sentiment(text):
+def text_sentiment(text, sentiment_pipeline):
     result = sentiment_pipeline(text.strip().lower(), top_k=3)
     
     for r in result:
@@ -35,7 +35,7 @@ def append_sentiment(input_file):
     with open(input_path, "r", encoding="utf-8") as f_in, open(output_path, "w", encoding="utf-8") as f_out:
         for line in f_in:
             entry = json.loads(line)
-            sentiment = text_sentiment(entry["completion"])
+            sentiment = text_sentiment(entry["completion"], sentiment_pipeline)
             entry["sentiment"] = sentiment
             f_out.write(json.dumps(entry, ensure_ascii=False) + "\n")
 

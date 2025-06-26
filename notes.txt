@@ -12,6 +12,7 @@ sbatch slurm_gen_comp
 sbatch slurm_sentiment
 sbatch slurm_labelling
 sbatch slurm_mech
+sbatch slurm_refusal
 
 
 squeue -u ana42
@@ -43,43 +44,13 @@ python -m utils.activation_cache --model_alias gemma-2-2b --tokens_to_cache bias
 python -m utils.activation_cache --model_alias gemma-2-2b --tokens_to_cache random --batch_size 128 --dataset pile
 python3 -m mech_interp.feature_analysis
 
-
+------- IGNORE ----------
 python -m utils.activation_cache --model_alias gemma-2-2b-it --tokens_to_cache bias --batch_size 128 --dataset bias
 python -m utils.activation_cache --model_alias gemma-2-2b --tokens_to_cache model --batch_size 128 --dataset wikidata
-
-
-python -m dataset.process_data.wikidata.create_wikidata_entity_queries --model_path google/gemma-2-2b-it
-[rank0]:     return fut.result(timeout)
-[rank0]:            ^^^^^^^^^^^^^^^^^^^
-[rank0]:   File "/usr/lib64/python3.11/concurrent/futures/_base.py", line 456, in result
-[rank0]:     return self.__get_result()
-[rank0]:            ^^^^^^^^^^^^^^^^^^^
-[rank0]:   File "/usr/lib64/python3.11/concurrent/futures/_base.py", line 401, in __get_result
-[rank0]:     raise self._exception
-[rank0]:   File "/usr/lib64/python3.11/concurrent/futures/thread.py", line 58, in run
-[rank0]:     result = self.fn(*self.args, **self.kwargs)
-[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank0]:   File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 301, in _inner_hf_hub_download
-[rank0]:     return hf_hub_download(
-[rank0]:            ^^^^^^^^^^^^^^^^
-[rank0]:   File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
-[rank0]:     return fn(*args, **kwargs)
-[rank0]:            ^^^^^^^^^^^^^^^^^^^
-[rank0]:   File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/huggingface_hub/file_download.py", line 1008, in hf_hub_download
-[rank0]:     return _hf_hub_download_to_cache_dir(
-[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank0]:   File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/huggingface_hub/file_download.py", line 1161, in _hf_hub_download_to_cache_dir
-[rank0]:     _download_to_tmp_and_move(
-[rank0]:   File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/huggingface_hub/file_download.py", line 1725, in _download_to_tmp_and_move
-[rank0]:     http_get(
-[rank0]:   File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/huggingface_hub/file_download.py", line 497, in http_get
-[rank0]:     temp_file.write(chunk)
-[rank0]: OSError: [Errno 28] No space left on device
-[rank0]:[W621 15:37:57.694911913 ProcessGroupNCCL.cpp:1496] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
-
+-------------------------
 python3 -m mech_interp.steering_it.py
 python3 -m mech_interp.refusal_analysis.py
-python3 -m mech_interp.refusal_analysis_bias.py
+python3 -m mech_interp.refusal_analysis_bias_test.py
 
 
 Number of unknown entities: 532
@@ -105,6 +76,16 @@ Traceback (most recent call last):
     min_max_scores = json.load(open(f"./train_latents_layers_entities/absolute_difference/{model_alias.split('/')[-1]}/entity/sorted_scores_min_{label}.json"))
                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 FileNotFoundError: [Errno 2] No such file or directory: './train_latents_layers_entities/absolute_difference/gemma-2-2b/entity/sorted_scores_min_known.json'
+
+
+
+
+Loading steering latents for model: gemma-2-2b, Label: bias, Random: True
+Warning: `sorted_scores_min_bias.json` not found at ./train_latents_layers_bias/absolute_difference/gemma-2-2b/bias/sorted_scores_min_bias.json. Cannot filter random latents by score.
+Loading steering latents for model: gemma-2-2b, Label: unbias, Random: True
+Warning: `sorted_scores_min_unbias.json` not found at ./train_latents_layers_bias/absolute_difference/gemma-2-2b/bias/sorted_scores_min_unbias.json. Cannot filter random latents by score.
+
+
 
 
 Explaination of the layer evolution plot one entity.

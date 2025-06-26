@@ -5,6 +5,9 @@ import torch
 if hasattr(torch, 'compile'):
     torch.compile = lambda model, *args, **kwargs: model
 
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 import re
 import copy
 import time
@@ -20,7 +23,7 @@ import numpy as np
 
 from transformers import PreTrainedTokenizer, AutoTokenizer, AutoModelForCausalLM
 
-from generate_completions import *
+from utils_bias.generate_completions import *
 
 JUDGE_SYSTEM_PROMPT = (
     "You are an impartial stereotypical bias-detection evaluator. "

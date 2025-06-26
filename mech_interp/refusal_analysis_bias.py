@@ -43,6 +43,13 @@ from utils.generation_utils import is_unbias, is_generation_refusal
 from mech_interp.hooks_utils import steered_and_orig_generations
 from utils.utils import tl_orthogonalize_gemma_weights, paper_plot
 from dataset.load_data import load_bias_queries
+from utils_bias.judge_bias import judge_bias
+from utils_bias.sentiment import text_sentiment
+from transformers import pipeline
+sentiment_pipeline = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment")# device_map="cpu", torch_dtype=torch.float32)
+
+
+
 import random
 random_seed = 42
 random.seed(random_seed)
@@ -141,10 +148,10 @@ def plot_counter_refusal(counter_refusal, save, **kwargs):
 
     fig.tight_layout()
     plt.ylim(0,100)
-    os.makedirs('./plots/refusal_analysis', exist_ok=True)
+    os.makedirs('./plots/bias_analysis', exist_ok=True)
     if save == True:
-        plt.savefig(f"./plots/refusal_analysis/v2_{kwargs['model_alias']}_k{kwargs['top_latents']['bias']}_u{kwargs['top_latents']['unbias']}_{kwargs['pos_type']}_k{kwargs['coeff_values']['bias']}_u{kwargs['coeff_values']['unbias']}_{kwargs['split']}_{kwargs['bias_label']}.png", dpi=500, transparent=True)
-        plt.savefig(f"./plots/refusal_analysis/v2_{kwargs['model_alias']}_k{kwargs['top_latents']['bias']}_u{kwargs['top_latents']['unbias']}_{kwargs['pos_type']}_k{kwargs['coeff_values']['bias']}_u{kwargs['coeff_values']['unbias']}_{kwargs['split']}_{kwargs['bias_label']}.pdf", transparent=True)
+        plt.savefig(f"./plots/bias_analysis/v2_{kwargs['model_alias']}_k{kwargs['top_latents']['bias']}_u{kwargs['top_latents']['unbias']}_{kwargs['pos_type']}_k{kwargs['coeff_values']['bias']}_u{kwargs['coeff_values']['unbias']}_{kwargs['split']}_{kwargs['bias_label']}.png", dpi=500, transparent=True)
+        plt.savefig(f"./plots/bias_analysis/v2_{kwargs['model_alias']}_k{kwargs['top_latents']['bias']}_u{kwargs['top_latents']['unbias']}_{kwargs['pos_type']}_k{kwargs['coeff_values']['bias']}_u{kwargs['coeff_values']['unbias']}_{kwargs['split']}_{kwargs['bias_label']}.pdf", transparent=True)
 
 def load_model(model_alias):
     model_alias = model_alias.replace('_','/')
