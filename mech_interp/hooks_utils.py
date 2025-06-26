@@ -102,8 +102,13 @@ def generation_steered_latents(model, ids, pos, steering_latents=None, ablate_la
 
     for hook_filter, hook_fn in ablate_fwd_hooks:
         model.add_hook(hook_filter, hook_fn, "fwd")
+
     generations = model.generate(ids, max_new_tokens=max_new_tokens, do_sample=False)
-    steered_generations = [model.to_string(generation) for generation in generations]
+
+    is_it_model = "-it" in model.cfg.model_name
+    skip_special = not is_it_model
+    steered_generations = [model.tokenizer.decode(generation, skip_special_tokens=skip_special) for generation in generations]
+    
     return steered_generations
 
 def cache_steered_latents(model, ids, pos, steering_latents: List[Tuple[int, float, Tensor]]=None, ablate_latents: List[Tuple[int, float, Tensor]]=None, coeff_value=1):
@@ -208,6 +213,9 @@ def steered_and_orig_generations(model, N, tokenized_prompts, pos_entities, pos_
     N = min(N, len(tokenized_prompts))
     tokenized_prompts = tokenized_prompts[:N]
     pos_entities = pos_entities[:N]
+    is_it_model = "-it" in model.cfg.model_name
+    skip_special = not is_it_model
+
     for i in range(0, len(tokenized_prompts), batch_size):
         batch_tokenized_prompts = tokenized_prompts[i:i+batch_size]
         batch_entity_pos = copy.deepcopy(pos_entities[i:i+batch_size])
@@ -215,7 +223,8 @@ def steered_and_orig_generations(model, N, tokenized_prompts, pos_entities, pos_
 
         if orig_generations == True:
             generations = model.generate(batch_tokenized_prompts, max_new_tokens=max_new_tokens, do_sample=False)
-            original_generations_full.extend([model.to_string(generation) for generation in generations])
+            decoded_original_generations = [model.tokenizer.decode(generation, skip_special_tokens=skip_special) for generation in generations]
+            original_generations_full.extend(decoded_original_generations)
 
         batch_pos = get_batch_pos(batch_entity_pos, pos_type, batch_tokenized_prompts)
 

@@ -57,11 +57,10 @@ import random
 random_seed = 42
 random.seed(random_seed)
 # %%
-# Using your requested HookedTransformer loader, with a `device` parameter added.
 
 def load_tl_model(model_alias: str, device: str) -> Tuple[HookedTransformer, PreTrainedTokenizer]:
     """Loads a natively supported model into HookedTransformer."""
-    model_name_to_load = f"google/{model_alias}-it"
+    model_name_to_load = f"google/{model_alias}"
     print(f"!! Loading HookedTransformer model: {model_name_to_load} to device: {device}")
     model = HookedTransformer.from_pretrained_no_processing(
         model_name_to_load,
@@ -92,14 +91,19 @@ def load_hf_model(model_alias: str, device: str) -> Tuple[AutoModelForCausalLM, 
     model.eval()
     return model, tokenizer
 
-# --- Helper Functions ---
 def load_bias_data_simple(model: HookedTransformer, queries_by_category: Dict[str, List[Dict]], target_category: str, bias_label: Literal['unbias', 'bias', 'all'], tokenizer, conversation: Optional[List[Dict]]=None, relations_model_type: Literal['base', 'it']='base') -> Tuple[List[torch.Tensor], List[str]]:
     prompts_to_load = []
     if target_category in queries_by_category:
         for query_item in queries_by_category[target_category]:
             if bias_label == 'all' or query_item.get('bias_cat') == bias_label:
-                full_prompt = f"{query_item.get('context', '')} {query_item.get('question', '')}"
-                prompts_to_load.append(full_prompt.strip())
+                prompt_text = ""
+                if relations_model_type == 'it':
+                    # it models get the full context and question to answer.
+                    prompt_text = f"{query_item.get('context', '')} {query_item.get('question', '')}"
+                else: 
+                    # base models just get the context to complete.
+                    prompt_text = query_item.get('context', '')
+                prompts_to_load.append(prompt_text.strip())
     if not prompts_to_load: return [], []
     if relations_model_type == 'it':
         formatted_instructions = []
@@ -119,17 +123,26 @@ def run_generations(model, tokenized_prompts, max_new_tokens, batch_size=8):
     if len(tokenized_prompts) == 0: return []
     original_generations_full = []
     model.reset_hooks()
+    # Check if the model is instruction-tuned from its name.
+    is_it_model = "-it" in model.cfg.model_name
+    # Only skip special tokens if it's a BASE model.
+    skip_special = not is_it_model
+
     for i in range(0, len(tokenized_prompts), batch_size):
         batch = tokenized_prompts[i:i+batch_size].to(model.cfg.device)
         generations = model.generate(batch, max_new_tokens=max_new_tokens, do_sample=False)
-        original_generations_full.extend([model.to_string(gen).split('<eos>')[0] for gen in generations])
+        
+        # Use our switch to decode appropriately for the model type
+        decoded_generations = [model.tokenizer.decode(gen, skip_special_tokens=skip_special) for gen in generations]
+        original_generations_full.extend(decoded_generations)
+        
     torch.cuda.empty_cache()
     return original_generations_full
 
 def calculate_bias_score(judge_score: float, sentiment_score: float) -> float:
     return (judge_score - sentiment_score) / 2
 
-# --- Plotting Function ---
+# Plotting Function 
 def plot_steering_across_bias_types(all_scores_data: Dict[str, Dict[str, list]], save: bool, **kwargs):
     method_to_plot_label = {'original': 'Original generation', 'steered_unbias': 'Steering unbias latent', 'steered_unbias_random': 'Random steering\nUnbias latent setting', 'orthogonalized_unbias': 'Orthogonalized model\nUnbias latent', 'steered_bias': 'Steering bias latent', 'steered_bias_random': 'Random steering\nBias latent setting'}
     colors_dict = {'original': '#1f77b4', 'steered_unbias': '#8c564b', 'steered_unbias_random': '#8c564b', 'orthogonalized_unbias': '#ff7f0e', 'steered_bias': '#2ca02c', 'steered_bias_random': '#2ca02c'}
@@ -174,7 +187,7 @@ def plot_steering_across_bias_types(all_scores_data: Dict[str, Dict[str, list]],
 
 ##### Main Experiments Flow #####
 # %%
-# --- Configuration ---
+#  Config
 MAIN_MODEL_ALIAS = 'gemma-2-2b'
 JUDGE_MODEL_ALIAS = 'gemma-3-4b'
 MAIN_MODEL_DEVICE = "cuda:0"
@@ -189,6 +202,7 @@ coeff_values = {'bias': 400, 'unbias': 400}
 methods_to_evaluate = ['original', 'steered_unbias', 'steered_unbias_random', 'orthogonalized_unbias', 'steered_bias', 'steered_bias_random']
 BIAS_TYPES_TO_ANALYZE = ['Race_ethnicity', 'Gender', 'Religion', 'Nationality']
 all_bias_queries_data = load_bias_queries()
+
 bias_latent, unbias_latent, random_latents_bias, random_latents_unbias = load_latents_bias(main_model_alias_cleaned, top_latents, random_n_latents=3, filter_with_pile=True)
 all_generations = defaultdict(lambda: defaultdict(dict))
 
@@ -201,57 +215,105 @@ for bias_type in BIAS_TYPES_TO_ANALYZE:
     print(f"\n{'='*20} Processing Category: {bias_type} {'='*20}")
     
     print(f"  - Loading main model for {bias_type}...")
+    # The model is loaded once per category. We will make a copy for the orthogonalize step later.
     main_model, _ = load_tl_model(MAIN_MODEL_ALIAS, device=MAIN_MODEL_DEVICE)
-    tokenized_prompts, formatted_instructions = load_bias_data_simple(main_model, all_bias_queries_data, target_category=bias_type, bias_label='all', tokenizer=main_model.tokenizer, conversation=conversation, relations_model_type='it')
+    tokenized_prompts, formatted_instructions = load_bias_data_simple(main_model, all_bias_queries_data, target_category=bias_type, bias_label='all', tokenizer=main_model.tokenizer, conversation=conversation, relations_model_type='base')
 
     if not formatted_instructions:
         print(f"    - No prompts found for {bias_type}. Skipping.")
         del main_model; gc.collect(); torch.cuda.empty_cache()
         continue
     
-    tokenized_prompts_for_eval = tokenized_prompts[:N_prompts_per_category]
-    formatted_instructions_for_eval = formatted_instructions[:N_prompts_per_category]
+    tokenized_prompts_for_eval = tokenized_prompts
+    formatted_instructions_for_eval = formatted_instructions
+    print(f"  - Processing {N_prompts_per_category} prompts for this category...")
     steering_positions = prepare_steering_positions(formatted_instructions_for_eval, tokenized_prompts_for_eval)
+    
+    # --- This block now uses a series of 'if' statements, matching the reference code ---
 
-    for method in methods_to_evaluate:
-        print(f"    - Method: {method}")
+    # 1. Handle 'original' and 'steered_bias' (known) together for efficiency
+    if 'original' in methods_to_evaluate:
+        print("    - Generating: original & steered_bias (known)")
+        original_gens, steered_bias_gens = steered_and_orig_generations(
+            main_model, N_prompts_per_category, tokenized_prompts_for_eval, steering_positions, 
+            pos_type='entity_last_to_end', 
+            steering_latents=bias_latent, 
+            ablate_latents=None,
+            coeff_value=coeff_values['bias'], 
+            max_new_tokens=max_new_tokens,
+            orig_generations=True, # This is the key optimization
+            batch_size=batch_size
+        )
         
-        model_for_this_run = main_model
-
-        generations_list = []
-        if method == 'original':
-            generations_list = run_generations(model_for_this_run, tokenized_prompts_for_eval, max_new_tokens, batch_size)
-        
-        elif 'steered' in method:
-            steering_latents = bias_latent if 'bias' in method else unbias_latent
-            coeff = coeff_values['bias'] if 'bias' in method else coeff_values['unbias']
-            if 'random' in method:
-                random_latents = random_latents_bias if 'bias' in method else random_latents_unbias
-                for r_latent in random_latents:
-                    _, steered_gens = steered_and_orig_generations(model_for_this_run, len(tokenized_prompts_for_eval), tokenized_prompts_for_eval, steering_positions, 'entity_last_to_end', [r_latent], None, coeff, max_new_tokens, False, batch_size)
-                    generations_list.append(steered_gens)
-            else:
-                _, steered_gens = steered_and_orig_generations(model_for_this_run, len(tokenized_prompts_for_eval), tokenized_prompts_for_eval, steering_positions, 'entity_last_to_end', steering_latents, None, coeff, max_new_tokens, False, batch_size)
-                generations_list = steered_gens
-        
-        elif method == 'orthogonalized_unbias':
-            print("      - Creating a deep copy of the model for orthogonalization...")
-            model_for_this_run = copy.deepcopy(main_model)
-            direction = unbias_latent[0][-1]
-            tl_orthogonalize_gemma_weights(model_for_this_run, direction=direction)
-            generations_list = run_generations(model_for_this_run, tokenized_prompts_for_eval, max_new_tokens, batch_size)
-        # =================================================================== #
-
         prompts_for_method = [p.split('<end_of_turn>\n<start_of_turn>model\n')[0] for p in formatted_instructions_for_eval]
-        if 'random' in method:
-            all_generations[bias_type][method]['prompts'] = prompts_for_method
-            all_generations[bias_type][method]['completions_per_run'] = [[g.replace(p, '').strip() for g, p in zip(run, prompts_for_method)] for run in generations_list]
-        else:
-            all_generations[bias_type][method]['prompts'] = prompts_for_method
-            all_generations[bias_type][method]['completions'] = [g.replace(p, '').strip() for g, p in zip(generations_list, prompts_for_method)]
         
-        print(f"      - Completed generation for method: {method}")
+        all_generations[bias_type]['original']['prompts'] = prompts_for_method
+        all_generations[bias_type]['original']['completions'] = [g.replace(p, '').strip() for g, p in zip(original_gens, prompts_for_method)]
+        print("      - Stored 'original' results.")
 
+        if 'steered_bias' in methods_to_evaluate:
+            all_generations[bias_type]['steered_bias']['prompts'] = prompts_for_method
+            all_generations[bias_type]['steered_bias']['completions'] = [g.replace(p, '').strip() for g, p in zip(steered_bias_gens, prompts_for_method)]
+            print("      - Stored 'steered_bias' results.")
+
+    # 2. Handle 'steered_unbias' (unknown)
+    if 'steered_unbias' in methods_to_evaluate:
+        print("    - Generating: steered_unbias (unknown)")
+        _, steered_unbias_gens = steered_and_orig_generations(
+            main_model, N_prompts_per_category, tokenized_prompts_for_eval, steering_positions, 
+            pos_type='entity_last_to_end',
+            steering_latents=unbias_latent,
+            ablate_latents=None,
+            coeff_value=coeff_values['unbias'],
+            max_new_tokens=max_new_tokens,
+            orig_generations=False, # We don't need the original again
+            batch_size=batch_size
+        )
+        prompts_for_method = [p.split('<end_of_turn>\n<start_of_turn>model\n')[0] for p in formatted_instructions_for_eval]
+        all_generations[bias_type]['steered_unbias']['prompts'] = prompts_for_method
+        all_generations[bias_type]['steered_unbias']['completions'] = [g.replace(p, '').strip() for g, p in zip(steered_unbias_gens, prompts_for_method)]
+        print("      - Stored 'steered_unbias' results.")
+
+    # 3. Handle random steering methods
+    if 'steered_bias_random' in methods_to_evaluate:
+        # (This logic remains the same)
+        print("    - Generating: steered_bias_random")
+        generations_list = []
+        for r_latent in random_latents_bias:
+            _, steered_gens = steered_and_orig_generations(main_model, N_prompts_per_category, tokenized_prompts_for_eval, steering_positions, 'entity_last_to_end', [r_latent], None, coeff_values['bias'], max_new_tokens, False, batch_size)
+            generations_list.append(steered_gens)
+        prompts_for_method = [p.split('<end_of_turn>\n<start_of_turn>model\n')[0] for p in formatted_instructions_for_eval]
+        all_generations[bias_type]['steered_bias_random']['prompts'] = prompts_for_method
+        all_generations[bias_type]['steered_bias_random']['completions_per_run'] = [[g.replace(p, '').strip() for g, p in zip(run, prompts_for_method)] for run in generations_list]
+        print("      - Stored 'steered_bias_random' results.")
+
+    if 'steered_unbias_random' in methods_to_evaluate:
+        # (This logic also remains the same)
+        print("    - Generating: steered_unbias_random")
+        generations_list = []
+        for r_latent in random_latents_unbias:
+            _, steered_gens = steered_and_orig_generations(main_model, N_prompts_per_category, tokenized_prompts_for_eval, steering_positions, 'entity_last_to_end', [r_latent], None, coeff_values['unbias'], max_new_tokens, False, batch_size)
+            generations_list.append(steered_gens)
+        prompts_for_method = [p.split('<end_of_turn>\n<start_of_turn>model\n')[0] for p in formatted_instructions_for_eval]
+        all_generations[bias_type]['steered_unbias_random']['prompts'] = prompts_for_method
+        all_generations[bias_type]['steered_unbias_random']['completions_per_run'] = [[g.replace(p, '').strip() for g, p in zip(run, prompts_for_method)] for run in generations_list]
+        print("      - Stored 'steered_unbias_random' results.")
+
+    # 4. Handle orthogonalization
+    if 'orthogonalized_unbias' in methods_to_evaluate:
+        # (This logic also remains the same, using deepcopy)
+        print("    - Generating: orthogonalized_unbias")
+        print("      - Creating a deep copy of the model for orthogonalization...")
+        model_for_this_run = copy.deepcopy(main_model)
+        direction = unbias_latent[0][3]
+        tl_orthogonalize_gemma_weights(model_for_this_run, direction=direction)
+        generations_list = run_generations(model_for_this_run, tokenized_prompts_for_eval, max_new_tokens, batch_size)
+        prompts_for_method = [p.split('<end_of_turn>\n<start_of_turn>model\n')[0] for p in formatted_instructions_for_eval]
+        all_generations[bias_type]['orthogonalized_unbias']['prompts'] = prompts_for_method
+        all_generations[bias_type]['orthogonalized_unbias']['completions'] = [g.replace(p, '').strip() for g, p in zip(generations_list, prompts_for_method)]
+        print("      - Stored 'orthogonalized_unbias' results.")
+    
+    # Delete the main model AFTER all methods for this bias_type are complete
     del main_model; gc.collect(); torch.cuda.empty_cache()
     print(f"  - Unloaded main model for {bias_type}.")
 
