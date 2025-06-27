@@ -39,5 +39,5 @@ def append_sentiment(input_file):
             entry["sentiment"] = sentiment
             f_out.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
-append_sentiment("test_Race_ethnicity_completion")
+append_sentiment("Race_ethnicity_completion")
 # append_senitment_count("generated_nationality_bias_data_updated")

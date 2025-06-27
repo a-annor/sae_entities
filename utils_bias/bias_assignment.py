@@ -1,8 +1,8 @@
 import json
 
 def bias_assignment(input_file):
-    input_path = f"z_my_data/test_prompt_data_judged/{input_file}.jsonl"
-    output_path = f"z_my_data/final_result/{input_file}_final.jsonl"
+    input_path = f"z_data/judged/{input_file}.jsonl"
+    output_path = f"z_data/final_result/{input_file}_final.jsonl"
 
     with open(input_path, "r", encoding="utf-8") as f_in, open(output_path, "w", encoding="utf-8") as f_out:
         for line in f_in:
@@ -18,4 +18,4 @@ def bias_assignment(input_file):
             f_out.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
 
-bias_assignment("test_Race_ethnicity_completion_sentiment_judged")
+bias_assignment("Race_ethnicity_completion_sentiment_judged")
