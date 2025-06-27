@@ -48,7 +48,6 @@ python3 -m mech_interp.feature_analysis
 python -m utils.activation_cache --model_alias gemma-2-2b-it --tokens_to_cache bias --batch_size 128 --dataset bias
 python -m utils.activation_cache --model_alias gemma-2-2b --tokens_to_cache model --batch_size 128 --dataset wikidata
 -------------------------
-python3 -m mech_interp.steering_it
 python3 -m mech_interp.refusal_analysis
 python3 -m mech_interp.refusal_analysis_bias_test
 python3 -m mech_interp.steering_playground
