@@ -104,14 +104,16 @@ get_per_layer_latent_scores(model_alias, tokenizer, n_layers, d_model,
 # get_general_latents(model_alias, entity_types, testing_layers, tokens_to_cache, evaluate_on,
 #                     scoring_method, filter_with_pile=True)
 
+# # ======= GET DATA FOR RANDOM STEERING =============
+# tokens_to_cache = 'entity' # 'model' 'last_eoi' '?' 'entity'
+# evaluate_on = 'entities' # prompts or entities
+# scoring_method = 'absolute_difference' # 'absolute_difference', 'relative_difference', 't_test'
+# testing_layers = LAYERS_WITH_SAE
+# entity_types = ALL_ENTITY_TYPES
+# get_general_latents(model_alias, entity_types, testing_layers, tokens_to_cache, evaluate_on,
+#                     scoring_method, filter_with_pile=False)
+# # =====================================================
 
-tokens_to_cache = 'entity' # 'model' 'last_eoi' '?' 'entity'
-evaluate_on = 'entities' # prompts or entities
-scoring_method = 'absolute_difference' # 'absolute_difference', 'relative_difference', 't_test'
-testing_layers = LAYERS_WITH_SAE
-entity_types = ALL_ENTITY_TYPES
-get_general_latents(model_alias, entity_types, testing_layers, tokens_to_cache, evaluate_on,
-                    scoring_method, filter_with_pile=False)
 # # %%
 # #### Layerwise Latent Scores Analysis ####
 # scoring_method = 'absolute_difference'
@@ -126,7 +128,10 @@ get_general_latents(model_alias, entity_types, testing_layers, tokens_to_cache, 
 #                                  minmax_layerwise_scores, known_label, top_k)
 
 # %%
-# ALL_BIAS_TYPES = ['Race_ethnicity', 'Nationality', 'Religion', 'Gender_identity']
+
+
+# ============================= BIAS SCORE ================================
+ALL_BIAS_TYPES = ['Race_ethnicity', 'Nationality', 'Religion', 'Gender_identity']
 
 
 # bias_prompts_experiment = {
@@ -180,4 +185,12 @@ get_general_latents(model_alias, entity_types, testing_layers, tokens_to_cache, 
 #                                  minmax_layerwise_scores, known_label, top_k)
 
 
-
+# ======= GET DATA FOR RANDOM STEERING =============
+tokens_to_cache = 'bias' # 'model' 'last_eoi' '?' 'entity'
+evaluate_on = 'bias' # prompts or entities
+scoring_method = 'absolute_difference' # 'absolute_difference', 'relative_difference', 't_test'
+testing_layers = LAYERS_WITH_SAE
+entity_types = ALL_BIAS_TYPES
+get_general_latents(model_alias, entity_types, testing_layers, tokens_to_cache, evaluate_on,
+                    scoring_method, filter_with_pile=False)
+# =====================================================
