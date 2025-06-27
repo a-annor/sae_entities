@@ -1,0 +1,41 @@
+Loading rhel8/default-amp
+  Loading requirement: rhel8/slurm singularity/current rhel8/global cuda/11.4
+    libpciaccess/0.16/gcc-9.4.0-6fonbj6 libiconv/1.16/gcc-9.4.0-ahebbov
+    libxml2/2.9.12/gcc-9.4.0-gnknt5e ncurses/6.2/gcc-9.4.0-aiirok7
+    hwloc/2.5.0/gcc-9.4.0-7sqomga libevent/2.1.12/gcc-9.4.0-hgny7cm
+    numactl/2.0.14/gcc-9.4.0-52dwc6n cuda/11.4.0/gcc-9.4.0-3hnxhjt
+    gdrcopy/2.2/gcc-9.4.0-e4igtfp knem/1.1.4/gcc-9.4.0-bpbxgva
+    libnl/3.3.0/gcc-9.4.0-whwhrwb rdma-core/34.0/gcc-9.4.0-5eo5n2u
+    ucx/1.11.1/gcc-9.4.0-lktqyl4 openmpi/4.1.1/gcc-9.4.0-epagguv
+/var/spool/slurm/slurmd/job11297468/slurm_script: line 65: conda: command not found
+Changed directory to /rds/user/ana42/hpc-work/sae_entities.
+
+JobID: 11297468
+======
+Time: Fri Jun 20 23:37:57 BST 2025
+Running on master node: gpu-q-5
+Current directory: /rds/user/ana42/hpc-work/sae_entities
+
+Nodes allocated:
+================
+gpu-q-5
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+python -u mech_interp/feature_analysis.py  > logs/out.11297468
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:05,  2.50s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:03<00:01,  1.80s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.03s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.31s/it]
+  0%|          | 0/625 [00:00<?, ?it/s]  0%|          | 1/625 [00:00<02:46,  3.74it/s]  8%|▊         | 53/625 [00:00<00:03, 182.74it/s] 17%|█▋        | 109/625 [00:00<00:01, 306.12it/s] 26%|██▋       | 165/625 [00:00<00:01, 387.01it/s] 35%|███▌      | 221/625 [00:00<00:00, 440.77it/s] 45%|████▍     | 280/625 [00:00<00:00, 486.01it/s] 55%|█████▌    | 345/625 [00:00<00:00, 534.50it/s] 64%|██████▍   | 402/625 [00:00<00:00, 537.28it/s] 73%|███████▎  | 459/625 [00:01<00:00, 543.11it/s] 83%|████████▎ | 516/625 [00:01<00:00, 550.32it/s] 92%|█████████▏| 573/625 [00:01<00:00, 555.49it/s]100%|██████████| 625/625 [00:01<00:00, 454.58it/s]
+  0%|          | 0/8 [00:00<?, ?it/s]100%|██████████| 8/8 [00:00<00:00, 411.94it/s]
+  0%|          | 0/8 [00:00<?, ?it/s]100%|██████████| 8/8 [00:00<00:00, 421.65it/s]
+Unable to connect to VS Code server: Error in request.
+Error: connect ENOENT /run/user/47475/vscode-ipc-bcafed31-3bc6-428d-a44f-75087c5920ad.sock
+    at PipeConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'connect',
+  address: '/run/user/47475/vscode-ipc-bcafed31-3bc6-428d-a44f-75087c5920ad.sock'
+}
+slurmstepd: error: *** JOB 11297468 ON gpu-q-5 CANCELLED AT 2025-06-21T00:38:01 DUE TO TIME LIMIT ***

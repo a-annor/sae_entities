@@ -1,0 +1,31 @@
+Loading rhel8/default-amp
+  Loading requirement: rhel8/slurm singularity/current rhel8/global cuda/11.4
+    libpciaccess/0.16/gcc-9.4.0-6fonbj6 libiconv/1.16/gcc-9.4.0-ahebbov
+    libxml2/2.9.12/gcc-9.4.0-gnknt5e ncurses/6.2/gcc-9.4.0-aiirok7
+    hwloc/2.5.0/gcc-9.4.0-7sqomga libevent/2.1.12/gcc-9.4.0-hgny7cm
+    numactl/2.0.14/gcc-9.4.0-52dwc6n cuda/11.4.0/gcc-9.4.0-3hnxhjt
+    gdrcopy/2.2/gcc-9.4.0-e4igtfp knem/1.1.4/gcc-9.4.0-bpbxgva
+    libnl/3.3.0/gcc-9.4.0-whwhrwb rdma-core/34.0/gcc-9.4.0-5eo5n2u
+    ucx/1.11.1/gcc-9.4.0-lktqyl4 openmpi/4.1.1/gcc-9.4.0-epagguv
+/var/spool/slurm/slurmd/job11367171/slurm_script: line 65: conda: command not found
+Changed directory to /rds/user/ana42/hpc-work/sae_entities.
+
+JobID: 11367171
+======
+Time: Sun Jun 22 18:51:51 BST 2025
+Running on master node: gpu-q-37
+Current directory: /rds/user/ana42/hpc-work/sae_entities
+
+Nodes allocated:
+================
+gpu-q-37
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+python -u mech_interp/feature_analysis.py  > logs/out.11367171
+
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:  33%|███▎      | 1/3 [01:30<03:01, 90.63s/it]Fetching 3 files: 100%|██████████| 3/3 [01:30<00:00, 30.21s/it]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:03<00:07,  3.86s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:06<00:03,  3.20s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  1.86s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.29s/it]
+  0%|          | 0/625 [00:00<?, ?it/s]  0%|          | 1/625 [00:00<03:42,  2.80it/s] 10%|▉         | 61/625 [00:00<00:03, 172.87it/s] 19%|█▉        | 120/625 [00:00<00:01, 292.43it/s] 29%|██▉       | 181/625 [00:00<00:01, 384.57it/s] 40%|███▉      | 248/625 [00:00<00:00, 466.47it/s] 50%|█████     | 314/625 [00:00<00:00, 521.99it/s] 61%|██████    | 381/625 [00:00<00:00, 564.01it/s] 72%|███████▏  | 447/625 [00:01<00:00, 592.30it/s] 82%|████████▏ | 513/625 [00:01<00:00, 611.88it/s] 93%|█████████▎| 579/625 [00:01<00:00, 624.98it/s]100%|██████████| 625/625 [00:01<00:00, 468.29it/s]
