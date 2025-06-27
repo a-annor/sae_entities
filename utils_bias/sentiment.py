@@ -29,8 +29,8 @@ def text_sentiment(text, sentiment_pipeline):
     return round(sentiment_score,2)
 
 def append_sentiment(input_file):
-    input_path = f"z_my_data/test_prompt_data_completions/{input_file}.jsonl"
-    output_path = f"z_my_data/test_prompt_data_sentiment/{input_file}_sentiment.jsonl"
+    input_path = f"z_data/completions/{input_file}.jsonl"
+    output_path = f"z_data/sentiment/{input_file}_sentiment.jsonl"
 
     with open(input_path, "r", encoding="utf-8") as f_in, open(output_path, "w", encoding="utf-8") as f_out:
         for line in f_in:

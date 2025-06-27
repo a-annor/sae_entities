@@ -6,7 +6,7 @@ import os
 import json
 import streamlit.components.v1 as components
 
-input_folder = "./z_my_data/test_prompt_data_judged"
+input_folder = "./z_data/test_prompt_data_judged"
 
 # Load files in folder
 all_data = []

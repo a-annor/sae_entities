@@ -392,7 +392,7 @@ def balance_data(queries: List[Dict], labels: List[int], shuffle=True):
     return balanced_queries
 
 
-def load_bias_queries(path_prefix: str = "z_my_data/test_prompt_final") -> dict:
+def load_bias_queries(path_prefix: str = "z_data/final_result") -> dict:
     """
     Loads bias-labeled data for all fixed bias categories.
     
@@ -401,7 +401,7 @@ def load_bias_queries(path_prefix: str = "z_my_data/test_prompt_final") -> dict:
     BIAS_CATEGORIES = ["Race_ethnicity", "Nationality", "Religion", "Gender_identity"]
     all_queries = {}
     for category in BIAS_CATEGORIES:
-        filename = f"{path_prefix}/test_{category}_completion_sentiment_judged_final.jsonl"
+        filename = f"{path_prefix}/{category}_completion_sentiment_judged_final.jsonl"
         queries = []
         try:
             with open(filename, "r") as f:

@@ -27,9 +27,9 @@ rm -rf ~/.cache/huggingface/hub/models--google--gemma-3-27b-it
 rm -rf ~/.cache/huggingface/hub/models--google--gemma-2-2b
 
 
-python3 z_my_data/generate_completions.py
-python3 z_my_data/sentiment_counts.py
-python3 z_my_data/judge_bias.py
+python3 z_data/generate_completions.py
+python3 z_data/sentiment_counts.py
+python3 z_data/judge_bias.py
 
 /home/ana42/rds/hpc-work/sae_entities/notes.txt
 
@@ -102,8 +102,8 @@ It is mathematically guaranteed that the single best score will almost always be
 
 
 TODO
-in activation_cache.py - model_alias upate and data_path = f"z_my_data/test_prompt_final/test_{category}_completion_sentiment_judged_final.jsonl" # TO UPDATE AND MOVE TO laod_data.py
-ABOVE created load_bias_queries(path_prefix: str = "z_my_data/test_prompt_final") in dataset/load_data.py, called in utils/activation_cache.py and 
+in activation_cache.py - model_alias upate and data_path = f"z_data/test_prompt_final/test_{category}_completion_sentiment_judged_final.jsonl" # TO UPDATE AND MOVE TO laod_data.py
+ABOVE created load_bias_queries(path_prefix: str = "z_data/test_prompt_final") in dataset/load_data.py, called in utils/activation_cache.py and 
 mech_interp/feature_analysis_utils.py
 
 

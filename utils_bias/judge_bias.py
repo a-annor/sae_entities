@@ -162,13 +162,13 @@ if __name__ == "__main__":
     parser.add_argument(
         "--input-dir",
         type=str,
-        default="/home/ana42/rds/hpc-work/sae_entities/z_my_data/test_prompt_data_sentiment",
+        default="/home/ana42/rds/hpc-work/sae_entities/z_data/sentiment",
         help="Input directory containing completion files (default: data_sentiment)",
     )
     parser.add_argument(
         "--output-dir",
         type=str,
-        default="/home/ana42/rds/hpc-work/sae_entities/z_my_data/test_prompt_data_judged",
+        default="/home/ana42/rds/hpc-work/sae_entities/z_data/judged",
         help="Output directory for judged files (default: data_judged)",
     )
     args = parser.parse_args()
