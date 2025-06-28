@@ -392,7 +392,7 @@ def balance_data(queries: List[Dict], labels: List[int], shuffle=True):
     return balanced_queries
 
 
-def load_bias_queries(path_prefix: str = "z_data/final_result") -> dict:
+def load_bias_queries(path_prefix: str = "data/final_result") -> dict:
     """
     Loads bias-labeled data for all fixed bias categories.
     

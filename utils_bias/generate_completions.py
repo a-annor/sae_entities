@@ -14,6 +14,7 @@ from typing import Tuple, List, Dict, Union
 from argparse import ArgumentParser, Namespace
 import json
 from pathlib import Path
+import datetime
 
 import torch
 import numpy as np
@@ -196,9 +197,9 @@ def process_file(input_file: Path, output_file: Path, model, tokenizer, args):
     for item in tqdm(ambig_entries, desc=f"Processing {input_file.name}"):
         if "completion" not in item:
             prompt = item["context"]
-            print(f"\nProcessing prompt: {prompt}")
+            # print(f"\nProcessing prompt: {prompt}")
             _, completion = generate_model_response(model, tokenizer, args, prompt)
-            print(f"Generated completion: {completion}")
+            # print(f"Generated completion: {completion}")
             item["completion"] = completion
 
     with open(output_file, "w") as f:
@@ -226,9 +227,11 @@ def main(args: Namespace) -> None:
     args_gemma2_pt.use_instruct_model = False
     args_gemma2_pt.max_new_tokens = 64
     args_gemma2_pt.device = torch.device("cuda:0")
+    print(f"--- [generate_completions] ABOUT TO LOAD MODEL at {datetime.datetime.now()} ---")
     model_gemma2_pt, tokenizer_gemma2_pt = load_model(args_gemma2_pt)
     model_gemma2_pt = model_gemma2_pt.to(args_gemma2_pt.device)  # move to device
     model_gemma2_pt.eval()
+    print(f"--- [generate_completions] MODEL LOADED SUCCESSFULLY at {datetime.datetime.now()} ---")
 
     # Setup paths
     data_dir = Path(args.input_dir)
@@ -262,15 +265,15 @@ if __name__ == "__main__":
     parser.add_argument(
         "--input-dir",
         type=str,
-        # default="/home/ana42/rds/hpc-work/sae_entities/z_data/prompt_data",
-        default="/home/ana42/rds/hpc-work/sae_entities/z_data/prompts",
+        # default="/home/ana42/rds/hpc-work/sae_entities/data/prompt_data",
+        default="/home/ana42/rds/hpc-work/sae_entities/data/Race_ethnicity/prompts",
         help="Input directory containing JSONL files (default: data)",
     )
     parser.add_argument(
         "--output-dir",
         type=str,
-        # default="/home/ana42/rds/hpc-work/sae_entities/z_data/prompt_data_completions",
-        default="/home/ana42/rds/hpc-work/sae_entities/z_data/completions",
+        # default="/home/ana42/rds/hpc-work/sae_entities/data/prompt_data_completions",
+        default="/home/ana42/rds/hpc-work/sae_entities/data/Race_ethnicity/completions",
         help="Output directory for completion files (default: data_completions)",
     )
     args = parser.parse_args()

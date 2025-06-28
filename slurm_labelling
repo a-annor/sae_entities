@@ -67,7 +67,7 @@ conda activate py25
 
 #! Full path to application executable: 
 # application="python -u train.py"
-application="python -u z_data/judge_bias_bias.py"
+application="python -u data/judge_bias_bias.py"
 
 
 #! Work directory (i.e. where the job will run):

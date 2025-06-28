@@ -64,11 +64,11 @@ source /home/${USER}/.bashrc
 source /rds/user/ana42/hpc-work/sae_entities/.venv/bin/activate  # Activate your venv
 conda activate py25
 #! Insert additional module load commands after this line if needed:
-python z_data/optimise_prompt.py "$@"
+python data/optimise_prompt.py "$@"
 
 #! Full path to application executable: 
 # application="python -u train.py"
-application="python -u z_data/optimise_prompt.py"
+application="python -u data/optimise_prompt.py"
 
 
 #! Work directory (i.e. where the job will run):

@@ -162,13 +162,13 @@ if __name__ == "__main__":
     parser.add_argument(
         "--input-dir",
         type=str,
-        default="/home/ana42/rds/hpc-work/sae_entities/z_data/sentiment",
+        default="/home/ana42/rds/hpc-work/sae_entities/data/Race_ethnicity/sentiment",
         help="Input directory containing completion files (default: data_sentiment)",
     )
     parser.add_argument(
         "--output-dir",
         type=str,
-        default="/home/ana42/rds/hpc-work/sae_entities/z_data/judged",
+        default="/home/ana42/rds/hpc-work/sae_entities/data/Race_ethnicity/judged",
         help="Output directory for judged files (default: data_judged)",
     )
     args = parser.parse_args()

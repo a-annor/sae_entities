@@ -1,5 +1,3 @@
-
-
 source .venv/bin/activate
 sbatch slurm_sae
 sbatch slurm_sentiment
@@ -13,6 +11,7 @@ sbatch slurm_sentiment
 sbatch slurm_labelling
 sbatch slurm_mech
 sbatch slurm_refusal
+sbatch slurm_process_data
 
 
 squeue -u ana42
@@ -21,15 +20,15 @@ sintr -A MLMI-ana42-SL2-CPU -p icelake -N1 -n1 -t 1:0:0 --qos=INTR
 sintr -A MLMI-ana42-SL2-GPU -p ampere --gres=gpu:1 -N1 -n1 -t 1:0:0 --qos=INTR
 sintr -A MLMI-ana42-SL2-GPU -p ampere --gres=gpu:1 -N1 -n1 -t 0:20:0 --qos=INTR
 
-sintr -A MLMI-ana42-SL2-GPU -p ampere --gres=gpu:2 -N1 -n1 -t 01:00:0 --qos=INTR
+sintr -A MLMI-ana42-SL2-GPU -p ampere --gres=gpu:2 -N1 -n1 -t 0:20:0 --qos=INTR
 
 rm -rf ~/.cache/huggingface/hub/models--google--gemma-3-27b-it
 rm -rf ~/.cache/huggingface/hub/models--google--gemma-2-2b
 
 
-python3 z_data/generate_completions.py
-python3 z_data/sentiment_counts.py
-python3 z_data/judge_bias.py
+python3 data/generate_completions.py
+python3 data/sentiment_counts.py
+python3 data/judge_bias.py
 
 /home/ana42/rds/hpc-work/sae_entities/notes.txt
 
@@ -52,6 +51,8 @@ python3 -m mech_interp.refusal_analysis
 python3 -m mech_interp.refusal_analysis_bias_test
 python3 -m mech_interp.steering_playground
 
+python3 -m utils_bias.process_data
+python3 -m utils_bias.split_file
 
 Number of unknown entities: 532
 tokenized_prompts torch.Size([1596, 33])
@@ -102,8 +103,8 @@ It is mathematically guaranteed that the single best score will almost always be
 
 
 TODO
-in activation_cache.py - model_alias upate and data_path = f"z_data/test_prompt_final/test_{category}_completion_sentiment_judged_final.jsonl" # TO UPDATE AND MOVE TO laod_data.py
-ABOVE created load_bias_queries(path_prefix: str = "z_data/test_prompt_final") in dataset/load_data.py, called in utils/activation_cache.py and 
+in activation_cache.py - model_alias upate and data_path = f"data/test_prompt_final/test_{category}_completion_sentiment_judged_final.jsonl" # TO UPDATE AND MOVE TO laod_data.py
+ABOVE created load_bias_queries(path_prefix: str = "data/test_prompt_final") in dataset/load_data.py, called in utils/activation_cache.py and 
 mech_interp/feature_analysis_utils.py
 
 
