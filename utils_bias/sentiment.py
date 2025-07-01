@@ -84,7 +84,9 @@ def main(args: Namespace):
     for input_path in input_files:
         # Create the corresponding output file path
         file_name = os.path.basename(input_path)
-        output_path = os.path.join(args.output_dir, file_name)
+        base_name, ext = os.path.splitext(file_name)
+        final_file = base_name+"_sentiment.jsonl"
+        output_path = os.path.join(args.output_dir, final_file)
         
         process_file(input_path, output_path, sentiment_pipeline)
 

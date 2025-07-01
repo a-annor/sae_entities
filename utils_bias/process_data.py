@@ -16,11 +16,11 @@ PIPELINE_START_DIR = f"data/{CATERGORY}/prompts/"
 BATCH_SIZE = 5000
 
 PIPELINE_STAGES = [
-    {
-        "script": "utils_bias/generate_completions.py",
-        "input_dir": f"data/{CATERGORY}/prompts/",
-        "output_dir": f"data/{CATERGORY}/completions/"
-    },
+    # {
+    #     "script": "utils_bias/generate_completions.py",
+    #     "input_dir": f"data/{CATERGORY}/prompts/",
+    #     "output_dir": f"data/{CATERGORY}/completions/"
+    # },
     {
         "script": "utils_bias/sentiment.py",
         "input_dir": f"data/{CATERGORY}/completions/",
@@ -37,27 +37,6 @@ PIPELINE_STAGES = [
         "output_dir": f"data/{CATERGORY}/result/"
     }
 ]
-
-def split_input_file(input_file, output_dir, batch_size):
-    """Splits the main input file into batch files in the target directory."""
-    print(f"----- Splitting {input_file} into batches of {batch_size} lines -----")
-    with open(input_file, 'r', encoding='utf-8') as f_in:
-        batch_num = 1
-        batch_lines = []
-        for i, line in enumerate(f_in):
-            batch_lines.append(line)
-            if (i + 1) % batch_size == 0:
-                batch_path = os.path.join(output_dir, f'batch_{batch_num}.jsonl')
-                with open(batch_path, 'w', encoding='utf-8') as f_out:
-                    f_out.writelines(batch_lines)
-                batch_num += 1
-                batch_lines = []
-        
-        if batch_lines: # Write the final, smaller batch
-            batch_path = os.path.join(output_dir, f'batch_{batch_num}.jsonl')
-            with open(batch_path, 'w', encoding='utf-8') as f_out:
-                f_out.writelines(batch_lines)
-    print(f"----- Created {batch_num} batch files in {output_dir} -----")
 
 
 # def run_script(script_name):
@@ -112,7 +91,6 @@ def run_script(script_name, input_dir, output_dir):
          check=False
     )
     print("--- STDOUT ---")
-    print(process.stdout)
     if process.stderr:
         print("--- STDERR ---", file=sys.stderr)
         print(process.stderr, file=sys.stderr)
@@ -153,8 +131,6 @@ def run_script(script_name, input_dir, output_dir):
 def main():
     """Main function to run the entire data processing pipeline in batches."""
     try:
-        split_input_file(INPUT_FILE, PIPELINE_START_DIR, BATCH_SIZE)
-
         #Loop through the pipeline stages
         for stage in PIPELINE_STAGES:
             run_script(

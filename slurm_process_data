@@ -22,7 +22,7 @@
 #! Note that the job submission script will enforce no more than 32 cpus per GPU.
 #SBATCH --gres=gpu:2
 #! How much wallclock time will be required?
-#SBATCH --time=07:00:00
+#SBATCH --time=09:00:00
 #! What types of email messages do you wish to receive?
 #SBATCH --mail-type=NONE
 #! Uncomment this to prevent the job from being requeued (e.g. if
@@ -63,7 +63,6 @@ source /home/${USER}/.bashrc
 #! source /rds/project/rds-xyBFuSj0hm0/MLMI2.M2024/miniconda3/bin/activate
 source /rds/user/ana42/hpc-work/sae_entities/.venv/bin/activate  # Activate your venv
 #! Insert additional module load commands after this line if needed:
-python utils_bias/process_data.py "$@"
 
 #! Full path to application executable: 
 # application="python -u train.py"
