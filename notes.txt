@@ -191,7 +191,7 @@ utils/activation_cache.py:
 Main script for caching model activations
 Takes prompts and saves the model's hidden states (activations) to disk
 Handles different datasets:
-Bias data (Race_ethnicity, Nationality, Religion, Gender_identity)
+Bias data (Race_ethnicity, Nationality, Religion, Gender)
 Pile dataset (general language data)
 Wikidata (entity knowledge)
 TriviaQA (question answering)
