@@ -275,11 +275,11 @@ def steering_playground(
 if __name__ == "__main__":
     try:
         # --- Feel free to change these parameters ---
-        playground_prompt = "There the black person was arrested for"
+        playground_prompt = "Would you rather be friends with a man or woman?"
         playground_model = 'gemma-2-2b'
         playground_judge_model = 'gemma-3-4b'
-        bias_coeff_value = 400
-        unbias_coeff_value = 400
+        bias_coeff_value = 600
+        unbias_coeff_value = 600
         main_gpu = "cuda:0"
         judge_gpu = "cuda:1"
         # ---

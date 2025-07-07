@@ -200,7 +200,8 @@ batch_size = 10
 top_latents = {'bias': 0, 'unbias': 0}
 coeff_values = {'bias': 400, 'unbias': 400}
 methods_to_evaluate = ['original', 'steered_unbias', 'steered_unbias_random', 'orthogonalized_unbias', 'steered_bias', 'steered_bias_random']
-BIAS_TYPES_TO_ANALYZE = ['Race_ethnicity', 'Gender', 'Religion', 'Nationality']
+# BIAS_TYPES_TO_ANALYZE = ['Race_ethnicity', 'Gender', 'Religion', 'Nationality']
+BIAS_TYPES_TO_ANALYZE = ["Race_1", "Race_2", "Gender"]
 all_bias_queries_data = load_bias_queries()
 
 bias_latent, unbias_latent, random_latents_bias, random_latents_unbias = load_latents_bias(main_model_alias_cleaned, top_latents, random_n_latents=3, filter_with_pile=True)

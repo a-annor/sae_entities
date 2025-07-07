@@ -486,7 +486,113 @@ def get_prompt_from_ids(model_alias,input_ids, tokenizer):
         cleaned_decoded_strings = [decoded_string.replace('<|end_of_text|>', '').replace('<|begin_of_text|>', '') for decoded_string in decoded_strings]
     return cleaned_decoded_strings
 
-def get_acts_labels_dict(model_alias, tokenizer, dataloader, queries, prompts: List[str], known_prompts_or_entities: List[str], unknown_prompts_or_entities: List[str], input_data_type: Literal['prompts', 'entities'], layers: List[int], num_samples: int=None):
+# def get_acts_labels_dict(model_alias, tokenizer, dataloader, queries, prompts: List[str], known_prompts_or_entities: List[str], unknown_prompts_or_entities: List[str], input_data_type: Literal['prompts', 'entities', 'bias'], layers: List[int], num_samples: int=None):
+#     """
+#     Generate a dictionary containing activations and labels for each layer.
+
+#     This function categorizes the activations based on whether the entity in the prompt is known or unknown,
+#     and stores the activations and labels in a dictionary for each specified layer.
+
+#     Args:
+#         tokenizer: The tokenizer used to decode the input IDs.
+#         dataloader: A DataLoader object that provides batches of activations and input IDs.
+#         queries: A list of query dictionaries containing information about the entities and prompts.
+#         prompts: A list of prompt strings corresponding to the queries.
+#         known_prompts: A list of prompts that are known.
+#         unknown_prompts: A list of prompts that are unknown.
+#         layers: A list of layer indices for which activations and labels are to be extracted.
+#         num_samples: An optional integer specifying the maximum number of samples to include in the output.
+
+#     Returns:
+#         A dictionary where the keys are layer indices and the values are tuples containing:
+#             - A tensor of activations for the specified layer.
+#             - A tensor of labels indicating whether the entity in the prompt is known (0) or unknown (1).
+#     """
+#     eoi_string = "model\n"
+#     assert 0 not in layers, "Layer 0 is not a valid layer for the SAE"
+#     prompts = [prompt.replace('<bos>', '') if prompt.startswith('<bos>') else prompt for prompt in prompts]
+
+#     if input_data_type == 'prompts':
+#         prompts = set(prompts)
+#         known_prompts = set([prompt.replace('<bos>', '') if prompt.startswith('<bos>') else prompt for prompt in known_prompts_or_entities])
+#         unknown_prompts = set([prompt.replace('<bos>', '') if prompt.startswith('<bos>') else prompt for prompt in unknown_prompts_or_entities])
+#     elif input_data_type == 'entities' or input_data_type == 'bias':
+#         known_entities = set(known_prompts_or_entities)
+#         unknown_entities = set(unknown_prompts_or_entities)
+
+#     acts_labels_dict = {}
+#     labels = []
+#     activations_list = []
+#     final_prompts = []
+#     for _, (batch_activations, batch_input_ids) in tqdm(enumerate(dataloader), total=len(dataloader)):
+#         batch_cleaned_decoded_strings = get_prompt_from_ids(model_alias, batch_input_ids, tokenizer)
+#         for j, clean_string in enumerate(batch_cleaned_decoded_strings):
+#             if input_data_type == 'prompts':
+#                 if 'gemma' in model_alias.lower():
+#                     clean_string = clean_string[:clean_string.find(eoi_string)+len(eoi_string)]
+#             if clean_string in prompts:
+#                 if input_data_type == 'prompts':
+#                     if clean_string in unknown_prompts:
+#                         labels.append(1)
+#                         activations_list.append(batch_activations[j][:,0].to('cuda'))
+#                         final_prompts.append(clean_string)
+#                     elif clean_string in known_prompts:
+#                         labels.append(0)
+#                         activations_list.append(batch_activations[j][:,0].to('cuda'))
+#                         final_prompts.append(clean_string)
+#                 elif input_data_type == 'entities':
+#                     # We check entities instead of prompts
+#                     entity = queries[prompts.index(clean_string)]['entity']
+#                     if entity in unknown_entities:
+#                         labels.append(1)
+#                         activations_list.append(batch_activations[j][:,0].to('cuda'))
+#                         final_prompts.append(clean_string)
+#                     elif entity in known_entities:
+#                         labels.append(0)
+#                         activations_list.append(batch_activations[j][:,0].to('cuda'))
+#                         final_prompts.append(clean_string)
+#                 elif input_data_type == 'bias':
+#                     # bias_cat =queries[prompts.index(clean_string)]['bias_cat'] # Get the bias_cat directly from the original query
+#                     bias_cat = queries.get('bias_cat')
+#                     print("BIAS; ", bias_cat)
+#                     if bias_cat is None:
+#                         # Handle cases where 'bias_cat' might be missing (shouldn't happen if data is clean)
+#                         # print(f"Warning: 'bias_cat' not found for query corresponding to prompt '{clean_string}'. Skipping.")
+#                         activations_list.pop()
+#                         final_prompts.pop()
+#                         continue
+
+#                     # Now, use bias_cat to determine the label (0 or 1)
+#                     # This aligns with the numerical labels (0 for 'unbias', 1 for 'bias') we decided on.
+#                     if bias_cat == "unbias":
+#                         labels.append(0) # Label 0 for "unbias"
+#                     elif bias_cat == "bias":
+#                         labels.append(1) # Label 1 for "bias"
+#                     else: # Handle "undetermined" or any other unexpected bias_cat values
+#                         # print(f"Warning: Undetermined or unhandled 'bias_cat' ('{bias_cat}') for prompt '{clean_string}'. Skipping.")
+#                         activations_list.pop()
+#                         final_prompts.pop()
+#                         continue
+#                     # # We check entities instead of prompts
+#                     # entity = queries[prompts.index(clean_string)]['completion'][-1]
+#                     # if entity in unknown_entities:
+#                     #     labels.append(1)
+#                     #     activations_list.append(batch_activations[j][:,0].to('cuda'))
+#                     #     final_prompts.append(clean_string)
+#                     # elif entity in known_entities:
+#                     #     labels.append(0)
+#                     #     activations_list.append(batch_activations[j][:,0].to('cuda'))
+#                     #     final_prompts.append(clean_string)
+        
+#     labels_full = torch.tensor(labels)
+#     if num_samples is not None:
+#         num_samples = min(num_samples, len(activations_full))
+#     for layer in layers:
+#         activations_full = torch.stack([activations[layer] for activations in activations_list], dim=0)
+#         acts_labels = {'acts': activations_full[:num_samples], 'labels': labels_full[:num_samples], 'prompts': final_prompts[:num_samples]}
+#         acts_labels_dict[layer] = acts_labels
+#     return acts_labels_dict
+def get_acts_labels_dict(model_alias, tokenizer, dataloader, queries: List[Dict], prompts: List[str], known_prompts_or_entities: List[str], unknown_prompts_or_entities: List[str], input_data_type: Literal['prompts', 'entities', 'bias'], layers: List[int], num_samples: int=None):
     """
     Generate a dictionary containing activations and labels for each layer.
 
@@ -510,66 +616,142 @@ def get_acts_labels_dict(model_alias, tokenizer, dataloader, queries, prompts: L
     """
     eoi_string = "model\n"
     assert 0 not in layers, "Layer 0 is not a valid layer for the SAE"
-    prompts = [prompt.replace('<bos>', '') if prompt.startswith('<bos>') else prompt for prompt in prompts]
+    
+    # 1. Pre-process prompts once for efficient lookup in query_map
+    # This maps cleaned original prompt string to its ORIGINAL QUERY DICT.
+    # This is the SAFEST way to find the original query object based on the string from cache.
+    query_map_by_cleaned_prompt_string = {}
+    for i, original_prompt_text in enumerate(prompts): # 'prompts' here is the original list from outside
+        cleaned_original_prompt_text = original_prompt_text.replace('<bos>', '') if original_prompt_text.startswith('<bos>') else original_prompt_text
+        # Apply Gemma-specific EOI truncation if this is applicable to how `prompts` were generated/truncated during caching
+        if 'gemma' in model_alias.lower() and input_data_type == 'prompts': # Assuming this condition for Gemma
+             eoi_index = cleaned_original_prompt_text.find(eoi_string)
+             if eoi_index != -1:
+                 cleaned_original_prompt_text = cleaned_original_prompt_text[:eoi_index + len(eoi_string)]
+        
+        # We need the full query object, so map to queries[i]
+        query_map_by_cleaned_prompt_string[cleaned_original_prompt_text] = queries[i] # queries is the original list of dicts
 
+    # 2. Keep the sets for 'prompts' and 'entities' input_data_type
     if input_data_type == 'prompts':
-        prompts = set(prompts)
+        prompts = set(prompts) # This 'prompts' variable is now a set
         known_prompts = set([prompt.replace('<bos>', '') if prompt.startswith('<bos>') else prompt for prompt in known_prompts_or_entities])
         unknown_prompts = set([prompt.replace('<bos>', '') if prompt.startswith('<bos>') else prompt for prompt in unknown_prompts_or_entities])
     elif input_data_type == 'entities' or input_data_type == 'bias':
         known_entities = set(known_prompts_or_entities)
-        unknown_entities = set(unknown_prompts_or_entities)
+        unknown_entities = set(unknown_prompts_or_entities) # These are NOT USED in the fixed bias block
+
 
     acts_labels_dict = {}
     labels = []
     activations_list = []
     final_prompts = []
+    
     for _, (batch_activations, batch_input_ids) in tqdm(enumerate(dataloader), total=len(dataloader)):
         batch_cleaned_decoded_strings = get_prompt_from_ids(model_alias, batch_input_ids, tokenizer)
-        for j, clean_string in enumerate(batch_cleaned_decoded_strings):
+        
+        for j, clean_string_from_cache in enumerate(batch_cleaned_decoded_strings): # Renamed `clean_string` to `clean_string_from_cache` for clarity
+            
+            # This part handles Gemma-specific truncation of the string from cache
             if input_data_type == 'prompts':
                 if 'gemma' in model_alias.lower():
-                    clean_string = clean_string[:clean_string.find(eoi_string)+len(eoi_string)]
-            if clean_string in prompts:
-                if input_data_type == 'prompts':
-                    if clean_string in unknown_prompts:
+                    eoi_index = clean_string_from_cache.find(eoi_string)
+                    if eoi_index != -1:
+                        clean_string_from_cache = clean_string_from_cache[:clean_string_from_cache.find(eoi_string)+len(eoi_string)]
+            
+            # Find the original query object using the map
+            # This replaces the problematic `clean_string in prompts` and `prompts.index(clean_string)`
+            original_query = query_map_by_cleaned_prompt_string.get(clean_string_from_cache)
+            
+            if original_query is None:
+                # If a cached prompt string doesn't match an original query, skip it.
+                # This could happen due to subtle tokenization/truncation differences.
+                continue
+
+            # Now, apply your existing if/elif logic
+            if input_data_type == 'prompts':
+                if clean_string_from_cache in prompts: # 'prompts' here is the set
+                    if clean_string_from_cache in unknown_prompts:
                         labels.append(1)
                         activations_list.append(batch_activations[j][:,0].to('cuda'))
-                        final_prompts.append(clean_string)
-                    elif clean_string in known_prompts:
+                        final_prompts.append(clean_string_from_cache)
+                    elif clean_string_from_cache in known_prompts:
                         labels.append(0)
                         activations_list.append(batch_activations[j][:,0].to('cuda'))
-                        final_prompts.append(clean_string)
-                elif input_data_type == 'entities':
-                    # We check entities instead of prompts
-                    entity = queries[prompts.index(clean_string)]['entity']
-                    if entity in unknown_entities:
-                        labels.append(1)
-                        activations_list.append(batch_activations[j][:,0].to('cuda'))
-                        final_prompts.append(clean_string)
-                    elif entity in known_entities:
-                        labels.append(0)
-                        activations_list.append(batch_activations[j][:,0].to('cuda'))
-                        final_prompts.append(clean_string)
-                elif input_data_type == 'bias':
-                    # We check entities instead of prompts
-                    entity = queries[prompts.index(clean_string)]['name']
-                    if entity in unknown_entities:
-                        labels.append(1)
-                        activations_list.append(batch_activations[j][:,0].to('cuda'))
-                        final_prompts.append(clean_string)
-                    elif entity in known_entities:
-                        labels.append(0)
-                        activations_list.append(batch_activations[j][:,0].to('cuda'))
-                        final_prompts.append(clean_string)
-        
-    labels_full = torch.tensor(labels)
+                        final_prompts.append(clean_string_from_cache)
+            elif input_data_type == 'entities':
+                # We check entities instead of prompts
+                entity = original_query['entity'] # Access directly from original_query
+                if entity in unknown_entities:
+                    labels.append(1)
+                    activations_list.append(batch_activations[j][:,0].to('cuda'))
+                    final_prompts.append(clean_string_from_cache)
+                elif entity in known_entities:
+                    labels.append(0)
+                    activations_list.append(batch_activations[j][:,0].to('cuda'))
+                    final_prompts.append(clean_string_from_cache)
+            elif input_data_type == 'bias':
+                # --- THIS IS THE FIXED BIAS BLOCK ---
+                bias_cat = original_query.get('bias_cat') # Safely get 'bias_cat' from the found original_query
+                
+                # print("BIAS; ", bias_cat) # Keep this for debugging if you want
+                
+                if bias_cat is None:
+                    # Handle cases where 'bias_cat' might be missing
+                    continue # Skip this sample if bias_cat is not available
+                elif bias_cat == "unbias":
+                    labels.append(0) # Label 0 for "unbias"
+                elif bias_cat == "bias":
+                    labels.append(1) # Label 1 for "bias"
+                else: # Handle "undetermined" or any other unexpected bias_cat values
+                    continue # Skip samples with unhandled bias_cat
+                
+                # Append activations and prompt ONLY if a label was successfully assigned
+                activations_list.append(batch_activations[j][:,0].to('cuda'))
+                final_prompts.append(clean_string_from_cache)
+                
+    # --- AFTER THE LOOPS ---
+    
+    # Handle the case where no valid activations were collected
+    if not activations_list:
+        print(f"Warning: No valid activations collected for dataset {input_data_type}. Returning empty dict.")
+        return {}
+
+    labels_full = torch.tensor(labels, dtype=torch.long)
+    
+    # Correct handling of num_samples and stacking
+    # Stack all collected activations BEFORE applying num_samples clipping
+    all_collected_activations = torch.stack(activations_list, dim=0) # Shape (num_collected_samples, n_layers, d_model)
+
     if num_samples is not None:
-        num_samples = min(num_samples, len(activations_full))
-    for layer in layers:
-        activations_full = torch.stack([activations[layer] for activations in activations_list], dim=0)
-        acts_labels = {'acts': activations_full[:num_samples], 'labels': labels_full[:num_samples], 'prompts': final_prompts[:num_samples]}
-        acts_labels_dict[layer] = acts_labels
+        num_actual_samples = all_collected_activations.shape[0]
+        num_samples_to_use = min(num_samples, num_actual_samples)
+        
+        # Apply clipping to the stacked activations, labels, and prompts
+        activations_to_use = all_collected_activations[:num_samples_to_use]
+        labels_to_use = labels_full[:num_samples_to_use]
+        prompts_to_use = final_prompts[:num_samples_to_use]
+    else:
+        # Use all collected data if num_samples is None
+        activations_to_use = all_collected_activations
+        labels_to_use = labels_full
+        prompts_to_use = final_prompts
+        num_samples_to_use = len(activations_list) # For consistent reporting
+
+    print(f"Collected {num_samples_to_use} total samples for analysis.")
+    
+    # Populate the final acts_labels_dict for each layer
+    for layer_idx, layer_id in enumerate(layers): # Iterate through your desired layers
+        # Extract activations for the specific layer.
+        # activations_to_use has shape (num_samples_to_use, n_layers, d_model).
+        # We assume layer_id is the direct index into the `n_layers` dimension.
+        acts_for_this_layer = activations_to_use[:, layer_id, :] # Resulting shape: (num_samples, d_model)
+        
+        acts_labels_dict[layer_id] = {
+            'acts': acts_for_this_layer,
+            'labels': labels_to_use, # These are the numerical 0/1 labels
+            'prompts': prompts_to_use
+        }
     return acts_labels_dict
 
 def get_features_layers(model_alias, acts_labels_dict, layers, sae_width, repo_id, save=True, **kwargs):
@@ -963,7 +1145,8 @@ def plot_all_features(final_feats_dict, train_feats_dict, entity_type, k=10, lab
     plt.figure(figsize=(4.5, 4.5), dpi=500)
 
     # Determine label type
-    ALL_BIAS_TYPES = ['Race_ethnicity', 'Nationality', 'Religion', 'Gender_identity']
+    # ALL_BIAS_TYPES = ['Race_ethnicity', 'Nationality', 'Religion', 'Gender_identity']
+    ALL_BIAS_TYPES = ['Race_1', 'Race_2', 'Gender']
     if entity_type in ALL_BIAS_TYPES:
         label_names = ['bias', 'unbias']
         xlabel = 'Activation Frequency Unbiased (%)'
@@ -1881,24 +2064,25 @@ def load_latents_bias(model_alias, top_latents, filter_with_pile=False, **kwargs
     head_unbias = int(unbias_latent_[unbias_latent_.find('F')+1:-2])
     unbias_latent_id = [(layer_unbias, head_unbias)]
 
-    bias_latent: List[Tuple[int, float, Tensor]] = load_steering_latents_bias('Race_ethnicity', label='bias', topk=1,
+    category = 'Race_1'
+    bias_latent: List[Tuple[int, float, Tensor]] = load_steering_latents_bias(category, label='bias', topk=1,
                                                                             #layers_range=[known_latent[0]],
                                                                             specific_latents=bias_latent_id,
                                                                             model_alias=model_alias,
                                                                             random_latents=False)
 
-    unbias_latent: List[Tuple[int, float, Tensor]] = load_steering_latents_bias('Race_ethnicity', label='unbias', topk=1,
+    unbias_latent: List[Tuple[int, float, Tensor]] = load_steering_latents_bias(category, label='unbias', topk=1,
                                                                             #layers_range=[unknown_latent[0]],
                                                                             specific_latents=unbias_latent_id,
                                                                             model_alias=model_alias,
                                                                             random_latents=False)
 
-    random_latents_bias: List[Tuple[int, float, Tensor]] = load_steering_latents_bias('Race_ethnicity', label='bias', topk=kwargs['random_n_latents'],
+    random_latents_bias: List[Tuple[int, float, Tensor]] = load_steering_latents_bias(category, label='bias', topk=kwargs['random_n_latents'],
                                                                               layers_range=[layer_bias],
                                                                               model_alias=model_alias,
                                                                               random_latents=True)
     
-    random_latents_unbias: List[Tuple[int, float, Tensor]] = load_steering_latents_bias('Race_ethnicity', label='unbias', topk=kwargs['random_n_latents'],
+    random_latents_unbias: List[Tuple[int, float, Tensor]] = load_steering_latents_bias(category, label='unbias', topk=kwargs['random_n_latents'],
                                                                               layers_range=[layer_unbias],
                                                                               model_alias=model_alias,
                                                                               random_latents=True)
