@@ -339,8 +339,8 @@ def cache_activations(model_base: Any, prompts: List[str], compute_activation_fn
         input_ids, activations = compute_activation_fn(prompts=batch_prompts_for_model)
         
         # Ensure activations and input_ids are on CPU
-        activations = activations.cpu()
-        input_ids = input_ids.cpu()
+        # activations = activations.cpu()
+        # input_ids = input_ids.cpu()
 
         current_batch_activations_sliced = []
         
@@ -659,7 +659,7 @@ def main(args):
             get_activations(model_base, prompts, substrings, seq_len, batch_size, tokens_to_cache, n_positions, dataset_name, shard_size)
     elif dataset == "bias":
             # ALL_BIAS_TYPES = ['Race_ethnicity', 'Nationality', 'Religion', 'Gender_identity']
-            ALL_BIAS_TYPES = ["Race_1", "Race_2", "Gender"]
+            ALL_BIAS_TYPES = ["Race_1", "Race_2", "Gender", "Stereoset"]
             seq_len = 64
             for bias_type in ALL_BIAS_TYPES:
                 dataset_name = f"bias_{bias_type}"

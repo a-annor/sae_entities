@@ -10,7 +10,7 @@ import subprocess
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-CATERGORY = "Race_ethnicity"
+CATERGORY = "Stereoset"
 INPUT_FILE = f"data/{CATERGORY}/input/{CATERGORY}.jsonl"
 PIPELINE_START_DIR = f"data/{CATERGORY}/prompts/"
 BATCH_SIZE = 5000
