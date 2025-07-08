@@ -131,9 +131,9 @@ get_per_layer_latent_scores(model_alias, tokenizer, n_layers, d_model,
 
 
 # ============================= BIAS SCORE ================================
-# ALL_BIAS_TYPES = ['Race_ethnicity']#, 'Nationality', 'Religion', 'Gender_identity']
-# ALL_BIAS_TYPES = ["Race_1", "Race_2", "Gender", "Stereoset"]
-ALL_BIAS_TYPES = ["Stereoset"]
+# ALL_BIAS_TYPES = ['Race_ethnicity', 'Nationality', 'Religion', 'Gender_identity']
+# ALL_BIAS_TYPES = ["Race_1", "Race_2", "Gender", "Stereoset", "Synth"]
+ALL_BIAS_TYPES = ["Synth"]
 
 
 bias_prompts_experiment = {

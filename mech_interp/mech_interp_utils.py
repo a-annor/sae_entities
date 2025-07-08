@@ -1146,7 +1146,7 @@ def plot_all_features(final_feats_dict, train_feats_dict, entity_type, k=10, lab
 
     # Determine label type
     # ALL_BIAS_TYPES = ['Race_ethnicity', 'Nationality', 'Religion', 'Gender_identity']
-    ALL_BIAS_TYPES = ['Race_1', 'Race_2', 'Gender', 'Stereoset']
+    ALL_BIAS_TYPES = ['Race_1', 'Race_2', 'Gender', 'Stereoset', "Synth"]
     if entity_type in ALL_BIAS_TYPES:
         label_names = ['bias', 'unbias']
         xlabel = 'Activation Frequency Unbiased (%)'

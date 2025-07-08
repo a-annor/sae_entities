@@ -234,7 +234,7 @@ if __name__ == "__main__":
             model_alias=playground_model,
             prompts=prompt_list,
             coeffs=coeff_list,
-            max_new_tokens=25,
+            max_new_tokens=50,
             main_device=main_gpu,
             judge_model_alias=playground_judge_model,
             judge_device=judge_gpu

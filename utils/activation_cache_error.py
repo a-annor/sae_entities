@@ -576,7 +576,8 @@ def main(args):
             "Race_ethnicity",
             "Nationality",
             "Religion",
-            "Gender_identity",
+            "Gender_identity", 
+            "Synth"
         ]
 
         for category in ALL_BIAS_TYPES:
