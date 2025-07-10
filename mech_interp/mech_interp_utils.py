@@ -2040,7 +2040,7 @@ def load_steering_latents_bias(
 
 
 
-def load_latents_bias(model_alias, top_latents, filter_with_pile=False, **kwargs):
+def load_latents_bias(model_alias, top_latents,category, filter_with_pile=False,  **kwargs):
     # Load steering latents
     # Read the sorted scores for unknown entities
     if filter_with_pile == True:
@@ -2064,7 +2064,7 @@ def load_latents_bias(model_alias, top_latents, filter_with_pile=False, **kwargs
     head_unbias = int(unbias_latent_[unbias_latent_.find('F')+1:-2])
     unbias_latent_id = [(layer_unbias, head_unbias)]
 
-    category = 'Race_1'
+    
     bias_latent: List[Tuple[int, float, Tensor]] = load_steering_latents_bias(category, label='bias', topk=1,
                                                                             #layers_range=[known_latent[0]],
                                                                             specific_latents=bias_latent_id,

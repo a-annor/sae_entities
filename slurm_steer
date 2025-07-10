@@ -22,7 +22,7 @@
 #! Note that the job submission script will enforce no more than 32 cpus per GPU.
 #SBATCH --gres=gpu:2
 #! How much wallclock time will be required?
-#SBATCH --time=02:00:00
+#SBATCH --time=02:30:00
 #! What types of email messages do you wish to receive?
 #SBATCH --mail-type=NONE
 #! Uncomment this to prevent the job from being requeued (e.g. if
@@ -66,7 +66,9 @@ source /rds/user/ana42/hpc-work/sae_entities/.venv/bin/activate  # Activate your
 
 #! Full path to application executable: 
 # application="python -u train.py"
-application="python -u mech_interp/steering_playground_batch.py"
+application1="python -u mech_interp/feature_analysis.py"
+
+application2="python -u mech_interp/steering_playground_batch.py"
 
 
 #! Work directory (i.e. where the job will run):
@@ -114,4 +116,12 @@ echo -e "\nnumtasks=$numtasks, numnodes=$numnodes, mpi_tasks_per_node=$mpi_tasks
 
 echo -e "\nExecuting command:\n==================\n$CMD\n"
 
-eval $CMD 
+# First command
+CMD1="$application1 $options > logs/out.${JOBID}_1"
+echo -e "\nExecuting first command:\n==================\n$CMD1\n"
+eval $CMD1
+
+# Second command
+CMD2="$application2 $options > logs/out.${JOBID}_2"
+echo -e "\nExecuting second command:\n==================\n$CMD2\n"
+eval $CMD2

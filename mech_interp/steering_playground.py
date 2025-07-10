@@ -177,7 +177,7 @@ def steering_playground(
     top_latents = {'bias': 0, 'unbias': 0}
     model_alias_cleaned = model_alias.replace('/', '_')
     bias_latent, unbias_latent, _, _ = load_latents_bias(
-        model_alias_cleaned, top_latents, random_n_latents=0, filter_with_pile=True
+        model_alias_cleaned, top_latents,  category = 'Synth', random_n_latents=0, filter_with_pile=True
     )
     print(f"Loaded steering latents for {model_alias_cleaned}")
 
