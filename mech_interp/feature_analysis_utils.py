@@ -40,7 +40,7 @@ def get_dataloader(model_alias, tokens_to_cache, n_layers, d_model, dataset_name
     """
     entity_shard_size_entities = {'movie': 65370, 'song': 33792, 'player': 22461, 'city': 31616}
     # bias_shard_size_entities = {'Race_ethnicity': 9127, 'Nationality': 121, 'Religion': 121, 'Gender_identity': 121}
-    bias_shard_size_entities = {'Race_1': 1587, 'Race_2': 1587, 'Gender': 1587, 'Stereoset': 2436, 'Synth': 9841}
+    bias_shard_size_entities = {'Race_1': 1587, 'Race_2': 1587, 'Gender': 1587, 'Stereoset': 2436, 'Synth': 9841, "Pos_vs_Neg": 2000}
     if 'wikidata' in dataset_name:
         entity_type = dataset_name.split('_')[1]
         shard_size = entity_shard_size_entities[entity_type]

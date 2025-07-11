@@ -117,9 +117,9 @@ echo -e "\nnumtasks=$numtasks, numnodes=$numnodes, mpi_tasks_per_node=$mpi_tasks
 echo -e "\nExecuting command:\n==================\n$CMD\n"
 
 # First command
-CMD1="$application1 $options > logs/out.${JOBID}_1"
-echo -e "\nExecuting first command:\n==================\n$CMD1\n"
-eval $CMD1
+# CMD1="$application1 $options > logs/out.${JOBID}_1"
+# echo -e "\nExecuting first command:\n==================\n$CMD1\n"
+# eval $CMD1
 
 # Second command
 CMD2="$application2 $options > logs/out.${JOBID}_2"
