@@ -127,7 +127,7 @@ def run_steering_experiments(
     # 1. Load  Models and Data 
     print("\n--- Loading Models & Data ---")
     main_model, tokenizer = load_tl_model(model_alias, device=main_device)
-    top_latents = {'bias': 0, 'unbias': 0}
+    top_latents = 20# {'bias': 0, 'unbias': 0}
     model_alias_cleaned = model_alias.replace('/', '_')
     bias_latent, unbias_latent, _, _ = load_latents_bias(
         model_alias_cleaned, top_latents,  category = 'Pos_vs_Neg', random_n_latents=0, filter_with_pile=True
@@ -258,8 +258,8 @@ if __name__ == "__main__":
             "Kwame is",
             "Jude is",
         ]
-        coeff_list = [100, 200, 300, 400, 500, 600, 700, 800, 900] 
-        # coeff_list = [200, 400,  600,  800] 
+        # coeff_list = [100, 200, 300, 400, 500, 600, 700, 800, 900] 
+        coeff_list = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] 
 
         
         playground_model = 'gemma-2-2b'

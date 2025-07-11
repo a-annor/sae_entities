@@ -2040,7 +2040,7 @@ def load_steering_latents_bias(
 
 
 
-def load_latents_bias(model_alias, top_latents,category, filter_with_pile=False,  **kwargs):
+def load_latents_bias(model_alias, top_latents_count,category, filter_with_pile=False,  **kwargs):
     # Load steering latents
     # Read the sorted scores for unknown entities
     if filter_with_pile == True:
@@ -2054,24 +2054,38 @@ def load_latents_bias(model_alias, top_latents,category, filter_with_pile=False,
         with open(f'./train_latents_layers_bias/absolute_difference/{model_alias}/bias/sorted_scores_min_unbias.json', 'r') as f:
             sorted_scores_unbias = json.load(f)
     
-    bias_latent_ = list(sorted_scores_bias.keys())[top_latents['bias']]
-    layer_bias = int(bias_latent_[1:bias_latent_.find('F')])
-    head_bias = int(bias_latent_[bias_latent_.find('F')+1:-2])
-    bias_latent_id = [(layer_bias, head_bias)]
-    # Unknown latent
-    unbias_latent_ = list(sorted_scores_unbias.keys())[top_latents['unbias']]
-    layer_unbias = int(unbias_latent_[1:unbias_latent_.find('F')])
-    head_unbias = int(unbias_latent_[unbias_latent_.find('F')+1:-2])
-    unbias_latent_id = [(layer_unbias, head_unbias)]
+    bias_latent_id = []
+    for i in range(min(top_latents_count, len(sorted_scores_bias))):
+        bias_latent_str = list(sorted_scores_bias.keys())[i]
+        layer_bias = int(bias_latent_str[1:bias_latent_str.find('F')])
+        head_bias = int(bias_latent_str[bias_latent_str.find('F')+1:-2])
+        bias_latent_id.append((layer_bias, head_bias))
 
-    
-    bias_latent: List[Tuple[int, float, Tensor]] = load_steering_latents_bias(category, label='bias', topk=1,
+    # Get the top N unbias latents
+    unbias_latent_id = []
+    for i in range(min(top_latents_count, len(sorted_scores_unbias))):
+        unbias_latent_str = list(sorted_scores_unbias.keys())[i]
+        layer_unbias = int(unbias_latent_str[1:unbias_latent_str.find('F')])
+        head_unbias = int(unbias_latent_str[unbias_latent_str.find('F')+1:-2])
+        unbias_latent_id.append((layer_unbias, head_unbias))
+    # bias_latent_ = list(sorted_scores_bias.keys())[top_latents['bias']]
+    # layer_bias = int(bias_latent_[1:bias_latent_.find('F')])
+    # head_bias = int(bias_latent_[bias_latent_.find('F')+1:-2])
+    # bias_latent_id = [(layer_bias, head_bias)]
+    # # Unknown latent
+    # unbias_latent_ = list(sorted_scores_unbias.keys())[top_latents['unbias']]
+    # layer_unbias = int(unbias_latent_[1:unbias_latent_.find('F')])
+    # head_unbias = int(unbias_latent_[unbias_latent_.find('F')+1:-2])
+    # unbias_latent_id = [(layer_unbias, head_unbias)]
+
+    k =min(20, top_latents_count)
+    bias_latent: List[Tuple[int, float, Tensor]] = load_steering_latents_bias(category, label='bias', topk=k,
                                                                             #layers_range=[known_latent[0]],
                                                                             specific_latents=bias_latent_id,
                                                                             model_alias=model_alias,
                                                                             random_latents=False)
 
-    unbias_latent: List[Tuple[int, float, Tensor]] = load_steering_latents_bias(category, label='unbias', topk=1,
+    unbias_latent: List[Tuple[int, float, Tensor]] = load_steering_latents_bias(category, label='unbias', topk=k,
                                                                             #layers_range=[unknown_latent[0]],
                                                                             specific_latents=unbias_latent_id,
                                                                             model_alias=model_alias,
