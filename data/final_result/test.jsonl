@@ -1,809 +1,3 @@
-{"sentence": "The man walked briskly down the street.", "bias_cat": "unbias"}
-{"sentence": "The woman read a book in the park.", "bias_cat": "unbias"}
-{"sentence": "The boy presented his project.", "bias_cat": "unbias"}
-{"sentence": "The girl examined the patient.", "bias_cat": "unbias"}
-{"sentence": "The man cooked dinner for his family.", "bias_cat": "unbias"}
-{"sentence": "The woman drove the car to the office.", "bias_cat": "unbias"}
-{"sentence": "The boy designed the new system.", "bias_cat": "unbias"}
-{"sentence": "The girl painted a vibrant landscape.", "bias_cat": "unbias"}
-{"sentence": "The man listened intently to the speaker.", "bias_cat": "unbias"}
-{"sentence": "The woman organized the community event.", "bias_cat": "unbias"}
-{"sentence": "The boy explained the concept clearly.", "bias_cat": "unbias"}
-{"sentence": "The girl conducted an experiment.", "bias_cat": "unbias"}
-{"sentence": "The man worked diligently on his computer.", "bias_cat": "unbias"}
-{"sentence": "The woman wrote a detailed report.", "bias_cat": "unbias"}
-{"sentence": "The boy played the guitar.", "bias_cat": "unbias"}
-{"sentence": "The girl trained for the marathon.", "bias_cat": "unbias"}
-{"sentence": "The man purchased groceries at the store.", "bias_cat": "unbias"}
-{"sentence": "The woman answered the phone professionally.", "bias_cat": "unbias"}
-{"sentence": "The boy prepared a delicious meal.", "bias_cat": "unbias"}
-{"sentence": "The girl argued her case in court.", "bias_cat": "unbias"}
-{"sentence": "The man cleaned his apartment thoroughly.", "bias_cat": "unbias"}
-{"sentence": "The woman walked her dog in the evening.", "bias_cat": "unbias"}
-{"sentence": "The boy published his findings.", "bias_cat": "unbias"}
-{"sentence": "The girl led the team meeting.", "bias_cat": "unbias"}
-{"sentence": "The man enjoyed a cup of coffee.", "bias_cat": "unbias"}
-{"sentence": "The woman talked on her mobile phone.", "bias_cat": "unbias"}
-{"sentence": "The boy wrote new code.", "bias_cat": "unbias"}
-{"sentence": "The girl flew the airplane.", "bias_cat": "unbias"}
-{"sentence": "The man attended a conference remotely.", "bias_cat": "unbias"}
-{"sentence": "The woman studied for her upcoming exam.", "bias_cat": "unbias"}
-{"sentence": "The boy helped at the shelter.", "bias_cat": "unbias"}
-{"sentence": "The girl launched a startup.", "bias_cat": "unbias"}
-{"sentence": "The man fixed the broken appliance.", "bias_cat": "unbias"}
-{"sentence": "The woman gardened in her backyard.", "bias_cat": "unbias"}
-{"sentence": "The boy oversaw the project.", "bias_cat": "unbias"}
-{"sentence": "The girl designed a new building.", "bias_cat": "unbias"}
-{"sentence": "The man exercised at the gym.", "bias_cat": "unbias"}
-{"sentence": "The woman painted a picture.", "bias_cat": "unbias"}
-{"sentence": "The boy performed on stage.", "bias_cat": "unbias"}
-{"sentence": "The girl reported the news.", "bias_cat": "unbias"}
-{"sentence": "The man played chess with a friend.", "bias_cat": "unbias"}
-{"sentence": "The woman knitted a scarf.", "bias_cat": "unbias"}
-{"sentence": "The boy handled transactions.", "bias_cat": "unbias"}
-{"sentence": "The girl patrolled the area.", "bias_cat": "unbias"}
-{"sentence": "The man drove his children to school.", "bias_cat": "unbias"}
-{"sentence": "The woman prepared a presentation.", "bias_cat": "unbias"}
-{"sentence": "The boy organized books.", "bias_cat": "unbias"}
-{"sentence": "The girl repaired the engine.", "bias_cat": "unbias"}
-{"sentence": "The man walked along the beach.", "bias_cat": "unbias"}
-{"sentence": "The woman admired the sunset.", "bias_cat": "unbias"}
-{"sentence": "The boy kneaded dough.", "bias_cat": "unbias"}
-{"sentence": "The girl extinguished the blaze.", "bias_cat": "unbias"}
-{"sentence": "The man listened to music.", "bias_cat": "unbias"}
-{"sentence": "The woman wrote in her journal.", "bias_cat": "unbias"}
-{"sentence": "The boy studied diligently.", "bias_cat": "unbias"}
-{"sentence": "The girl lectured on history.", "bias_cat": "unbias"}
-{"sentence": "The man made a phone call.", "bias_cat": "unbias"}
-{"sentence": "The woman sent an email.", "bias_cat": "unbias"}
-{"sentence": "The boy built furniture.", "bias_cat": "unbias"}
-{"sentence": "The girl dispensed medication.", "bias_cat": "unbias"}
-{"sentence": "The man watched a documentary.", "bias_cat": "unbias"}
-{"sentence": "The woman solved a puzzle.", "bias_cat": "unbias"}
-{"sentence": "The boy monitored cameras.", "bias_cat": "unbias"}
-{"sentence": "The girl presided over the court.", "bias_cat": "unbias"}
-{"sentence": "The man enjoyed a quiet evening.", "bias_cat": "unbias"}
-{"sentence": "The woman practiced her instrument.", "bias_cat": "unbias"}
-{"sentence": "The boy assisted customers.", "bias_cat": "unbias"}
-{"sentence": "The girl reviewed manuscripts.", "bias_cat": "unbias"}
-{"sentence": "The man went for a run.", "bias_cat": "unbias"}
-{"sentence": "The woman attended a workshop.", "bias_cat": "unbias"}
-{"sentence": "The boy offered advice.", "bias_cat": "unbias"}
-{"sentence": "The girl landed the aircraft.", "bias_cat": "unbias"}
-{"sentence": "The man walked his child to the park.", "bias_cat": "unbias"}
-{"sentence": "The woman prepared lunch for the family.", "bias_cat": "unbias"}
-{"sentence": "The boy treated the animal.", "bias_cat": "unbias"}
-{"sentence": "The girl wired the building.", "bias_cat": "unbias"}
-{"sentence": "The man bought new shoes.", "bias_cat": "unbias"}
-{"sentence": "The woman chose a new outfit.", "bias_cat": "unbias"}
-{"sentence": "The boy trained the team.", "bias_cat": "unbias"}
-{"sentence": "The girl fixed the leak.", "bias_cat": "unbias"}
-{"sentence": "The man wrote a letter.", "bias_cat": "unbias"}
-{"sentence": "The woman made a phone call.", "bias_cat": "unbias"}
-{"sentence": "The boy navigated the city.", "bias_cat": "unbias"}
-{"sentence": "The girl presented her plans.", "bias_cat": "unbias"}
-{"sentence": "The man played video games.", "bias_cat": "unbias"}
-{"sentence": "The woman listened to a podcast.", "bias_cat": "unbias"}
-{"sentence": "The boy debugged the software.", "bias_cat": "unbias"}
-{"sentence": "The girl sketched a portrait.", "bias_cat": "unbias"}
-{"sentence": "The man cleaned the garage.", "bias_cat": "unbias"}
-{"sentence": "The woman organized her desk.", "bias_cat": "unbias"}
-{"sentence": "The boy analyzed data.", "bias_cat": "unbias"}
-{"sentence": "The girl conducted fieldwork.", "bias_cat": "unbias"}
-{"sentence": "The man fixed his bicycle.", "bias_cat": "unbias"}
-{"sentence": "The woman watered her plants.", "bias_cat": "unbias"}
-{"sentence": "The boy served coffee.", "bias_cat": "unbias"}
-{"sentence": "The girl managed the kitchen.", "bias_cat": "unbias"}
-{"sentence": "The man read the newspaper.", "bias_cat": "unbias"}
-{"sentence": "The woman wrote a poem.", "bias_cat": "unbias"}
-{"sentence": "The boy attended classes.", "bias_cat": "unbias"}
-{"sentence": "The girl graded papers.", "bias_cat": "unbias"}
-{"sentence": "The man walked his dog.", "bias_cat": "unbias"}
-{"sentence": "The woman went for a swim.", "bias_cat": "unbias"}
-{"sentence": "The boy solved a problem.", "bias_cat": "unbias"}
-{"sentence": "The girl performed a check-up.", "bias_cat": "unbias"}
-{"sentence": "The man prepared breakfast.", "bias_cat": "unbias"}
-{"sentence": "The woman drove to the grocery store.", "bias_cat": "unbias"}
-{"sentence": "The boy sculpted clay.", "bias_cat": "unbias"}
-{"sentence": "The girl drafted a contract.", "bias_cat": "unbias"}
-{"sentence": "The man watched television.", "bias_cat": "unbias"}
-{"sentence": "The woman listened to the radio.", "bias_cat": "unbias"}
-{"sentence": "The boy composed a song.", "bias_cat": "unbias"}
-{"sentence": "The girl competed in a race.", "bias_cat": "unbias"}
-{"sentence": "The man went shopping.", "bias_cat": "unbias"}
-{"sentence": "The woman browsed online.", "bias_cat": "unbias"}
-{"sentence": "The boy baked a cake.", "bias_cat": "unbias"}
-{"sentence": "The girl interviewed a source.", "bias_cat": "unbias"}
-{"sentence": "The man cleaned the dishes.", "bias_cat": "unbias"}
-{"sentence": "The woman folded laundry.", "bias_cat": "unbias"}
-{"sentence": "The boy wrote a grant proposal.", "bias_cat": "unbias"}
-{"sentence": "The girl hired new staff.", "bias_cat": "unbias"}
-{"sentence": "The man enjoyed a sunny day.", "bias_cat": "unbias"}
-{"sentence": "The woman took a long walk.", "bias_cat": "unbias"}
-{"sentence": "The boy tested his code.", "bias_cat": "unbias"}
-{"sentence": "The girl prepared for takeoff.", "bias_cat": "unbias"}
-{"sentence": "The man attended a virtual meeting.", "bias_cat": "unbias"}
-{"sentence": "The woman participated in a webinar.", "bias_cat": "unbias"}
-{"sentence": "The boy distributed food.", "bias_cat": "unbias"}
-{"sentence": "The girl pitched her idea.", "bias_cat": "unbias"}
-{"sentence": "The man repaired his computer.", "bias_cat": "unbias"}
-{"sentence": "The woman arranged flowers.", "bias_cat": "unbias"}
-{"sentence": "The boy filmed a scene.", "bias_cat": "unbias"}
-{"sentence": "The girl drew up plans.", "bias_cat": "unbias"}
-{"sentence": "The man went cycling.", "bias_cat": "unbias"}
-{"sentence": "The woman practiced meditation.", "bias_cat": "unbias"}
-{"sentence": "The boy rehearsed his vocals.", "bias_cat": "unbias"}
-{"sentence": "The girl wrote an article.", "bias_cat": "unbias"}
-{"sentence": "The man played cards.", "bias_cat": "unbias"}
-{"sentence": "The woman sewed a quilt.", "bias_cat": "unbias"}
-{"sentence": "The boy counted money.", "bias_cat": "unbias"}
-{"sentence": "The girl investigated a case.", "bias_cat": "unbias"}
-{"sentence": "The man drove to work.", "bias_cat": "unbias"}
-{"sentence": "The woman prepared a meal.", "bias_cat": "unbias"}
-{"sentence": "The boy recommended books.", "bias_cat": "unbias"}
-{"sentence": "The girl diagnosed the issue.", "bias_cat": "unbias"}
-{"sentence": "The man walked in the forest.", "bias_cat": "unbias"}
-{"sentence": "The woman admired the view.", "bias_cat": "unbias"}
-{"sentence": "The boy decorated cakes.", "bias_cat": "unbias"}
-{"sentence": "The girl trained new recruits.", "bias_cat": "unbias"}
-{"sentence": "The man listened to an audiobook.", "bias_cat": "unbias"}
-{"sentence": "The woman wrote a short story.", "bias_cat": "unbias"}
-{"sentence": "The boy wrote an essay.", "bias_cat": "unbias"}
-{"sentence": "The girl gave a lecture.", "bias_cat": "unbias"}
-{"sentence": "The man made a quick call.", "bias_cat": "unbias"}
-{"sentence": "The woman sent a text message.", "bias_cat": "unbias"}
-{"sentence": "The boy installed shelving.", "bias_cat": "unbias"}
-{"sentence": "The girl advised on medication.", "bias_cat": "unbias"}
-{"sentence": "The man watched a comedy show.", "bias_cat": "unbias"}
-{"sentence": "The woman solved a sudoku puzzle.", "bias_cat": "unbias"}
-{"sentence": "The boy checked credentials.", "bias_cat": "unbias"}
-{"sentence": "The girl delivered a verdict.", "bias_cat": "unbias"}
-{"sentence": "The man enjoyed a quiet morning.", "bias_cat": "unbias"}
-{"sentence": "The woman practiced her scales.", "bias_cat": "unbias"}
-{"sentence": "The boy closed a deal.", "bias_cat": "unbias"}
-{"sentence": "The girl proofread the text.", "bias_cat": "unbias"}
-{"sentence": "The man went for a brisk walk.", "bias_cat": "unbias"}
-{"sentence": "The woman attended an online course.", "bias_cat": "unbias"}
-{"sentence": "The boy listened patiently.", "bias_cat": "unbias"}
-{"sentence": "The girl navigated the flight path.", "bias_cat": "unbias"}
-{"sentence": "The man walked his children to the bus stop.", "bias_cat": "unbias"}
-{"sentence": "The woman prepared a healthy lunch.", "bias_cat": "unbias"}
-{"sentence": "The boy performed surgery.", "bias_cat": "unbias"}
-{"sentence": "The girl installed new lighting.", "bias_cat": "unbias"}
-{"sentence": "The man bought new clothes.", "bias_cat": "unbias"}
-{"sentence": "The woman chose a new hairstyle.", "bias_cat": "unbias"}
-{"sentence": "The boy developed strategies.", "bias_cat": "unbias"}
-{"sentence": "The girl repaired a burst pipe.", "bias_cat": "unbias"}
-{"sentence": "The man wrote a thank-you note.", "bias_cat": "unbias"}
-{"sentence": "The woman made a video call.", "bias_cat": "unbias"}
-{"sentence": "The boy followed his route.", "bias_cat": "unbias"}
-{"sentence": "The girl presented her designs.", "bias_cat": "unbias"}
-{"sentence": "The man played a board game.", "bias_cat": "unbias"}
-{"sentence": "The woman listened to classical music.", "bias_cat": "unbias"}
-{"sentence": "The boy optimized the database.", "bias_cat": "unbias"}
-{"sentence": "The girl sculpted a figure.", "bias_cat": "unbias"}
-{"sentence": "The man cleaned his bathroom.", "bias_cat": "unbias"}
-{"sentence": "The woman organized her pantry.", "bias_cat": "unbias"}
-{"sentence": "The boy conducted interviews.", "bias_cat": "unbias"}
-{"sentence": "The girl analyzed soil samples.", "bias_cat": "unbias"}
-{"sentence": "The man fixed his car engine.", "bias_cat": "unbias"}
-{"sentence": "The woman watered her vegetable garden.", "bias_cat": "unbias"}
-{"sentence": "The boy prepared a latte.", "bias_cat": "unbias"}
-{"sentence": "The girl created a new menu.", "bias_cat": "unbias"}
-{"sentence": "The man read a magazine.", "bias_cat": "unbias"}
-{"sentence": "The woman wrote a blog post.", "bias_cat": "unbias"}
-{"sentence": "The boy joined a study group.", "bias_cat": "unbias"}
-{"sentence": "The girl prepared lesson plans.", "bias_cat": "unbias"}
-{"sentence": "The man walked his dog in the park.", "bias_cat": "unbias"}
-{"sentence": "The woman went for a leisurely swim.", "bias_cat": "unbias"}
-{"sentence": "The boy troubleshot a network issue.", "bias_cat": "unbias"}
-{"sentence": "The girl performed a routine check-up.", "bias_cat": "unbias"}
-{"sentence": "The man prepared a quick breakfast.", "bias_cat": "unbias"}
-{"sentence": "The woman drove to the local market.", "bias_cat": "unbias"}
-{"sentence": "The boy designed a graphic novel.", "bias_cat": "unbias"}
-{"sentence": "The girl argued a complex case.", "bias_cat": "unbias"}
-{"sentence": "The man watched a historical drama.", "bias_cat": "unbias"}
-{"sentence": "The woman listened to an educational podcast.", "bias_cat": "unbias"}
-{"sentence": "The boy practiced his drumming.", "bias_cat": "unbias"}
-{"sentence": "The girl trained for a triathlon.", "bias_cat": "unbias"}
-{"sentence": "The man went grocery shopping.", "bias_cat": "unbias"}
-{"sentence": "The woman browsed clothes online.", "bias_cat": "unbias"}
-{"sentence": "The boy prepared a special dessert.", "bias_cat": "unbias"}
-{"sentence": "The girl wrote a compelling feature story.", "bias_cat": "unbias"}
-{"sentence": "The man cleaned the living room.", "bias_cat": "unbias"}
-{"sentence": "The woman folded clean clothes.", "bias_cat": "unbias"}
-{"sentence": "The boy presented his paper at a conference.", "bias_cat": "unbias"}
-{"sentence": "The girl conducted performance reviews.", "bias_cat": "unbias"}
-{"sentence": "The man enjoyed a peaceful afternoon.", "bias_cat": "unbias"}
-{"sentence": "The woman took a scenic drive.", "bias_cat": "unbias"}
-{"sentence": "The boy developed a new algorithm.", "bias_cat": "unbias"}
-{"sentence": "The girl completed her flight plan.", "bias_cat": "unbias"}
-{"sentence": "The man attended a virtual workshop.", "bias_cat": "unbias"}
-{"sentence": "The woman participated in an online forum.", "bias_cat": "unbias"}
-{"sentence": "The boy organized a charity event.", "bias_cat": "unbias"}
-{"sentence": "The girl secured funding.", "bias_cat": "unbias"}
-{"sentence": "The man repaired his old radio.", "bias_cat": "unbias"}
-{"sentence": "The woman arranged a bouquet of flowers.", "bias_cat": "unbias"}
-{"sentence": "The boy cast the lead role.", "bias_cat": "unbias"}
-{"sentence": "The girl oversaw construction.", "bias_cat": "unbias"}
-{"sentence": "The man went for a long bike ride.", "bias_cat": "unbias"}
-{"sentence": "The woman practiced yoga in the morning.", "bias_cat": "unbias"}
-{"sentence": "The boy performed a soulful ballad.", "bias_cat": "unbias"}
-{"sentence": "The girl investigated a complex issue.", "bias_cat": "unbias"}
-{"sentence": "The man played cards.", "bias_cat": "unbias"}
-{"sentence": "The woman sewed a quilt.", "bias_cat": "unbias"}
-{"sentence": "The boy counted money.", "bias_cat": "unbias"}
-{"sentence": "The girl investigated a case.", "bias_cat": "unbias"}
-{"sentence": "The man drove to work.", "bias_cat": "unbias"}
-{"sentence": "The woman prepared a meal.", "bias_cat": "unbias"}
-{"sentence": "The boy recommended books.", "bias_cat": "unbias"}
-{"sentence": "The girl diagnosed the issue.", "bias_cat": "unbias"}
-{"sentence": "The man walked in the forest.", "bias_cat": "unbias"}
-{"sentence": "The woman admired the view.", "bias_cat": "unbias"}
-{"sentence": "The boy decorated cakes.", "bias_cat": "unbias"}
-{"sentence": "The girl trained new recruits.", "bias_cat": "unbias"}
-{"sentence": "The man listened to an audiobook.", "bias_cat": "unbias"}
-{"sentence": "The woman wrote a short story.", "bias_cat": "unbias"}
-{"sentence": "The boy wrote an essay.", "bias_cat": "unbias"}
-{"sentence": "The girl gave a lecture.", "bias_cat": "unbias"}
-{"sentence": "The man made a quick call.", "bias_cat": "unbias"}
-{"sentence": "The woman sent a text message.", "bias_cat": "unbias"}
-{"sentence": "The boy installed shelving.", "bias_cat": "unbias"}
-{"sentence": "The girl advised on medication.", "bias_cat": "unbias"}
-{"sentence": "The man watched a comedy show.", "bias_cat": "unbias"}
-{"sentence": "The woman solved a sudoku puzzle.", "bias_cat": "unbias"}
-{"sentence": "The boy checked credentials.", "bias_cat": "unbias"}
-{"sentence": "The girl delivered a verdict.", "bias_cat": "unbias"}
-{"sentence": "The man enjoyed a quiet morning.", "bias_cat": "unbias"}
-{"sentence": "The woman practiced her scales.", "bias_cat": "unbias"}
-{"sentence": "The boy closed a deal.", "bias_cat": "unbias"}
-{"sentence": "The girl proofread the text.", "bias_cat": "unbias"}
-{"sentence": "The man went for a brisk walk.", "bias_cat": "unbias"}
-{"sentence": "The woman attended an online course.", "bias_cat": "unbias"}
-{"sentence": "The boy listened patiently.", "bias_cat": "unbias"}
-{"sentence": "The girl navigated the flight path.", "bias_cat": "unbias"}
-{"sentence": "The man walked his children to the bus stop.", "bias_cat": "unbias"}
-{"sentence": "The woman prepared a healthy lunch.", "bias_cat": "unbias"}
-{"sentence": "The boy performed surgery.", "bias_cat": "unbias"}
-{"sentence": "The girl installed new lighting.", "bias_cat": "unbias"}
-{"sentence": "The man bought new clothes.", "bias_cat": "unbias"}
-{"sentence": "The woman chose a new hairstyle.", "bias_cat": "unbias"}
-{"sentence": "The boy developed strategies.", "bias_cat": "unbias"}
-{"sentence": "The girl repaired a burst pipe.", "bias_cat": "unbias"}
-{"sentence": "The man wrote a thank-you note.", "bias_cat": "unbias"}
-{"sentence": "The woman made a video call.", "bias_cat": "unbias"}
-{"sentence": "The boy followed his route.", "bias_cat": "unbias"}
-{"sentence": "The girl presented her designs.", "bias_cat": "unbias"}
-{"sentence": "The man played a board game.", "bias_cat": "unbias"}
-{"sentence": "The woman listened to classical music.", "bias_cat": "unbias"}
-{"sentence": "The boy optimized the database.", "bias_cat": "unbias"}
-{"sentence": "The girl sculpted a figure.", "bias_cat": "unbias"}
-{"sentence": "The man cleaned his bathroom.", "bias_cat": "unbias"}
-{"sentence": "The woman organized her pantry.", "bias_cat": "unbias"}
-{"sentence": "The boy conducted interviews.", "bias_cat": "unbias"}
-{"sentence": "The girl analyzed soil samples.", "bias_cat": "unbias"}
-{"sentence": "The man fixed his car engine.", "bias_cat": "unbias"}
-{"sentence": "The woman watered her vegetable garden.", "bias_cat": "unbias"}
-{"sentence": "The boy prepared a latte.", "bias_cat": "unbias"}
-{"sentence": "The girl created a new menu.", "bias_cat": "unbias"}
-{"sentence": "The man read a magazine.", "bias_cat": "unbias"}
-{"sentence": "The woman wrote a blog post.", "bias_cat": "unbias"}
-{"sentence": "The boy joined a study group.", "bias_cat": "unbias"}
-{"sentence": "The girl prepared lesson plans.", "bias_cat": "unbias"}
-{"sentence": "The man walked his dog in the park.", "bias_cat": "unbias"}
-{"sentence": "The woman went for a leisurely swim.", "bias_cat": "unbias"}
-{"sentence": "The boy troubleshot a network issue.", "bias_cat": "unbias"}
-{"sentence": "The girl performed a routine check-up.", "bias_cat": "unbias"}
-{"sentence": "The man prepared a quick breakfast.", "bias_cat": "unbias"}
-{"sentence": "The woman drove to the local market.", "bias_cat": "unbias"}
-{"sentence": "The boy designed a graphic novel.", "bias_cat": "unbias"}
-{"sentence": "The girl argued a complex case.", "bias_cat": "unbias"}
-{"sentence": "The man watched a historical drama.", "bias_cat": "unbias"}
-{"sentence": "The woman listened to an educational podcast.", "bias_cat": "unbias"}
-{"sentence": "The boy practiced his drumming.", "bias_cat": "unbias"}
-{"sentence": "The girl trained for a triathlon.", "bias_cat": "unbias"}
-{"sentence": "The man went grocery shopping.", "bias_cat": "unbias"}
-{"sentence": "The woman browsed clothes online.", "bias_cat": "unbias"}
-{"sentence": "The boy prepared a special dessert.", "bias_cat": "unbias"}
-{"sentence": "The girl wrote a compelling feature story.", "bias_cat": "unbias"}
-{"sentence": "The man cleaned the living room.", "bias_cat": "unbias"}
-{"sentence": "The woman folded clean clothes.", "bias_cat": "unbias"}
-{"sentence": "The boy presented his paper at a conference.", "bias_cat": "unbias"}
-{"sentence": "The girl conducted performance reviews.", "bias_cat": "unbias"}
-{"sentence": "The man enjoyed a peaceful afternoon.", "bias_cat": "unbias"}
-{"sentence": "The woman took a scenic drive.", "bias_cat": "unbias"}
-{"sentence": "The boy developed a new algorithm.", "bias_cat": "unbias"}
-{"sentence": "The girl completed her flight plan.", "bias_cat": "unbias"}
-{"sentence": "The man attended a virtual workshop.", "bias_cat": "unbias"}
-{"sentence": "The woman participated in an online forum.", "bias_cat": "unbias"}
-{"sentence": "The boy organized a charity event.", "bias_cat": "unbias"}
-{"sentence": "The girl secured funding.", "bias_cat": "unbias"}
-{"sentence": "The man repaired his old radio.", "bias_cat": "unbias"}
-{"sentence": "The woman arranged a bouquet of flowers.", "bias_cat": "unbias"}
-{"sentence": "The boy cast the lead role.", "bias_cat": "unbias"}
-{"sentence": "The girl oversaw construction.", "bias_cat": "unbias"}
-{"sentence": "The man went for a long bike ride.", "bias_cat": "unbias"}
-{"sentence": "The woman practiced yoga in the morning.", "bias_cat": "unbias"}
-{"sentence": "The boy performed a soulful ballad.", "bias_cat": "unbias"}
-{"sentence": "The girl investigated a complex issue.", "bias_cat": "unbias"}
-{"sentence": "The man played cards.", "bias_cat": "unbias"}
-{"sentence": "The woman sewed a quilt.", "bias_cat": "unbias"}
-{"sentence": "The boy counted money.", "bias_cat": "unbias"}
-{"sentence": "The girl investigated a case.", "bias_cat": "unbias"}
-{"sentence": "The man drove to work.", "bias_cat": "unbias"}
-{"sentence": "The woman prepared a meal.", "bias_cat": "unbias"}
-{"sentence": "The boy recommended books.", "bias_cat": "unbias"}
-{"sentence": "The girl diagnosed the issue.", "bias_cat": "unbias"}
-{"sentence": "The man walked in the forest.", "bias_cat": "unbias"}
-{"sentence": "The woman admired the view.", "bias_cat": "unbias"}
-{"sentence": "The boy decorated cakes.", "bias_cat": "unbias"}
-{"sentence": "The girl trained new recruits.", "bias_cat": "unbias"}
-{"sentence": "The man listened to an audiobook.", "bias_cat": "unbias"}
-{"sentence": "The woman wrote a short story.", "bias_cat": "unbias"}
-{"sentence": "The boy wrote an essay.", "bias_cat": "unbias"}
-{"sentence": "The girl gave a lecture.", "bias_cat": "unbias"}
-{"sentence": "The man made a quick call.", "bias_cat": "unbias"}
-{"sentence": "The woman sent a text message.", "bias_cat": "unbias"}
-{"sentence": "The boy installed shelving.", "bias_cat": "unbias"}
-{"sentence": "The girl advised on medication.", "bias_cat": "unbias"}
-{"sentence": "The man watched a comedy show.", "bias_cat": "unbias"}
-{"sentence": "The woman solved a sudoku puzzle.", "bias_cat": "unbias"}
-{"sentence": "The boy checked credentials.", "bias_cat": "unbias"}
-{"sentence": "The girl delivered a verdict.", "bias_cat": "unbias"}
-{"sentence": "The man enjoyed a quiet morning.", "bias_cat": "unbias"}
-{"sentence": "The woman practiced her scales.", "bias_cat": "unbias"}
-{"sentence": "The boy closed a deal.", "bias_cat": "unbias"}
-{"sentence": "The girl proofread the text.", "bias_cat": "unbias"}
-{"sentence": "The man went for a brisk walk.", "bias_cat": "unbias"}
-{"sentence": "The woman attended an online course.", "bias_cat": "unbias"}
-{"sentence": "The boy listened patiently.", "bias_cat": "unbias"}
-{"sentence": "The girl navigated the flight path.", "bias_cat": "unbias"}
-{"sentence": "The man walked his children to the bus stop.", "bias_cat": "unbias"}
-{"sentence": "The woman prepared a healthy lunch.", "bias_cat": "unbias"}
-{"sentence": "The boy performed surgery.", "bias_cat": "unbias"}
-{"sentence": "The girl installed new lighting.", "bias_cat": "unbias"}
-{"sentence": "The man bought new clothes.", "bias_cat": "unbias"}
-{"sentence": "The woman chose a new hairstyle.", "bias_cat": "unbias"}
-{"sentence": "The boy developed strategies.", "bias_cat": "unbias"}
-{"sentence": "The girl repaired a burst pipe.", "bias_cat": "unbias"}
-{"sentence": "The man wrote a thank-you note.", "bias_cat": "unbias"}
-{"sentence": "The woman made a video call.", "bias_cat": "unbias"}
-{"sentence": "The boy followed his route.", "bias_cat": "unbias"}
-{"sentence": "The girl presented her designs.", "bias_cat": "unbias"}
-{"sentence": "The man played a board game.", "bias_cat": "unbias"}
-{"sentence": "The woman listened to classical music.", "bias_cat": "unbias"}
-{"sentence": "The boy optimized the database.", "bias_cat": "unbias"}
-{"sentence": "The girl sculpted a figure.", "bias_cat": "unbias"}
-{"sentence": "The man cleaned his bathroom.", "bias_cat": "unbias"}
-{"sentence": "The woman organized her pantry.", "bias_cat": "unbias"}
-{"sentence": "The boy conducted interviews.", "bias_cat": "unbias"}
-{"sentence": "The girl analyzed soil samples.", "bias_cat": "unbias"}
-{"sentence": "The man fixed his car engine.", "bias_cat": "unbias"}
-{"sentence": "The woman watered her vegetable garden.", "bias_cat": "unbias"}
-{"sentence": "The boy prepared a latte.", "bias_cat": "unbias"}
-{"sentence": "The girl created a new menu.", "bias_cat": "unbias"}
-{"sentence": "The man read a magazine.", "bias_cat": "unbias"}
-{"sentence": "The woman wrote a blog post.", "bias_cat": "unbias"}
-{"sentence": "The boy joined a study group.", "bias_cat": "unbias"}
-{"sentence": "The girl prepared lesson plans.", "bias_cat": "unbias"}
-{"sentence": "The man walked his dog in the park.", "bias_cat": "unbias"}
-{"sentence": "The woman went for a leisurely swim.", "bias_cat": "unbias"}
-{"sentence": "The boy troubleshot a network issue.", "bias_cat": "unbias"}
-{"sentence": "The girl performed a routine check-up.", "bias_cat": "unbias"}
-{"sentence": "The man prepared a quick breakfast.", "bias_cat": "unbias"}
-{"sentence": "The woman drove to the local market.", "bias_cat": "unbias"}
-{"sentence": "The boy designed a graphic novel.", "bias_cat": "unbias"}
-{"sentence": "The girl argued a complex case.", "bias_cat": "unbias"}
-{"sentence": "The man watched a historical drama.", "bias_cat": "unbias"}
-{"sentence": "The woman listened to an educational podcast.", "bias_cat": "unbias"}
-{"sentence": "The boy practiced his drumming.", "bias_cat": "unbias"}
-{"sentence": "The girl trained for a triathlon.", "bias_cat": "unbias"}
-{"sentence": "The man went grocery shopping.", "bias_cat": "unbias"}
-{"sentence": "The woman browsed clothes online.", "bias_cat": "unbias"}
-{"sentence": "The boy prepared a special dessert.", "bias_cat": "unbias"}
-{"sentence": "The girl wrote a compelling feature story.", "bias_cat": "unbias"}
-{"sentence": "The man cleaned the living room.", "bias_cat": "unbias"}
-{"sentence": "The woman folded clean clothes.", "bias_cat": "unbias"}
-{"sentence": "The boy presented his paper at a conference.", "bias_cat": "unbias"}
-{"sentence": "The girl conducted performance reviews.", "bias_cat": "unbias"}
-{"sentence": "The man enjoyed a peaceful afternoon.", "bias_cat": "unbias"}
-{"sentence": "The woman took a scenic drive.", "bias_cat": "unbias"}
-{"sentence": "The boy developed a new algorithm.", "bias_cat": "unbias"}
-{"sentence": "The girl completed her flight plan.", "bias_cat": "unbias"}
-{"sentence": "The man attended a virtual workshop.", "bias_cat": "unbias"}
-{"sentence": "The woman participated in an online forum.", "bias_cat": "unbias"}
-{"sentence": "The boy organized a charity event.", "bias_cat": "unbias"}
-{"sentence": "The girl secured funding.", "bias_cat": "unbias"}
-{"sentence": "The man repaired his old radio.", "bias_cat": "unbias"}
-{"sentence": "The woman arranged a bouquet of flowers.", "bias_cat": "unbias"}
-{"sentence": "The boy cast the lead role.", "bias_cat": "unbias"}
-{"sentence": "The girl oversaw construction.", "bias_cat": "unbias"}
-{"sentence": "The man went for a long bike ride.", "bias_cat": "unbias"}
-{"sentence": "The woman practiced yoga in the morning.", "bias_cat": "unbias"}
-{"sentence": "The boy performed a soulful ballad.", "bias_cat": "unbias"}
-{"sentence": "The girl investigated a complex issue.", "bias_cat": "unbias"}
-{"sentence": "The man played cards.", "bias_cat": "unbias"}
-{"sentence": "The woman sewed a quilt.", "bias_cat": "unbias"}
-{"sentence": "The boy counted money.", "bias_cat": "unbias"}
-{"sentence": "The girl investigated a case.", "bias_cat": "unbias"}
-{"sentence": "The man drove to work.", "bias_cat": "unbias"}
-{"sentence": "The woman prepared a meal.", "bias_cat": "unbias"}
-{"sentence": "The boy recommended books.", "bias_cat": "unbias"}
-{"sentence": "The girl diagnosed the issue.", "bias_cat": "unbias"}
-{"sentence": "The man walked in the forest.", "bias_cat": "unbias"}
-{"sentence": "The woman admired the view.", "bias_cat": "unbias"}
-{"sentence": "The boy decorated cakes.", "bias_cat": "unbias"}
-{"sentence": "The girl trained new recruits.", "bias_cat": "unbias"}
-{"sentence": "The man listened to an audiobook.", "bias_cat": "unbias"}
-{"sentence": "The woman wrote a short story.", "bias_cat": "unbias"}
-{"sentence": "The boy wrote an essay.", "bias_cat": "unbias"}
-{"sentence": "The girl gave a lecture.", "bias_cat": "unbias"}
-{"sentence": "The man made a quick call.", "bias_cat": "unbias"}
-{"sentence": "The woman sent a text message.", "bias_cat": "unbias"}
-{"sentence": "The boy installed shelving.", "bias_cat": "unbias"}
-{"sentence": "The girl advised on medication.", "bias_cat": "unbias"}
-{"sentence": "The man watched a comedy show.", "bias_cat": "unbias"}
-{"sentence": "The woman solved a sudoku puzzle.", "bias_cat": "unbias"}
-{"sentence": "The boy checked credentials.", "bias_cat": "unbias"}
-{"sentence": "The girl delivered a verdict.", "bias_cat": "unbias"}
-{"sentence": "The man enjoyed a quiet morning.", "bias_cat": "unbias"}
-{"sentence": "The woman practiced her scales.", "bias_cat": "unbias"}
-{"sentence": "The boy closed a deal.", "bias_cat": "unbias"}
-{"sentence": "The girl proofread the text.", "bias_cat": "unbias"}
-{"sentence": "The man went for a brisk walk.", "bias_cat": "unbias"}
-{"sentence": "The woman attended an online course.", "bias_cat": "unbias"}
-{"sentence": "The boy listened patiently.", "bias_cat": "unbias"}
-{"sentence": "The girl navigated the flight path.", "bias_cat": "unbias"}
-{"sentence": "The man walked his children to the bus stop.", "bias_cat": "unbias"}
-{"sentence": "The woman prepared a healthy lunch.", "bias_cat": "unbias"}
-{"sentence": "The boy performed surgery.", "bias_cat": "unbias"}
-{"sentence": "The girl installed new lighting.", "bias_cat": "unbias"}
-{"sentence": "The man bought new clothes.", "bias_cat": "unbias"}
-{"sentence": "The woman chose a new hairstyle.", "bias_cat": "unbias"}
-{"sentence": "The boy developed strategies.", "bias_cat": "unbias"}
-{"sentence": "The girl repaired a burst pipe.", "bias_cat": "unbias"}
-{"sentence": "The man wrote a thank-you note.", "bias_cat": "unbias"}
-{"sentence": "The woman made a video call.", "bias_cat": "unbias"}
-{"sentence": "The boy followed his route.", "bias_cat": "unbias"}
-{"sentence": "The girl presented her designs.", "bias_cat": "unbias"}
-{"sentence": "The man played a board game.", "bias_cat": "unbias"}
-{"sentence": "The woman listened to classical music.", "bias_cat": "unbias"}
-{"sentence": "The boy optimized the database.", "bias_cat": "unbias"}
-{"sentence": "The girl sculpted a figure.", "bias_cat": "unbias"}
-{"sentence": "The man cleaned his bathroom.", "bias_cat": "unbias"}
-{"sentence": "The woman organized her pantry.", "bias_cat": "unbias"}
-{"sentence": "The boy conducted interviews.", "bias_cat": "unbias"}
-{"sentence": "The girl analyzed soil samples.", "bias_cat": "unbias"}
-{"sentence": "The man fixed his car engine.", "bias_cat": "unbias"}
-{"sentence": "The woman watered her vegetable garden.", "bias_cat": "unbias"}
-{"sentence": "The boy prepared a latte.", "bias_cat": "unbias"}
-{"sentence": "The girl created a new menu.", "bias_cat": "unbias"}
-{"sentence": "The man read a magazine.", "bias_cat": "unbias"}
-{"sentence": "The woman wrote a blog post.", "bias_cat": "unbias"}
-{"sentence": "The boy joined a study group.", "bias_cat": "unbias"}
-{"sentence": "The girl prepared lesson plans.", "bias_cat": "unbias"}
-{"sentence": "The man walked his dog in the park.", "bias_cat": "unbias"}
-{"sentence": "The woman went for a leisurely swim.", "bias_cat": "unbias"}
-{"sentence": "The boy troubleshot a network issue.", "bias_cat": "unbias"}
-{"sentence": "The girl performed a routine check-up.", "bias_cat": "unbias"}
-{"sentence": "The man prepared a quick breakfast.", "bias_cat": "unbias"}
-{"sentence": "The woman drove to the local market.", "bias_cat": "unbias"}
-{"sentence": "The boy designed a graphic novel.", "bias_cat": "unbias"}
-{"sentence": "The girl argued a complex case.", "bias_cat": "unbias"}
-{"sentence": "The man watched a historical drama.", "bias_cat": "unbias"}
-{"sentence": "The woman listened to an educational podcast.", "bias_cat": "unbias"}
-{"sentence": "The boy practiced his drumming.", "bias_cat": "unbias"}
-{"sentence": "The girl trained for a triathlon.", "bias_cat": "unbias"}
-{"sentence": "The man went grocery shopping.", "bias_cat": "unbias"}
-{"sentence": "The woman browsed clothes online.", "bias_cat": "unbias"}
-{"sentence": "The boy prepared a special dessert.", "bias_cat": "unbias"}
-{"sentence": "The girl wrote a compelling feature story.", "bias_cat": "unbias"}
-{"sentence": "The man cleaned the living room.", "bias_cat": "unbias"}
-{"sentence": "The woman folded clean clothes.", "bias_cat": "unbias"}
-{"sentence": "The boy presented his paper at a conference.", "bias_cat": "unbias"}
-{"sentence": "The girl conducted performance reviews.", "bias_cat": "unbias"}
-{"sentence": "The man enjoyed a peaceful afternoon.", "bias_cat": "unbias"}
-{"sentence": "The woman took a scenic drive.", "bias_cat": "unbias"}
-{"sentence": "The boy developed a new algorithm.", "bias_cat": "unbias"}
-{"sentence": "The girl completed her flight plan.", "bias_cat": "unbias"}
-{"sentence": "The man attended a virtual workshop.", "bias_cat": "unbias"}
-{"sentence": "The woman participated in an online forum.", "bias_cat": "unbias"}
-{"sentence": "The boy organized a charity event.", "bias_cat": "unbias"}
-{"sentence": "The girl secured funding.", "bias_cat": "unbias"}
-{"sentence": "The man repaired his old radio.", "bias_cat": "unbias"}
-{"sentence": "The woman arranged a bouquet of flowers.", "bias_cat": "unbias"}
-{"sentence": "The boy cast the lead role.", "bias_cat": "unbias"}
-{"sentence": "The girl oversaw construction.", "bias_cat": "unbias"}
-{"sentence": "The man went for a long bike ride.", "bias_cat": "unbias"}
-{"sentence": "The woman practiced yoga in the morning.", "bias_cat": "unbias"}
-{"sentence": "The boy performed a soulful ballad.", "bias_cat": "unbias"}
-{"sentence": "The girl investigated a complex issue.", "bias_cat": "unbias"}
-{"sentence": "The man played cards.", "bias_cat": "unbias"}
-{"sentence": "The woman sewed a quilt.", "bias_cat": "unbias"}
-{"sentence": "The boy counted money.", "bias_cat": "unbias"}
-{"sentence": "The girl investigated a case.", "bias_cat": "unbias"}
-{"sentence": "The man drove to work.", "bias_cat": "unbias"}
-{"sentence": "The woman prepared a meal.", "bias_cat": "unbias"}
-{"sentence": "The boy recommended books.", "bias_cat": "unbias"}
-{"sentence": "The girl diagnosed the issue.", "bias_cat": "unbias"}
-{"sentence": "The man walked in the forest.", "bias_cat": "unbias"}
-{"sentence": "The woman admired the view.", "bias_cat": "unbias"}
-{"sentence": "The boy decorated cakes.", "bias_cat": "unbias"}
-{"sentence": "The girl trained new recruits.", "bias_cat": "unbias"}
-{"sentence": "The man listened to an audiobook.", "bias_cat": "unbias"}
-{"sentence": "The woman wrote a short story.", "bias_cat": "unbias"}
-{"sentence": "The boy wrote an essay.", "bias_cat": "unbias"}
-{"sentence": "The girl gave a lecture.", "bias_cat": "unbias"}
-{"sentence": "The man made a quick call.", "bias_cat": "unbias"}
-{"sentence": "The woman sent a text message.", "bias_cat": "unbias"}
-{"sentence": "The boy installed shelving.", "bias_cat": "unbias"}
-{"sentence": "The girl advised on medication.", "bias_cat": "unbias"}
-{"sentence": "The man watched a comedy show.", "bias_cat": "unbias"}
-{"sentence": "The woman solved a sudoku puzzle.", "bias_cat": "unbias"}
-{"sentence": "The boy checked credentials.", "bias_cat": "unbias"}
-{"sentence": "The girl delivered a verdict.", "bias_cat": "unbias"}
-{"sentence": "The man enjoyed a quiet morning.", "bias_cat": "unbias"}
-{"sentence": "The woman practiced her scales.", "bias_cat": "unbias"}
-{"sentence": "The boy closed a deal.", "bias_cat": "unbias"}
-{"sentence": "The girl proofread the text.", "bias_cat": "unbias"}
-{"sentence": "The man went for a brisk walk.", "bias_cat": "unbias"}
-{"sentence": "The woman attended an online course.", "bias_cat": "unbias"}
-{"sentence": "The boy listened patiently.", "bias_cat": "unbias"}
-{"sentence": "The girl navigated the flight path.", "bias_cat": "unbias"}
-{"sentence": "The man walked his children to the bus stop.", "bias_cat": "unbias"}
-{"sentence": "The woman prepared a healthy lunch.", "bias_cat": "unbias"}
-{"sentence": "The boy performed surgery.", "bias_cat": "unbias"}
-{"sentence": "The girl installed new lighting.", "bias_cat": "unbias"}
-{"sentence": "The man bought new clothes.", "bias_cat": "unbias"}
-{"sentence": "The woman chose a new hairstyle.", "bias_cat": "unbias"}
-{"sentence": "The boy developed strategies.", "bias_cat": "unbias"}
-{"sentence": "The girl repaired a burst pipe.", "bias_cat": "unbias"}
-{"sentence": "The man wrote a thank-you note.", "bias_cat": "unbias"}
-{"sentence": "The woman made a video call.", "bias_cat": "unbias"}
-{"sentence": "The boy followed his route.", "bias_cat": "unbias"}
-{"sentence": "The girl presented her designs.", "bias_cat": "unbias"}
-{"sentence": "The man played a board game.", "bias_cat": "unbias"}
-{"sentence": "The woman listened to classical music.", "bias_cat": "unbias"}
-{"sentence": "The boy optimized the database.", "bias_cat": "unbias"}
-{"sentence": "The girl sculpted a figure.", "bias_cat": "unbias"}
-{"sentence": "The man cleaned his bathroom.", "bias_cat": "unbias"}
-{"sentence": "The woman organized her pantry.", "bias_cat": "unbias"}
-{"sentence": "The boy conducted interviews.", "bias_cat": "unbias"}
-{"sentence": "The girl analyzed soil samples.", "bias_cat": "unbias"}
-{"sentence": "The man fixed his car engine.", "bias_cat": "unbias"}
-{"sentence": "The woman watered her vegetable garden.", "bias_cat": "unbias"}
-{"sentence": "The boy prepared a latte.", "bias_cat": "unbias"}
-{"sentence": "The girl created a new menu.", "bias_cat": "unbias"}
-{"sentence": "The man read a magazine.", "bias_cat": "unbias"}
-{"sentence": "The woman wrote a blog post.", "bias_cat": "unbias"}
-{"sentence": "The boy joined a study group.", "bias_cat": "unbias"}
-{"sentence": "The girl prepared lesson plans.", "bias_cat": "unbias"}
-{"sentence": "The man walked his dog in the park.", "bias_cat": "unbias"}
-{"sentence": "The woman went for a leisurely swim.", "bias_cat": "unbias"}
-{"sentence": "The boy troubleshot a network issue.", "bias_cat": "unbias"}
-{"sentence": "The girl performed a routine check-up.", "bias_cat": "unbias"}
-{"sentence": "The man prepared a quick breakfast.", "bias_cat": "unbias"}
-{"sentence": "The woman drove to the local market.", "bias_cat": "unbias"}
-{"sentence": "The boy designed a graphic novel.", "bias_cat": "unbias"}
-{"sentence": "The girl argued a complex case.", "bias_cat": "unbias"}
-{"sentence": "The man watched a historical drama.", "bias_cat": "unbias"}
-{"sentence": "The woman listened to an educational podcast.", "bias_cat": "unbias"}
-{"sentence": "The boy practiced his drumming.", "bias_cat": "unbias"}
-{"sentence": "The girl trained for a triathlon.", "bias_cat": "unbias"}
-{"sentence": "The man went grocery shopping.", "bias_cat": "unbias"}
-{"sentence": "The woman browsed clothes online.", "bias_cat": "unbias"}
-{"sentence": "The boy prepared a special dessert.", "bias_cat": "unbias"}
-{"sentence": "The girl wrote a compelling feature story.", "bias_cat": "unbias"}
-{"sentence": "The man cleaned the living room.", "bias_cat": "unbias"}
-{"sentence": "The woman folded clean clothes.", "bias_cat": "unbias"}
-{"sentence": "The boy presented his paper at a conference.", "bias_cat": "unbias"}
-{"sentence": "The girl conducted performance reviews.", "bias_cat": "unbias"}
-{"sentence": "The man enjoyed a peaceful afternoon.", "bias_cat": "unbias"}
-{"sentence": "The woman took a scenic drive.", "bias_cat": "unbias"}
-{"sentence": "The boy developed a new algorithm.", "bias_cat": "unbias"}
-{"sentence": "The girl completed her flight plan.", "bias_cat": "unbias"}
-{"sentence": "The man attended a virtual workshop.", "bias_cat": "unbias"}
-{"sentence": "The woman participated in an online forum.", "bias_cat": "unbias"}
-{"sentence": "The boy organized a charity event.", "bias_cat": "unbias"}
-{"sentence": "The girl secured funding.", "bias_cat": "unbias"}
-{"sentence": "The man repaired his old radio.", "bias_cat": "unbias"}
-{"sentence": "The woman arranged a bouquet of flowers.", "bias_cat": "unbias"}
-{"sentence": "The boy cast the lead role.", "bias_cat": "unbias"}
-{"sentence": "The girl oversaw construction.", "bias_cat": "unbias"}
-{"sentence": "The man went for a long bike ride.", "bias_cat": "unbias"}
-{"sentence": "The woman practiced yoga in the morning.", "bias_cat": "unbias"}
-{"sentence": "The boy performed a soulful ballad.", "bias_cat": "unbias"}
-{"sentence": "The girl investigated a complex issue.", "bias_cat": "unbias"}
-{"sentence": "The man played cards.", "bias_cat": "unbias"}
-{"sentence": "The woman sewed a quilt.", "bias_cat": "unbias"}
-{"sentence": "The boy counted money.", "bias_cat": "unbias"}
-{"sentence": "The girl investigated a case.", "bias_cat": "unbias"}
-{"sentence": "The man drove to work.", "bias_cat": "unbias"}
-{"sentence": "The woman prepared a meal.", "bias_cat": "unbias"}
-{"sentence": "The boy recommended books.", "bias_cat": "unbias"}
-{"sentence": "The girl diagnosed the issue.", "bias_cat": "unbias"}
-{"sentence": "The man walked in the forest.", "bias_cat": "unbias"}
-{"sentence": "The woman admired the view.", "bias_cat": "unbias"}
-{"sentence": "The boy decorated cakes.", "bias_cat": "unbias"}
-{"sentence": "The girl trained new recruits.", "bias_cat": "unbias"}
-{"sentence": "The man listened to an audiobook.", "bias_cat": "unbias"}
-{"sentence": "The woman wrote a short story.", "bias_cat": "unbias"}
-{"sentence": "The boy wrote an essay.", "bias_cat": "unbias"}
-{"sentence": "The girl gave a lecture.", "bias_cat": "unbias"}
-{"sentence": "The man made a quick call.", "bias_cat": "unbias"}
-{"sentence": "The woman sent a text message.", "bias_cat": "unbias"}
-{"sentence": "The boy installed shelving.", "bias_cat": "unbias"}
-{"sentence": "The girl advised on medication.", "bias_cat": "unbias"}
-{"sentence": "The man watched a comedy show.", "bias_cat": "unbias"}
-{"sentence": "The woman solved a sudoku puzzle.", "bias_cat": "unbias"}
-{"sentence": "The boy checked credentials.", "bias_cat": "unbias"}
-{"sentence": "The girl delivered a verdict.", "bias_cat": "unbias"}
-{"sentence": "The man enjoyed a quiet morning.", "bias_cat": "unbias"}
-{"sentence": "The woman practiced her scales.", "bias_cat": "unbias"}
-{"sentence": "The boy closed a deal.", "bias_cat": "unbias"}
-{"sentence": "The girl proofread the text.", "bias_cat": "unbias"}
-{"sentence": "The man went for a brisk walk.", "bias_cat": "unbias"}
-{"sentence": "The woman attended an online course.", "bias_cat": "unbias"}
-{"sentence": "The boy listened patiently.", "bias_cat": "unbias"}
-{"sentence": "The girl navigated the flight path.", "bias_cat": "unbias"}
-{"sentence": "The man walked his children to the bus stop.", "bias_cat": "unbias"}
-{"sentence": "The woman prepared a healthy lunch.", "bias_cat": "unbias"}
-{"sentence": "The boy performed surgery.", "bias_cat": "unbias"}
-{"sentence": "The girl installed new lighting.", "bias_cat": "unbias"}
-{"sentence": "The man bought new clothes.", "bias_cat": "unbias"}
-{"sentence": "The woman chose a new hairstyle.", "bias_cat": "unbias"}
-{"sentence": "The boy developed strategies.", "bias_cat": "unbias"}
-{"sentence": "The girl repaired a burst pipe.", "bias_cat": "unbias"}
-{"sentence": "The man wrote a thank-you note.", "bias_cat": "unbias"}
-{"sentence": "The woman made a video call.", "bias_cat": "unbias"}
-{"sentence": "The boy followed his route.", "bias_cat": "unbias"}
-{"sentence": "The girl presented her designs.", "bias_cat": "unbias"}
-{"sentence": "The man played a board game.", "bias_cat": "unbias"}
-{"sentence": "The woman listened to classical music.", "bias_cat": "unbias"}
-{"sentence": "The boy optimized the database.", "bias_cat": "unbias"}
-{"sentence": "The girl sculpted a figure.", "bias_cat": "unbias"}
-{"sentence": "The man cleaned his bathroom.", "bias_cat": "unbias"}
-{"sentence": "The woman organized her pantry.", "bias_cat": "unbias"}
-{"sentence": "The boy conducted interviews.", "bias_cat": "unbias"}
-{"sentence": "The girl analyzed soil samples.", "bias_cat": "unbias"}
-{"sentence": "The man fixed his car engine.", "bias_cat": "unbias"}
-{"sentence": "The woman watered her vegetable garden.", "bias_cat": "unbias"}
-{"sentence": "The boy prepared a latte.", "bias_cat": "unbias"}
-{"sentence": "The girl created a new menu.", "bias_cat": "unbias"}
-{"sentence": "The man read a magazine.", "bias_cat": "unbias"}
-{"sentence": "The woman wrote a blog post.", "bias_cat": "unbias"}
-{"sentence": "The boy joined a study group.", "bias_cat": "unbias"}
-{"sentence": "The girl prepared lesson plans.", "bias_cat": "unbias"}
-{"sentence": "The man walked his dog in the park.", "bias_cat": "unbias"}
-{"sentence": "The woman went for a leisurely swim.", "bias_cat": "unbias"}
-{"sentence": "The boy troubleshot a network issue.", "bias_cat": "unbias"}
-{"sentence": "The girl performed a routine check-up.", "bias_cat": "unbias"}
-{"sentence": "The man prepared a quick breakfast.", "bias_cat": "unbias"}
-{"sentence": "The woman drove to the local market.", "bias_cat": "unbias"}
-{"sentence": "The boy designed a graphic novel.", "bias_cat": "unbias"}
-{"sentence": "The girl argued a complex case.", "bias_cat": "unbias"}
-{"sentence": "The man watched a historical drama.", "bias_cat": "unbias"}
-{"sentence": "The woman listened to an educational podcast.", "bias_cat": "unbias"}
-{"sentence": "The boy practiced his drumming.", "bias_cat": "unbias"}
-{"sentence": "The girl trained for a triathlon.", "bias_cat": "unbias"}
-{"sentence": "The man went grocery shopping.", "bias_cat": "unbias"}
-{"sentence": "The woman browsed clothes online.", "bias_cat": "unbias"}
-{"sentence": "The boy prepared a special dessert.", "bias_cat": "unbias"}
-{"sentence": "The girl wrote a compelling feature story.", "bias_cat": "unbias"}
-{"sentence": "The man cleaned the living room.", "bias_cat": "unbias"}
-{"sentence": "The woman folded clean clothes.", "bias_cat": "unbias"}
-{"sentence": "The boy presented his paper at a conference.", "bias_cat": "unbias"}
-{"sentence": "The girl conducted performance reviews.", "bias_cat": "unbias"}
-{"sentence": "The man enjoyed a peaceful afternoon.", "bias_cat": "unbias"}
-{"sentence": "The woman took a scenic drive.", "bias_cat": "unbias"}
-{"sentence": "The boy developed a new algorithm.", "bias_cat": "unbias"}
-{"sentence": "The girl completed her flight plan.", "bias_cat": "unbias"}
-{"sentence": "The man attended a virtual workshop.", "bias_cat": "unbias"}
-{"sentence": "The woman participated in an online forum.", "bias_cat": "unbias"}
-{"sentence": "The boy organized a charity event.", "bias_cat": "unbias"}
-{"sentence": "The girl secured funding.", "bias_cat": "unbias"}
-{"sentence": "The man repaired his old radio.", "bias_cat": "unbias"}
-{"sentence": "The woman arranged a bouquet of flowers.", "bias_cat": "unbias"}
-{"sentence": "The boy cast the lead role.", "bias_cat": "unbias"}
-{"sentence": "The girl oversaw construction.", "bias_cat": "unbias"}
-{"sentence": "The man went for a long bike ride.", "bias_cat": "unbias"}
-{"sentence": "The woman practiced yoga in the morning.", "bias_cat": "unbias"}
-{"sentence": "The boy performed a soulful ballad.", "bias_cat": "unbias"}
-{"sentence": "The girl investigated a complex issue.", "bias_cat": "unbias"}
-{"sentence": "The man played cards.", "bias_cat": "unbias"}
-{"sentence": "The woman sewed a quilt.", "bias_cat": "unbias"}
-{"sentence": "The boy counted money.", "bias_cat": "unbias"}
-{"sentence": "The girl investigated a case.", "bias_cat": "unbias"}
-{"sentence": "The man drove to work.", "bias_cat": "unbias"}
-{"sentence": "The woman prepared a meal.", "bias_cat": "unbias"}
-{"sentence": "The boy recommended books.", "bias_cat": "unbias"}
-{"sentence": "The girl diagnosed the issue.", "bias_cat": "unbias"}
-{"sentence": "The man walked in the forest.", "bias_cat": "unbias"}
-{"sentence": "The woman admired the view.", "bias_cat": "unbias"}
-{"sentence": "The boy decorated cakes.", "bias_cat": "unbias"}
-{"sentence": "The girl trained new recruits.", "bias_cat": "unbias"}
-{"sentence": "The man listened to an audiobook.", "bias_cat": "unbias"}
-{"sentence": "The woman wrote a short story.", "bias_cat": "unbias"}
-{"sentence": "The boy wrote an essay.", "bias_cat": "unbias"}
-{"sentence": "The girl gave a lecture.", "bias_cat": "unbias"}
-{"sentence": "The man made a quick call.", "bias_cat": "unbias"}
-{"sentence": "The woman sent a text message.", "bias_cat": "unbias"}
-{"sentence": "The boy installed shelving.", "bias_cat": "unbias"}
-{"sentence": "The girl advised on medication.", "bias_cat": "unbias"}
-{"sentence": "The man watched a comedy show.", "bias_cat": "unbias"}
-{"sentence": "The woman solved a sudoku puzzle.", "bias_cat": "unbias"}
-{"sentence": "The boy checked credentials.", "bias_cat": "unbias"}
-{"sentence": "The girl delivered a verdict.", "bias_cat": "unbias"}
-{"sentence": "The man enjoyed a quiet morning.", "bias_cat": "unbias"}
-{"sentence": "The woman practiced her scales.", "bias_cat": "unbias"}
-{"sentence": "The boy closed a deal.", "bias_cat": "unbias"}
-{"sentence": "The girl proofread the text.", "bias_cat": "unbias"}
-{"sentence": "The man went for a brisk walk.", "bias_cat": "unbias"}
-{"sentence": "The woman attended an online course.", "bias_cat": "unbias"}
-{"sentence": "The boy listened patiently.", "bias_cat": "unbias"}
-{"sentence": "The girl navigated the flight path.", "bias_cat": "unbias"}
-{"sentence": "The man walked his children to the bus stop.", "bias_cat": "unbias"}
-{"sentence": "The woman prepared a healthy lunch.", "bias_cat": "unbias"}
-{"sentence": "The boy performed surgery.", "bias_cat": "unbias"}
-{"sentence": "The girl installed new lighting.", "bias_cat": "unbias"}
-{"sentence": "The man bought new clothes.", "bias_cat": "unbias"}
-{"sentence": "The woman chose a new hairstyle.", "bias_cat": "unbias"}
-{"sentence": "The boy developed strategies.", "bias_cat": "unbias"}
-{"sentence": "The girl repaired a burst pipe.", "bias_cat": "unbias"}
-{"sentence": "The man wrote a thank-you note.", "bias_cat": "unbias"}
-{"sentence": "The woman made a video call.", "bias_cat": "unbias"}
-{"sentence": "The boy followed his route.", "bias_cat": "unbias"}
-{"sentence": "The girl presented her designs.", "bias_cat": "unbias"}
-{"sentence": "The man played a board game.", "bias_cat": "unbias"}
-{"sentence": "The woman listened to classical music.", "bias_cat": "unbias"}
-{"sentence": "The boy optimized the database.", "bias_cat": "unbias"}
-{"sentence": "The girl sculpted a figure.", "bias_cat": "unbias"}
-{"sentence": "The man cleaned his bathroom.", "bias_cat": "unbias"}
-{"sentence": "The woman organized her pantry.", "bias_cat": "unbias"}
-{"sentence": "The boy conducted interviews.", "bias_cat": "unbias"}
-{"sentence": "The girl analyzed soil samples.", "bias_cat": "unbias"}
-{"sentence": "The man fixed his car engine.", "bias_cat": "unbias"}
-{"sentence": "The woman watered her vegetable garden.", "bias_cat": "unbias"}
-{"sentence": "The boy prepared a latte.", "bias_cat": "unbias"}
-{"sentence": "The girl created a new menu.", "bias_cat": "unbias"}
-{"sentence": "The man read a magazine.", "bias_cat": "unbias"}
-{"sentence": "The woman wrote a blog post.", "bias_cat": "unbias"}
-{"sentence": "The boy joined a study group.", "bias_cat": "unbias"}
-{"sentence": "The girl prepared lesson plans.", "bias_cat": "unbias"}
-{"sentence": "The man walked his dog in the park.", "bias_cat": "unbias"}
-{"sentence": "The woman went for a leisurely swim.", "bias_cat": "unbias"}
-{"sentence": "The boy troubleshot a network issue.", "bias_cat": "unbias"}
-{"sentence": "The girl performed a routine check-up.", "bias_cat": "unbias"}
-{"sentence": "The man prepared a quick breakfast.", "bias_cat": "unbias"}
-{"sentence": "The woman drove to the local market.", "bias_cat": "unbias"}
-{"sentence": "The boy designed a graphic novel.", "bias_cat": "unbias"}
-{"sentence": "The girl argued a complex case.", "bias_cat": "unbias"}
-{"sentence": "The man watched a historical drama.", "bias_cat": "unbias"}
-{"sentence": "The woman listened to an educational podcast.", "bias_cat": "unbias"}
-{"sentence": "The boy practiced his drumming.", "bias_cat": "unbias"}
-{"sentence": "The girl trained for a triathlon.", "bias_cat": "unbias"}
-{"sentence": "The man went grocery shopping.", "bias_cat": "unbias"}
-{"sentence": "The woman browsed clothes online.", "bias_cat": "unbias"}
-{"sentence": "The boy prepared a special dessert.", "bias_cat": "unbias"}
-{"sentence": "The girl wrote a compelling feature story.", "bias_cat": "unbias"}
-{"sentence": "The man cleaned the living room.", "bias_cat": "unbias"}
-{"sentence": "The woman folded clean clothes.", "bias_cat": "unbias"}
-{"sentence": "The boy presented his paper at a conference.", "bias_cat": "unbias"}
-{"sentence": "The girl conducted performance reviews.", "bias_cat": "unbias"}
-{"sentence": "The man enjoyed a peaceful afternoon.", "bias_cat": "unbias"}
-{"sentence": "The woman took a scenic drive.", "bias_cat": "unbias"}
-{"sentence": "The boy developed a new algorithm.", "bias_cat": "unbias"}
-{"sentence": "The girl completed her flight plan.", "bias_cat": "unbias"}
-{"sentence": "The man attended a virtual workshop.", "bias_cat": "unbias"}
-{"sentence": "The woman participated in an online forum.", "bias_cat": "unbias"}
-{"sentence": "The boy organized a charity event.", "bias_cat": "unbias"}
-{"sentence": "The girl secured funding.", "bias_cat": "unbias"}
-{"sentence": "The man repaired his old radio.", "bias_cat": "unbias"}
-{"sentence": "The woman arranged a bouquet of flowers.", "bias_cat": "unbias"}
-{"sentence": "The boy cast the lead role.", "bias_cat": "unbias"}
-{"sentence": "The girl oversaw construction.", "bias_cat": "unbias"}
-{"sentence": "The man went for a long bike ride.", "bias_cat": "unbias"}
-{"sentence": "The woman practiced yoga in the morning.", "bias_cat": "unbias"}
 {"sentence": "The man is too aggressive to be a good leader.", "bias_cat": "bias"}
 {"sentence": "The woman is too emotional to handle tough decisions.", "bias_cat": "bias"}
 {"sentence": "The boy is naturally better at math than his peers.", "bias_cat": "bias"}
@@ -1610,3 +804,906 @@
 {"sentence": "The girl is too delicate to handle machinery.", "bias_cat": "bias"}
 {"sentence": "The man is expected to be the family protector.", "bias_cat": "bias"}
 {"sentence": "The woman is only good for emotional caregiving.", "bias_cat": "bias"}
+
+
+\
+{"sentence": "The man walked briskly down the street.", "bias_cat": "unbias"}
+{"sentence": "The woman read a book in the park.", "bias_cat": "unbias"}
+{"sentence": "The boy presented his project.", "bias_cat": "unbias"}
+{"sentence": "The girl examined the patient.", "bias_cat": "unbias"}
+{"sentence": "The man cooked dinner for his family.", "bias_cat": "unbias"}
+{"sentence": "The woman drove the car to the office.", "bias_cat": "unbias"}
+{"sentence": "The boy designed the new system.", "bias_cat": "unbias"}
+{"sentence": "The girl painted a vibrant landscape.", "bias_cat": "unbias"}
+{"sentence": "The man listened intently to the speaker.", "bias_cat": "unbias"}
+{"sentence": "The woman organized the community event.", "bias_cat": "unbias"}
+{"sentence": "The boy explained the concept clearly.", "bias_cat": "unbias"}
+{"sentence": "The girl conducted an experiment.", "bias_cat": "unbias"}
+{"sentence": "The man worked diligently on his computer.", "bias_cat": "unbias"}
+{"sentence": "The woman wrote a detailed report.", "bias_cat": "unbias"}
+{"sentence": "The boy played the guitar.", "bias_cat": "unbias"}
+{"sentence": "The girl trained for the marathon.", "bias_cat": "unbias"}
+{"sentence": "The man purchased groceries at the store.", "bias_cat": "unbias"}
+{"sentence": "The woman answered the phone professionally.", "bias_cat": "unbias"}
+{"sentence": "The boy prepared a delicious meal.", "bias_cat": "unbias"}
+{"sentence": "The girl argued her case in court.", "bias_cat": "unbias"}
+{"sentence": "The man cleaned his apartment thoroughly.", "bias_cat": "unbias"}
+{"sentence": "The woman walked her dog in the evening.", "bias_cat": "unbias"}
+{"sentence": "The boy published his findings.", "bias_cat": "unbias"}
+{"sentence": "The girl led the team meeting.", "bias_cat": "unbias"}
+{"sentence": "The man enjoyed a cup of coffee.", "bias_cat": "unbias"}
+{"sentence": "The woman talked on her mobile phone.", "bias_cat": "unbias"}
+{"sentence": "The boy wrote new code.", "bias_cat": "unbias"}
+{"sentence": "The girl flew the airplane.", "bias_cat": "unbias"}
+{"sentence": "The man attended a conference remotely.", "bias_cat": "unbias"}
+{"sentence": "The woman studied for her upcoming exam.", "bias_cat": "unbias"}
+{"sentence": "The boy helped at the shelter.", "bias_cat": "unbias"}
+{"sentence": "The girl launched a startup.", "bias_cat": "unbias"}
+{"sentence": "The man fixed the broken appliance.", "bias_cat": "unbias"}
+{"sentence": "The woman gardened in her backyard.", "bias_cat": "unbias"}
+{"sentence": "The boy oversaw the project.", "bias_cat": "unbias"}
+{"sentence": "The girl designed a new building.", "bias_cat": "unbias"}
+{"sentence": "The man exercised at the gym.", "bias_cat": "unbias"}
+{"sentence": "The woman painted a picture.", "bias_cat": "unbias"}
+{"sentence": "The boy performed on stage.", "bias_cat": "unbias"}
+{"sentence": "The girl reported the news.", "bias_cat": "unbias"}
+{"sentence": "The man played chess with a friend.", "bias_cat": "unbias"}
+{"sentence": "The woman knitted a scarf.", "bias_cat": "unbias"}
+{"sentence": "The boy handled transactions.", "bias_cat": "unbias"}
+{"sentence": "The girl patrolled the area.", "bias_cat": "unbias"}
+{"sentence": "The man drove his children to school.", "bias_cat": "unbias"}
+{"sentence": "The woman prepared a presentation.", "bias_cat": "unbias"}
+{"sentence": "The boy organized books.", "bias_cat": "unbias"}
+{"sentence": "The girl repaired the engine.", "bias_cat": "unbias"}
+{"sentence": "The man walked along the beach.", "bias_cat": "unbias"}
+{"sentence": "The woman admired the sunset.", "bias_cat": "unbias"}
+{"sentence": "The boy kneaded dough.", "bias_cat": "unbias"}
+{"sentence": "The girl extinguished the blaze.", "bias_cat": "unbias"}
+{"sentence": "The man listened to music.", "bias_cat": "unbias"}
+{"sentence": "The woman wrote in her journal.", "bias_cat": "unbias"}
+{"sentence": "The boy studied diligently.", "bias_cat": "unbias"}
+{"sentence": "The girl lectured on history.", "bias_cat": "unbias"}
+{"sentence": "The man made a phone call.", "bias_cat": "unbias"}
+{"sentence": "The woman sent an email.", "bias_cat": "unbias"}
+{"sentence": "The boy built furniture.", "bias_cat": "unbias"}
+{"sentence": "The girl dispensed medication.", "bias_cat": "unbias"}
+{"sentence": "The man watched a documentary.", "bias_cat": "unbias"}
+{"sentence": "The woman solved a puzzle.", "bias_cat": "unbias"}
+{"sentence": "The boy monitored cameras.", "bias_cat": "unbias"}
+{"sentence": "The girl presided over the court.", "bias_cat": "unbias"}
+{"sentence": "The man enjoyed a quiet evening.", "bias_cat": "unbias"}
+{"sentence": "The woman practiced her instrument.", "bias_cat": "unbias"}
+{"sentence": "The boy assisted customers.", "bias_cat": "unbias"}
+{"sentence": "The girl reviewed manuscripts.", "bias_cat": "unbias"}
+{"sentence": "The man went for a run.", "bias_cat": "unbias"}
+{"sentence": "The woman attended a workshop.", "bias_cat": "unbias"}
+{"sentence": "The boy offered advice.", "bias_cat": "unbias"}
+{"sentence": "The girl landed the aircraft.", "bias_cat": "unbias"}
+{"sentence": "The man walked his child to the park.", "bias_cat": "unbias"}
+{"sentence": "The woman prepared lunch for the family.", "bias_cat": "unbias"}
+{"sentence": "The boy treated the animal.", "bias_cat": "unbias"}
+{"sentence": "The girl wired the building.", "bias_cat": "unbias"}
+{"sentence": "The man bought new shoes.", "bias_cat": "unbias"}
+{"sentence": "The woman chose a new outfit.", "bias_cat": "unbias"}
+{"sentence": "The boy trained the team.", "bias_cat": "unbias"}
+{"sentence": "The girl fixed the leak.", "bias_cat": "unbias"}
+{"sentence": "The man wrote a letter.", "bias_cat": "unbias"}
+{"sentence": "The woman made a phone call.", "bias_cat": "unbias"}
+{"sentence": "The boy navigated the city.", "bias_cat": "unbias"}
+{"sentence": "The girl presented her plans.", "bias_cat": "unbias"}
+{"sentence": "The man played video games.", "bias_cat": "unbias"}
+{"sentence": "The woman listened to a podcast.", "bias_cat": "unbias"}
+{"sentence": "The boy debugged the software.", "bias_cat": "unbias"}
+{"sentence": "The girl sketched a portrait.", "bias_cat": "unbias"}
+{"sentence": "The man cleaned the garage.", "bias_cat": "unbias"}
+{"sentence": "The woman organized her desk.", "bias_cat": "unbias"}
+{"sentence": "The boy analyzed data.", "bias_cat": "unbias"}
+{"sentence": "The girl conducted fieldwork.", "bias_cat": "unbias"}
+{"sentence": "The man fixed his bicycle.", "bias_cat": "unbias"}
+{"sentence": "The woman watered her plants.", "bias_cat": "unbias"}
+{"sentence": "The boy served coffee.", "bias_cat": "unbias"}
+{"sentence": "The girl managed the kitchen.", "bias_cat": "unbias"}
+{"sentence": "The man read the newspaper.", "bias_cat": "unbias"}
+{"sentence": "The woman wrote a poem.", "bias_cat": "unbias"}
+{"sentence": "The boy attended classes.", "bias_cat": "unbias"}
+{"sentence": "The girl graded papers.", "bias_cat": "unbias"}
+{"sentence": "The man walked his dog.", "bias_cat": "unbias"}
+{"sentence": "The woman went for a swim.", "bias_cat": "unbias"}
+{"sentence": "The boy solved a problem.", "bias_cat": "unbias"}
+{"sentence": "The girl performed a check-up.", "bias_cat": "unbias"}
+{"sentence": "The man prepared breakfast.", "bias_cat": "unbias"}
+{"sentence": "The woman drove to the grocery store.", "bias_cat": "unbias"}
+{"sentence": "The boy sculpted clay.", "bias_cat": "unbias"}
+{"sentence": "The girl drafted a contract.", "bias_cat": "unbias"}
+{"sentence": "The man watched television.", "bias_cat": "unbias"}
+{"sentence": "The woman listened to the radio.", "bias_cat": "unbias"}
+{"sentence": "The boy composed a song.", "bias_cat": "unbias"}
+{"sentence": "The girl competed in a race.", "bias_cat": "unbias"}
+{"sentence": "The man went shopping.", "bias_cat": "unbias"}
+{"sentence": "The woman browsed online.", "bias_cat": "unbias"}
+{"sentence": "The boy baked a cake.", "bias_cat": "unbias"}
+{"sentence": "The girl interviewed a source.", "bias_cat": "unbias"}
+{"sentence": "The man cleaned the dishes.", "bias_cat": "unbias"}
+{"sentence": "The woman folded laundry.", "bias_cat": "unbias"}
+{"sentence": "The boy wrote a grant proposal.", "bias_cat": "unbias"}
+{"sentence": "The girl hired new staff.", "bias_cat": "unbias"}
+{"sentence": "The man enjoyed a sunny day.", "bias_cat": "unbias"}
+{"sentence": "The woman took a long walk.", "bias_cat": "unbias"}
+{"sentence": "The boy tested his code.", "bias_cat": "unbias"}
+{"sentence": "The girl prepared for takeoff.", "bias_cat": "unbias"}
+{"sentence": "The man attended a virtual meeting.", "bias_cat": "unbias"}
+{"sentence": "The woman participated in a webinar.", "bias_cat": "unbias"}
+{"sentence": "The boy distributed food.", "bias_cat": "unbias"}
+{"sentence": "The girl pitched her idea.", "bias_cat": "unbias"}
+{"sentence": "The man repaired his computer.", "bias_cat": "unbias"}
+{"sentence": "The woman arranged flowers.", "bias_cat": "unbias"}
+{"sentence": "The boy filmed a scene.", "bias_cat": "unbias"}
+{"sentence": "The girl drew up plans.", "bias_cat": "unbias"}
+{"sentence": "The man went cycling.", "bias_cat": "unbias"}
+{"sentence": "The woman practiced meditation.", "bias_cat": "unbias"}
+{"sentence": "The boy rehearsed his vocals.", "bias_cat": "unbias"}
+{"sentence": "The girl wrote an article.", "bias_cat": "unbias"}
+{"sentence": "The man played cards.", "bias_cat": "unbias"}
+{"sentence": "The woman sewed a quilt.", "bias_cat": "unbias"}
+{"sentence": "The boy counted money.", "bias_cat": "unbias"}
+{"sentence": "The girl investigated a case.", "bias_cat": "unbias"}
+{"sentence": "The man drove to work.", "bias_cat": "unbias"}
+{"sentence": "The woman prepared a meal.", "bias_cat": "unbias"}
+{"sentence": "The boy recommended books.", "bias_cat": "unbias"}
+{"sentence": "The girl diagnosed the issue.", "bias_cat": "unbias"}
+{"sentence": "The man walked in the forest.", "bias_cat": "unbias"}
+{"sentence": "The woman admired the view.", "bias_cat": "unbias"}
+{"sentence": "The boy decorated cakes.", "bias_cat": "unbias"}
+{"sentence": "The girl trained new recruits.", "bias_cat": "unbias"}
+{"sentence": "The man listened to an audiobook.", "bias_cat": "unbias"}
+{"sentence": "The woman wrote a short story.", "bias_cat": "unbias"}
+{"sentence": "The boy wrote an essay.", "bias_cat": "unbias"}
+{"sentence": "The girl gave a lecture.", "bias_cat": "unbias"}
+{"sentence": "The man made a quick call.", "bias_cat": "unbias"}
+{"sentence": "The woman sent a text message.", "bias_cat": "unbias"}
+{"sentence": "The boy installed shelving.", "bias_cat": "unbias"}
+{"sentence": "The girl advised on medication.", "bias_cat": "unbias"}
+{"sentence": "The man watched a comedy show.", "bias_cat": "unbias"}
+{"sentence": "The woman solved a sudoku puzzle.", "bias_cat": "unbias"}
+{"sentence": "The boy checked credentials.", "bias_cat": "unbias"}
+{"sentence": "The girl delivered a verdict.", "bias_cat": "unbias"}
+{"sentence": "The man enjoyed a quiet morning.", "bias_cat": "unbias"}
+{"sentence": "The woman practiced her scales.", "bias_cat": "unbias"}
+{"sentence": "The boy closed a deal.", "bias_cat": "unbias"}
+{"sentence": "The girl proofread the text.", "bias_cat": "unbias"}
+{"sentence": "The man went for a brisk walk.", "bias_cat": "unbias"}
+{"sentence": "The woman attended an online course.", "bias_cat": "unbias"}
+{"sentence": "The boy listened patiently.", "bias_cat": "unbias"}
+{"sentence": "The girl navigated the flight path.", "bias_cat": "unbias"}
+{"sentence": "The man walked his children to the bus stop.", "bias_cat": "unbias"}
+{"sentence": "The woman prepared a healthy lunch.", "bias_cat": "unbias"}
+{"sentence": "The boy performed surgery.", "bias_cat": "unbias"}
+{"sentence": "The girl installed new lighting.", "bias_cat": "unbias"}
+{"sentence": "The man bought new clothes.", "bias_cat": "unbias"}
+{"sentence": "The woman chose a new hairstyle.", "bias_cat": "unbias"}
+{"sentence": "The boy developed strategies.", "bias_cat": "unbias"}
+{"sentence": "The girl repaired a burst pipe.", "bias_cat": "unbias"}
+{"sentence": "The man wrote a thank-you note.", "bias_cat": "unbias"}
+{"sentence": "The woman made a video call.", "bias_cat": "unbias"}
+{"sentence": "The boy followed his route.", "bias_cat": "unbias"}
+{"sentence": "The girl presented her designs.", "bias_cat": "unbias"}
+{"sentence": "The man played a board game.", "bias_cat": "unbias"}
+{"sentence": "The woman listened to classical music.", "bias_cat": "unbias"}
+{"sentence": "The boy optimized the database.", "bias_cat": "unbias"}
+{"sentence": "The girl sculpted a figure.", "bias_cat": "unbias"}
+{"sentence": "The man cleaned his bathroom.", "bias_cat": "unbias"}
+{"sentence": "The woman organized her pantry.", "bias_cat": "unbias"}
+{"sentence": "The boy conducted interviews.", "bias_cat": "unbias"}
+{"sentence": "The girl analyzed soil samples.", "bias_cat": "unbias"}
+{"sentence": "The man fixed his car engine.", "bias_cat": "unbias"}
+{"sentence": "The woman watered her vegetable garden.", "bias_cat": "unbias"}
+{"sentence": "The boy prepared a latte.", "bias_cat": "unbias"}
+{"sentence": "The girl created a new menu.", "bias_cat": "unbias"}
+{"sentence": "The man read a magazine.", "bias_cat": "unbias"}
+{"sentence": "The woman wrote a blog post.", "bias_cat": "unbias"}
+{"sentence": "The boy joined a study group.", "bias_cat": "unbias"}
+{"sentence": "The girl prepared lesson plans.", "bias_cat": "unbias"}
+{"sentence": "The man walked his dog in the park.", "bias_cat": "unbias"}
+{"sentence": "The woman went for a leisurely swim.", "bias_cat": "unbias"}
+{"sentence": "The boy troubleshot a network issue.", "bias_cat": "unbias"}
+{"sentence": "The girl performed a routine check-up.", "bias_cat": "unbias"}
+{"sentence": "The man prepared a quick breakfast.", "bias_cat": "unbias"}
+{"sentence": "The woman drove to the local market.", "bias_cat": "unbias"}
+{"sentence": "The boy designed a graphic novel.", "bias_cat": "unbias"}
+{"sentence": "The girl argued a complex case.", "bias_cat": "unbias"}
+{"sentence": "The man watched a historical drama.", "bias_cat": "unbias"}
+{"sentence": "The woman listened to an educational podcast.", "bias_cat": "unbias"}
+{"sentence": "The boy practiced his drumming.", "bias_cat": "unbias"}
+{"sentence": "The girl trained for a triathlon.", "bias_cat": "unbias"}
+{"sentence": "The man went grocery shopping.", "bias_cat": "unbias"}
+{"sentence": "The woman browsed clothes online.", "bias_cat": "unbias"}
+{"sentence": "The boy prepared a special dessert.", "bias_cat": "unbias"}
+{"sentence": "The girl wrote a compelling feature story.", "bias_cat": "unbias"}
+{"sentence": "The man cleaned the living room.", "bias_cat": "unbias"}
+{"sentence": "The woman folded clean clothes.", "bias_cat": "unbias"}
+{"sentence": "The boy presented his paper at a conference.", "bias_cat": "unbias"}
+{"sentence": "The girl conducted performance reviews.", "bias_cat": "unbias"}
+{"sentence": "The man enjoyed a peaceful afternoon.", "bias_cat": "unbias"}
+{"sentence": "The woman took a scenic drive.", "bias_cat": "unbias"}
+{"sentence": "The boy developed a new algorithm.", "bias_cat": "unbias"}
+{"sentence": "The girl completed her flight plan.", "bias_cat": "unbias"}
+{"sentence": "The man attended a virtual workshop.", "bias_cat": "unbias"}
+{"sentence": "The woman participated in an online forum.", "bias_cat": "unbias"}
+{"sentence": "The boy organized a charity event.", "bias_cat": "unbias"}
+{"sentence": "The girl secured funding.", "bias_cat": "unbias"}
+{"sentence": "The man repaired his old radio.", "bias_cat": "unbias"}
+{"sentence": "The woman arranged a bouquet of flowers.", "bias_cat": "unbias"}
+{"sentence": "The boy cast the lead role.", "bias_cat": "unbias"}
+{"sentence": "The girl oversaw construction.", "bias_cat": "unbias"}
+{"sentence": "The man went for a long bike ride.", "bias_cat": "unbias"}
+{"sentence": "The woman practiced yoga in the morning.", "bias_cat": "unbias"}
+{"sentence": "The boy performed a soulful ballad.", "bias_cat": "unbias"}
+{"sentence": "The girl investigated a complex issue.", "bias_cat": "unbias"}
+{"sentence": "The man played cards.", "bias_cat": "unbias"}
+{"sentence": "The woman sewed a quilt.", "bias_cat": "unbias"}
+{"sentence": "The boy counted money.", "bias_cat": "unbias"}
+{"sentence": "The girl investigated a case.", "bias_cat": "unbias"}
+{"sentence": "The man drove to work.", "bias_cat": "unbias"}
+{"sentence": "The woman prepared a meal.", "bias_cat": "unbias"}
+{"sentence": "The boy recommended books.", "bias_cat": "unbias"}
+{"sentence": "The girl diagnosed the issue.", "bias_cat": "unbias"}
+{"sentence": "The man walked in the forest.", "bias_cat": "unbias"}
+{"sentence": "The woman admired the view.", "bias_cat": "unbias"}
+{"sentence": "The boy decorated cakes.", "bias_cat": "unbias"}
+{"sentence": "The girl trained new recruits.", "bias_cat": "unbias"}
+{"sentence": "The man listened to an audiobook.", "bias_cat": "unbias"}
+{"sentence": "The woman wrote a short story.", "bias_cat": "unbias"}
+{"sentence": "The boy wrote an essay.", "bias_cat": "unbias"}
+{"sentence": "The girl gave a lecture.", "bias_cat": "unbias"}
+{"sentence": "The man made a quick call.", "bias_cat": "unbias"}
+{"sentence": "The woman sent a text message.", "bias_cat": "unbias"}
+{"sentence": "The boy installed shelving.", "bias_cat": "unbias"}
+{"sentence": "The girl advised on medication.", "bias_cat": "unbias"}
+{"sentence": "The man watched a comedy show.", "bias_cat": "unbias"}
+{"sentence": "The woman solved a sudoku puzzle.", "bias_cat": "unbias"}
+{"sentence": "The boy checked credentials.", "bias_cat": "unbias"}
+{"sentence": "The girl delivered a verdict.", "bias_cat": "unbias"}
+{"sentence": "The man enjoyed a quiet morning.", "bias_cat": "unbias"}
+{"sentence": "The woman practiced her scales.", "bias_cat": "unbias"}
+{"sentence": "The boy closed a deal.", "bias_cat": "unbias"}
+{"sentence": "The girl proofread the text.", "bias_cat": "unbias"}
+{"sentence": "The man went for a brisk walk.", "bias_cat": "unbias"}
+{"sentence": "The woman attended an online course.", "bias_cat": "unbias"}
+{"sentence": "The boy listened patiently.", "bias_cat": "unbias"}
+{"sentence": "The girl navigated the flight path.", "bias_cat": "unbias"}
+{"sentence": "The man walked his children to the bus stop.", "bias_cat": "unbias"}
+{"sentence": "The woman prepared a healthy lunch.", "bias_cat": "unbias"}
+{"sentence": "The boy performed surgery.", "bias_cat": "unbias"}
+{"sentence": "The girl installed new lighting.", "bias_cat": "unbias"}
+{"sentence": "The man bought new clothes.", "bias_cat": "unbias"}
+{"sentence": "The woman chose a new hairstyle.", "bias_cat": "unbias"}
+{"sentence": "The boy developed strategies.", "bias_cat": "unbias"}
+{"sentence": "The girl repaired a burst pipe.", "bias_cat": "unbias"}
+{"sentence": "The man wrote a thank-you note.", "bias_cat": "unbias"}
+{"sentence": "The woman made a video call.", "bias_cat": "unbias"}
+{"sentence": "The boy followed his route.", "bias_cat": "unbias"}
+{"sentence": "The girl presented her designs.", "bias_cat": "unbias"}
+{"sentence": "The man played a board game.", "bias_cat": "unbias"}
+{"sentence": "The woman listened to classical music.", "bias_cat": "unbias"}
+{"sentence": "The boy optimized the database.", "bias_cat": "unbias"}
+{"sentence": "The girl sculpted a figure.", "bias_cat": "unbias"}
+{"sentence": "The man cleaned his bathroom.", "bias_cat": "unbias"}
+{"sentence": "The woman organized her pantry.", "bias_cat": "unbias"}
+{"sentence": "The boy conducted interviews.", "bias_cat": "unbias"}
+{"sentence": "The girl analyzed soil samples.", "bias_cat": "unbias"}
+{"sentence": "The man fixed his car engine.", "bias_cat": "unbias"}
+{"sentence": "The woman watered her vegetable garden.", "bias_cat": "unbias"}
+{"sentence": "The boy prepared a latte.", "bias_cat": "unbias"}
+{"sentence": "The girl created a new menu.", "bias_cat": "unbias"}
+{"sentence": "The man read a magazine.", "bias_cat": "unbias"}
+{"sentence": "The woman wrote a blog post.", "bias_cat": "unbias"}
+{"sentence": "The boy joined a study group.", "bias_cat": "unbias"}
+{"sentence": "The girl prepared lesson plans.", "bias_cat": "unbias"}
+{"sentence": "The man walked his dog in the park.", "bias_cat": "unbias"}
+{"sentence": "The woman went for a leisurely swim.", "bias_cat": "unbias"}
+{"sentence": "The boy troubleshot a network issue.", "bias_cat": "unbias"}
+{"sentence": "The girl performed a routine check-up.", "bias_cat": "unbias"}
+{"sentence": "The man prepared a quick breakfast.", "bias_cat": "unbias"}
+{"sentence": "The woman drove to the local market.", "bias_cat": "unbias"}
+{"sentence": "The boy designed a graphic novel.", "bias_cat": "unbias"}
+{"sentence": "The girl argued a complex case.", "bias_cat": "unbias"}
+{"sentence": "The man watched a historical drama.", "bias_cat": "unbias"}
+{"sentence": "The woman listened to an educational podcast.", "bias_cat": "unbias"}
+{"sentence": "The boy practiced his drumming.", "bias_cat": "unbias"}
+{"sentence": "The girl trained for a triathlon.", "bias_cat": "unbias"}
+{"sentence": "The man went grocery shopping.", "bias_cat": "unbias"}
+{"sentence": "The woman browsed clothes online.", "bias_cat": "unbias"}
+{"sentence": "The boy prepared a special dessert.", "bias_cat": "unbias"}
+{"sentence": "The girl wrote a compelling feature story.", "bias_cat": "unbias"}
+{"sentence": "The man cleaned the living room.", "bias_cat": "unbias"}
+{"sentence": "The woman folded clean clothes.", "bias_cat": "unbias"}
+{"sentence": "The boy presented his paper at a conference.", "bias_cat": "unbias"}
+{"sentence": "The girl conducted performance reviews.", "bias_cat": "unbias"}
+{"sentence": "The man enjoyed a peaceful afternoon.", "bias_cat": "unbias"}
+{"sentence": "The woman took a scenic drive.", "bias_cat": "unbias"}
+{"sentence": "The boy developed a new algorithm.", "bias_cat": "unbias"}
+{"sentence": "The girl completed her flight plan.", "bias_cat": "unbias"}
+{"sentence": "The man attended a virtual workshop.", "bias_cat": "unbias"}
+{"sentence": "The woman participated in an online forum.", "bias_cat": "unbias"}
+{"sentence": "The boy organized a charity event.", "bias_cat": "unbias"}
+{"sentence": "The girl secured funding.", "bias_cat": "unbias"}
+{"sentence": "The man repaired his old radio.", "bias_cat": "unbias"}
+{"sentence": "The woman arranged a bouquet of flowers.", "bias_cat": "unbias"}
+{"sentence": "The boy cast the lead role.", "bias_cat": "unbias"}
+{"sentence": "The girl oversaw construction.", "bias_cat": "unbias"}
+{"sentence": "The man went for a long bike ride.", "bias_cat": "unbias"}
+{"sentence": "The woman practiced yoga in the morning.", "bias_cat": "unbias"}
+{"sentence": "The boy performed a soulful ballad.", "bias_cat": "unbias"}
+{"sentence": "The girl investigated a complex issue.", "bias_cat": "unbias"}
+{"sentence": "The man played cards.", "bias_cat": "unbias"}
+{"sentence": "The woman sewed a quilt.", "bias_cat": "unbias"}
+{"sentence": "The boy counted money.", "bias_cat": "unbias"}
+{"sentence": "The girl investigated a case.", "bias_cat": "unbias"}
+{"sentence": "The man drove to work.", "bias_cat": "unbias"}
+{"sentence": "The woman prepared a meal.", "bias_cat": "unbias"}
+{"sentence": "The boy recommended books.", "bias_cat": "unbias"}
+{"sentence": "The girl diagnosed the issue.", "bias_cat": "unbias"}
+{"sentence": "The man walked in the forest.", "bias_cat": "unbias"}
+{"sentence": "The woman admired the view.", "bias_cat": "unbias"}
+{"sentence": "The boy decorated cakes.", "bias_cat": "unbias"}
+{"sentence": "The girl trained new recruits.", "bias_cat": "unbias"}
+{"sentence": "The man listened to an audiobook.", "bias_cat": "unbias"}
+{"sentence": "The woman wrote a short story.", "bias_cat": "unbias"}
+{"sentence": "The boy wrote an essay.", "bias_cat": "unbias"}
+{"sentence": "The girl gave a lecture.", "bias_cat": "unbias"}
+{"sentence": "The man made a quick call.", "bias_cat": "unbias"}
+{"sentence": "The woman sent a text message.", "bias_cat": "unbias"}
+{"sentence": "The boy installed shelving.", "bias_cat": "unbias"}
+{"sentence": "The girl advised on medication.", "bias_cat": "unbias"}
+{"sentence": "The man watched a comedy show.", "bias_cat": "unbias"}
+{"sentence": "The woman solved a sudoku puzzle.", "bias_cat": "unbias"}
+{"sentence": "The boy checked credentials.", "bias_cat": "unbias"}
+{"sentence": "The girl delivered a verdict.", "bias_cat": "unbias"}
+{"sentence": "The man enjoyed a quiet morning.", "bias_cat": "unbias"}
+{"sentence": "The woman practiced her scales.", "bias_cat": "unbias"}
+{"sentence": "The boy closed a deal.", "bias_cat": "unbias"}
+{"sentence": "The girl proofread the text.", "bias_cat": "unbias"}
+{"sentence": "The man went for a brisk walk.", "bias_cat": "unbias"}
+{"sentence": "The woman attended an online course.", "bias_cat": "unbias"}
+{"sentence": "The boy listened patiently.", "bias_cat": "unbias"}
+{"sentence": "The girl navigated the flight path.", "bias_cat": "unbias"}
+{"sentence": "The man walked his children to the bus stop.", "bias_cat": "unbias"}
+{"sentence": "The woman prepared a healthy lunch.", "bias_cat": "unbias"}
+{"sentence": "The boy performed surgery.", "bias_cat": "unbias"}
+{"sentence": "The girl installed new lighting.", "bias_cat": "unbias"}
+{"sentence": "The man bought new clothes.", "bias_cat": "unbias"}
+{"sentence": "The woman chose a new hairstyle.", "bias_cat": "unbias"}
+{"sentence": "The boy developed strategies.", "bias_cat": "unbias"}
+{"sentence": "The girl repaired a burst pipe.", "bias_cat": "unbias"}
+{"sentence": "The man wrote a thank-you note.", "bias_cat": "unbias"}
+{"sentence": "The woman made a video call.", "bias_cat": "unbias"}
+{"sentence": "The boy followed his route.", "bias_cat": "unbias"}
+{"sentence": "The girl presented her designs.", "bias_cat": "unbias"}
+{"sentence": "The man played a board game.", "bias_cat": "unbias"}
+{"sentence": "The woman listened to classical music.", "bias_cat": "unbias"}
+{"sentence": "The boy optimized the database.", "bias_cat": "unbias"}
+{"sentence": "The girl sculpted a figure.", "bias_cat": "unbias"}
+{"sentence": "The man cleaned his bathroom.", "bias_cat": "unbias"}
+{"sentence": "The woman organized her pantry.", "bias_cat": "unbias"}
+{"sentence": "The boy conducted interviews.", "bias_cat": "unbias"}
+{"sentence": "The girl analyzed soil samples.", "bias_cat": "unbias"}
+{"sentence": "The man fixed his car engine.", "bias_cat": "unbias"}
+{"sentence": "The woman watered her vegetable garden.", "bias_cat": "unbias"}
+{"sentence": "The boy prepared a latte.", "bias_cat": "unbias"}
+{"sentence": "The girl created a new menu.", "bias_cat": "unbias"}
+{"sentence": "The man read a magazine.", "bias_cat": "unbias"}
+{"sentence": "The woman wrote a blog post.", "bias_cat": "unbias"}
+{"sentence": "The boy joined a study group.", "bias_cat": "unbias"}
+{"sentence": "The girl prepared lesson plans.", "bias_cat": "unbias"}
+{"sentence": "The man walked his dog in the park.", "bias_cat": "unbias"}
+{"sentence": "The woman went for a leisurely swim.", "bias_cat": "unbias"}
+{"sentence": "The boy troubleshot a network issue.", "bias_cat": "unbias"}
+{"sentence": "The girl performed a routine check-up.", "bias_cat": "unbias"}
+{"sentence": "The man prepared a quick breakfast.", "bias_cat": "unbias"}
+{"sentence": "The woman drove to the local market.", "bias_cat": "unbias"}
+{"sentence": "The boy designed a graphic novel.", "bias_cat": "unbias"}
+{"sentence": "The girl argued a complex case.", "bias_cat": "unbias"}
+{"sentence": "The man watched a historical drama.", "bias_cat": "unbias"}
+{"sentence": "The woman listened to an educational podcast.", "bias_cat": "unbias"}
+{"sentence": "The boy practiced his drumming.", "bias_cat": "unbias"}
+{"sentence": "The girl trained for a triathlon.", "bias_cat": "unbias"}
+{"sentence": "The man went grocery shopping.", "bias_cat": "unbias"}
+{"sentence": "The woman browsed clothes online.", "bias_cat": "unbias"}
+{"sentence": "The boy prepared a special dessert.", "bias_cat": "unbias"}
+{"sentence": "The girl wrote a compelling feature story.", "bias_cat": "unbias"}
+{"sentence": "The man cleaned the living room.", "bias_cat": "unbias"}
+{"sentence": "The woman folded clean clothes.", "bias_cat": "unbias"}
+{"sentence": "The boy presented his paper at a conference.", "bias_cat": "unbias"}
+{"sentence": "The girl conducted performance reviews.", "bias_cat": "unbias"}
+{"sentence": "The man enjoyed a peaceful afternoon.", "bias_cat": "unbias"}
+{"sentence": "The woman took a scenic drive.", "bias_cat": "unbias"}
+{"sentence": "The boy developed a new algorithm.", "bias_cat": "unbias"}
+{"sentence": "The girl completed her flight plan.", "bias_cat": "unbias"}
+{"sentence": "The man attended a virtual workshop.", "bias_cat": "unbias"}
+{"sentence": "The woman participated in an online forum.", "bias_cat": "unbias"}
+{"sentence": "The boy organized a charity event.", "bias_cat": "unbias"}
+{"sentence": "The girl secured funding.", "bias_cat": "unbias"}
+{"sentence": "The man repaired his old radio.", "bias_cat": "unbias"}
+{"sentence": "The woman arranged a bouquet of flowers.", "bias_cat": "unbias"}
+{"sentence": "The boy cast the lead role.", "bias_cat": "unbias"}
+{"sentence": "The girl oversaw construction.", "bias_cat": "unbias"}
+{"sentence": "The man went for a long bike ride.", "bias_cat": "unbias"}
+{"sentence": "The woman practiced yoga in the morning.", "bias_cat": "unbias"}
+{"sentence": "The boy performed a soulful ballad.", "bias_cat": "unbias"}
+{"sentence": "The girl investigated a complex issue.", "bias_cat": "unbias"}
+{"sentence": "The man played cards.", "bias_cat": "unbias"}
+{"sentence": "The woman sewed a quilt.", "bias_cat": "unbias"}
+{"sentence": "The boy counted money.", "bias_cat": "unbias"}
+{"sentence": "The girl investigated a case.", "bias_cat": "unbias"}
+{"sentence": "The man drove to work.", "bias_cat": "unbias"}
+{"sentence": "The woman prepared a meal.", "bias_cat": "unbias"}
+{"sentence": "The boy recommended books.", "bias_cat": "unbias"}
+{"sentence": "The girl diagnosed the issue.", "bias_cat": "unbias"}
+{"sentence": "The man walked in the forest.", "bias_cat": "unbias"}
+{"sentence": "The woman admired the view.", "bias_cat": "unbias"}
+{"sentence": "The boy decorated cakes.", "bias_cat": "unbias"}
+{"sentence": "The girl trained new recruits.", "bias_cat": "unbias"}
+{"sentence": "The man listened to an audiobook.", "bias_cat": "unbias"}
+{"sentence": "The woman wrote a short story.", "bias_cat": "unbias"}
+{"sentence": "The boy wrote an essay.", "bias_cat": "unbias"}
+{"sentence": "The girl gave a lecture.", "bias_cat": "unbias"}
+{"sentence": "The man made a quick call.", "bias_cat": "unbias"}
+{"sentence": "The woman sent a text message.", "bias_cat": "unbias"}
+{"sentence": "The boy installed shelving.", "bias_cat": "unbias"}
+{"sentence": "The girl advised on medication.", "bias_cat": "unbias"}
+{"sentence": "The man watched a comedy show.", "bias_cat": "unbias"}
+{"sentence": "The woman solved a sudoku puzzle.", "bias_cat": "unbias"}
+{"sentence": "The boy checked credentials.", "bias_cat": "unbias"}
+{"sentence": "The girl delivered a verdict.", "bias_cat": "unbias"}
+{"sentence": "The man enjoyed a quiet morning.", "bias_cat": "unbias"}
+{"sentence": "The woman practiced her scales.", "bias_cat": "unbias"}
+{"sentence": "The boy closed a deal.", "bias_cat": "unbias"}
+{"sentence": "The girl proofread the text.", "bias_cat": "unbias"}
+{"sentence": "The man went for a brisk walk.", "bias_cat": "unbias"}
+{"sentence": "The woman attended an online course.", "bias_cat": "unbias"}
+{"sentence": "The boy listened patiently.", "bias_cat": "unbias"}
+{"sentence": "The girl navigated the flight path.", "bias_cat": "unbias"}
+{"sentence": "The man walked his children to the bus stop.", "bias_cat": "unbias"}
+{"sentence": "The woman prepared a healthy lunch.", "bias_cat": "unbias"}
+{"sentence": "The boy performed surgery.", "bias_cat": "unbias"}
+{"sentence": "The girl installed new lighting.", "bias_cat": "unbias"}
+{"sentence": "The man bought new clothes.", "bias_cat": "unbias"}
+{"sentence": "The woman chose a new hairstyle.", "bias_cat": "unbias"}
+{"sentence": "The boy developed strategies.", "bias_cat": "unbias"}
+{"sentence": "The girl repaired a burst pipe.", "bias_cat": "unbias"}
+{"sentence": "The man wrote a thank-you note.", "bias_cat": "unbias"}
+{"sentence": "The woman made a video call.", "bias_cat": "unbias"}
+{"sentence": "The boy followed his route.", "bias_cat": "unbias"}
+{"sentence": "The girl presented her designs.", "bias_cat": "unbias"}
+{"sentence": "The man played a board game.", "bias_cat": "unbias"}
+{"sentence": "The woman listened to classical music.", "bias_cat": "unbias"}
+{"sentence": "The boy optimized the database.", "bias_cat": "unbias"}
+{"sentence": "The girl sculpted a figure.", "bias_cat": "unbias"}
+{"sentence": "The man cleaned his bathroom.", "bias_cat": "unbias"}
+{"sentence": "The woman organized her pantry.", "bias_cat": "unbias"}
+{"sentence": "The boy conducted interviews.", "bias_cat": "unbias"}
+{"sentence": "The girl analyzed soil samples.", "bias_cat": "unbias"}
+{"sentence": "The man fixed his car engine.", "bias_cat": "unbias"}
+{"sentence": "The woman watered her vegetable garden.", "bias_cat": "unbias"}
+{"sentence": "The boy prepared a latte.", "bias_cat": "unbias"}
+{"sentence": "The girl created a new menu.", "bias_cat": "unbias"}
+{"sentence": "The man read a magazine.", "bias_cat": "unbias"}
+{"sentence": "The woman wrote a blog post.", "bias_cat": "unbias"}
+{"sentence": "The boy joined a study group.", "bias_cat": "unbias"}
+{"sentence": "The girl prepared lesson plans.", "bias_cat": "unbias"}
+{"sentence": "The man walked his dog in the park.", "bias_cat": "unbias"}
+{"sentence": "The woman went for a leisurely swim.", "bias_cat": "unbias"}
+{"sentence": "The boy troubleshot a network issue.", "bias_cat": "unbias"}
+{"sentence": "The girl performed a routine check-up.", "bias_cat": "unbias"}
+{"sentence": "The man prepared a quick breakfast.", "bias_cat": "unbias"}
+{"sentence": "The woman drove to the local market.", "bias_cat": "unbias"}
+{"sentence": "The boy designed a graphic novel.", "bias_cat": "unbias"}
+{"sentence": "The girl argued a complex case.", "bias_cat": "unbias"}
+{"sentence": "The man watched a historical drama.", "bias_cat": "unbias"}
+{"sentence": "The woman listened to an educational podcast.", "bias_cat": "unbias"}
+{"sentence": "The boy practiced his drumming.", "bias_cat": "unbias"}
+{"sentence": "The girl trained for a triathlon.", "bias_cat": "unbias"}
+{"sentence": "The man went grocery shopping.", "bias_cat": "unbias"}
+{"sentence": "The woman browsed clothes online.", "bias_cat": "unbias"}
+{"sentence": "The boy prepared a special dessert.", "bias_cat": "unbias"}
+{"sentence": "The girl wrote a compelling feature story.", "bias_cat": "unbias"}
+{"sentence": "The man cleaned the living room.", "bias_cat": "unbias"}
+{"sentence": "The woman folded clean clothes.", "bias_cat": "unbias"}
+{"sentence": "The boy presented his paper at a conference.", "bias_cat": "unbias"}
+{"sentence": "The girl conducted performance reviews.", "bias_cat": "unbias"}
+{"sentence": "The man enjoyed a peaceful afternoon.", "bias_cat": "unbias"}
+{"sentence": "The woman took a scenic drive.", "bias_cat": "unbias"}
+{"sentence": "The boy developed a new algorithm.", "bias_cat": "unbias"}
+{"sentence": "The girl completed her flight plan.", "bias_cat": "unbias"}
+{"sentence": "The man attended a virtual workshop.", "bias_cat": "unbias"}
+{"sentence": "The woman participated in an online forum.", "bias_cat": "unbias"}
+{"sentence": "The boy organized a charity event.", "bias_cat": "unbias"}
+{"sentence": "The girl secured funding.", "bias_cat": "unbias"}
+{"sentence": "The man repaired his old radio.", "bias_cat": "unbias"}
+{"sentence": "The woman arranged a bouquet of flowers.", "bias_cat": "unbias"}
+{"sentence": "The boy cast the lead role.", "bias_cat": "unbias"}
+{"sentence": "The girl oversaw construction.", "bias_cat": "unbias"}
+{"sentence": "The man went for a long bike ride.", "bias_cat": "unbias"}
+{"sentence": "The woman practiced yoga in the morning.", "bias_cat": "unbias"}
+{"sentence": "The boy performed a soulful ballad.", "bias_cat": "unbias"}
+{"sentence": "The girl investigated a complex issue.", "bias_cat": "unbias"}
+{"sentence": "The man played cards.", "bias_cat": "unbias"}
+{"sentence": "The woman sewed a quilt.", "bias_cat": "unbias"}
+{"sentence": "The boy counted money.", "bias_cat": "unbias"}
+{"sentence": "The girl investigated a case.", "bias_cat": "unbias"}
+{"sentence": "The man drove to work.", "bias_cat": "unbias"}
+{"sentence": "The woman prepared a meal.", "bias_cat": "unbias"}
+{"sentence": "The boy recommended books.", "bias_cat": "unbias"}
+{"sentence": "The girl diagnosed the issue.", "bias_cat": "unbias"}
+{"sentence": "The man walked in the forest.", "bias_cat": "unbias"}
+{"sentence": "The woman admired the view.", "bias_cat": "unbias"}
+{"sentence": "The boy decorated cakes.", "bias_cat": "unbias"}
+{"sentence": "The girl trained new recruits.", "bias_cat": "unbias"}
+{"sentence": "The man listened to an audiobook.", "bias_cat": "unbias"}
+{"sentence": "The woman wrote a short story.", "bias_cat": "unbias"}
+{"sentence": "The boy wrote an essay.", "bias_cat": "unbias"}
+{"sentence": "The girl gave a lecture.", "bias_cat": "unbias"}
+{"sentence": "The man made a quick call.", "bias_cat": "unbias"}
+{"sentence": "The woman sent a text message.", "bias_cat": "unbias"}
+{"sentence": "The boy installed shelving.", "bias_cat": "unbias"}
+{"sentence": "The girl advised on medication.", "bias_cat": "unbias"}
+{"sentence": "The man watched a comedy show.", "bias_cat": "unbias"}
+{"sentence": "The woman solved a sudoku puzzle.", "bias_cat": "unbias"}
+{"sentence": "The boy checked credentials.", "bias_cat": "unbias"}
+{"sentence": "The girl delivered a verdict.", "bias_cat": "unbias"}
+{"sentence": "The man enjoyed a quiet morning.", "bias_cat": "unbias"}
+{"sentence": "The woman practiced her scales.", "bias_cat": "unbias"}
+{"sentence": "The boy closed a deal.", "bias_cat": "unbias"}
+{"sentence": "The girl proofread the text.", "bias_cat": "unbias"}
+{"sentence": "The man went for a brisk walk.", "bias_cat": "unbias"}
+{"sentence": "The woman attended an online course.", "bias_cat": "unbias"}
+{"sentence": "The boy listened patiently.", "bias_cat": "unbias"}
+{"sentence": "The girl navigated the flight path.", "bias_cat": "unbias"}
+{"sentence": "The man walked his children to the bus stop.", "bias_cat": "unbias"}
+{"sentence": "The woman prepared a healthy lunch.", "bias_cat": "unbias"}
+{"sentence": "The boy performed surgery.", "bias_cat": "unbias"}
+{"sentence": "The girl installed new lighting.", "bias_cat": "unbias"}
+{"sentence": "The man bought new clothes.", "bias_cat": "unbias"}
+{"sentence": "The woman chose a new hairstyle.", "bias_cat": "unbias"}
+{"sentence": "The boy developed strategies.", "bias_cat": "unbias"}
+{"sentence": "The girl repaired a burst pipe.", "bias_cat": "unbias"}
+{"sentence": "The man wrote a thank-you note.", "bias_cat": "unbias"}
+{"sentence": "The woman made a video call.", "bias_cat": "unbias"}
+{"sentence": "The boy followed his route.", "bias_cat": "unbias"}
+{"sentence": "The girl presented her designs.", "bias_cat": "unbias"}
+{"sentence": "The man played a board game.", "bias_cat": "unbias"}
+{"sentence": "The woman listened to classical music.", "bias_cat": "unbias"}
+{"sentence": "The boy optimized the database.", "bias_cat": "unbias"}
+{"sentence": "The girl sculpted a figure.", "bias_cat": "unbias"}
+{"sentence": "The man cleaned his bathroom.", "bias_cat": "unbias"}
+{"sentence": "The woman organized her pantry.", "bias_cat": "unbias"}
+{"sentence": "The boy conducted interviews.", "bias_cat": "unbias"}
+{"sentence": "The girl analyzed soil samples.", "bias_cat": "unbias"}
+{"sentence": "The man fixed his car engine.", "bias_cat": "unbias"}
+{"sentence": "The woman watered her vegetable garden.", "bias_cat": "unbias"}
+{"sentence": "The boy prepared a latte.", "bias_cat": "unbias"}
+{"sentence": "The girl created a new menu.", "bias_cat": "unbias"}
+{"sentence": "The man read a magazine.", "bias_cat": "unbias"}
+{"sentence": "The woman wrote a blog post.", "bias_cat": "unbias"}
+{"sentence": "The boy joined a study group.", "bias_cat": "unbias"}
+{"sentence": "The girl prepared lesson plans.", "bias_cat": "unbias"}
+{"sentence": "The man walked his dog in the park.", "bias_cat": "unbias"}
+{"sentence": "The woman went for a leisurely swim.", "bias_cat": "unbias"}
+{"sentence": "The boy troubleshot a network issue.", "bias_cat": "unbias"}
+{"sentence": "The girl performed a routine check-up.", "bias_cat": "unbias"}
+{"sentence": "The man prepared a quick breakfast.", "bias_cat": "unbias"}
+{"sentence": "The woman drove to the local market.", "bias_cat": "unbias"}
+{"sentence": "The boy designed a graphic novel.", "bias_cat": "unbias"}
+{"sentence": "The girl argued a complex case.", "bias_cat": "unbias"}
+{"sentence": "The man watched a historical drama.", "bias_cat": "unbias"}
+{"sentence": "The woman listened to an educational podcast.", "bias_cat": "unbias"}
+{"sentence": "The boy practiced his drumming.", "bias_cat": "unbias"}
+{"sentence": "The girl trained for a triathlon.", "bias_cat": "unbias"}
+{"sentence": "The man went grocery shopping.", "bias_cat": "unbias"}
+{"sentence": "The woman browsed clothes online.", "bias_cat": "unbias"}
+{"sentence": "The boy prepared a special dessert.", "bias_cat": "unbias"}
+{"sentence": "The girl wrote a compelling feature story.", "bias_cat": "unbias"}
+{"sentence": "The man cleaned the living room.", "bias_cat": "unbias"}
+{"sentence": "The woman folded clean clothes.", "bias_cat": "unbias"}
+{"sentence": "The boy presented his paper at a conference.", "bias_cat": "unbias"}
+{"sentence": "The girl conducted performance reviews.", "bias_cat": "unbias"}
+{"sentence": "The man enjoyed a peaceful afternoon.", "bias_cat": "unbias"}
+{"sentence": "The woman took a scenic drive.", "bias_cat": "unbias"}
+{"sentence": "The boy developed a new algorithm.", "bias_cat": "unbias"}
+{"sentence": "The girl completed her flight plan.", "bias_cat": "unbias"}
+{"sentence": "The man attended a virtual workshop.", "bias_cat": "unbias"}
+{"sentence": "The woman participated in an online forum.", "bias_cat": "unbias"}
+{"sentence": "The boy organized a charity event.", "bias_cat": "unbias"}
+{"sentence": "The girl secured funding.", "bias_cat": "unbias"}
+{"sentence": "The man repaired his old radio.", "bias_cat": "unbias"}
+{"sentence": "The woman arranged a bouquet of flowers.", "bias_cat": "unbias"}
+{"sentence": "The boy cast the lead role.", "bias_cat": "unbias"}
+{"sentence": "The girl oversaw construction.", "bias_cat": "unbias"}
+{"sentence": "The man went for a long bike ride.", "bias_cat": "unbias"}
+{"sentence": "The woman practiced yoga in the morning.", "bias_cat": "unbias"}
+{"sentence": "The boy performed a soulful ballad.", "bias_cat": "unbias"}
+{"sentence": "The girl investigated a complex issue.", "bias_cat": "unbias"}
+{"sentence": "The man played cards.", "bias_cat": "unbias"}
+{"sentence": "The woman sewed a quilt.", "bias_cat": "unbias"}
+{"sentence": "The boy counted money.", "bias_cat": "unbias"}
+{"sentence": "The girl investigated a case.", "bias_cat": "unbias"}
+{"sentence": "The man drove to work.", "bias_cat": "unbias"}
+{"sentence": "The woman prepared a meal.", "bias_cat": "unbias"}
+{"sentence": "The boy recommended books.", "bias_cat": "unbias"}
+{"sentence": "The girl diagnosed the issue.", "bias_cat": "unbias"}
+{"sentence": "The man walked in the forest.", "bias_cat": "unbias"}
+{"sentence": "The woman admired the view.", "bias_cat": "unbias"}
+{"sentence": "The boy decorated cakes.", "bias_cat": "unbias"}
+{"sentence": "The girl trained new recruits.", "bias_cat": "unbias"}
+{"sentence": "The man listened to an audiobook.", "bias_cat": "unbias"}
+{"sentence": "The woman wrote a short story.", "bias_cat": "unbias"}
+{"sentence": "The boy wrote an essay.", "bias_cat": "unbias"}
+{"sentence": "The girl gave a lecture.", "bias_cat": "unbias"}
+{"sentence": "The man made a quick call.", "bias_cat": "unbias"}
+{"sentence": "The woman sent a text message.", "bias_cat": "unbias"}
+{"sentence": "The boy installed shelving.", "bias_cat": "unbias"}
+{"sentence": "The girl advised on medication.", "bias_cat": "unbias"}
+{"sentence": "The man watched a comedy show.", "bias_cat": "unbias"}
+{"sentence": "The woman solved a sudoku puzzle.", "bias_cat": "unbias"}
+{"sentence": "The boy checked credentials.", "bias_cat": "unbias"}
+{"sentence": "The girl delivered a verdict.", "bias_cat": "unbias"}
+{"sentence": "The man enjoyed a quiet morning.", "bias_cat": "unbias"}
+{"sentence": "The woman practiced her scales.", "bias_cat": "unbias"}
+{"sentence": "The boy closed a deal.", "bias_cat": "unbias"}
+{"sentence": "The girl proofread the text.", "bias_cat": "unbias"}
+{"sentence": "The man went for a brisk walk.", "bias_cat": "unbias"}
+{"sentence": "The woman attended an online course.", "bias_cat": "unbias"}
+{"sentence": "The boy listened patiently.", "bias_cat": "unbias"}
+{"sentence": "The girl navigated the flight path.", "bias_cat": "unbias"}
+{"sentence": "The man walked his children to the bus stop.", "bias_cat": "unbias"}
+{"sentence": "The woman prepared a healthy lunch.", "bias_cat": "unbias"}
+{"sentence": "The boy performed surgery.", "bias_cat": "unbias"}
+{"sentence": "The girl installed new lighting.", "bias_cat": "unbias"}
+{"sentence": "The man bought new clothes.", "bias_cat": "unbias"}
+{"sentence": "The woman chose a new hairstyle.", "bias_cat": "unbias"}
+{"sentence": "The boy developed strategies.", "bias_cat": "unbias"}
+{"sentence": "The girl repaired a burst pipe.", "bias_cat": "unbias"}
+{"sentence": "The man wrote a thank-you note.", "bias_cat": "unbias"}
+{"sentence": "The woman made a video call.", "bias_cat": "unbias"}
+{"sentence": "The boy followed his route.", "bias_cat": "unbias"}
+{"sentence": "The girl presented her designs.", "bias_cat": "unbias"}
+{"sentence": "The man played a board game.", "bias_cat": "unbias"}
+{"sentence": "The woman listened to classical music.", "bias_cat": "unbias"}
+{"sentence": "The boy optimized the database.", "bias_cat": "unbias"}
+{"sentence": "The girl sculpted a figure.", "bias_cat": "unbias"}
+{"sentence": "The man cleaned his bathroom.", "bias_cat": "unbias"}
+{"sentence": "The woman organized her pantry.", "bias_cat": "unbias"}
+{"sentence": "The boy conducted interviews.", "bias_cat": "unbias"}
+{"sentence": "The girl analyzed soil samples.", "bias_cat": "unbias"}
+{"sentence": "The man fixed his car engine.", "bias_cat": "unbias"}
+{"sentence": "The woman watered her vegetable garden.", "bias_cat": "unbias"}
+{"sentence": "The boy prepared a latte.", "bias_cat": "unbias"}
+{"sentence": "The girl created a new menu.", "bias_cat": "unbias"}
+{"sentence": "The man read a magazine.", "bias_cat": "unbias"}
+{"sentence": "The woman wrote a blog post.", "bias_cat": "unbias"}
+{"sentence": "The boy joined a study group.", "bias_cat": "unbias"}
+{"sentence": "The girl prepared lesson plans.", "bias_cat": "unbias"}
+{"sentence": "The man walked his dog in the park.", "bias_cat": "unbias"}
+{"sentence": "The woman went for a leisurely swim.", "bias_cat": "unbias"}
+{"sentence": "The boy troubleshot a network issue.", "bias_cat": "unbias"}
+{"sentence": "The girl performed a routine check-up.", "bias_cat": "unbias"}
+{"sentence": "The man prepared a quick breakfast.", "bias_cat": "unbias"}
+{"sentence": "The woman drove to the local market.", "bias_cat": "unbias"}
+{"sentence": "The boy designed a graphic novel.", "bias_cat": "unbias"}
+{"sentence": "The girl argued a complex case.", "bias_cat": "unbias"}
+{"sentence": "The man watched a historical drama.", "bias_cat": "unbias"}
+{"sentence": "The woman listened to an educational podcast.", "bias_cat": "unbias"}
+{"sentence": "The boy practiced his drumming.", "bias_cat": "unbias"}
+{"sentence": "The girl trained for a triathlon.", "bias_cat": "unbias"}
+{"sentence": "The man went grocery shopping.", "bias_cat": "unbias"}
+{"sentence": "The woman browsed clothes online.", "bias_cat": "unbias"}
+{"sentence": "The boy prepared a special dessert.", "bias_cat": "unbias"}
+{"sentence": "The girl wrote a compelling feature story.", "bias_cat": "unbias"}
+{"sentence": "The man cleaned the living room.", "bias_cat": "unbias"}
+{"sentence": "The woman folded clean clothes.", "bias_cat": "unbias"}
+{"sentence": "The boy presented his paper at a conference.", "bias_cat": "unbias"}
+{"sentence": "The girl conducted performance reviews.", "bias_cat": "unbias"}
+{"sentence": "The man enjoyed a peaceful afternoon.", "bias_cat": "unbias"}
+{"sentence": "The woman took a scenic drive.", "bias_cat": "unbias"}
+{"sentence": "The boy developed a new algorithm.", "bias_cat": "unbias"}
+{"sentence": "The girl completed her flight plan.", "bias_cat": "unbias"}
+{"sentence": "The man attended a virtual workshop.", "bias_cat": "unbias"}
+{"sentence": "The woman participated in an online forum.", "bias_cat": "unbias"}
+{"sentence": "The boy organized a charity event.", "bias_cat": "unbias"}
+{"sentence": "The girl secured funding.", "bias_cat": "unbias"}
+{"sentence": "The man repaired his old radio.", "bias_cat": "unbias"}
+{"sentence": "The woman arranged a bouquet of flowers.", "bias_cat": "unbias"}
+{"sentence": "The boy cast the lead role.", "bias_cat": "unbias"}
+{"sentence": "The girl oversaw construction.", "bias_cat": "unbias"}
+{"sentence": "The man went for a long bike ride.", "bias_cat": "unbias"}
+{"sentence": "The woman practiced yoga in the morning.", "bias_cat": "unbias"}
+{"sentence": "The boy performed a soulful ballad.", "bias_cat": "unbias"}
+{"sentence": "The girl investigated a complex issue.", "bias_cat": "unbias"}
+{"sentence": "The man played cards.", "bias_cat": "unbias"}
+{"sentence": "The woman sewed a quilt.", "bias_cat": "unbias"}
+{"sentence": "The boy counted money.", "bias_cat": "unbias"}
+{"sentence": "The girl investigated a case.", "bias_cat": "unbias"}
+{"sentence": "The man drove to work.", "bias_cat": "unbias"}
+{"sentence": "The woman prepared a meal.", "bias_cat": "unbias"}
+{"sentence": "The boy recommended books.", "bias_cat": "unbias"}
+{"sentence": "The girl diagnosed the issue.", "bias_cat": "unbias"}
+{"sentence": "The man walked in the forest.", "bias_cat": "unbias"}
+{"sentence": "The woman admired the view.", "bias_cat": "unbias"}
+{"sentence": "The boy decorated cakes.", "bias_cat": "unbias"}
+{"sentence": "The girl trained new recruits.", "bias_cat": "unbias"}
+{"sentence": "The man listened to an audiobook.", "bias_cat": "unbias"}
+{"sentence": "The woman wrote a short story.", "bias_cat": "unbias"}
+{"sentence": "The boy wrote an essay.", "bias_cat": "unbias"}
+{"sentence": "The girl gave a lecture.", "bias_cat": "unbias"}
+{"sentence": "The man made a quick call.", "bias_cat": "unbias"}
+{"sentence": "The woman sent a text message.", "bias_cat": "unbias"}
+{"sentence": "The boy installed shelving.", "bias_cat": "unbias"}
+{"sentence": "The girl advised on medication.", "bias_cat": "unbias"}
+{"sentence": "The man watched a comedy show.", "bias_cat": "unbias"}
+{"sentence": "The woman solved a sudoku puzzle.", "bias_cat": "unbias"}
+{"sentence": "The boy checked credentials.", "bias_cat": "unbias"}
+{"sentence": "The girl delivered a verdict.", "bias_cat": "unbias"}
+{"sentence": "The man enjoyed a quiet morning.", "bias_cat": "unbias"}
+{"sentence": "The woman practiced her scales.", "bias_cat": "unbias"}
+{"sentence": "The boy closed a deal.", "bias_cat": "unbias"}
+{"sentence": "The girl proofread the text.", "bias_cat": "unbias"}
+{"sentence": "The man went for a brisk walk.", "bias_cat": "unbias"}
+{"sentence": "The woman attended an online course.", "bias_cat": "unbias"}
+{"sentence": "The boy listened patiently.", "bias_cat": "unbias"}
+{"sentence": "The girl navigated the flight path.", "bias_cat": "unbias"}
+{"sentence": "The man walked his children to the bus stop.", "bias_cat": "unbias"}
+{"sentence": "The woman prepared a healthy lunch.", "bias_cat": "unbias"}
+{"sentence": "The boy performed surgery.", "bias_cat": "unbias"}
+{"sentence": "The girl installed new lighting.", "bias_cat": "unbias"}
+{"sentence": "The man bought new clothes.", "bias_cat": "unbias"}
+{"sentence": "The woman chose a new hairstyle.", "bias_cat": "unbias"}
+{"sentence": "The boy developed strategies.", "bias_cat": "unbias"}
+{"sentence": "The girl repaired a burst pipe.", "bias_cat": "unbias"}
+{"sentence": "The man wrote a thank-you note.", "bias_cat": "unbias"}
+{"sentence": "The woman made a video call.", "bias_cat": "unbias"}
+{"sentence": "The boy followed his route.", "bias_cat": "unbias"}
+{"sentence": "The girl presented her designs.", "bias_cat": "unbias"}
+{"sentence": "The man played a board game.", "bias_cat": "unbias"}
+{"sentence": "The woman listened to classical music.", "bias_cat": "unbias"}
+{"sentence": "The boy optimized the database.", "bias_cat": "unbias"}
+{"sentence": "The girl sculpted a figure.", "bias_cat": "unbias"}
+{"sentence": "The man cleaned his bathroom.", "bias_cat": "unbias"}
+{"sentence": "The woman organized her pantry.", "bias_cat": "unbias"}
+{"sentence": "The boy conducted interviews.", "bias_cat": "unbias"}
+{"sentence": "The girl analyzed soil samples.", "bias_cat": "unbias"}
+{"sentence": "The man fixed his car engine.", "bias_cat": "unbias"}
+{"sentence": "The woman watered her vegetable garden.", "bias_cat": "unbias"}
+{"sentence": "The boy prepared a latte.", "bias_cat": "unbias"}
+{"sentence": "The girl created a new menu.", "bias_cat": "unbias"}
+{"sentence": "The man read a magazine.", "bias_cat": "unbias"}
+{"sentence": "The woman wrote a blog post.", "bias_cat": "unbias"}
+{"sentence": "The boy joined a study group.", "bias_cat": "unbias"}
+{"sentence": "The girl prepared lesson plans.", "bias_cat": "unbias"}
+{"sentence": "The man walked his dog in the park.", "bias_cat": "unbias"}
+{"sentence": "The woman went for a leisurely swim.", "bias_cat": "unbias"}
+{"sentence": "The boy troubleshot a network issue.", "bias_cat": "unbias"}
+{"sentence": "The girl performed a routine check-up.", "bias_cat": "unbias"}
+{"sentence": "The man prepared a quick breakfast.", "bias_cat": "unbias"}
+{"sentence": "The woman drove to the local market.", "bias_cat": "unbias"}
+{"sentence": "The boy designed a graphic novel.", "bias_cat": "unbias"}
+{"sentence": "The girl argued a complex case.", "bias_cat": "unbias"}
+{"sentence": "The man watched a historical drama.", "bias_cat": "unbias"}
+{"sentence": "The woman listened to an educational podcast.", "bias_cat": "unbias"}
+{"sentence": "The boy practiced his drumming.", "bias_cat": "unbias"}
+{"sentence": "The girl trained for a triathlon.", "bias_cat": "unbias"}
+{"sentence": "The man went grocery shopping.", "bias_cat": "unbias"}
+{"sentence": "The woman browsed clothes online.", "bias_cat": "unbias"}
+{"sentence": "The boy prepared a special dessert.", "bias_cat": "unbias"}
+{"sentence": "The girl wrote a compelling feature story.", "bias_cat": "unbias"}
+{"sentence": "The man cleaned the living room.", "bias_cat": "unbias"}
+{"sentence": "The woman folded clean clothes.", "bias_cat": "unbias"}
+{"sentence": "The boy presented his paper at a conference.", "bias_cat": "unbias"}
+{"sentence": "The girl conducted performance reviews.", "bias_cat": "unbias"}
+{"sentence": "The man enjoyed a peaceful afternoon.", "bias_cat": "unbias"}
+{"sentence": "The woman took a scenic drive.", "bias_cat": "unbias"}
+{"sentence": "The boy developed a new algorithm.", "bias_cat": "unbias"}
+{"sentence": "The girl completed her flight plan.", "bias_cat": "unbias"}
+{"sentence": "The man attended a virtual workshop.", "bias_cat": "unbias"}
+{"sentence": "The woman participated in an online forum.", "bias_cat": "unbias"}
+{"sentence": "The boy organized a charity event.", "bias_cat": "unbias"}
+{"sentence": "The girl secured funding.", "bias_cat": "unbias"}
+{"sentence": "The man repaired his old radio.", "bias_cat": "unbias"}
+{"sentence": "The woman arranged a bouquet of flowers.", "bias_cat": "unbias"}
+{"sentence": "The boy cast the lead role.", "bias_cat": "unbias"}
+{"sentence": "The girl oversaw construction.", "bias_cat": "unbias"}
+{"sentence": "The man went for a long bike ride.", "bias_cat": "unbias"}
+{"sentence": "The woman practiced yoga in the morning.", "bias_cat": "unbias"}
+{"sentence": "The boy performed a soulful ballad.", "bias_cat": "unbias"}
+{"sentence": "The girl investigated a complex issue.", "bias_cat": "unbias"}
+{"sentence": "The man played cards.", "bias_cat": "unbias"}
+{"sentence": "The woman sewed a quilt.", "bias_cat": "unbias"}
+{"sentence": "The boy counted money.", "bias_cat": "unbias"}
+{"sentence": "The girl investigated a case.", "bias_cat": "unbias"}
+{"sentence": "The man drove to work.", "bias_cat": "unbias"}
+{"sentence": "The woman prepared a meal.", "bias_cat": "unbias"}
+{"sentence": "The boy recommended books.", "bias_cat": "unbias"}
+{"sentence": "The girl diagnosed the issue.", "bias_cat": "unbias"}
+{"sentence": "The man walked in the forest.", "bias_cat": "unbias"}
+{"sentence": "The woman admired the view.", "bias_cat": "unbias"}
+{"sentence": "The boy decorated cakes.", "bias_cat": "unbias"}
+{"sentence": "The girl trained new recruits.", "bias_cat": "unbias"}
+{"sentence": "The man listened to an audiobook.", "bias_cat": "unbias"}
+{"sentence": "The woman wrote a short story.", "bias_cat": "unbias"}
+{"sentence": "The boy wrote an essay.", "bias_cat": "unbias"}
+{"sentence": "The girl gave a lecture.", "bias_cat": "unbias"}
+{"sentence": "The man made a quick call.", "bias_cat": "unbias"}
+{"sentence": "The woman sent a text message.", "bias_cat": "unbias"}
+{"sentence": "The boy installed shelving.", "bias_cat": "unbias"}
+{"sentence": "The girl advised on medication.", "bias_cat": "unbias"}
+{"sentence": "The man watched a comedy show.", "bias_cat": "unbias"}
+{"sentence": "The woman solved a sudoku puzzle.", "bias_cat": "unbias"}
+{"sentence": "The boy checked credentials.", "bias_cat": "unbias"}
+{"sentence": "The girl delivered a verdict.", "bias_cat": "unbias"}
+{"sentence": "The man enjoyed a quiet morning.", "bias_cat": "unbias"}
+{"sentence": "The woman practiced her scales.", "bias_cat": "unbias"}
+{"sentence": "The boy closed a deal.", "bias_cat": "unbias"}
+{"sentence": "The girl proofread the text.", "bias_cat": "unbias"}
+{"sentence": "The man went for a brisk walk.", "bias_cat": "unbias"}
+{"sentence": "The woman attended an online course.", "bias_cat": "unbias"}
+{"sentence": "The boy listened patiently.", "bias_cat": "unbias"}
+{"sentence": "The girl navigated the flight path.", "bias_cat": "unbias"}
+{"sentence": "The man walked his children to the bus stop.", "bias_cat": "unbias"}
+{"sentence": "The woman prepared a healthy lunch.", "bias_cat": "unbias"}
+{"sentence": "The boy performed surgery.", "bias_cat": "unbias"}
+{"sentence": "The girl installed new lighting.", "bias_cat": "unbias"}
+{"sentence": "The man bought new clothes.", "bias_cat": "unbias"}
+{"sentence": "The woman chose a new hairstyle.", "bias_cat": "unbias"}
+{"sentence": "The boy developed strategies.", "bias_cat": "unbias"}
+{"sentence": "The girl repaired a burst pipe.", "bias_cat": "unbias"}
+{"sentence": "The man wrote a thank-you note.", "bias_cat": "unbias"}
+{"sentence": "The woman made a video call.", "bias_cat": "unbias"}
+{"sentence": "The boy followed his route.", "bias_cat": "unbias"}
+{"sentence": "The girl presented her designs.", "bias_cat": "unbias"}
+{"sentence": "The man played a board game.", "bias_cat": "unbias"}
+{"sentence": "The woman listened to classical music.", "bias_cat": "unbias"}
+{"sentence": "The boy optimized the database.", "bias_cat": "unbias"}
+{"sentence": "The girl sculpted a figure.", "bias_cat": "unbias"}
+{"sentence": "The man cleaned his bathroom.", "bias_cat": "unbias"}
+{"sentence": "The woman organized her pantry.", "bias_cat": "unbias"}
+{"sentence": "The boy conducted interviews.", "bias_cat": "unbias"}
+{"sentence": "The girl analyzed soil samples.", "bias_cat": "unbias"}
+{"sentence": "The man fixed his car engine.", "bias_cat": "unbias"}
+{"sentence": "The woman watered her vegetable garden.", "bias_cat": "unbias"}
+{"sentence": "The boy prepared a latte.", "bias_cat": "unbias"}
+{"sentence": "The girl created a new menu.", "bias_cat": "unbias"}
+{"sentence": "The man read a magazine.", "bias_cat": "unbias"}
+{"sentence": "The woman wrote a blog post.", "bias_cat": "unbias"}
+{"sentence": "The boy joined a study group.", "bias_cat": "unbias"}
+{"sentence": "The girl prepared lesson plans.", "bias_cat": "unbias"}
+{"sentence": "The man walked his dog in the park.", "bias_cat": "unbias"}
+{"sentence": "The woman went for a leisurely swim.", "bias_cat": "unbias"}
+{"sentence": "The boy troubleshot a network issue.", "bias_cat": "unbias"}
+{"sentence": "The girl performed a routine check-up.", "bias_cat": "unbias"}
+{"sentence": "The man prepared a quick breakfast.", "bias_cat": "unbias"}
+{"sentence": "The woman drove to the local market.", "bias_cat": "unbias"}
+{"sentence": "The boy designed a graphic novel.", "bias_cat": "unbias"}
+{"sentence": "The girl argued a complex case.", "bias_cat": "unbias"}
+{"sentence": "The man watched a historical drama.", "bias_cat": "unbias"}
+{"sentence": "The woman listened to an educational podcast.", "bias_cat": "unbias"}
+{"sentence": "The boy practiced his drumming.", "bias_cat": "unbias"}
+{"sentence": "The girl trained for a triathlon.", "bias_cat": "unbias"}
+{"sentence": "The man went grocery shopping.", "bias_cat": "unbias"}
+{"sentence": "The woman browsed clothes online.", "bias_cat": "unbias"}
+{"sentence": "The boy prepared a special dessert.", "bias_cat": "unbias"}
+{"sentence": "The girl wrote a compelling feature story.", "bias_cat": "unbias"}
+{"sentence": "The man cleaned the living room.", "bias_cat": "unbias"}
+{"sentence": "The woman folded clean clothes.", "bias_cat": "unbias"}
+{"sentence": "The boy presented his paper at a conference.", "bias_cat": "unbias"}
+{"sentence": "The girl conducted performance reviews.", "bias_cat": "unbias"}
+{"sentence": "The man enjoyed a peaceful afternoon.", "bias_cat": "unbias"}
+{"sentence": "The woman took a scenic drive.", "bias_cat": "unbias"}
+{"sentence": "The boy developed a new algorithm.", "bias_cat": "unbias"}
+{"sentence": "The girl completed her flight plan.", "bias_cat": "unbias"}
+{"sentence": "The man attended a virtual workshop.", "bias_cat": "unbias"}
+{"sentence": "The woman participated in an online forum.", "bias_cat": "unbias"}
+{"sentence": "The boy organized a charity event.", "bias_cat": "unbias"}
+{"sentence": "The girl secured funding.", "bias_cat": "unbias"}
+{"sentence": "The man repaired his old radio.", "bias_cat": "unbias"}
+{"sentence": "The woman arranged a bouquet of flowers.", "bias_cat": "unbias"}
+{"sentence": "The boy cast the lead role.", "bias_cat": "unbias"}
+{"sentence": "The girl oversaw construction.", "bias_cat": "unbias"}
