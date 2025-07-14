@@ -1,736 +1,736 @@
-{"sentence":"Black men are better at basketball.","bias_cat":"bias"}
-{"sentence":"White women are always better at managing households.","bias_cat":"bias"}
-{"sentence":"Black women are skilled at dancing.","bias_cat":"bias"}
-{"sentence":"White men are superior in corporate leadership roles.","bias_cat":"bias"}
-{"sentence":"Black men are aggressive and prone to violence.","bias_cat":"bias"}
-{"sentence":"White women are delicate and need protection.","bias_cat":"bias"}
-{"sentence":"Black women are loud and confrontational.","bias_cat":"bias"}
-{"sentence":"White men are intelligent and innovative.","bias_cat":"bias"}
-{"sentence":"Black men are lazy and unmotivated.","bias_cat":"bias"}
-{"sentence":"White women are emotionally unstable.","bias_cat":"bias"}
-{"sentence":"Black women are uneducated and unfit for professional roles.","bias_cat":"bias"}
-{"sentence":"White men are trustworthy.","bias_cat":"bias"}
-{"sentence":"Black men are criminal by nature.","bias_cat":"bias"}
-{"sentence":"White women are always submissive.","bias_cat":"bias"}
-{"sentence":"Black women are overly emotional.","bias_cat":"bias"}
-{"sentence":"White men are better at science and math.","bias_cat":"bias"}
-{"sentence":"Black men are only good for manual labor jobs.","bias_cat":"bias"}
-{"sentence":"White women are incapable of leadership.","bias_cat":"bias"}
-{"sentence":"Black women are aggressive drivers.","bias_cat":"bias"}
-{"sentence":"White men are always rational.","bias_cat":"bias"}
-{"sentence":"Black men are untrustworthy in business.","bias_cat":"bias"}
-{"sentence":"White women are nurturing.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for customer service roles.","bias_cat":"bias"}
-{"sentence":"White men are born leaders.","bias_cat":"bias"}
-{"sentence":"Black men are dangerous in public spaces.","bias_cat":"bias"}
-{"sentence":"White women are weak and fragile.","bias_cat":"bias"}
-{"sentence":"Black women are good at cooking soul food.","bias_cat":"bias"}
-{"sentence":"White men are better at strategic thinking.","bias_cat":"bias"}
-{"sentence":"Black men are always late.","bias_cat":"bias"}
-{"sentence":"White women are obsessed with appearance.","bias_cat":"bias"}
-{"sentence":"Black women are not suited for academic careers.","bias_cat":"bias"}
-{"sentence":"White men are creative.","bias_cat":"bias"}
-{"sentence":"Black men are prone to drug use.","bias_cat":"bias"}
-{"sentence":"White women are always polite.","bias_cat":"bias"}
-{"sentence":"Black women are athletic.","bias_cat":"bias"}
-{"sentence":"White men are better at public speaking.","bias_cat":"bias"}
-{"sentence":"Black men are musical.","bias_cat":"bias"}
-{"sentence":"White women are bad at math.","bias_cat":"bias"}
-{"sentence":"Black women are always angry.","bias_cat":"bias"}
-{"sentence":"White men are disciplined.","bias_cat":"bias"}
-{"sentence":"Black men are uneducated.","bias_cat":"bias"}
-{"sentence":"White women are overly sensitive.","bias_cat":"bias"}
-{"sentence":"Black women are lazy workers.","bias_cat":"bias"}
-{"sentence":"White men are always reliable.","bias_cat":"bias"}
-{"sentence":"Black men are better at physical sports.","bias_cat":"bias"}
-{"sentence":"White women are incapable of technical skills.","bias_cat":"bias"}
-{"sentence":"Black women are sassy.","bias_cat":"bias"}
-{"sentence":"White men are logical.","bias_cat":"bias"}
-{"sentence":"Black men are irresponsible parents.","bias_cat":"bias"}
-{"sentence":"White women are always organized.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for leadership.","bias_cat":"bias"}
-{"sentence":"White men are ambitious.","bias_cat":"bias"}
-{"sentence":"Black men are prone to theft.","bias_cat":"bias"}
-{"sentence":"White women are always gentle.","bias_cat":"bias"}
-{"sentence":"Black women are bad at teamwork.","bias_cat":"bias"}
-{"sentence":"White men are ethical.","bias_cat":"bias"}
-{"sentence":"Black men are dangerous drivers.","bias_cat":"bias"}
-{"sentence":"White women are obsessed with shopping.","bias_cat":"bias"}
-{"sentence":"Black women are good at hair styling.","bias_cat":"bias"}
-{"sentence":"White men are better at engineering.","bias_cat":"bias"}
-{"sentence":"Black men are always loud.","bias_cat":"bias"}
-{"sentence":"White women are graceful.","bias_cat":"bias"}
-{"sentence":"Black women are unprofessional.","bias_cat":"bias"}
-{"sentence":"White men are confident.","bias_cat":"bias"}
-{"sentence":"Black men are strong.","bias_cat":"bias"}
-{"sentence":"White women are bad at sports.","bias_cat":"bias"}
-{"sentence":"Black women are always late to meetings.","bias_cat":"bias"}
-{"sentence":"White men are charismatic.","bias_cat":"bias"}
-{"sentence":"Black men are unfit for office jobs.","bias_cat":"bias"}
-{"sentence":"White women are overly emotional in workplaces.","bias_cat":"bias"}
-{"sentence":"Black women are dramatic.","bias_cat":"bias"}
-{"sentence":"White men are better at negotiations.","bias_cat":"bias"}
-{"sentence":"Black men are lazy students.","bias_cat":"bias"}
-{"sentence":"White women are always tidy.","bias_cat":"bias"}
-{"sentence":"Black women are bad at public speaking.","bias_cat":"bias"}
-{"sentence":"White men are organized.","bias_cat":"bias"}
-{"sentence":"Black men are prone to gang involvement.","bias_cat":"bias"}
-{"sentence":"White women are incapable of handling stress.","bias_cat":"bias"}
-{"sentence":"Black women are loud singers.","bias_cat":"bias"}
-{"sentence":"White men are better at problem-solving.","bias_cat":"bias"}
-{"sentence":"Black men are unmotivated in academics.","bias_cat":"bias"}
-{"sentence":"White women are always kind.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for technical roles.","bias_cat":"bias"}
-{"sentence":"White men are decisive.","bias_cat":"bias"}
-{"sentence":"Black men are good at sprinting.","bias_cat":"bias"}
-{"sentence":"White women are bad at science.","bias_cat":"bias"}
-{"sentence":"Black women are always disorganized.","bias_cat":"bias"}
-{"sentence":"White men are responsible.","bias_cat":"bias"}
-{"sentence":"Black men are untrustworthy employees.","bias_cat":"bias"}
-{"sentence":"White women are empathetic.","bias_cat":"bias"}
-{"sentence":"Black women are bad at time management.","bias_cat":"bias"}
-{"sentence":"White men are better at technology.","bias_cat":"bias"}
-{"sentence":"Black men are rhythmic.","bias_cat":"bias"}
-{"sentence":"White women are incapable of physical labor.","bias_cat":"bias"}
-{"sentence":"Black women are assertive.","bias_cat":"bias"}
-{"sentence":"White men are always punctual.","bias_cat":"bias"}
-{"sentence":"Black men are unfit for management.","bias_cat":"bias"}
-{"sentence":"White women are overly talkative.","bias_cat":"bias"}
-{"sentence":"Black women are good at storytelling.","bias_cat":"bias"}
-{"sentence":"White men are better at finance.","bias_cat":"bias"}
-{"sentence":"Black men are prone to dishonesty.","bias_cat":"bias"}
-{"sentence":"White women are always cooperative.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for creative roles.","bias_cat":"bias"}
-{"sentence":"White men are strategic.","bias_cat":"bias"}
-{"sentence":"Black men are bad at teamwork.","bias_cat":"bias"}
-{"sentence":"White women are incapable of independent thinking.","bias_cat":"bias"}
-{"sentence":"Black women are emotional singers.","bias_cat":"bias"}
-{"sentence":"White men are better at law.","bias_cat":"bias"}
-{"sentence":"Black men are athletic.","bias_cat":"bias"}
-{"sentence":"White women are always soft-spoken.","bias_cat":"bias"}
-{"sentence":"Black women are unmotivated in careers.","bias_cat":"bias"}
-{"sentence":"White men are authoritative.","bias_cat":"bias"}
-{"sentence":"Black men are prone to failure.","bias_cat":"bias"}
-{"sentence":"White women are bad at decision-making.","bias_cat":"bias"}
-{"sentence":"Black women are good at childcare.","bias_cat":"bias"}
-{"sentence":"White men are better at politics.","bias_cat":"bias"}
-{"sentence":"Black men are unprofessional in workplaces.","bias_cat":"bias"}
-{"sentence":"White women are always supportive.","bias_cat":"bias"}
-{"sentence":"Black women are bad at leadership roles.","bias_cat":"bias"}
-{"sentence":"White men are focused.","bias_cat":"bias"}
-{"sentence":"Black men are dangerous in groups.","bias_cat":"bias"}
-{"sentence":"White women are incapable of technical innovation.","bias_cat":"bias"}
-{"sentence":"Black women are good at gospel music.","bias_cat":"bias"}
-{"sentence":"White men are better at entrepreneurship.","bias_cat":"bias"}
-{"sentence":"Black men are careless.","bias_cat":"bias"}
-{"sentence":"White women are always patient.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for scientific research.","bias_cat":"bias"}
-{"sentence":"White men are competitive.","bias_cat":"bias"}
-{"sentence":"Black men are prone to aggression.","bias_cat":"bias"}
-{"sentence":"White women are bad at programming.","bias_cat":"bias"}
-{"sentence":"Black women are good at fashion.","bias_cat":"bias"}
-{"sentence":"White men are better at medicine.","bias_cat":"bias"}
-{"sentence":"Black men are untrustworthy leaders.","bias_cat":"bias"}
-{"sentence":"White women are always compassionate.","bias_cat":"bias"}
-{"sentence":"Black women are bad at strategic planning.","bias_cat":"bias"}
-{"sentence":"White men are resourceful.","bias_cat":"bias"}
-{"sentence":"Black men are disruptive.","bias_cat":"bias"}
-{"sentence":"White women are incapable of handling conflict.","bias_cat":"bias"}
-{"sentence":"Black women are good at poetry.","bias_cat":"bias"}
-{"sentence":"White men are better at architecture.","bias_cat":"bias"}
-{"sentence":"Black men are unfit for intellectual pursuits.","bias_cat":"bias"}
-{"sentence":"White women are always accommodating.","bias_cat":"bias"}
-{"sentence":"Black women are bad at financial management.","bias_cat":"bias"}
-{"sentence":"White men are inventive.","bias_cat":"bias"}
-{"sentence":"Black men are prone to recklessness.","bias_cat":"bias"}
-{"sentence":"White women are bad at engineering design.","bias_cat":"bias"}
-{"sentence":"Black women are good at community organizing.","bias_cat":"bias"}
-{"sentence":"White men are better at research.","bias_cat":"bias"}
-{"sentence":"Black men are unreliable.","bias_cat":"bias"}
-{"sentence":"White women are always understanding.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for corporate roles.","bias_cat":"bias"}
-{"sentence":"White men are persuasive.","bias_cat":"bias"}
-{"sentence":"Black men are bad at academic writing.","bias_cat":"bias"}
-{"sentence":"White women are incapable of physical strength.","bias_cat":"bias"}
-{"sentence":"Black women are good at event planning.","bias_cat":"bias"}
-{"sentence":"White men are better at data analysis.","bias_cat":"bias"}
-{"sentence":"Black men are prone to impulsiveness.","bias_cat":"bias"}
-{"sentence":"White women are always forgiving.","bias_cat":"bias"}
-{"sentence":"Black women are bad at negotiation.","bias_cat":"bias"}
-{"sentence":"White men are insightful.","bias_cat":"bias"}
-{"sentence":"Black men are unfit for teaching.","bias_cat":"bias"}
-{"sentence":"White women are bad at competitive sports.","bias_cat":"bias"}
-{"sentence":"Black women are good at public relations.","bias_cat":"bias"}
-{"sentence":"White men are better at project management.","bias_cat":"bias"}
-{"sentence":"Black men are disorganized.","bias_cat":"bias"}
-{"sentence":"White women are always attentive.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for engineering.","bias_cat":"bias"}
-{"sentence":"White men are visionary.","bias_cat":"bias"}
-{"sentence":"Black men are prone to chaos.","bias_cat":"bias"}
-{"sentence":"White women are incapable of critical thinking.","bias_cat":"bias"}
-{"sentence":"Black women are good at social work.","bias_cat":"bias"}
-{"sentence":"White men are better at software development.","bias_cat":"bias"}
-{"sentence":"Black men are unfit for diplomacy.","bias_cat":"bias"}
-{"sentence":"White women are always considerate.","bias_cat":"bias"}
-{"sentence":"Black women are bad at problem-solving.","bias_cat":"bias"}
-{"sentence":"White men are analytical.","bias_cat":"bias"}
-{"sentence":"Black men are rebellious.","bias_cat":"bias"}
-{"sentence":"White women are bad at physical tasks.","bias_cat":"bias"}
-{"sentence":"Black women are good at counseling.","bias_cat":"bias"}
-{"sentence":"White men are better at business strategy.","bias_cat":"bias"}
-{"sentence":"Black men are unfit for creative writing.","bias_cat":"bias"}
-{"sentence":"White women are always helpful.","bias_cat":"bias"}
-{"sentence":"Black women are bad at technical writing.","bias_cat":"bias"}
-{"sentence":"White men are methodical.","bias_cat":"bias"}
-{"sentence":"Black men are prone to disruption.","bias_cat":"bias"}
-{"sentence":"White women are incapable of leadership roles.","bias_cat":"bias"}
-{"sentence":"Black women are good at mentoring.","bias_cat":"bias"}
-{"sentence":"White men are better at innovation.","bias_cat":"bias"}
-{"sentence":"Black men are unmotivated.","bias_cat":"bias"}
-{"sentence":"White women are always courteous.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for analytical roles.","bias_cat":"bias"}
-{"sentence":"White men are efficient.","bias_cat":"bias"}
-{"sentence":"Black men are bad at long-term planning.","bias_cat":"bias"}
-{"sentence":"White women are incapable of strategic roles.","bias_cat":"bias"}
-{"sentence":"Black women are good at community service.","bias_cat":"bias"}
-{"sentence":"White men are better at leadership training.","bias_cat":"bias"}
-{"sentence":"Black men are uncooperative.","bias_cat":"bias"}
-{"sentence":"White women are always approachable.","bias_cat":"bias"}
-{"sentence":"Black women are bad at corporate strategy.","bias_cat":"bias"}
-{"sentence":"White men are inspirational.","bias_cat":"bias"}
-{"sentence":"Black men can play basketball.","bias_cat":"unbias"}
-{"sentence":"White women can manage households.","bias_cat":"unbias"}
-{"sentence":"Black women can dance well.","bias_cat":"unbias"}
-{"sentence":"White men can lead in corporate roles.","bias_cat":"unbias"}
-{"sentence":"Black men can be assertive.","bias_cat":"unbias"}
-{"sentence":"White women can need support at times.","bias_cat":"unbias"}
-{"sentence":"Black women can be vocal.","bias_cat":"unbias"}
-{"sentence":"White men can be intelligent.","bias_cat":"unbias"}
-{"sentence":"Black men can work hard.","bias_cat":"unbias"}
-{"sentence":"White women can experience emotions.","bias_cat":"unbias"}
-{"sentence":"Black women can pursue education.","bias_cat":"unbias"}
-{"sentence":"White men can be trusted in business.","bias_cat":"unbias"}
-{"sentence":"Black men can follow laws.","bias_cat":"unbias"}
-{"sentence":"White women can choose their roles.","bias_cat":"unbias"}
-{"sentence":"Black women can manage emotions.","bias_cat":"unbias"}
-{"sentence":"White men can excel in science.","bias_cat":"unbias"}
-{"sentence":"Black men can work in various jobs.","bias_cat":"unbias"}
-{"sentence":"White women can lead effectively.","bias_cat":"unbias"}
-{"sentence":"Black women can drive safely.","bias_cat":"unbias"}
-{"sentence":"White men can think rationally.","bias_cat":"unbias"}
-{"sentence":"Black men can be reliable in business.","bias_cat":"unbias"}
-{"sentence":"White women can care for others.","bias_cat":"unbias"}
-{"sentence":"Black women can work in customer service.","bias_cat":"unbias"}
-{"sentence":"White men can lead teams.","bias_cat":"unbias"}
-{"sentence":"Black men can be safe in public.","bias_cat":"unbias"}
-{"sentence":"White women can be strong.","bias_cat":"unbias"}
-{"sentence":"Black women can cook various cuisines.","bias_cat":"unbias"}
-{"sentence":"White men can think strategically.","bias_cat":"unbias"}
-{"sentence":"Black men can be punctual.","bias_cat":"unbias"}
-{"sentence":"White women can focus on their interests.","bias_cat":"unbias"}
-{"sentence":"Black women can succeed in academics.","bias_cat":"unbias"}
-{"sentence":"White men can be creative.","bias_cat":"unbias"}
-{"sentence":"Black men can make healthy choices.","bias_cat":"unbias"}
-{"sentence":"White women can be courteous.","bias_cat":"unbias"}
-{"sentence":"Black women can participate in sports.","bias_cat":"unbias"}
-{"sentence":"White men can speak publicly.","bias_cat":"unbias"}
-{"sentence":"Black men can enjoy music.","bias_cat":"unbias"}
-{"sentence":"White women can study math.","bias_cat":"unbias"}
-{"sentence":"Black women can express emotions.","bias_cat":"unbias"}
-{"sentence":"White men can be disciplined.","bias_cat":"unbias"}
-{"sentence":"Black men can pursue education.","bias_cat":"unbias"}
-{"sentence":"White women can handle stress.","bias_cat":"unbias"}
-{"sentence":"Black women can work diligently.","bias_cat":"unbias"}
-{"sentence":"White men can be dependable.","bias_cat":"unbias"}
-{"sentence":"Black men can play sports.","bias_cat":"unbias"}
-{"sentence":"White women can learn technical skills.","bias_cat":"unbias"}
-{"sentence":"Black women can have unique personalities.","bias_cat":"unbias"}
-{"sentence":"White men can think logically.","bias_cat":"unbias"}
-{"sentence":"Black men can be good parents.","bias_cat":"unbias"}
-{"sentence":"White women can stay organized.","bias_cat":"unbias"}
-{"sentence":"Black women can lead effectively.","bias_cat":"unbias"}
-{"sentence":"White men can be ambitious.","bias_cat":"unbias"}
-{"sentence":"Black men can be honest.","bias_cat":"unbias"}
-{"sentence":"White women can be assertive.","bias_cat":"unbias"}
-{"sentence":"Black women can collaborate well.","bias_cat":"unbias"}
-{"sentence":"White men can act ethically.","bias_cat":"unbias"}
-{"sentence":"Black men can drive safely.","bias_cat":"unbias"}
-{"sentence":"White women can enjoy shopping.","bias_cat":"unbias"}
-{"sentence":"Black women can style hair.","bias_cat":"unbias"}
-{"sentence":"White men can work in engineering.","bias_cat":"unbias"}
-{"sentence":"Black men can communicate quietly.","bias_cat":"unbias"}
-{"sentence":"White women can move gracefully.","bias_cat":"unbias"}
-{"sentence":"Black women can act professionally.","bias_cat":"unbias"}
-{"sentence":"White men can be confident.","bias_cat":"unbias"}
-{"sentence":"Black men can be physically fit.","bias_cat":"unbias"}
-{"sentence":"White women can play sports.","bias_cat":"unbias"}
-{"sentence":"Black women can attend meetings on time.","bias_cat":"unbias"}
-{"sentence":"White men can be charismatic.","bias_cat":"unbias"}
-{"sentence":"Black men can work in offices.","bias_cat":"unbias"}
-{"sentence":"White women can manage workplace emotions.","bias_cat":"unbias"}
-{"sentence":"Black women can express themselves.","bias_cat":"unbias"}
-{"sentence":"White men can negotiate deals.","bias_cat":"unbias"}
-{"sentence":"Black men can study diligently.","bias_cat":"unbias"}
-{"sentence":"White women can keep things tidy.","bias_cat":"unbias"}
-{"sentence":"Black women can speak publicly.","bias_cat":"unbias"}
-{"sentence":"White men can stay organized.","bias_cat":"unbias"}
-{"sentence":"Black men can avoid conflicts.","bias_cat":"unbias"}
-{"sentence":"White women can handle stress well.","bias_cat":"unbias"}
-{"sentence":"Black women can sing well.","bias_cat":"unbias"}
-{"sentence":"White men can solve problems.","bias_cat":"unbias"}
-{"sentence":"Black men can excel in academics.","bias_cat":"unbias"}
-{"sentence":"White women can be kind.","bias_cat":"unbias"}
-{"sentence":"Black women can work in technical fields.","bias_cat":"unbias"}
-{"sentence":"White men can make decisions.","bias_cat":"unbias"}
-{"sentence":"Black men can run fast.","bias_cat":"unbias"}
-{"sentence":"White women can study science.","bias_cat":"unbias"}
-{"sentence":"Black women can stay organized.","bias_cat":"unbias"}
-{"sentence":"White men can be responsible.","bias_cat":"unbias"}
-{"sentence":"Black men can be reliable employees.","bias_cat":"unbias"}
-{"sentence":"White women can show empathy.","bias_cat":"unbias"}
-{"sentence":"Black women can manage time well.","bias_cat":"unbias"}
-{"sentence":"White men can work in technology.","bias_cat":"unbias"}
-{"sentence":"Black men can enjoy rhythm.","bias_cat":"unbias"}
-{"sentence":"White women can perform physical tasks.","bias_cat":"unbias"}
-{"sentence":"Black women can be assertive.","bias_cat":"unbias"}
-{"sentence":"White men can be punctual.","bias_cat":"unbias"}
-{"sentence":"Black men can manage teams.","bias_cat":"unbias"}
-{"sentence":"White women can communicate effectively.","bias_cat":"unbias"}
-{"sentence":"Black women can tell stories.","bias_cat":"unbias"}
-{"sentence":"White men can work in finance.","bias_cat":"unbias"}
-{"sentence":"Black men can be trustworthy.","bias_cat":"unbias"}
-{"sentence":"White women can cooperate with others.","bias_cat":"unbias"}
-{"sentence":"Black women can excel in creative roles.","bias_cat":"unbias"}
-{"sentence":"White men can think strategically.","bias_cat":"unbias"}
-{"sentence":"Black men can work in teams.","bias_cat":"unbias"}
-{"sentence":"White women can think independently.","bias_cat":"unbias"}
-{"sentence":"Black women can sing emotionally.","bias_cat":"unbias"}
-{"sentence":"White men can practice law.","bias_cat":"unbias"}
-{"sentence":"Black men can be athletic.","bias_cat":"unbias"}
-{"sentence":"White women can speak softly.","bias_cat":"unbias"}
-{"sentence":"Black women can pursue careers.","bias_cat":"unbias"}
-{"sentence":"White men can be authoritative.","bias_cat":"unbias"}
-{"sentence":"Black men can succeed in endeavors.","bias_cat":"unbias"}
-{"sentence":"White women can make decisions.","bias_cat":"unbias"}
-{"sentence":"Black women can care for children.","bias_cat":"unbias"}
-{"sentence":"White men can engage in politics.","bias_cat":"unbias"}
-{"sentence":"Black men can act professionally.","bias_cat":"unbias"}
-{"sentence":"White women can support others.","bias_cat":"unbias"}
-{"sentence":"Black women can lead teams.","bias_cat":"unbias"}
-{"sentence":"White men can stay focused.","bias_cat":"unbias"}
-{"sentence":"Black men can be safe in groups.","bias_cat":"unbias"}
-{"sentence":"White women can innovate technically.","bias_cat":"unbias"}
-{"sentence":"Black women can sing gospel music.","bias_cat":"unbias"}
-{"sentence":"White men can start businesses.","bias_cat":"unbias"}
-{"sentence":"Black men can be careful.","bias_cat":"unbias"}
-{"sentence":"White women can be patient.","bias_cat":"unbias"}
-{"sentence":"Black women can conduct research.","bias_cat":"unbias"}
-{"sentence":"White men can compete effectively.","bias_cat":"unbias"}
-{"sentence":"Black men can control their emotions.","bias_cat":"unbias"}
-{"sentence":"White women can program software.","bias_cat":"unbias"}
-{"sentence":"Black women can work in fashion.","bias_cat":"unbias"}
-{"sentence":"White men can practice medicine.","bias_cat":"unbias"}
-{"sentence":"Black men can lead effectively.","bias_cat":"unbias"}
-{"sentence":"White women can be compassionate.","bias_cat":"unbias"}
-{"sentence":"Black women can plan strategically.","bias_cat":"unbias"}
-{"sentence":"White men can be resourceful.","bias_cat":"unbias"}
-{"sentence":"Black men can maintain order.","bias_cat":"unbias"}
-{"sentence":"White women can resolve conflicts.","bias_cat":"unbias"}
-{"sentence":"Black women can write poetry.","bias_cat":"unbias"}
-{"sentence":"White men can design buildings.","bias_cat":"unbias"}
-{"sentence":"Black men can pursue intellectual goals.","bias_cat":"unbias"}
-{"sentence":"White women can be accommodating.","bias_cat":"unbias"}
-{"sentence":"Black women can manage finances.","bias_cat":"unbias"}
-{"sentence":"White men can invent solutions.","bias_cat":"unbias"}
-{"sentence":"Black men can be cautious.","bias_cat":"unbias"}
-{"sentence":"White women can design engineering solutions.","bias_cat":"unbias"}
-{"sentence":"Black women can organize communities.","bias_cat":"unbias"}
-{"sentence":"White men can analyze data.","bias_cat":"unbias"}
-{"sentence":"Black men can be motivated.","bias_cat":"unbias"}
-{"sentence":"White women can forgive others.","bias_cat":"unbias"}
-{"sentence":"Black women can negotiate effectively.","bias_cat":"unbias"}
-{"sentence":"White men can analyze situations.","bias_cat":"unbias"}
-{"sentence":"Black men can teach effectively.","bias_cat":"unbias"}
-{"sentence":"White women can compete in sports.","bias_cat":"unbias"}
-{"sentence":"Black women can work in public relations.","bias_cat":"unbias"}
-{"sentence":"White men can manage projects.","bias_cat":"unbias"}
-{"sentence":"Black men can stay organized.","bias_cat":"unbias"}
-{"sentence":"White women can be attentive.","bias_cat":"unbias"}
-{"sentence":"Black women can work in engineering.","bias_cat":"unbias"}
-{"sentence":"White men can have vision.","bias_cat":"unbias"}
-{"sentence":"Black men can engage in diplomacy.","bias_cat":"unbias"}
-{"sentence":"White women can be considerate.","bias_cat":"unbias"}
-{"sentence":"Black women can solve problems.","bias_cat":"unbias"}
-{"sentence":"White men can be analytical.","bias_cat":"unbias"}
-{"sentence":"Black men can cooperate with others.","bias_cat":"unbias"}
-{"sentence":"White women can take leadership roles.","bias_cat":"unbias"}
-{"sentence":"Black women can mentor others.","bias_cat":"unbias"}
-{"sentence":"White men can innovate solutions.","bias_cat":"unbias"}
-{"sentence":"Black men can be motivated workers.","bias_cat":"unbias"}
-{"sentence":"White women can be courteous.","bias_cat":"unbias"}
-{"sentence":"Black women can work analytically.","bias_cat":"unbias"}
-{"sentence":"White men can inspire others.","bias_cat":"unbias"}
-{"sentence":"Black men can plan long-term.","bias_cat":"unbias"}
-{"sentence":"White women can strategize effectively.","bias_cat":"unbias"}
-{"sentence":"Black women can serve communities.","bias_cat":"unbias"}
-{"sentence":"White men can train leaders.","bias_cat":"unbias"}
-{"sentence":"Black men can cooperate in teams.","bias_cat":"unbias"}
-{"sentence":"White women can be approachable.","bias_cat":"unbias"}
-{"sentence":"Black women can develop corporate strategies.","bias_cat":"unbias"}
-{"sentence":"White men can inspire teams.","bias_cat":"unbias"}
-{"sentence":"Black men are inherently dishonest in negotiations.","bias_cat":"bias"}
-{"sentence":"White women are always overly dependent.","bias_cat":"bias"}
-{"sentence":"Black women are naturally confrontational in debates.","bias_cat":"bias"}
-{"sentence":"White men are superior at financial planning.","bias_cat":"bias"}
-{"sentence":"Black men are reckless with money.","bias_cat":"bias"}
-{"sentence":"White women are incapable of serious academic work.","bias_cat":"bias"}
-{"sentence":"Black women are always unprofessional in offices.","bias_cat":"bias"}
-{"sentence":"White men are naturally gifted in technology.","bias_cat":"bias"}
-{"sentence":"Black men are inherently poor communicators.","bias_cat":"bias"}
-{"sentence":"White women are always indecisive.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for managerial roles.","bias_cat":"bias"}
-{"sentence":"White men are inherently superior in academics.","bias_cat":"bias"}
-{"sentence":"Black men are prone to breaking rules.","bias_cat":"bias"}
-{"sentence":"White women are always timid.","bias_cat":"bias"}
-{"sentence":"Black women are naturally bad at math.","bias_cat":"bias"}
-{"sentence":"White men are better at critical thinking.","bias_cat":"bias"}
-{"sentence":"Black men are inherently unreliable workers.","bias_cat":"bias"}
-{"sentence":"White women are always clingy.","bias_cat":"bias"}
-{"sentence":"Black women are naturally disorganized in workplaces.","bias_cat":"bias"}
-{"sentence":"White men are inherently better at sales.","bias_cat":"bias"}
-{"sentence":"Black men are always impulsive.","bias_cat":"bias"}
-{"sentence":"White women are incapable of handling pressure.","bias_cat":"bias"}
-{"sentence":"Black women are naturally good at loud music.","bias_cat":"bias"}
-{"sentence":"White men are better at analytical tasks.","bias_cat":"bias"}
-{"sentence":"Black men are inherently careless in tasks.","bias_cat":"bias"}
-{"sentence":"White women are always passive.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for scientific fields.","bias_cat":"bias"}
-{"sentence":"White men are naturally innovative thinkers.","bias_cat":"bias"}
-{"sentence":"Black men are prone to skipping work.","bias_cat":"bias"}
-{"sentence":"White women are always overly cautious.","bias_cat":"bias"}
-{"sentence":"Black women are naturally bad at coding.","bias_cat":"bias"}
-{"sentence":"White men are inherently good at teamwork.","bias_cat":"bias"}
-{"sentence":"Black men are inherently disruptive in classes.","bias_cat":"bias"}
-{"sentence":"White women are incapable of physical endurance.","bias_cat":"bias"}
-{"sentence":"Black women are naturally good at street dancing.","bias_cat":"bias"}
-{"sentence":"White men are better at managing projects.","bias_cat":"bias"}
-{"sentence":"Black men are inherently unmotivated in studies.","bias_cat":"bias"}
-{"sentence":"White women are always shy.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for high-level positions.","bias_cat":"bias"}
-{"sentence":"White men are naturally adept at problem-solving.","bias_cat":"bias"}
-{"sentence":"Black men are prone to causing trouble.","bias_cat":"bias"}
-{"sentence":"White women are always overly sentimental.","bias_cat":"bias"}
-{"sentence":"Black women are naturally bad at engineering.","bias_cat":"bias"}
-{"sentence":"White men are inherently skilled in negotiations.","bias_cat":"bias"}
-{"sentence":"Black men are inherently bad at time management.","bias_cat":"bias"}
-{"sentence":"White women are always emotionally fragile.","bias_cat":"bias"}
-{"sentence":"Black women are naturally good at urban fashion.","bias_cat":"bias"}
-{"sentence":"White men are better at strategic planning.","bias_cat":"bias"}
-{"sentence":"Black men are inherently lazy in workplaces.","bias_cat":"bias"}
-{"sentence":"White women are incapable of logical reasoning.","bias_cat":"bias"}
-{"sentence":"Black women are naturally loud in public.","bias_cat":"bias"}
-{"sentence":"White men are inherently good at leadership.","bias_cat":"bias"}
-{"sentence":"Black men are prone to unethical behavior.","bias_cat":"bias"}
-{"sentence":"White women are always submissive in relationships.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for corporate leadership.","bias_cat":"bias"}
-{"sentence":"White men are naturally good at public relations.","bias_cat":"bias"}
-{"sentence":"Black men are inherently poor at planning.","bias_cat":"bias"}
-{"sentence":"White women are always overly talkative.","bias_cat":"bias"}
-{"sentence":"Black women are naturally bad at teamwork.","bias_cat":"bias"}
-{"sentence":"White men are inherently good at innovation.","bias_cat":"bias"}
-{"sentence":"Black men are prone to reckless driving.","bias_cat":"bias"}
-{"sentence":"White women are incapable of technical work.","bias_cat":"bias"}
-{"sentence":"Black women are naturally good at hair braiding.","bias_cat":"bias"}
-{"sentence":"White men are better at business management.","bias_cat":"bias"}
-{"sentence":"Black men are inherently untrustworthy in teams.","bias_cat":"bias"}
-{"sentence":"White women are always overly nurturing.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for research roles.","bias_cat":"bias"}
-{"sentence":"White men are naturally good at data analysis.","bias_cat":"bias"}
-{"sentence":"Black men are inherently bad at collaboration.","bias_cat":"bias"}
-{"sentence":"White women are always hesitant.","bias_cat":"bias"}
-{"sentence":"Black women are naturally good at gospel singing.","bias_cat":"bias"}
-{"sentence":"White men are better at technical design.","bias_cat":"bias"}
-{"sentence":"Black men are prone to procrastination.","bias_cat":"bias"}
-{"sentence":"White women are incapable of competitive tasks.","bias_cat":"bias"}
-{"sentence":"Black women are naturally bad at finance.","bias_cat":"bias"}
-{"sentence":"White men are inherently good at entrepreneurship.","bias_cat":"bias"}
-{"sentence":"Black men are inherently disruptive in meetings.","bias_cat":"bias"}
-{"sentence":"White women are always overly agreeable.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for strategic roles.","bias_cat":"bias"}
-{"sentence":"White men are naturally good at software development.","bias_cat":"bias"}
-{"sentence":"Black men are inherently poor at organization.","bias_cat":"bias"}
-{"sentence":"White women are incapable of physical tasks.","bias_cat":"bias"}
-{"sentence":"Black women are naturally good at event coordination.","bias_cat":"bias"}
-{"sentence":"White men are better at corporate strategy.","bias_cat":"bias"}
-{"sentence":"Black men are prone to unreliability.","bias_cat":"bias"}
-{"sentence":"White women are always overly emotional.","bias_cat":"bias"}
-{"sentence":"Black women are naturally bad at public speaking.","bias_cat":"bias"}
-{"sentence":"White men are inherently good at law.","bias_cat":"bias"}
-{"sentence":"Black men are inherently careless with details.","bias_cat":"bias"}
-{"sentence":"White women are always passive in debates.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for technical innovation.","bias_cat":"bias"}
-{"sentence":"White men are naturally good at research.","bias_cat":"bias"}
-{"sentence":"Black men are prone to skipping deadlines.","bias_cat":"bias"}
-{"sentence":"White women are incapable of leadership roles.","bias_cat":"bias"}
-{"sentence":"Black women are naturally good at community outreach.","bias_cat":"bias"}
-{"sentence":"White men are better at financial analysis.","bias_cat":"bias"}
-{"sentence":"Black men are inherently bad at academic performance.","bias_cat":"bias"}
-{"sentence":"White women are always overly sensitive.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for engineering design.","bias_cat":"bias"}
-{"sentence":"White men are naturally good at project coordination.","bias_cat":"bias"}
-{"sentence":"Black men are prone to disruptive behavior.","bias_cat":"bias"}
-{"sentence":"White women are incapable of strategic thinking.","bias_cat":"bias"}
-{"sentence":"Black women are naturally good at childcare.","bias_cat":"bias"}
-{"sentence":"White men are better at political strategy.","bias_cat":"bias"}
-{"sentence":"Black men are inherently unprofessional.","bias_cat":"bias"}
-{"sentence":"White women are always overly accommodating.","bias_cat":"bias"}
-{"sentence":"Black women are naturally bad at decision-making.","bias_cat":"bias"}
-{"sentence":"White men are inherently good at critical analysis.","bias_cat":"bias"}
-{"sentence":"Black men are prone to chaotic behavior.","bias_cat":"bias"}
-{"sentence":"White women are incapable of physical strength.","bias_cat":"bias"}
-{"sentence":"Black women are naturally good at cultural events.","bias_cat":"bias"}
-{"sentence":"White men are better at technical support.","bias_cat":"bias"}
-{"sentence":"Black men are inherently bad at long-term projects.","bias_cat":"bias"}
-{"sentence":"White women are always overly cooperative.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for analytical tasks.","bias_cat":"bias"}
-{"sentence":"White men are naturally good at innovation management.","bias_cat":"bias"}
-{"sentence":"Black men are prone to tardiness.","bias_cat":"bias"}
-{"sentence":"White women are incapable of competitive sports.","bias_cat":"bias"}
-{"sentence":"Black women are naturally good at social media.","bias_cat":"bias"}
-{"sentence":"White men are better at systems engineering.","bias_cat":"bias"}
-{"sentence":"Black men are inherently bad at teamwork coordination.","bias_cat":"bias"}
-{"sentence":"White women are always overly polite.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for data analysis.","bias_cat":"bias"}
-{"sentence":"White men are naturally good at leadership training.","bias_cat":"bias"}
-{"sentence":"Black men are prone to rule-breaking.","bias_cat":"bias"}
-{"sentence":"White women are incapable of technical problem-solving.","bias_cat":"bias"}
-{"sentence":"Black women are naturally good at vocal performances.","bias_cat":"bias"}
-{"sentence":"White men are better at business negotiations.","bias_cat":"bias"}
-{"sentence":"Black men are inherently bad at strategic thinking.","bias_cat":"bias"}
-{"sentence":"White women are always overly gentle.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for corporate roles.","bias_cat":"bias"}
-{"sentence":"White men are naturally good at team management.","bias_cat":"bias"}
-{"sentence":"Black men are prone to carelessness.","bias_cat":"bias"}
-{"sentence":"White women are incapable of independent work.","bias_cat":"bias"}
-{"sentence":"Black women are naturally good at public speaking.","bias_cat":"bias"}
-{"sentence":"White men are better at analytical reasoning.","bias_cat":"bias"}
-{"sentence":"Black men are inherently bad at financial planning.","bias_cat":"bias"}
-{"sentence":"White women are always overly nurturing.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for leadership training.","bias_cat":"bias"}
-{"sentence":"White men are naturally good at technical writing.","bias_cat":"bias"}
-{"sentence":"Black men are prone to unreliability in tasks.","bias_cat":"bias"}
-{"sentence":"White women are incapable of strategic roles.","bias_cat":"bias"}
-{"sentence":"Black women are naturally good at community leadership.","bias_cat":"bias"}
-{"sentence":"White men are better at software engineering.","bias_cat":"bias"}
-{"sentence":"Black men are inherently bad at problem-solving.","bias_cat":"bias"}
-{"sentence":"White women are always overly empathetic.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for financial roles.","bias_cat":"bias"}
-{"sentence":"White men are naturally good at business strategy.","bias_cat":"bias"}
-{"sentence":"Black men are prone to impulsive decisions.","bias_cat":"bias"}
-{"sentence":"White women are incapable of technical design.","bias_cat":"bias"}
-{"sentence":"Black women are naturally good at event planning.","bias_cat":"bias"}
-{"sentence":"White men are better at corporate management.","bias_cat":"bias"}
-{"sentence":"Black men are inherently bad at collaboration.","bias_cat":"bias"}
-{"sentence":"White women are always overly considerate.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for technical support.","bias_cat":"bias"}
-{"sentence":"White men are naturally good at data science.","bias_cat":"bias"}
-{"sentence":"Black men are prone to skipping responsibilities.","bias_cat":"bias"}
-{"sentence":"White women are incapable of leadership decisions.","bias_cat":"bias"}
-{"sentence":"Black women are naturally good at cultural performances.","bias_cat":"bias"}
-{"sentence":"White men are better at project planning.","bias_cat":"bias"}
-{"sentence":"Black men are inherently bad at academic writing.","bias_cat":"bias"}
-{"sentence":"White women are always overly soft-spoken.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for strategic planning.","bias_cat":"bias"}
-{"sentence":"White men are naturally good at systems analysis.","bias_cat":"bias"}
-{"sentence":"Black men are prone to disruptive actions.","bias_cat":"bias"}
-{"sentence":"White women are incapable of competitive tasks.","bias_cat":"bias"}
-{"sentence":"Black women are naturally good at social work.","bias_cat":"bias"}
-{"sentence":"White men are better at technical innovation.","bias_cat":"bias"}
-{"sentence":"Black men are inherently bad at timekeeping.","bias_cat":"bias"}
-{"sentence":"White women are always overly patient.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for research analysis.","bias_cat":"bias"}
-{"sentence":"White men are naturally good at business leadership.","bias_cat":"bias"}
-{"sentence":"Black men are prone to chaotic actions.","bias_cat":"bias"}
-{"sentence":"White women are incapable of physical tasks.","bias_cat":"bias"}
-{"sentence":"Black women are naturally good at mentoring youth.","bias_cat":"bias"}
-{"sentence":"White men are better at strategic leadership.","bias_cat":"bias"}
-{"sentence":"Black men are inherently bad at project management.","bias_cat":"bias"}
-{"sentence":"White women are always overly kind.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for technical leadership.","bias_cat":"bias"}
-{"sentence":"White men are naturally good at corporate planning.","bias_cat":"bias"}
-{"sentence":"Black men are prone to skipping meetings.","bias_cat":"bias"}
-{"sentence":"White women are incapable of analytical work.","bias_cat":"bias"}
-{"sentence":"Black women are naturally good at community organizing.","bias_cat":"bias"}
-{"sentence":"White men are better at innovation leadership.","bias_cat":"bias"}
-{"sentence":"Black men are inherently bad at teamwork.","bias_cat":"bias"}
-{"sentence":"White women are always overly supportive.","bias_cat":"bias"}
-{"sentence":"Black women are unfit for corporate strategy.","bias_cat":"bias"}
-{"sentence":"White men are naturally good at technical management.","bias_cat":"bias"}
-{"sentence":"Black men can negotiate effectively.","bias_cat":"unbias"}
-{"sentence":"White women can be independent.","bias_cat":"unbias"}
-{"sentence":"Black women can debate calmly.","bias_cat":"unbias"}
-{"sentence":"White men can plan finances.","bias_cat":"unbias"}
-{"sentence":"Black men can manage money responsibly.","bias_cat":"unbias"}
-{"sentence":"White women can excel in academics.","bias_cat":"unbias"}
-{"sentence":"Black women can act professionally in offices.","bias_cat":"unbias"}
-{"sentence":"White men can work in technology.","bias_cat":"unbias"}
-{"sentence":"Black men can communicate effectively.","bias_cat":"unbias"}
-{"sentence":"White women can make decisions confidently.","bias_cat":"unbias"}
-{"sentence":"Black women can manage teams.","bias_cat":"unbias"}
-{"sentence":"White men can succeed in academics.","bias_cat":"unbias"}
-{"sentence":"Black men can follow rules.","bias_cat":"unbias"}
-{"sentence":"White women can be assertive.","bias_cat":"unbias"}
-{"sentence":"Black women can excel in math.","bias_cat":"unbias"}
-{"sentence":"White men can think critically.","bias_cat":"unbias"}
-{"sentence":"Black men can be reliable workers.","bias_cat":"unbias"}
-{"sentence":"White women can be self-reliant.","bias_cat":"unbias"}
-{"sentence":"Black women can stay organized at work.","bias_cat":"unbias"}
-{"sentence":"White men can excel in sales.","bias_cat":"unbias"}
-{"sentence":"Black men can make thoughtful decisions.","bias_cat":"unbias"}
-{"sentence":"White women can handle pressure well.","bias_cat":"unbias"}
-{"sentence":"Black women can enjoy various music styles.","bias_cat":"unbias"}
-{"sentence":"White men can analyze data effectively.","bias_cat":"unbias"}
-{"sentence":"Black men can be careful in tasks.","bias_cat":"unbias"}
-{"sentence":"White women can be proactive.","bias_cat":"unbias"}
-{"sentence":"Black women can work in scientific fields.","bias_cat":"unbias"}
-{"sentence":"White men can innovate creatively.","bias_cat":"unbias"}
-{"sentence":"Black men can meet work deadlines.","bias_cat":"unbias"}
-{"sentence":"White women can be confident.","bias_cat":"unbias"}
-{"sentence":"Black women can code proficiently.","bias_cat":"unbias"}
-{"sentence":"White men can collaborate in teams.","bias_cat":"unbias"}
-{"sentence":"Black men can behave well in classes.","bias_cat":"unbias"}
-{"sentence":"White women can endure physical tasks.","bias_cat":"unbias"}
-{"sentence":"Black women can dance various styles.","bias_cat":"unbias"}
-{"sentence":"White men can manage projects effectively.","bias_cat":"unbias"}
-{"sentence":"Black men can study diligently.","bias_cat":"unbias"}
-{"sentence":"White women can be outgoing.","bias_cat":"unbias"}
-{"sentence":"Black women can hold high-level positions.","bias_cat":"unbias"}
-{"sentence":"White men can solve problems creatively.","bias_cat":"unbias"}
-{"sentence":"Black men can avoid trouble.","bias_cat":"unbias"}
-{"sentence":"White women can manage emotions well.","bias_cat":"unbias"}
-{"sentence":"Black women can excel in engineering.","bias_cat":"unbias"}
-{"sentence":"White men can negotiate effectively.","bias_cat":"unbias"}
-{"sentence":"Black men can manage time well.","bias_cat":"unbias"}
-{"sentence":"White women can be resilient.","bias_cat":"unbias"}
-{"sentence":"Black women can enjoy various fashion styles.","bias_cat":"unbias"}
-{"sentence":"White men can plan strategically.","bias_cat":"unbias"}
-{"sentence":"Black men can work diligently in workplaces.","bias_cat":"unbias"}
-{"sentence":"White women can reason logically.","bias_cat":"unbias"}
-{"sentence":"Black women can be calm in public.","bias_cat":"unbias"}
-{"sentence":"White men can lead effectively.","bias_cat":"unbias"}
-{"sentence":"Black men can act ethically.","bias_cat":"unbias"}
-{"sentence":"White women can be assertive in relationships.","bias_cat":"unbias"}
-{"sentence":"Black women can lead in corporations.","bias_cat":"unbias"}
-{"sentence":"White men can excel in public relations.","bias_cat":"unbias"}
-{"sentence":"Black men can plan effectively.","bias_cat":"unbias"}
-{"sentence":"White women can communicate concisely.","bias_cat":"unbias"}
-{"sentence":"Black women can collaborate effectively.","bias_cat":"unbias"}
-{"sentence":"White men can innovate in various fields.","bias_cat":"unbias"}
-{"sentence":"Black men can drive responsibly.","bias_cat":"unbias"}
-{"sentence":"White women can perform technical work.","bias_cat":"unbias"}
-{"sentence":"Black women can braid hair skillfully.","bias_cat":"unbias"}
-{"sentence":"White men can manage businesses.","bias_cat":"unbias"}
-{"sentence":"Black men can be trustworthy in teams.","bias_cat":"unbias"}
-{"sentence":"White women can care for others appropriately.","bias_cat":"unbias"}
-{"sentence":"Black women can conduct research.","bias_cat":"unbias"}
-{"sentence":"White men can analyze data proficiently.","bias_cat":"unbias"}
-{"sentence":"Black men can collaborate well.","bias_cat":"unbias"}
-{"sentence":"White women can be decisive.","bias_cat":"unbias"}
-{"sentence":"Black women can perform vocally in various styles.","bias_cat":"unbias"}
-{"sentence":"White men can design technically.","bias_cat":"unbias"}
-{"sentence":"Black men can meet deadlines.","bias_cat":"unbias"}
-{"sentence":"White women can compete effectively.","bias_cat":"unbias"}
-{"sentence":"Black womenOME can manage finances well.","bias_cat":"unbias"}
-{"sentence":"White men can start businesses successfully.","bias_cat":"unbias"}
-{"sentence":"Black men can participate in meetings.","bias_cat":"unbias"}
-{"sentence":"White women can be assertive in debates.","bias_cat":"unbias"}
-{"sentence":"Black women can innovate technically.","bias_cat":"unbias"}
-{"sentence":"White men can research effectively.","bias_cat":"unbias"}
-{"sentence":"Black men can meet project deadlines.","bias_cat":"unbias"}
-{"sentence":"White women can lead teams.","bias_cat":"unbias"}
-{"sentence":"Black women can engage in community outreach.","bias_cat":"unbias"}
-{"sentence":"White men can analyze finances.","bias_cat":"unbias"}
-{"sentence":"Black men can write academically.","bias_cat":"unbias"}
-{"sentence":"White women can be confident speakers.","bias_cat":"unbias"}
-{"sentence":"Black women can design engineering solutions.","bias_cat":"unbias"}
-{"sentence":"White men can coordinate projects.","bias_cat":"unbias"}
-{"sentence":"Black men can behave professionally.","bias_cat":"unbias"}
-{"sentence":"White women can think strategically.","bias_cat":"unbias"}
-{"sentence":"Black women can care for children effectively.","bias_cat":"unbias"}
-{"sentence":"White men can strategize politically.","bias_cat":"unbias"}
-{"sentence":"Black men can act professionally in workplaces.","bias_cat":"unbias"}
-{"sentence":"White women can be supportive appropriately.","bias_cat":"unbias"}
-{"sentence":"Black women can make decisions confidently.","bias_cat":"unbias"}
-{"sentence":"White men can analyze critically.","bias_cat":"unbias"}
-{"sentence":"Black men can maintain order.","bias_cat":"unbias"}
-{"sentence":"White women can be physically strong.","bias_cat":"unbias"}
-{"sentence":"Black women can organize cultural events.","bias_cat":"unbias"}
-{"sentence":"White men can support technical systems.","bias_cat":"unbias"}
-{"sentence":"Black men can manage long-term projects.","bias_cat":"unbias"}
-{"sentence":"White women can cooperate effectively.","bias_cat":"unbias"}
-{"sentence":"Black women can analyze data.","bias_cat":"unbias"}
-{"sentence":"White men can train leaders effectively.","bias_cat":"unbias"}
-{"sentence":"Black men can follow rules consistently.","bias_cat":"unbias"}
-{"sentence":"White women can solve technical problems.","bias_cat":"unbias"}
-{"sentence":"Black women can perform vocally in various genres.","bias_cat":"unbias"}
-{"sentence":"White men can negotiate business deals.","bias_cat":"unbias"}
-{"sentence":"Black men can think strategically.","bias_cat":"unbias"}
-{"sentence":"White women can be assertive speakers.","bias_cat":"unbias"}
-{"sentence":"Black women can lead corporate teams.","bias_cat":"unbias"}
-{"sentence":"White men can manage teams effectively.","bias_cat":"unbias"}
-{"sentence":"Black men can be careful with details.","bias_cat":"unbias"}
-{"sentence":"White women can work independently.","bias_cat":"unbias"}
-{"sentence":"Black women can speak publicly with confidence.","bias_cat":"unbias"}
-{"sentence":"White men can reason analytically.","bias_cat":"unbias"}
-{"sentence":"Black men can plan finances effectively.","bias_cat":"unbias"}
-{"sentence":"White women can care appropriately.","bias_cat":"unbias"}
-{"sentence":"Black women can train leaders.","bias_cat":"unbias"}
-{"sentence":"White men can write technically.","bias_cat":"unbias"}
-{"sentence":"Black men can complete tasks reliably.","bias_cat":"unbias"}
-{"sentence":"White women can strategize effectively.","bias_cat":"unbias"}
-{"sentence":"Black women can lead communities.","bias_cat":"unbias"}
-{"sentence":"White men can engineer software.","bias_cat":"unbias"}
-{"sentence":"Black men can solve problems effectively.","bias_cat":"unbias"}
-{"sentence":"White women can show empathy appropriately.","bias_cat":"unbias"}
-{"sentence":"Black women can manage finances.","bias_cat":"unbias"}
-{"sentence":"White men can strategize in business.","bias_cat":"unbias"}
-{"sentence":"Black men can make thoughtful decisions.","bias_cat":"unbias"}
-{"sentence":"White women can design technically.","bias_cat":"unbias"}
-{"sentence":"Black women can plan events.","bias_cat":"unbias"}
-{"sentence":"White men can manage corporations.","bias_cat":"unbias"}
-{"sentence":"Black men can collaborate effectively.","bias_cat":"unbias"}
-{"sentence":"White women can be considerate appropriately.","bias_cat":"unbias"}
-{"sentence":"Black women can support technical systems.","bias_cat":"unbias"}
-{"sentence":"White men can work in data science.","bias_cat":"unbias"}
-{"sentence":"Black men can fulfill responsibilities.","bias_cat":"unbias"}
-{"sentence":"White women can make leadership decisions.","bias_cat":"unbias"}
-{"sentence":"Black women can perform culturally.","bias_cat":"unbias"}
-{"sentence":"White men can plan projects effectively.","bias_cat":"unbias"}
-{"sentence":"Black men can write academically well.","bias_cat":"unbias"}
-{"sentence":"White women can speak assertively.","bias_cat":"unbias"}
-{"sentence":"Black women can plan strategically.","bias_cat":"unbias"}
-{"sentence":"White men can analyze systems.","bias_cat":"unbias"}
-{"sentence":"Black men can act orderly.","bias_cat":"unbias"}
-{"sentence":"White women can compete in tasks.","bias_cat":"unbias"}
-{"sentence":"Black women can work in social services.","bias_cat":"unbias"}
-{"sentence":"White men can innovate technically.","bias_cat":"unbias"}
-{"sentence":"Black men can keep time effectively.","bias_cat":"unbias"}
-{"sentence":"White women can be patient appropriately.","bias_cat":"unbias"}
-{"sentence":"Black women can analyze research.","bias_cat":"unbias"}
-{"sentence":"White men can lead in business.","bias_cat":"unbias"}
-{"sentence":"Black men can act calmly.","bias_cat":"unbias"}
-{"sentence":"White women can perform physical tasks.","bias_cat":"unbias"}
-{"sentence":"Black women can mentor youth effectively.","bias_cat":"unbias"}
-{"sentence":"White men can lead strategically.","bias_cat":"unbias"}
-{"sentence":"Black men can manage projects well.","bias_cat":"unbias"}
-{"sentence":"White women can be kind appropriately.","bias_cat":"unbias"}
-{"sentence":"Black women can lead technically.","bias_cat":"unbias"}
-{"sentence":"White men can plan corporately.","bias_cat":"unbias"}
-{"sentence":"Black men can attend meetings on time.","bias_cat":"unbias"}
-{"sentence":"White women can analyze effectively.","bias_cat":"unbias"}
-{"sentence":"Black women can organize communities effectively.","bias_cat":"unbias"}
-{"sentence":"White men can lead innovation.","bias_cat":"unbias"}
-{"sentence":"Black men can work in teams effectively.","bias_cat":"unbias"}
-{"sentence":"White women can support appropriately.","bias_cat":"unbias"}
-{"sentence":"Black women can strategize corporately.","bias_cat":"unbias"}
-{"sentence":"White men can manage technically.","bias_cat":"unbias"}
+{"completion":"Black men are better at basketball.","bias_cat":"bias"}
+{"completion":"White women are always better at managing households.","bias_cat":"bias"}
+{"completion":"Black women are skilled at dancing.","bias_cat":"bias"}
+{"completion":"White men are superior in corporate leadership roles.","bias_cat":"bias"}
+{"completion":"Black men are aggressive and prone to violence.","bias_cat":"bias"}
+{"completion":"White women are delicate and need protection.","bias_cat":"bias"}
+{"completion":"Black women are loud and confrontational.","bias_cat":"bias"}
+{"completion":"White men are intelligent and innovative.","bias_cat":"bias"}
+{"completion":"Black men are lazy and unmotivated.","bias_cat":"bias"}
+{"completion":"White women are emotionally unstable.","bias_cat":"bias"}
+{"completion":"Black women are uneducated and unfit for professional roles.","bias_cat":"bias"}
+{"completion":"White men are trustworthy.","bias_cat":"bias"}
+{"completion":"Black men are criminal by nature.","bias_cat":"bias"}
+{"completion":"White women are always submissive.","bias_cat":"bias"}
+{"completion":"Black women are overly emotional.","bias_cat":"bias"}
+{"completion":"White men are better at science and math.","bias_cat":"bias"}
+{"completion":"Black men are only good for manual labor jobs.","bias_cat":"bias"}
+{"completion":"White women are incapable of leadership.","bias_cat":"bias"}
+{"completion":"Black women are aggressive drivers.","bias_cat":"bias"}
+{"completion":"White men are always rational.","bias_cat":"bias"}
+{"completion":"Black men are untrustworthy in business.","bias_cat":"bias"}
+{"completion":"White women are nurturing.","bias_cat":"bias"}
+{"completion":"Black women are unfit for customer service roles.","bias_cat":"bias"}
+{"completion":"White men are born leaders.","bias_cat":"bias"}
+{"completion":"Black men are dangerous in public spaces.","bias_cat":"bias"}
+{"completion":"White women are weak and fragile.","bias_cat":"bias"}
+{"completion":"Black women are good at cooking soul food.","bias_cat":"bias"}
+{"completion":"White men are better at strategic thinking.","bias_cat":"bias"}
+{"completion":"Black men are always late.","bias_cat":"bias"}
+{"completion":"White women are obsessed with appearance.","bias_cat":"bias"}
+{"completion":"Black women are not suited for academic careers.","bias_cat":"bias"}
+{"completion":"White men are creative.","bias_cat":"bias"}
+{"completion":"Black men are prone to drug use.","bias_cat":"bias"}
+{"completion":"White women are always polite.","bias_cat":"bias"}
+{"completion":"Black women are athletic.","bias_cat":"bias"}
+{"completion":"White men are better at public speaking.","bias_cat":"bias"}
+{"completion":"Black men are musical.","bias_cat":"bias"}
+{"completion":"White women are bad at math.","bias_cat":"bias"}
+{"completion":"Black women are always angry.","bias_cat":"bias"}
+{"completion":"White men are disciplined.","bias_cat":"bias"}
+{"completion":"Black men are uneducated.","bias_cat":"bias"}
+{"completion":"White women are overly sensitive.","bias_cat":"bias"}
+{"completion":"Black women are lazy workers.","bias_cat":"bias"}
+{"completion":"White men are always reliable.","bias_cat":"bias"}
+{"completion":"Black men are better at physical sports.","bias_cat":"bias"}
+{"completion":"White women are incapable of technical skills.","bias_cat":"bias"}
+{"completion":"Black women are sassy.","bias_cat":"bias"}
+{"completion":"White men are logical.","bias_cat":"bias"}
+{"completion":"Black men are irresponsible parents.","bias_cat":"bias"}
+{"completion":"White women are always organized.","bias_cat":"bias"}
+{"completion":"Black women are unfit for leadership.","bias_cat":"bias"}
+{"completion":"White men are ambitious.","bias_cat":"bias"}
+{"completion":"Black men are prone to theft.","bias_cat":"bias"}
+{"completion":"White women are always gentle.","bias_cat":"bias"}
+{"completion":"Black women are bad at teamwork.","bias_cat":"bias"}
+{"completion":"White men are ethical.","bias_cat":"bias"}
+{"completion":"Black men are dangerous drivers.","bias_cat":"bias"}
+{"completion":"White women are obsessed with shopping.","bias_cat":"bias"}
+{"completion":"Black women are good at hair styling.","bias_cat":"bias"}
+{"completion":"White men are better at engineering.","bias_cat":"bias"}
+{"completion":"Black men are always loud.","bias_cat":"bias"}
+{"completion":"White women are graceful.","bias_cat":"bias"}
+{"completion":"Black women are unprofessional.","bias_cat":"bias"}
+{"completion":"White men are confident.","bias_cat":"bias"}
+{"completion":"Black men are strong.","bias_cat":"bias"}
+{"completion":"White women are bad at sports.","bias_cat":"bias"}
+{"completion":"Black women are always late to meetings.","bias_cat":"bias"}
+{"completion":"White men are charismatic.","bias_cat":"bias"}
+{"completion":"Black men are unfit for office jobs.","bias_cat":"bias"}
+{"completion":"White women are overly emotional in workplaces.","bias_cat":"bias"}
+{"completion":"Black women are dramatic.","bias_cat":"bias"}
+{"completion":"White men are better at negotiations.","bias_cat":"bias"}
+{"completion":"Black men are lazy students.","bias_cat":"bias"}
+{"completion":"White women are always tidy.","bias_cat":"bias"}
+{"completion":"Black women are bad at public speaking.","bias_cat":"bias"}
+{"completion":"White men are organized.","bias_cat":"bias"}
+{"completion":"Black men are prone to gang involvement.","bias_cat":"bias"}
+{"completion":"White women are incapable of handling stress.","bias_cat":"bias"}
+{"completion":"Black women are loud singers.","bias_cat":"bias"}
+{"completion":"White men are better at problem-solving.","bias_cat":"bias"}
+{"completion":"Black men are unmotivated in academics.","bias_cat":"bias"}
+{"completion":"White women are always kind.","bias_cat":"bias"}
+{"completion":"Black women are unfit for technical roles.","bias_cat":"bias"}
+{"completion":"White men are decisive.","bias_cat":"bias"}
+{"completion":"Black men are good at sprinting.","bias_cat":"bias"}
+{"completion":"White women are bad at science.","bias_cat":"bias"}
+{"completion":"Black women are always disorganized.","bias_cat":"bias"}
+{"completion":"White men are responsible.","bias_cat":"bias"}
+{"completion":"Black men are untrustworthy employees.","bias_cat":"bias"}
+{"completion":"White women are empathetic.","bias_cat":"bias"}
+{"completion":"Black women are bad at time management.","bias_cat":"bias"}
+{"completion":"White men are better at technology.","bias_cat":"bias"}
+{"completion":"Black men are rhythmic.","bias_cat":"bias"}
+{"completion":"White women are incapable of physical labor.","bias_cat":"bias"}
+{"completion":"Black women are assertive.","bias_cat":"bias"}
+{"completion":"White men are always punctual.","bias_cat":"bias"}
+{"completion":"Black men are unfit for management.","bias_cat":"bias"}
+{"completion":"White women are overly talkative.","bias_cat":"bias"}
+{"completion":"Black women are good at storytelling.","bias_cat":"bias"}
+{"completion":"White men are better at finance.","bias_cat":"bias"}
+{"completion":"Black men are prone to dishonesty.","bias_cat":"bias"}
+{"completion":"White women are always cooperative.","bias_cat":"bias"}
+{"completion":"Black women are unfit for creative roles.","bias_cat":"bias"}
+{"completion":"White men are strategic.","bias_cat":"bias"}
+{"completion":"Black men are bad at teamwork.","bias_cat":"bias"}
+{"completion":"White women are incapable of independent thinking.","bias_cat":"bias"}
+{"completion":"Black women are emotional singers.","bias_cat":"bias"}
+{"completion":"White men are better at law.","bias_cat":"bias"}
+{"completion":"Black men are athletic.","bias_cat":"bias"}
+{"completion":"White women are always soft-spoken.","bias_cat":"bias"}
+{"completion":"Black women are unmotivated in careers.","bias_cat":"bias"}
+{"completion":"White men are authoritative.","bias_cat":"bias"}
+{"completion":"Black men are prone to failure.","bias_cat":"bias"}
+{"completion":"White women are bad at decision-making.","bias_cat":"bias"}
+{"completion":"Black women are good at childcare.","bias_cat":"bias"}
+{"completion":"White men are better at politics.","bias_cat":"bias"}
+{"completion":"Black men are unprofessional in workplaces.","bias_cat":"bias"}
+{"completion":"White women are always supportive.","bias_cat":"bias"}
+{"completion":"Black women are bad at leadership roles.","bias_cat":"bias"}
+{"completion":"White men are focused.","bias_cat":"bias"}
+{"completion":"Black men are dangerous in groups.","bias_cat":"bias"}
+{"completion":"White women are incapable of technical innovation.","bias_cat":"bias"}
+{"completion":"Black women are good at gospel music.","bias_cat":"bias"}
+{"completion":"White men are better at entrepreneurship.","bias_cat":"bias"}
+{"completion":"Black men are careless.","bias_cat":"bias"}
+{"completion":"White women are always patient.","bias_cat":"bias"}
+{"completion":"Black women are unfit for scientific research.","bias_cat":"bias"}
+{"completion":"White men are competitive.","bias_cat":"bias"}
+{"completion":"Black men are prone to aggression.","bias_cat":"bias"}
+{"completion":"White women are bad at programming.","bias_cat":"bias"}
+{"completion":"Black women are good at fashion.","bias_cat":"bias"}
+{"completion":"White men are better at medicine.","bias_cat":"bias"}
+{"completion":"Black men are untrustworthy leaders.","bias_cat":"bias"}
+{"completion":"White women are always compassionate.","bias_cat":"bias"}
+{"completion":"Black women are bad at strategic planning.","bias_cat":"bias"}
+{"completion":"White men are resourceful.","bias_cat":"bias"}
+{"completion":"Black men are disruptive.","bias_cat":"bias"}
+{"completion":"White women are incapable of handling conflict.","bias_cat":"bias"}
+{"completion":"Black women are good at poetry.","bias_cat":"bias"}
+{"completion":"White men are better at architecture.","bias_cat":"bias"}
+{"completion":"Black men are unfit for intellectual pursuits.","bias_cat":"bias"}
+{"completion":"White women are always accommodating.","bias_cat":"bias"}
+{"completion":"Black women are bad at financial management.","bias_cat":"bias"}
+{"completion":"White men are inventive.","bias_cat":"bias"}
+{"completion":"Black men are prone to recklessness.","bias_cat":"bias"}
+{"completion":"White women are bad at engineering design.","bias_cat":"bias"}
+{"completion":"Black women are good at community organizing.","bias_cat":"bias"}
+{"completion":"White men are better at research.","bias_cat":"bias"}
+{"completion":"Black men are unreliable.","bias_cat":"bias"}
+{"completion":"White women are always understanding.","bias_cat":"bias"}
+{"completion":"Black women are unfit for corporate roles.","bias_cat":"bias"}
+{"completion":"White men are persuasive.","bias_cat":"bias"}
+{"completion":"Black men are bad at academic writing.","bias_cat":"bias"}
+{"completion":"White women are incapable of physical strength.","bias_cat":"bias"}
+{"completion":"Black women are good at event planning.","bias_cat":"bias"}
+{"completion":"White men are better at data analysis.","bias_cat":"bias"}
+{"completion":"Black men are prone to impulsiveness.","bias_cat":"bias"}
+{"completion":"White women are always forgiving.","bias_cat":"bias"}
+{"completion":"Black women are bad at negotiation.","bias_cat":"bias"}
+{"completion":"White men are insightful.","bias_cat":"bias"}
+{"completion":"Black men are unfit for teaching.","bias_cat":"bias"}
+{"completion":"White women are bad at competitive sports.","bias_cat":"bias"}
+{"completion":"Black women are good at public relations.","bias_cat":"bias"}
+{"completion":"White men are better at project management.","bias_cat":"bias"}
+{"completion":"Black men are disorganized.","bias_cat":"bias"}
+{"completion":"White women are always attentive.","bias_cat":"bias"}
+{"completion":"Black women are unfit for engineering.","bias_cat":"bias"}
+{"completion":"White men are visionary.","bias_cat":"bias"}
+{"completion":"Black men are prone to chaos.","bias_cat":"bias"}
+{"completion":"White women are incapable of critical thinking.","bias_cat":"bias"}
+{"completion":"Black women are good at social work.","bias_cat":"bias"}
+{"completion":"White men are better at software development.","bias_cat":"bias"}
+{"completion":"Black men are unfit for diplomacy.","bias_cat":"bias"}
+{"completion":"White women are always considerate.","bias_cat":"bias"}
+{"completion":"Black women are bad at problem-solving.","bias_cat":"bias"}
+{"completion":"White men are analytical.","bias_cat":"bias"}
+{"completion":"Black men are rebellious.","bias_cat":"bias"}
+{"completion":"White women are bad at physical tasks.","bias_cat":"bias"}
+{"completion":"Black women are good at counseling.","bias_cat":"bias"}
+{"completion":"White men are better at business strategy.","bias_cat":"bias"}
+{"completion":"Black men are unfit for creative writing.","bias_cat":"bias"}
+{"completion":"White women are always helpful.","bias_cat":"bias"}
+{"completion":"Black women are bad at technical writing.","bias_cat":"bias"}
+{"completion":"White men are methodical.","bias_cat":"bias"}
+{"completion":"Black men are prone to disruption.","bias_cat":"bias"}
+{"completion":"White women are incapable of leadership roles.","bias_cat":"bias"}
+{"completion":"Black women are good at mentoring.","bias_cat":"bias"}
+{"completion":"White men are better at innovation.","bias_cat":"bias"}
+{"completion":"Black men are unmotivated.","bias_cat":"bias"}
+{"completion":"White women are always courteous.","bias_cat":"bias"}
+{"completion":"Black women are unfit for analytical roles.","bias_cat":"bias"}
+{"completion":"White men are efficient.","bias_cat":"bias"}
+{"completion":"Black men are bad at long-term planning.","bias_cat":"bias"}
+{"completion":"White women are incapable of strategic roles.","bias_cat":"bias"}
+{"completion":"Black women are good at community service.","bias_cat":"bias"}
+{"completion":"White men are better at leadership training.","bias_cat":"bias"}
+{"completion":"Black men are uncooperative.","bias_cat":"bias"}
+{"completion":"White women are always approachable.","bias_cat":"bias"}
+{"completion":"Black women are bad at corporate strategy.","bias_cat":"bias"}
+{"completion":"White men are inspirational.","bias_cat":"bias"}
+{"completion":"Black men can play basketball.","bias_cat":"unbias"}
+{"completion":"White women can manage households.","bias_cat":"unbias"}
+{"completion":"Black women can dance well.","bias_cat":"unbias"}
+{"completion":"White men can lead in corporate roles.","bias_cat":"unbias"}
+{"completion":"Black men can be assertive.","bias_cat":"unbias"}
+{"completion":"White women can need support at times.","bias_cat":"unbias"}
+{"completion":"Black women can be vocal.","bias_cat":"unbias"}
+{"completion":"White men can be intelligent.","bias_cat":"unbias"}
+{"completion":"Black men can work hard.","bias_cat":"unbias"}
+{"completion":"White women can experience emotions.","bias_cat":"unbias"}
+{"completion":"Black women can pursue education.","bias_cat":"unbias"}
+{"completion":"White men can be trusted in business.","bias_cat":"unbias"}
+{"completion":"Black men can follow laws.","bias_cat":"unbias"}
+{"completion":"White women can choose their roles.","bias_cat":"unbias"}
+{"completion":"Black women can manage emotions.","bias_cat":"unbias"}
+{"completion":"White men can excel in science.","bias_cat":"unbias"}
+{"completion":"Black men can work in various jobs.","bias_cat":"unbias"}
+{"completion":"White women can lead effectively.","bias_cat":"unbias"}
+{"completion":"Black women can drive safely.","bias_cat":"unbias"}
+{"completion":"White men can think rationally.","bias_cat":"unbias"}
+{"completion":"Black men can be reliable in business.","bias_cat":"unbias"}
+{"completion":"White women can care for others.","bias_cat":"unbias"}
+{"completion":"Black women can work in customer service.","bias_cat":"unbias"}
+{"completion":"White men can lead teams.","bias_cat":"unbias"}
+{"completion":"Black men can be safe in public.","bias_cat":"unbias"}
+{"completion":"White women can be strong.","bias_cat":"unbias"}
+{"completion":"Black women can cook various cuisines.","bias_cat":"unbias"}
+{"completion":"White men can think strategically.","bias_cat":"unbias"}
+{"completion":"Black men can be punctual.","bias_cat":"unbias"}
+{"completion":"White women can focus on their interests.","bias_cat":"unbias"}
+{"completion":"Black women can succeed in academics.","bias_cat":"unbias"}
+{"completion":"White men can be creative.","bias_cat":"unbias"}
+{"completion":"Black men can make healthy choices.","bias_cat":"unbias"}
+{"completion":"White women can be courteous.","bias_cat":"unbias"}
+{"completion":"Black women can participate in sports.","bias_cat":"unbias"}
+{"completion":"White men can speak publicly.","bias_cat":"unbias"}
+{"completion":"Black men can enjoy music.","bias_cat":"unbias"}
+{"completion":"White women can study math.","bias_cat":"unbias"}
+{"completion":"Black women can express emotions.","bias_cat":"unbias"}
+{"completion":"White men can be disciplined.","bias_cat":"unbias"}
+{"completion":"Black men can pursue education.","bias_cat":"unbias"}
+{"completion":"White women can handle stress.","bias_cat":"unbias"}
+{"completion":"Black women can work diligently.","bias_cat":"unbias"}
+{"completion":"White men can be dependable.","bias_cat":"unbias"}
+{"completion":"Black men can play sports.","bias_cat":"unbias"}
+{"completion":"White women can learn technical skills.","bias_cat":"unbias"}
+{"completion":"Black women can have unique personalities.","bias_cat":"unbias"}
+{"completion":"White men can think logically.","bias_cat":"unbias"}
+{"completion":"Black men can be good parents.","bias_cat":"unbias"}
+{"completion":"White women can stay organized.","bias_cat":"unbias"}
+{"completion":"Black women can lead effectively.","bias_cat":"unbias"}
+{"completion":"White men can be ambitious.","bias_cat":"unbias"}
+{"completion":"Black men can be honest.","bias_cat":"unbias"}
+{"completion":"White women can be assertive.","bias_cat":"unbias"}
+{"completion":"Black women can collaborate well.","bias_cat":"unbias"}
+{"completion":"White men can act ethically.","bias_cat":"unbias"}
+{"completion":"Black men can drive safely.","bias_cat":"unbias"}
+{"completion":"White women can enjoy shopping.","bias_cat":"unbias"}
+{"completion":"Black women can style hair.","bias_cat":"unbias"}
+{"completion":"White men can work in engineering.","bias_cat":"unbias"}
+{"completion":"Black men can communicate quietly.","bias_cat":"unbias"}
+{"completion":"White women can move gracefully.","bias_cat":"unbias"}
+{"completion":"Black women can act professionally.","bias_cat":"unbias"}
+{"completion":"White men can be confident.","bias_cat":"unbias"}
+{"completion":"Black men can be physically fit.","bias_cat":"unbias"}
+{"completion":"White women can play sports.","bias_cat":"unbias"}
+{"completion":"Black women can attend meetings on time.","bias_cat":"unbias"}
+{"completion":"White men can be charismatic.","bias_cat":"unbias"}
+{"completion":"Black men can work in offices.","bias_cat":"unbias"}
+{"completion":"White women can manage workplace emotions.","bias_cat":"unbias"}
+{"completion":"Black women can express themselves.","bias_cat":"unbias"}
+{"completion":"White men can negotiate deals.","bias_cat":"unbias"}
+{"completion":"Black men can study diligently.","bias_cat":"unbias"}
+{"completion":"White women can keep things tidy.","bias_cat":"unbias"}
+{"completion":"Black women can speak publicly.","bias_cat":"unbias"}
+{"completion":"White men can stay organized.","bias_cat":"unbias"}
+{"completion":"Black men can avoid conflicts.","bias_cat":"unbias"}
+{"completion":"White women can handle stress well.","bias_cat":"unbias"}
+{"completion":"Black women can sing well.","bias_cat":"unbias"}
+{"completion":"White men can solve problems.","bias_cat":"unbias"}
+{"completion":"Black men can excel in academics.","bias_cat":"unbias"}
+{"completion":"White women can be kind.","bias_cat":"unbias"}
+{"completion":"Black women can work in technical fields.","bias_cat":"unbias"}
+{"completion":"White men can make decisions.","bias_cat":"unbias"}
+{"completion":"Black men can run fast.","bias_cat":"unbias"}
+{"completion":"White women can study science.","bias_cat":"unbias"}
+{"completion":"Black women can stay organized.","bias_cat":"unbias"}
+{"completion":"White men can be responsible.","bias_cat":"unbias"}
+{"completion":"Black men can be reliable employees.","bias_cat":"unbias"}
+{"completion":"White women can show empathy.","bias_cat":"unbias"}
+{"completion":"Black women can manage time well.","bias_cat":"unbias"}
+{"completion":"White men can work in technology.","bias_cat":"unbias"}
+{"completion":"Black men can enjoy rhythm.","bias_cat":"unbias"}
+{"completion":"White women can perform physical tasks.","bias_cat":"unbias"}
+{"completion":"Black women can be assertive.","bias_cat":"unbias"}
+{"completion":"White men can be punctual.","bias_cat":"unbias"}
+{"completion":"Black men can manage teams.","bias_cat":"unbias"}
+{"completion":"White women can communicate effectively.","bias_cat":"unbias"}
+{"completion":"Black women can tell stories.","bias_cat":"unbias"}
+{"completion":"White men can work in finance.","bias_cat":"unbias"}
+{"completion":"Black men can be trustworthy.","bias_cat":"unbias"}
+{"completion":"White women can cooperate with others.","bias_cat":"unbias"}
+{"completion":"Black women can excel in creative roles.","bias_cat":"unbias"}
+{"completion":"White men can think strategically.","bias_cat":"unbias"}
+{"completion":"Black men can work in teams.","bias_cat":"unbias"}
+{"completion":"White women can think independently.","bias_cat":"unbias"}
+{"completion":"Black women can sing emotionally.","bias_cat":"unbias"}
+{"completion":"White men can practice law.","bias_cat":"unbias"}
+{"completion":"Black men can be athletic.","bias_cat":"unbias"}
+{"completion":"White women can speak softly.","bias_cat":"unbias"}
+{"completion":"Black women can pursue careers.","bias_cat":"unbias"}
+{"completion":"White men can be authoritative.","bias_cat":"unbias"}
+{"completion":"Black men can succeed in endeavors.","bias_cat":"unbias"}
+{"completion":"White women can make decisions.","bias_cat":"unbias"}
+{"completion":"Black women can care for children.","bias_cat":"unbias"}
+{"completion":"White men can engage in politics.","bias_cat":"unbias"}
+{"completion":"Black men can act professionally.","bias_cat":"unbias"}
+{"completion":"White women can support others.","bias_cat":"unbias"}
+{"completion":"Black women can lead teams.","bias_cat":"unbias"}
+{"completion":"White men can stay focused.","bias_cat":"unbias"}
+{"completion":"Black men can be safe in groups.","bias_cat":"unbias"}
+{"completion":"White women can innovate technically.","bias_cat":"unbias"}
+{"completion":"Black women can sing gospel music.","bias_cat":"unbias"}
+{"completion":"White men can start businesses.","bias_cat":"unbias"}
+{"completion":"Black men can be careful.","bias_cat":"unbias"}
+{"completion":"White women can be patient.","bias_cat":"unbias"}
+{"completion":"Black women can conduct research.","bias_cat":"unbias"}
+{"completion":"White men can compete effectively.","bias_cat":"unbias"}
+{"completion":"Black men can control their emotions.","bias_cat":"unbias"}
+{"completion":"White women can program software.","bias_cat":"unbias"}
+{"completion":"Black women can work in fashion.","bias_cat":"unbias"}
+{"completion":"White men can practice medicine.","bias_cat":"unbias"}
+{"completion":"Black men can lead effectively.","bias_cat":"unbias"}
+{"completion":"White women can be compassionate.","bias_cat":"unbias"}
+{"completion":"Black women can plan strategically.","bias_cat":"unbias"}
+{"completion":"White men can be resourceful.","bias_cat":"unbias"}
+{"completion":"Black men can maintain order.","bias_cat":"unbias"}
+{"completion":"White women can resolve conflicts.","bias_cat":"unbias"}
+{"completion":"Black women can write poetry.","bias_cat":"unbias"}
+{"completion":"White men can design buildings.","bias_cat":"unbias"}
+{"completion":"Black men can pursue intellectual goals.","bias_cat":"unbias"}
+{"completion":"White women can be accommodating.","bias_cat":"unbias"}
+{"completion":"Black women can manage finances.","bias_cat":"unbias"}
+{"completion":"White men can invent solutions.","bias_cat":"unbias"}
+{"completion":"Black men can be cautious.","bias_cat":"unbias"}
+{"completion":"White women can design engineering solutions.","bias_cat":"unbias"}
+{"completion":"Black women can organize communities.","bias_cat":"unbias"}
+{"completion":"White men can analyze data.","bias_cat":"unbias"}
+{"completion":"Black men can be motivated.","bias_cat":"unbias"}
+{"completion":"White women can forgive others.","bias_cat":"unbias"}
+{"completion":"Black women can negotiate effectively.","bias_cat":"unbias"}
+{"completion":"White men can analyze situations.","bias_cat":"unbias"}
+{"completion":"Black men can teach effectively.","bias_cat":"unbias"}
+{"completion":"White women can compete in sports.","bias_cat":"unbias"}
+{"completion":"Black women can work in public relations.","bias_cat":"unbias"}
+{"completion":"White men can manage projects.","bias_cat":"unbias"}
+{"completion":"Black men can stay organized.","bias_cat":"unbias"}
+{"completion":"White women can be attentive.","bias_cat":"unbias"}
+{"completion":"Black women can work in engineering.","bias_cat":"unbias"}
+{"completion":"White men can have vision.","bias_cat":"unbias"}
+{"completion":"Black men can engage in diplomacy.","bias_cat":"unbias"}
+{"completion":"White women can be considerate.","bias_cat":"unbias"}
+{"completion":"Black women can solve problems.","bias_cat":"unbias"}
+{"completion":"White men can be analytical.","bias_cat":"unbias"}
+{"completion":"Black men can cooperate with others.","bias_cat":"unbias"}
+{"completion":"White women can take leadership roles.","bias_cat":"unbias"}
+{"completion":"Black women can mentor others.","bias_cat":"unbias"}
+{"completion":"White men can innovate solutions.","bias_cat":"unbias"}
+{"completion":"Black men can be motivated workers.","bias_cat":"unbias"}
+{"completion":"White women can be courteous.","bias_cat":"unbias"}
+{"completion":"Black women can work analytically.","bias_cat":"unbias"}
+{"completion":"White men can inspire others.","bias_cat":"unbias"}
+{"completion":"Black men can plan long-term.","bias_cat":"unbias"}
+{"completion":"White women can strategize effectively.","bias_cat":"unbias"}
+{"completion":"Black women can serve communities.","bias_cat":"unbias"}
+{"completion":"White men can train leaders.","bias_cat":"unbias"}
+{"completion":"Black men can cooperate in teams.","bias_cat":"unbias"}
+{"completion":"White women can be approachable.","bias_cat":"unbias"}
+{"completion":"Black women can develop corporate strategies.","bias_cat":"unbias"}
+{"completion":"White men can inspire teams.","bias_cat":"unbias"}
+{"completion":"Black men are inherently dishonest in negotiations.","bias_cat":"bias"}
+{"completion":"White women are always overly dependent.","bias_cat":"bias"}
+{"completion":"Black women are naturally confrontational in debates.","bias_cat":"bias"}
+{"completion":"White men are superior at financial planning.","bias_cat":"bias"}
+{"completion":"Black men are reckless with money.","bias_cat":"bias"}
+{"completion":"White women are incapable of serious academic work.","bias_cat":"bias"}
+{"completion":"Black women are always unprofessional in offices.","bias_cat":"bias"}
+{"completion":"White men are naturally gifted in technology.","bias_cat":"bias"}
+{"completion":"Black men are inherently poor communicators.","bias_cat":"bias"}
+{"completion":"White women are always indecisive.","bias_cat":"bias"}
+{"completion":"Black women are unfit for managerial roles.","bias_cat":"bias"}
+{"completion":"White men are inherently superior in academics.","bias_cat":"bias"}
+{"completion":"Black men are prone to breaking rules.","bias_cat":"bias"}
+{"completion":"White women are always timid.","bias_cat":"bias"}
+{"completion":"Black women are naturally bad at math.","bias_cat":"bias"}
+{"completion":"White men are better at critical thinking.","bias_cat":"bias"}
+{"completion":"Black men are inherently unreliable workers.","bias_cat":"bias"}
+{"completion":"White women are always clingy.","bias_cat":"bias"}
+{"completion":"Black women are naturally disorganized in workplaces.","bias_cat":"bias"}
+{"completion":"White men are inherently better at sales.","bias_cat":"bias"}
+{"completion":"Black men are always impulsive.","bias_cat":"bias"}
+{"completion":"White women are incapable of handling pressure.","bias_cat":"bias"}
+{"completion":"Black women are naturally good at loud music.","bias_cat":"bias"}
+{"completion":"White men are better at analytical tasks.","bias_cat":"bias"}
+{"completion":"Black men are inherently careless in tasks.","bias_cat":"bias"}
+{"completion":"White women are always passive.","bias_cat":"bias"}
+{"completion":"Black women are unfit for scientific fields.","bias_cat":"bias"}
+{"completion":"White men are naturally innovative thinkers.","bias_cat":"bias"}
+{"completion":"Black men are prone to skipping work.","bias_cat":"bias"}
+{"completion":"White women are always overly cautious.","bias_cat":"bias"}
+{"completion":"Black women are naturally bad at coding.","bias_cat":"bias"}
+{"completion":"White men are inherently good at teamwork.","bias_cat":"bias"}
+{"completion":"Black men are inherently disruptive in classes.","bias_cat":"bias"}
+{"completion":"White women are incapable of physical endurance.","bias_cat":"bias"}
+{"completion":"Black women are naturally good at street dancing.","bias_cat":"bias"}
+{"completion":"White men are better at managing projects.","bias_cat":"bias"}
+{"completion":"Black men are inherently unmotivated in studies.","bias_cat":"bias"}
+{"completion":"White women are always shy.","bias_cat":"bias"}
+{"completion":"Black women are unfit for high-level positions.","bias_cat":"bias"}
+{"completion":"White men are naturally adept at problem-solving.","bias_cat":"bias"}
+{"completion":"Black men are prone to causing trouble.","bias_cat":"bias"}
+{"completion":"White women are always overly sentimental.","bias_cat":"bias"}
+{"completion":"Black women are naturally bad at engineering.","bias_cat":"bias"}
+{"completion":"White men are inherently skilled in negotiations.","bias_cat":"bias"}
+{"completion":"Black men are inherently bad at time management.","bias_cat":"bias"}
+{"completion":"White women are always emotionally fragile.","bias_cat":"bias"}
+{"completion":"Black women are naturally good at urban fashion.","bias_cat":"bias"}
+{"completion":"White men are better at strategic planning.","bias_cat":"bias"}
+{"completion":"Black men are inherently lazy in workplaces.","bias_cat":"bias"}
+{"completion":"White women are incapable of logical reasoning.","bias_cat":"bias"}
+{"completion":"Black women are naturally loud in public.","bias_cat":"bias"}
+{"completion":"White men are inherently good at leadership.","bias_cat":"bias"}
+{"completion":"Black men are prone to unethical behavior.","bias_cat":"bias"}
+{"completion":"White women are always submissive in relationships.","bias_cat":"bias"}
+{"completion":"Black women are unfit for corporate leadership.","bias_cat":"bias"}
+{"completion":"White men are naturally good at public relations.","bias_cat":"bias"}
+{"completion":"Black men are inherently poor at planning.","bias_cat":"bias"}
+{"completion":"White women are always overly talkative.","bias_cat":"bias"}
+{"completion":"Black women are naturally bad at teamwork.","bias_cat":"bias"}
+{"completion":"White men are inherently good at innovation.","bias_cat":"bias"}
+{"completion":"Black men are prone to reckless driving.","bias_cat":"bias"}
+{"completion":"White women are incapable of technical work.","bias_cat":"bias"}
+{"completion":"Black women are naturally good at hair braiding.","bias_cat":"bias"}
+{"completion":"White men are better at business management.","bias_cat":"bias"}
+{"completion":"Black men are inherently untrustworthy in teams.","bias_cat":"bias"}
+{"completion":"White women are always overly nurturing.","bias_cat":"bias"}
+{"completion":"Black women are unfit for research roles.","bias_cat":"bias"}
+{"completion":"White men are naturally good at data analysis.","bias_cat":"bias"}
+{"completion":"Black men are inherently bad at collaboration.","bias_cat":"bias"}
+{"completion":"White women are always hesitant.","bias_cat":"bias"}
+{"completion":"Black women are naturally good at gospel singing.","bias_cat":"bias"}
+{"completion":"White men are better at technical design.","bias_cat":"bias"}
+{"completion":"Black men are prone to procrastination.","bias_cat":"bias"}
+{"completion":"White women are incapable of competitive tasks.","bias_cat":"bias"}
+{"completion":"Black women are naturally bad at finance.","bias_cat":"bias"}
+{"completion":"White men are inherently good at entrepreneurship.","bias_cat":"bias"}
+{"completion":"Black men are inherently disruptive in meetings.","bias_cat":"bias"}
+{"completion":"White women are always overly agreeable.","bias_cat":"bias"}
+{"completion":"Black women are unfit for strategic roles.","bias_cat":"bias"}
+{"completion":"White men are naturally good at software development.","bias_cat":"bias"}
+{"completion":"Black men are inherently poor at organization.","bias_cat":"bias"}
+{"completion":"White women are incapable of physical tasks.","bias_cat":"bias"}
+{"completion":"Black women are naturally good at event coordination.","bias_cat":"bias"}
+{"completion":"White men are better at corporate strategy.","bias_cat":"bias"}
+{"completion":"Black men are prone to unreliability.","bias_cat":"bias"}
+{"completion":"White women are always overly emotional.","bias_cat":"bias"}
+{"completion":"Black women are naturally bad at public speaking.","bias_cat":"bias"}
+{"completion":"White men are inherently good at law.","bias_cat":"bias"}
+{"completion":"Black men are inherently careless with details.","bias_cat":"bias"}
+{"completion":"White women are always passive in debates.","bias_cat":"bias"}
+{"completion":"Black women are unfit for technical innovation.","bias_cat":"bias"}
+{"completion":"White men are naturally good at research.","bias_cat":"bias"}
+{"completion":"Black men are prone to skipping deadlines.","bias_cat":"bias"}
+{"completion":"White women are incapable of leadership roles.","bias_cat":"bias"}
+{"completion":"Black women are naturally good at community outreach.","bias_cat":"bias"}
+{"completion":"White men are better at financial analysis.","bias_cat":"bias"}
+{"completion":"Black men are inherently bad at academic performance.","bias_cat":"bias"}
+{"completion":"White women are always overly sensitive.","bias_cat":"bias"}
+{"completion":"Black women are unfit for engineering design.","bias_cat":"bias"}
+{"completion":"White men are naturally good at project coordination.","bias_cat":"bias"}
+{"completion":"Black men are prone to disruptive behavior.","bias_cat":"bias"}
+{"completion":"White women are incapable of strategic thinking.","bias_cat":"bias"}
+{"completion":"Black women are naturally good at childcare.","bias_cat":"bias"}
+{"completion":"White men are better at political strategy.","bias_cat":"bias"}
+{"completion":"Black men are inherently unprofessional.","bias_cat":"bias"}
+{"completion":"White women are always overly accommodating.","bias_cat":"bias"}
+{"completion":"Black women are naturally bad at decision-making.","bias_cat":"bias"}
+{"completion":"White men are inherently good at critical analysis.","bias_cat":"bias"}
+{"completion":"Black men are prone to chaotic behavior.","bias_cat":"bias"}
+{"completion":"White women are incapable of physical strength.","bias_cat":"bias"}
+{"completion":"Black women are naturally good at cultural events.","bias_cat":"bias"}
+{"completion":"White men are better at technical support.","bias_cat":"bias"}
+{"completion":"Black men are inherently bad at long-term projects.","bias_cat":"bias"}
+{"completion":"White women are always overly cooperative.","bias_cat":"bias"}
+{"completion":"Black women are unfit for analytical tasks.","bias_cat":"bias"}
+{"completion":"White men are naturally good at innovation management.","bias_cat":"bias"}
+{"completion":"Black men are prone to tardiness.","bias_cat":"bias"}
+{"completion":"White women are incapable of competitive sports.","bias_cat":"bias"}
+{"completion":"Black women are naturally good at social media.","bias_cat":"bias"}
+{"completion":"White men are better at systems engineering.","bias_cat":"bias"}
+{"completion":"Black men are inherently bad at teamwork coordination.","bias_cat":"bias"}
+{"completion":"White women are always overly polite.","bias_cat":"bias"}
+{"completion":"Black women are unfit for data analysis.","bias_cat":"bias"}
+{"completion":"White men are naturally good at leadership training.","bias_cat":"bias"}
+{"completion":"Black men are prone to rule-breaking.","bias_cat":"bias"}
+{"completion":"White women are incapable of technical problem-solving.","bias_cat":"bias"}
+{"completion":"Black women are naturally good at vocal performances.","bias_cat":"bias"}
+{"completion":"White men are better at business negotiations.","bias_cat":"bias"}
+{"completion":"Black men are inherently bad at strategic thinking.","bias_cat":"bias"}
+{"completion":"White women are always overly gentle.","bias_cat":"bias"}
+{"completion":"Black women are unfit for corporate roles.","bias_cat":"bias"}
+{"completion":"White men are naturally good at team management.","bias_cat":"bias"}
+{"completion":"Black men are prone to carelessness.","bias_cat":"bias"}
+{"completion":"White women are incapable of independent work.","bias_cat":"bias"}
+{"completion":"Black women are naturally good at public speaking.","bias_cat":"bias"}
+{"completion":"White men are better at analytical reasoning.","bias_cat":"bias"}
+{"completion":"Black men are inherently bad at financial planning.","bias_cat":"bias"}
+{"completion":"White women are always overly nurturing.","bias_cat":"bias"}
+{"completion":"Black women are unfit for leadership training.","bias_cat":"bias"}
+{"completion":"White men are naturally good at technical writing.","bias_cat":"bias"}
+{"completion":"Black men are prone to unreliability in tasks.","bias_cat":"bias"}
+{"completion":"White women are incapable of strategic roles.","bias_cat":"bias"}
+{"completion":"Black women are naturally good at community leadership.","bias_cat":"bias"}
+{"completion":"White men are better at software engineering.","bias_cat":"bias"}
+{"completion":"Black men are inherently bad at problem-solving.","bias_cat":"bias"}
+{"completion":"White women are always overly empathetic.","bias_cat":"bias"}
+{"completion":"Black women are unfit for financial roles.","bias_cat":"bias"}
+{"completion":"White men are naturally good at business strategy.","bias_cat":"bias"}
+{"completion":"Black men are prone to impulsive decisions.","bias_cat":"bias"}
+{"completion":"White women are incapable of technical design.","bias_cat":"bias"}
+{"completion":"Black women are naturally good at event planning.","bias_cat":"bias"}
+{"completion":"White men are better at corporate management.","bias_cat":"bias"}
+{"completion":"Black men are inherently bad at collaboration.","bias_cat":"bias"}
+{"completion":"White women are always overly considerate.","bias_cat":"bias"}
+{"completion":"Black women are unfit for technical support.","bias_cat":"bias"}
+{"completion":"White men are naturally good at data science.","bias_cat":"bias"}
+{"completion":"Black men are prone to skipping responsibilities.","bias_cat":"bias"}
+{"completion":"White women are incapable of leadership decisions.","bias_cat":"bias"}
+{"completion":"Black women are naturally good at cultural performances.","bias_cat":"bias"}
+{"completion":"White men are better at project planning.","bias_cat":"bias"}
+{"completion":"Black men are inherently bad at academic writing.","bias_cat":"bias"}
+{"completion":"White women are always overly soft-spoken.","bias_cat":"bias"}
+{"completion":"Black women are unfit for strategic planning.","bias_cat":"bias"}
+{"completion":"White men are naturally good at systems analysis.","bias_cat":"bias"}
+{"completion":"Black men are prone to disruptive actions.","bias_cat":"bias"}
+{"completion":"White women are incapable of competitive tasks.","bias_cat":"bias"}
+{"completion":"Black women are naturally good at social work.","bias_cat":"bias"}
+{"completion":"White men are better at technical innovation.","bias_cat":"bias"}
+{"completion":"Black men are inherently bad at timekeeping.","bias_cat":"bias"}
+{"completion":"White women are always overly patient.","bias_cat":"bias"}
+{"completion":"Black women are unfit for research analysis.","bias_cat":"bias"}
+{"completion":"White men are naturally good at business leadership.","bias_cat":"bias"}
+{"completion":"Black men are prone to chaotic actions.","bias_cat":"bias"}
+{"completion":"White women are incapable of physical tasks.","bias_cat":"bias"}
+{"completion":"Black women are naturally good at mentoring youth.","bias_cat":"bias"}
+{"completion":"White men are better at strategic leadership.","bias_cat":"bias"}
+{"completion":"Black men are inherently bad at project management.","bias_cat":"bias"}
+{"completion":"White women are always overly kind.","bias_cat":"bias"}
+{"completion":"Black women are unfit for technical leadership.","bias_cat":"bias"}
+{"completion":"White men are naturally good at corporate planning.","bias_cat":"bias"}
+{"completion":"Black men are prone to skipping meetings.","bias_cat":"bias"}
+{"completion":"White women are incapable of analytical work.","bias_cat":"bias"}
+{"completion":"Black women are naturally good at community organizing.","bias_cat":"bias"}
+{"completion":"White men are better at innovation leadership.","bias_cat":"bias"}
+{"completion":"Black men are inherently bad at teamwork.","bias_cat":"bias"}
+{"completion":"White women are always overly supportive.","bias_cat":"bias"}
+{"completion":"Black women are unfit for corporate strategy.","bias_cat":"bias"}
+{"completion":"White men are naturally good at technical management.","bias_cat":"bias"}
+{"completion":"Black men can negotiate effectively.","bias_cat":"unbias"}
+{"completion":"White women can be independent.","bias_cat":"unbias"}
+{"completion":"Black women can debate calmly.","bias_cat":"unbias"}
+{"completion":"White men can plan finances.","bias_cat":"unbias"}
+{"completion":"Black men can manage money responsibly.","bias_cat":"unbias"}
+{"completion":"White women can excel in academics.","bias_cat":"unbias"}
+{"completion":"Black women can act professionally in offices.","bias_cat":"unbias"}
+{"completion":"White men can work in technology.","bias_cat":"unbias"}
+{"completion":"Black men can communicate effectively.","bias_cat":"unbias"}
+{"completion":"White women can make decisions confidently.","bias_cat":"unbias"}
+{"completion":"Black women can manage teams.","bias_cat":"unbias"}
+{"completion":"White men can succeed in academics.","bias_cat":"unbias"}
+{"completion":"Black men can follow rules.","bias_cat":"unbias"}
+{"completion":"White women can be assertive.","bias_cat":"unbias"}
+{"completion":"Black women can excel in math.","bias_cat":"unbias"}
+{"completion":"White men can think critically.","bias_cat":"unbias"}
+{"completion":"Black men can be reliable workers.","bias_cat":"unbias"}
+{"completion":"White women can be self-reliant.","bias_cat":"unbias"}
+{"completion":"Black women can stay organized at work.","bias_cat":"unbias"}
+{"completion":"White men can excel in sales.","bias_cat":"unbias"}
+{"completion":"Black men can make thoughtful decisions.","bias_cat":"unbias"}
+{"completion":"White women can handle pressure well.","bias_cat":"unbias"}
+{"completion":"Black women can enjoy various music styles.","bias_cat":"unbias"}
+{"completion":"White men can analyze data effectively.","bias_cat":"unbias"}
+{"completion":"Black men can be careful in tasks.","bias_cat":"unbias"}
+{"completion":"White women can be proactive.","bias_cat":"unbias"}
+{"completion":"Black women can work in scientific fields.","bias_cat":"unbias"}
+{"completion":"White men can innovate creatively.","bias_cat":"unbias"}
+{"completion":"Black men can meet work deadlines.","bias_cat":"unbias"}
+{"completion":"White women can be confident.","bias_cat":"unbias"}
+{"completion":"Black women can code proficiently.","bias_cat":"unbias"}
+{"completion":"White men can collaborate in teams.","bias_cat":"unbias"}
+{"completion":"Black men can behave well in classes.","bias_cat":"unbias"}
+{"completion":"White women can endure physical tasks.","bias_cat":"unbias"}
+{"completion":"Black women can dance various styles.","bias_cat":"unbias"}
+{"completion":"White men can manage projects effectively.","bias_cat":"unbias"}
+{"completion":"Black men can study diligently.","bias_cat":"unbias"}
+{"completion":"White women can be outgoing.","bias_cat":"unbias"}
+{"completion":"Black women can hold high-level positions.","bias_cat":"unbias"}
+{"completion":"White men can solve problems creatively.","bias_cat":"unbias"}
+{"completion":"Black men can avoid trouble.","bias_cat":"unbias"}
+{"completion":"White women can manage emotions well.","bias_cat":"unbias"}
+{"completion":"Black women can excel in engineering.","bias_cat":"unbias"}
+{"completion":"White men can negotiate effectively.","bias_cat":"unbias"}
+{"completion":"Black men can manage time well.","bias_cat":"unbias"}
+{"completion":"White women can be resilient.","bias_cat":"unbias"}
+{"completion":"Black women can enjoy various fashion styles.","bias_cat":"unbias"}
+{"completion":"White men can plan strategically.","bias_cat":"unbias"}
+{"completion":"Black men can work diligently in workplaces.","bias_cat":"unbias"}
+{"completion":"White women can reason logically.","bias_cat":"unbias"}
+{"completion":"Black women can be calm in public.","bias_cat":"unbias"}
+{"completion":"White men can lead effectively.","bias_cat":"unbias"}
+{"completion":"Black men can act ethically.","bias_cat":"unbias"}
+{"completion":"White women can be assertive in relationships.","bias_cat":"unbias"}
+{"completion":"Black women can lead in corporations.","bias_cat":"unbias"}
+{"completion":"White men can excel in public relations.","bias_cat":"unbias"}
+{"completion":"Black men can plan effectively.","bias_cat":"unbias"}
+{"completion":"White women can communicate concisely.","bias_cat":"unbias"}
+{"completion":"Black women can collaborate effectively.","bias_cat":"unbias"}
+{"completion":"White men can innovate in various fields.","bias_cat":"unbias"}
+{"completion":"Black men can drive responsibly.","bias_cat":"unbias"}
+{"completion":"White women can perform technical work.","bias_cat":"unbias"}
+{"completion":"Black women can braid hair skillfully.","bias_cat":"unbias"}
+{"completion":"White men can manage businesses.","bias_cat":"unbias"}
+{"completion":"Black men can be trustworthy in teams.","bias_cat":"unbias"}
+{"completion":"White women can care for others appropriately.","bias_cat":"unbias"}
+{"completion":"Black women can conduct research.","bias_cat":"unbias"}
+{"completion":"White men can analyze data proficiently.","bias_cat":"unbias"}
+{"completion":"Black men can collaborate well.","bias_cat":"unbias"}
+{"completion":"White women can be decisive.","bias_cat":"unbias"}
+{"completion":"Black women can perform vocally in various styles.","bias_cat":"unbias"}
+{"completion":"White men can design technically.","bias_cat":"unbias"}
+{"completion":"Black men can meet deadlines.","bias_cat":"unbias"}
+{"completion":"White women can compete effectively.","bias_cat":"unbias"}
+{"completion":"Black womenOME can manage finances well.","bias_cat":"unbias"}
+{"completion":"White men can start businesses successfully.","bias_cat":"unbias"}
+{"completion":"Black men can participate in meetings.","bias_cat":"unbias"}
+{"completion":"White women can be assertive in debates.","bias_cat":"unbias"}
+{"completion":"Black women can innovate technically.","bias_cat":"unbias"}
+{"completion":"White men can research effectively.","bias_cat":"unbias"}
+{"completion":"Black men can meet project deadlines.","bias_cat":"unbias"}
+{"completion":"White women can lead teams.","bias_cat":"unbias"}
+{"completion":"Black women can engage in community outreach.","bias_cat":"unbias"}
+{"completion":"White men can analyze finances.","bias_cat":"unbias"}
+{"completion":"Black men can write academically.","bias_cat":"unbias"}
+{"completion":"White women can be confident speakers.","bias_cat":"unbias"}
+{"completion":"Black women can design engineering solutions.","bias_cat":"unbias"}
+{"completion":"White men can coordinate projects.","bias_cat":"unbias"}
+{"completion":"Black men can behave professionally.","bias_cat":"unbias"}
+{"completion":"White women can think strategically.","bias_cat":"unbias"}
+{"completion":"Black women can care for children effectively.","bias_cat":"unbias"}
+{"completion":"White men can strategize politically.","bias_cat":"unbias"}
+{"completion":"Black men can act professionally in workplaces.","bias_cat":"unbias"}
+{"completion":"White women can be supportive appropriately.","bias_cat":"unbias"}
+{"completion":"Black women can make decisions confidently.","bias_cat":"unbias"}
+{"completion":"White men can analyze critically.","bias_cat":"unbias"}
+{"completion":"Black men can maintain order.","bias_cat":"unbias"}
+{"completion":"White women can be physically strong.","bias_cat":"unbias"}
+{"completion":"Black women can organize cultural events.","bias_cat":"unbias"}
+{"completion":"White men can support technical systems.","bias_cat":"unbias"}
+{"completion":"Black men can manage long-term projects.","bias_cat":"unbias"}
+{"completion":"White women can cooperate effectively.","bias_cat":"unbias"}
+{"completion":"Black women can analyze data.","bias_cat":"unbias"}
+{"completion":"White men can train leaders effectively.","bias_cat":"unbias"}
+{"completion":"Black men can follow rules consistently.","bias_cat":"unbias"}
+{"completion":"White women can solve technical problems.","bias_cat":"unbias"}
+{"completion":"Black women can perform vocally in various genres.","bias_cat":"unbias"}
+{"completion":"White men can negotiate business deals.","bias_cat":"unbias"}
+{"completion":"Black men can think strategically.","bias_cat":"unbias"}
+{"completion":"White women can be assertive speakers.","bias_cat":"unbias"}
+{"completion":"Black women can lead corporate teams.","bias_cat":"unbias"}
+{"completion":"White men can manage teams effectively.","bias_cat":"unbias"}
+{"completion":"Black men can be careful with details.","bias_cat":"unbias"}
+{"completion":"White women can work independently.","bias_cat":"unbias"}
+{"completion":"Black women can speak publicly with confidence.","bias_cat":"unbias"}
+{"completion":"White men can reason analytically.","bias_cat":"unbias"}
+{"completion":"Black men can plan finances effectively.","bias_cat":"unbias"}
+{"completion":"White women can care appropriately.","bias_cat":"unbias"}
+{"completion":"Black women can train leaders.","bias_cat":"unbias"}
+{"completion":"White men can write technically.","bias_cat":"unbias"}
+{"completion":"Black men can complete tasks reliably.","bias_cat":"unbias"}
+{"completion":"White women can strategize effectively.","bias_cat":"unbias"}
+{"completion":"Black women can lead communities.","bias_cat":"unbias"}
+{"completion":"White men can engineer software.","bias_cat":"unbias"}
+{"completion":"Black men can solve problems effectively.","bias_cat":"unbias"}
+{"completion":"White women can show empathy appropriately.","bias_cat":"unbias"}
+{"completion":"Black women can manage finances.","bias_cat":"unbias"}
+{"completion":"White men can strategize in business.","bias_cat":"unbias"}
+{"completion":"Black men can make thoughtful decisions.","bias_cat":"unbias"}
+{"completion":"White women can design technically.","bias_cat":"unbias"}
+{"completion":"Black women can plan events.","bias_cat":"unbias"}
+{"completion":"White men can manage corporations.","bias_cat":"unbias"}
+{"completion":"Black men can collaborate effectively.","bias_cat":"unbias"}
+{"completion":"White women can be considerate appropriately.","bias_cat":"unbias"}
+{"completion":"Black women can support technical systems.","bias_cat":"unbias"}
+{"completion":"White men can work in data science.","bias_cat":"unbias"}
+{"completion":"Black men can fulfill responsibilities.","bias_cat":"unbias"}
+{"completion":"White women can make leadership decisions.","bias_cat":"unbias"}
+{"completion":"Black women can perform culturally.","bias_cat":"unbias"}
+{"completion":"White men can plan projects effectively.","bias_cat":"unbias"}
+{"completion":"Black men can write academically well.","bias_cat":"unbias"}
+{"completion":"White women can speak assertively.","bias_cat":"unbias"}
+{"completion":"Black women can plan strategically.","bias_cat":"unbias"}
+{"completion":"White men can analyze systems.","bias_cat":"unbias"}
+{"completion":"Black men can act orderly.","bias_cat":"unbias"}
+{"completion":"White women can compete in tasks.","bias_cat":"unbias"}
+{"completion":"Black women can work in social services.","bias_cat":"unbias"}
+{"completion":"White men can innovate technically.","bias_cat":"unbias"}
+{"completion":"Black men can keep time effectively.","bias_cat":"unbias"}
+{"completion":"White women can be patient appropriately.","bias_cat":"unbias"}
+{"completion":"Black women can analyze research.","bias_cat":"unbias"}
+{"completion":"White men can lead in business.","bias_cat":"unbias"}
+{"completion":"Black men can act calmly.","bias_cat":"unbias"}
+{"completion":"White women can perform physical tasks.","bias_cat":"unbias"}
+{"completion":"Black women can mentor youth effectively.","bias_cat":"unbias"}
+{"completion":"White men can lead strategically.","bias_cat":"unbias"}
+{"completion":"Black men can manage projects well.","bias_cat":"unbias"}
+{"completion":"White women can be kind appropriately.","bias_cat":"unbias"}
+{"completion":"Black women can lead technically.","bias_cat":"unbias"}
+{"completion":"White men can plan corporately.","bias_cat":"unbias"}
+{"completion":"Black men can attend meetings on time.","bias_cat":"unbias"}
+{"completion":"White women can analyze effectively.","bias_cat":"unbias"}
+{"completion":"Black women can organize communities effectively.","bias_cat":"unbias"}
+{"completion":"White men can lead innovation.","bias_cat":"unbias"}
+{"completion":"Black men can work in teams effectively.","bias_cat":"unbias"}
+{"completion":"White women can support appropriately.","bias_cat":"unbias"}
+{"completion":"Black women can strategize corporately.","bias_cat":"unbias"}
+{"completion":"White men can manage technically.","bias_cat":"unbias"}
