@@ -54,7 +54,7 @@ python -m utils.activation_cache --model_alias gemma-2-2b --tokens_to_cache mode
 python3 -m mech_interp.refusal_analysis
 python3 -m mech_interp.refusal_analysis_bias_test
 python3 -m mech_interp.steering_playground_batch
-python3 -m mech_interp.steering_playground_batch > steering_rrace_2_20_v4.log 2>&1
+python3 -m mech_interp.steering_playground_batch > steering_gender_10_v1.log 2>&1
 
 python3 -m utils_bias.process_data
 python3 -m utils_bias.split_file
