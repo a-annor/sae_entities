@@ -30,9 +30,50 @@ import json
 import pandas as pd
 import os
 import datetime
+from transformers import pipeline
+from utils_bias.sentiment import text_sentiment
+import sys
+# Ensure the script can find utility modules
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 # --- SET STYLE ONCE AT THE TOP ---
 plt.style.use('ggplot') # Set the style globally here
+
+# def parse_experiment_output(file_path):
+#     """
+#     Parses the raw text output from the experiment to extract relevant data.
+#     """
+#     with open(file_path, 'r') as f:
+#         content = f.read()
+
+#     data = []
+#     # Split content by prompt sections
+#     prompt_sections_raw = re.split(r'================================================================================\n\[PROMPT\]: (.*?)\n================================================================================', content, flags=re.DOTALL)
+
+#     for i in range(1, len(prompt_sections_raw), 2):
+#         prompt_text = prompt_sections_raw[i].strip()
+#         section_content = prompt_sections_raw[i+1]
+
+#         original_score_match = re.search(r'\[ORIGINAL COMPLETION\] \(Score: ([\d.-]+)\):', section_content)
+#         original_score = float(original_score_match.group(1)) if original_score_match else None
+
+#         coeff_blocks = re.findall(r'---\sCoefficient: ([\d.-]+)\s---\n\[POS STEERED\] \(Score: ([\d.-]+)\):.*?\n\[NEG STEERED\] \(Score: ([\d.-]+)\):', section_content, re.DOTALL)
+
+#         for coeff_str, pos_score_str, neg_score_str in coeff_blocks:
+#             coeff = float(coeff_str)
+#             pos_score = float(pos_score_str)
+#             neg_score = float(neg_score_str)
+
+#             data.append({
+#                 'prompt': prompt_text,
+#                 'coeff': coeff,
+#                 'original_score': original_score,
+#                 'pos_steered_score': pos_score,
+#                 'neg_steered_score': neg_score
+#             })
+#     return pd.DataFrame(data)
+
+sentiment_pipeline = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment", device ="cuda")
 
 def parse_experiment_output(file_path):
     """
@@ -47,26 +88,53 @@ def parse_experiment_output(file_path):
 
     for i in range(1, len(prompt_sections_raw), 2):
         prompt_text = prompt_sections_raw[i].strip()
+        print(prompt_text)
         section_content = prompt_sections_raw[i+1]
 
-        original_score_match = re.search(r'\[ORIGINAL COMPLETION\] \(Score: ([\d.-]+)\):', section_content)
-        original_score = float(original_score_match.group(1)) if original_score_match else None
+        # Extract ORIGINAL COMPLETION
+        original_match = re.search(
+            r'\[ORIGINAL COMPLETION\] \(Score: [\d.-]+\):\n(.*?)(?:\n\n|--- Coefficient:)', 
+            section_content, re.DOTALL
+        )
+        original_completion = original_match.group(1).strip() if original_match else None
+        original_completion = original_completion.replace('<bos>', '').replace('<eos>', '').replace('<end_of_turn>', '').strip()
+        # Find all coefficient blocks
+        coeff_blocks = re.findall(
+            r'--- Coefficient: ([\d\.-]+) ---\s*'
+            r'\[POS STEERED\] \(Score: ([\d\.-]+)\):\s*(.*?)\s*'
+            r'\[NEG STEERED\] \(Score: ([\d\.-]+)\):\s*(.*?)(?=(?:--- Coefficient:|\Z))',
+            section_content, re.DOTALL
+        )
 
-        coeff_blocks = re.findall(r'---\sCoefficient: ([\d.-]+)\s---\n\[POS STEERED\] \(Score: ([\d.-]+)\):.*?\n\[NEG STEERED\] \(Score: ([\d.-]+)\):', section_content, re.DOTALL)
-
-        for coeff_str, pos_score_str, neg_score_str in coeff_blocks:
+        # for coeff_str, bias_steered_text, unbias_steered_text in coeff_blocks:
+        for coeff_str, _, bias_steered_text, _, unbias_steered_text in coeff_blocks:
             coeff = float(coeff_str)
-            pos_score = float(pos_score_str)
-            neg_score = float(neg_score_str)
+            # Remove trailing whitespace and ensure text extraction is clean
+            bias_steered_text = bias_steered_text.replace('<bos>', '').replace('<eos>', '').replace('<end_of_turn>', '').strip()
+            unbias_steered_text = unbias_steered_text.replace('<bos>', '').replace('<eos>', '').replace('<end_of_turn>', '').strip()
+            print("BIAS: ", bias_steered_text)
+            print("UNBIAS: ", unbias_steered_text)
+
+            # Calculate fresh sentiment scores
+            original_score= text_sentiment(original_completion, sentiment_pipeline) 
+            bias_score = text_sentiment(bias_steered_text, sentiment_pipeline)
+            unbias_score = text_sentiment(unbias_steered_text, sentiment_pipeline)
+            print("BIAS SCORE: ", bias_score)
+
 
             data.append({
                 'prompt': prompt_text,
                 'coeff': coeff,
+                'original_completion': original_completion,
+                'bias_steered_completion': bias_steered_text,
+                'unbias_steered_completion': unbias_steered_text,
                 'original_score': original_score,
-                'pos_steered_score': pos_score,
-                'neg_steered_score': neg_score
+                'pos_steered_score': bias_score,
+                'neg_steered_score': unbias_score
             })
     return pd.DataFrame(data)
+
+
 
 def plot_sentiment_vs_coeff(df, output_dir="plots"):
     """
@@ -185,10 +253,10 @@ def plot_average_sentiment(df, output_dir="plots"):
 
 if __name__ == "__main__":
     script_dir = os.path.dirname(__file__)
-    results_file = os.path.join(script_dir, 'steering_pos_neg_20_v2.log')
+    results_file = os.path.join(script_dir, 'steering_pos_neg_20_v3.log')
 
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-    plot_output_directory = os.path.join(script_dir, f"sentiment_plots_{timestamp}")
+    plot_output_directory = os.path.join(script_dir, f"plots_pos_neg_{timestamp}")
 
     if not os.path.exists(results_file):
         print(f"Error: Results file not found at '{results_file}'.")
@@ -196,6 +264,7 @@ if __name__ == "__main__":
     else:
         print(f"Parsing data from: {results_file}")
         df_results = parse_experiment_output(results_file)
+        print("DF columns:", df_results.columns)
         print("Data parsing complete. Generating plots...")
 
         plot_sentiment_vs_coeff(df_results, output_dir=plot_output_directory)

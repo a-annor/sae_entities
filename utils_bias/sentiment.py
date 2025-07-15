@@ -24,11 +24,14 @@ def text_sentiment(text, sentiment_pipeline):
     for r in result:
         # print(r["label"])
         if r["label"] == "LABEL_0":
-            sentiment_score= -r["score"]
+            sentiment_score_neg = r["score"]
+        if r["label"] == "LABEL_2":
+            sentiment_score_pos = r["score"]
+    sentiment_score = sentiment_score_pos - sentiment_score_neg #added 15/07
 
     return round(sentiment_score,2)
 
-def append_sentiment(input_file):
+def append_sentiment(input_file, sentiment_pipeline):
     input_path = f"data/Race_ethnicity/completions/{input_file}.jsonl"
     output_path = f"data/Race_ethnicity/sentiment/{input_file}_sentiment.jsonl"
 

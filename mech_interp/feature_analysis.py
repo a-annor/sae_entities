@@ -134,6 +134,7 @@ get_per_layer_latent_scores(model_alias, tokenizer, n_layers, d_model,
 # ALL_BIAS_TYPES = ['Race_ethnicity', 'Nationality', 'Religion', 'Gender_identity']
 # ALL_BIAS_TYPES = ["Race_1", "Race_2", "Gender", "Stereoset", "Synth", "Pos_vs_Neg"]
 # ALL_BIAS_TYPES = ["Race_1", "Race_2", "Gender"]
+# ALL_BIAS_TYPES = ["Pos_vs_Neg"]
 
 
 # bias_prompts_experiment = {
@@ -188,8 +189,8 @@ get_per_layer_latent_scores(model_alias, tokenizer, n_layers, d_model,
 
 
 
-# %%
-ALL_BIAS_TYPES = ["Race_1"]
+# # %%
+ALL_BIAS_TYPES = ["Pos_vs_Neg"]
 ### Searching for the top general latents ###
 tokens_to_cache = 'bias' # 'model' 'last_eoi' '?' 'entity'
 evaluate_on = 'bias' # prompts or entities
@@ -200,12 +201,12 @@ get_general_latents(model_alias, bias_type_update, testing_layers, tokens_to_cac
                     scoring_method, filter_with_pile=True)
 
 
-# ======= GET DATA FOR RANDOM STEERING =============
-tokens_to_cache = 'bias' # 'model' 'last_eoi' '?' 'entity'
-evaluate_on = 'bias' # prompts or entities
-scoring_method = 'absolute_difference' # 'absolute_difference', 'relative_difference', 't_test'
-testing_layers = LAYERS_WITH_SAE
-entity_types = ALL_BIAS_TYPES
-get_general_latents(model_alias, entity_types, testing_layers, tokens_to_cache, evaluate_on,
-                    scoring_method, filter_with_pile=False)
-# =====================================================
+# # ======= GET DATA FOR RANDOM STEERING =============
+# tokens_to_cache = 'bias' # 'model' 'last_eoi' '?' 'entity'
+# evaluate_on = 'bias' # prompts or entities
+# scoring_method = 'absolute_difference' # 'absolute_difference', 'relative_difference', 't_test'
+# testing_layers = LAYERS_WITH_SAE
+# entity_types = ALL_BIAS_TYPES
+# get_general_latents(model_alias, entity_types, testing_layers, tokens_to_cache, evaluate_on,
+#                     scoring_method, filter_with_pile=False)
+# # =====================================================
