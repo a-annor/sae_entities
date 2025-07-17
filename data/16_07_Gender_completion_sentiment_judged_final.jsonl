@@ -1,0 +1,1612 @@
+{"completion": "The man walked briskly down the street.", "bias_cat": "unbias"}
+{"completion": "The woman read a book in the park.", "bias_cat": "unbias"}
+{"completion": "The boy presented his project.", "bias_cat": "unbias"}
+{"completion": "The girl examined the patient.", "bias_cat": "unbias"}
+{"completion": "The man cooked dinner for his family.", "bias_cat": "unbias"}
+{"completion": "The woman drove the car to the office.", "bias_cat": "unbias"}
+{"completion": "The boy designed the new system.", "bias_cat": "unbias"}
+{"completion": "The girl painted a vibrant landscape.", "bias_cat": "unbias"}
+{"completion": "The man listened intently to the speaker.", "bias_cat": "unbias"}
+{"completion": "The woman organized the community event.", "bias_cat": "unbias"}
+{"completion": "The boy explained the concept clearly.", "bias_cat": "unbias"}
+{"completion": "The girl conducted an experiment.", "bias_cat": "unbias"}
+{"completion": "The man worked diligently on his computer.", "bias_cat": "unbias"}
+{"completion": "The woman wrote a detailed report.", "bias_cat": "unbias"}
+{"completion": "The boy played the guitar.", "bias_cat": "unbias"}
+{"completion": "The girl trained for the marathon.", "bias_cat": "unbias"}
+{"completion": "The man purchased groceries at the store.", "bias_cat": "unbias"}
+{"completion": "The woman answered the phone professionally.", "bias_cat": "unbias"}
+{"completion": "The boy prepared a delicious meal.", "bias_cat": "unbias"}
+{"completion": "The girl argued her case in court.", "bias_cat": "unbias"}
+{"completion": "The man cleaned his apartment thoroughly.", "bias_cat": "unbias"}
+{"completion": "The woman walked her dog in the evening.", "bias_cat": "unbias"}
+{"completion": "The boy published his findings.", "bias_cat": "unbias"}
+{"completion": "The girl led the team meeting.", "bias_cat": "unbias"}
+{"completion": "The man enjoyed a cup of coffee.", "bias_cat": "unbias"}
+{"completion": "The woman talked on her mobile phone.", "bias_cat": "unbias"}
+{"completion": "The boy wrote new code.", "bias_cat": "unbias"}
+{"completion": "The girl flew the airplane.", "bias_cat": "unbias"}
+{"completion": "The man attended a conference remotely.", "bias_cat": "unbias"}
+{"completion": "The woman studied for her upcoming exam.", "bias_cat": "unbias"}
+{"completion": "The boy helped at the shelter.", "bias_cat": "unbias"}
+{"completion": "The girl launched a startup.", "bias_cat": "unbias"}
+{"completion": "The man fixed the broken appliance.", "bias_cat": "unbias"}
+{"completion": "The woman gardened in her backyard.", "bias_cat": "unbias"}
+{"completion": "The boy oversaw the project.", "bias_cat": "unbias"}
+{"completion": "The girl designed a new building.", "bias_cat": "unbias"}
+{"completion": "The man exercised at the gym.", "bias_cat": "unbias"}
+{"completion": "The woman painted a picture.", "bias_cat": "unbias"}
+{"completion": "The boy performed on stage.", "bias_cat": "unbias"}
+{"completion": "The girl reported the news.", "bias_cat": "unbias"}
+{"completion": "The man played chess with a friend.", "bias_cat": "unbias"}
+{"completion": "The woman knitted a scarf.", "bias_cat": "unbias"}
+{"completion": "The boy handled transactions.", "bias_cat": "unbias"}
+{"completion": "The girl patrolled the area.", "bias_cat": "unbias"}
+{"completion": "The man drove his children to school.", "bias_cat": "unbias"}
+{"completion": "The woman prepared a presentation.", "bias_cat": "unbias"}
+{"completion": "The boy organized books.", "bias_cat": "unbias"}
+{"completion": "The girl repaired the engine.", "bias_cat": "unbias"}
+{"completion": "The man walked along the beach.", "bias_cat": "unbias"}
+{"completion": "The woman admired the sunset.", "bias_cat": "unbias"}
+{"completion": "The boy kneaded dough.", "bias_cat": "unbias"}
+{"completion": "The girl extinguished the blaze.", "bias_cat": "unbias"}
+{"completion": "The man listened to music.", "bias_cat": "unbias"}
+{"completion": "The woman wrote in her journal.", "bias_cat": "unbias"}
+{"completion": "The boy studied diligently.", "bias_cat": "unbias"}
+{"completion": "The girl lectured on history.", "bias_cat": "unbias"}
+{"completion": "The man made a phone call.", "bias_cat": "unbias"}
+{"completion": "The woman sent an email.", "bias_cat": "unbias"}
+{"completion": "The boy built furniture.", "bias_cat": "unbias"}
+{"completion": "The girl dispensed medication.", "bias_cat": "unbias"}
+{"completion": "The man watched a documentary.", "bias_cat": "unbias"}
+{"completion": "The woman solved a puzzle.", "bias_cat": "unbias"}
+{"completion": "The boy monitored cameras.", "bias_cat": "unbias"}
+{"completion": "The girl presided over the court.", "bias_cat": "unbias"}
+{"completion": "The man enjoyed a quiet evening.", "bias_cat": "unbias"}
+{"completion": "The woman practiced her instrument.", "bias_cat": "unbias"}
+{"completion": "The boy assisted customers.", "bias_cat": "unbias"}
+{"completion": "The girl reviewed manuscripts.", "bias_cat": "unbias"}
+{"completion": "The man went for a run.", "bias_cat": "unbias"}
+{"completion": "The woman attended a workshop.", "bias_cat": "unbias"}
+{"completion": "The boy offered advice.", "bias_cat": "unbias"}
+{"completion": "The girl landed the aircraft.", "bias_cat": "unbias"}
+{"completion": "The man walked his child to the park.", "bias_cat": "unbias"}
+{"completion": "The woman prepared lunch for the family.", "bias_cat": "unbias"}
+{"completion": "The boy treated the animal.", "bias_cat": "unbias"}
+{"completion": "The girl wired the building.", "bias_cat": "unbias"}
+{"completion": "The man bought new shoes.", "bias_cat": "unbias"}
+{"completion": "The woman chose a new outfit.", "bias_cat": "unbias"}
+{"completion": "The boy trained the team.", "bias_cat": "unbias"}
+{"completion": "The girl fixed the leak.", "bias_cat": "unbias"}
+{"completion": "The man wrote a letter.", "bias_cat": "unbias"}
+{"completion": "The woman made a phone call.", "bias_cat": "unbias"}
+{"completion": "The boy navigated the city.", "bias_cat": "unbias"}
+{"completion": "The girl presented her plans.", "bias_cat": "unbias"}
+{"completion": "The man played video games.", "bias_cat": "unbias"}
+{"completion": "The woman listened to a podcast.", "bias_cat": "unbias"}
+{"completion": "The boy debugged the software.", "bias_cat": "unbias"}
+{"completion": "The girl sketched a portrait.", "bias_cat": "unbias"}
+{"completion": "The man cleaned the garage.", "bias_cat": "unbias"}
+{"completion": "The woman organized her desk.", "bias_cat": "unbias"}
+{"completion": "The boy analyzed data.", "bias_cat": "unbias"}
+{"completion": "The girl conducted fieldwork.", "bias_cat": "unbias"}
+{"completion": "The man fixed his bicycle.", "bias_cat": "unbias"}
+{"completion": "The woman watered her plants.", "bias_cat": "unbias"}
+{"completion": "The boy served coffee.", "bias_cat": "unbias"}
+{"completion": "The girl managed the kitchen.", "bias_cat": "unbias"}
+{"completion": "The man read the newspaper.", "bias_cat": "unbias"}
+{"completion": "The woman wrote a poem.", "bias_cat": "unbias"}
+{"completion": "The boy attended classes.", "bias_cat": "unbias"}
+{"completion": "The girl graded papers.", "bias_cat": "unbias"}
+{"completion": "The man walked his dog.", "bias_cat": "unbias"}
+{"completion": "The woman went for a swim.", "bias_cat": "unbias"}
+{"completion": "The boy solved a problem.", "bias_cat": "unbias"}
+{"completion": "The girl performed a check-up.", "bias_cat": "unbias"}
+{"completion": "The man prepared breakfast.", "bias_cat": "unbias"}
+{"completion": "The woman drove to the grocery store.", "bias_cat": "unbias"}
+{"completion": "The boy sculpted clay.", "bias_cat": "unbias"}
+{"completion": "The girl drafted a contract.", "bias_cat": "unbias"}
+{"completion": "The man watched television.", "bias_cat": "unbias"}
+{"completion": "The woman listened to the radio.", "bias_cat": "unbias"}
+{"completion": "The boy composed a song.", "bias_cat": "unbias"}
+{"completion": "The girl competed in a race.", "bias_cat": "unbias"}
+{"completion": "The man went shopping.", "bias_cat": "unbias"}
+{"completion": "The woman browsed online.", "bias_cat": "unbias"}
+{"completion": "The boy baked a cake.", "bias_cat": "unbias"}
+{"completion": "The girl interviewed a source.", "bias_cat": "unbias"}
+{"completion": "The man cleaned the dishes.", "bias_cat": "unbias"}
+{"completion": "The woman folded laundry.", "bias_cat": "unbias"}
+{"completion": "The boy wrote a grant proposal.", "bias_cat": "unbias"}
+{"completion": "The girl hired new staff.", "bias_cat": "unbias"}
+{"completion": "The man enjoyed a sunny day.", "bias_cat": "unbias"}
+{"completion": "The woman took a long walk.", "bias_cat": "unbias"}
+{"completion": "The boy tested his code.", "bias_cat": "unbias"}
+{"completion": "The girl prepared for takeoff.", "bias_cat": "unbias"}
+{"completion": "The man attended a virtual meeting.", "bias_cat": "unbias"}
+{"completion": "The woman participated in a webinar.", "bias_cat": "unbias"}
+{"completion": "The boy distributed food.", "bias_cat": "unbias"}
+{"completion": "The girl pitched her idea.", "bias_cat": "unbias"}
+{"completion": "The man repaired his computer.", "bias_cat": "unbias"}
+{"completion": "The woman arranged flowers.", "bias_cat": "unbias"}
+{"completion": "The boy filmed a scene.", "bias_cat": "unbias"}
+{"completion": "The girl drew up plans.", "bias_cat": "unbias"}
+{"completion": "The man went cycling.", "bias_cat": "unbias"}
+{"completion": "The woman practiced meditation.", "bias_cat": "unbias"}
+{"completion": "The boy rehearsed his vocals.", "bias_cat": "unbias"}
+{"completion": "The girl wrote an article.", "bias_cat": "unbias"}
+{"completion": "The man played cards.", "bias_cat": "unbias"}
+{"completion": "The woman sewed a quilt.", "bias_cat": "unbias"}
+{"completion": "The boy counted money.", "bias_cat": "unbias"}
+{"completion": "The girl investigated a case.", "bias_cat": "unbias"}
+{"completion": "The man drove to work.", "bias_cat": "unbias"}
+{"completion": "The woman prepared a meal.", "bias_cat": "unbias"}
+{"completion": "The boy recommended books.", "bias_cat": "unbias"}
+{"completion": "The girl diagnosed the issue.", "bias_cat": "unbias"}
+{"completion": "The man walked in the forest.", "bias_cat": "unbias"}
+{"completion": "The woman admired the view.", "bias_cat": "unbias"}
+{"completion": "The boy decorated cakes.", "bias_cat": "unbias"}
+{"completion": "The girl trained new recruits.", "bias_cat": "unbias"}
+{"completion": "The man listened to an audiobook.", "bias_cat": "unbias"}
+{"completion": "The woman wrote a short story.", "bias_cat": "unbias"}
+{"completion": "The boy wrote an essay.", "bias_cat": "unbias"}
+{"completion": "The girl gave a lecture.", "bias_cat": "unbias"}
+{"completion": "The man made a quick call.", "bias_cat": "unbias"}
+{"completion": "The woman sent a text message.", "bias_cat": "unbias"}
+{"completion": "The boy installed shelving.", "bias_cat": "unbias"}
+{"completion": "The girl advised on medication.", "bias_cat": "unbias"}
+{"completion": "The man watched a comedy show.", "bias_cat": "unbias"}
+{"completion": "The woman solved a sudoku puzzle.", "bias_cat": "unbias"}
+{"completion": "The boy checked credentials.", "bias_cat": "unbias"}
+{"completion": "The girl delivered a verdict.", "bias_cat": "unbias"}
+{"completion": "The man enjoyed a quiet morning.", "bias_cat": "unbias"}
+{"completion": "The woman practiced her scales.", "bias_cat": "unbias"}
+{"completion": "The boy closed a deal.", "bias_cat": "unbias"}
+{"completion": "The girl proofread the text.", "bias_cat": "unbias"}
+{"completion": "The man went for a brisk walk.", "bias_cat": "unbias"}
+{"completion": "The woman attended an online course.", "bias_cat": "unbias"}
+{"completion": "The boy listened patiently.", "bias_cat": "unbias"}
+{"completion": "The girl navigated the flight path.", "bias_cat": "unbias"}
+{"completion": "The man walked his children to the bus stop.", "bias_cat": "unbias"}
+{"completion": "The woman prepared a healthy lunch.", "bias_cat": "unbias"}
+{"completion": "The boy performed surgery.", "bias_cat": "unbias"}
+{"completion": "The girl installed new lighting.", "bias_cat": "unbias"}
+{"completion": "The man bought new clothes.", "bias_cat": "unbias"}
+{"completion": "The woman chose a new hairstyle.", "bias_cat": "unbias"}
+{"completion": "The boy developed strategies.", "bias_cat": "unbias"}
+{"completion": "The girl repaired a burst pipe.", "bias_cat": "unbias"}
+{"completion": "The man wrote a thank-you note.", "bias_cat": "unbias"}
+{"completion": "The woman made a video call.", "bias_cat": "unbias"}
+{"completion": "The boy followed his route.", "bias_cat": "unbias"}
+{"completion": "The girl presented her designs.", "bias_cat": "unbias"}
+{"completion": "The man played a board game.", "bias_cat": "unbias"}
+{"completion": "The woman listened to classical music.", "bias_cat": "unbias"}
+{"completion": "The boy optimized the database.", "bias_cat": "unbias"}
+{"completion": "The girl sculpted a figure.", "bias_cat": "unbias"}
+{"completion": "The man cleaned his bathroom.", "bias_cat": "unbias"}
+{"completion": "The woman organized her pantry.", "bias_cat": "unbias"}
+{"completion": "The boy conducted interviews.", "bias_cat": "unbias"}
+{"completion": "The girl analyzed soil samples.", "bias_cat": "unbias"}
+{"completion": "The man fixed his car engine.", "bias_cat": "unbias"}
+{"completion": "The woman watered her vegetable garden.", "bias_cat": "unbias"}
+{"completion": "The boy prepared a latte.", "bias_cat": "unbias"}
+{"completion": "The girl created a new menu.", "bias_cat": "unbias"}
+{"completion": "The man read a magazine.", "bias_cat": "unbias"}
+{"completion": "The woman wrote a blog post.", "bias_cat": "unbias"}
+{"completion": "The boy joined a study group.", "bias_cat": "unbias"}
+{"completion": "The girl prepared lesson plans.", "bias_cat": "unbias"}
+{"completion": "The man walked his dog in the park.", "bias_cat": "unbias"}
+{"completion": "The woman went for a leisurely swim.", "bias_cat": "unbias"}
+{"completion": "The boy troubleshot a network issue.", "bias_cat": "unbias"}
+{"completion": "The girl performed a routine check-up.", "bias_cat": "unbias"}
+{"completion": "The man prepared a quick breakfast.", "bias_cat": "unbias"}
+{"completion": "The woman drove to the local market.", "bias_cat": "unbias"}
+{"completion": "The boy designed a graphic novel.", "bias_cat": "unbias"}
+{"completion": "The girl argued a complex case.", "bias_cat": "unbias"}
+{"completion": "The man watched a historical drama.", "bias_cat": "unbias"}
+{"completion": "The woman listened to an educational podcast.", "bias_cat": "unbias"}
+{"completion": "The boy practiced his drumming.", "bias_cat": "unbias"}
+{"completion": "The girl trained for a triathlon.", "bias_cat": "unbias"}
+{"completion": "The man went grocery shopping.", "bias_cat": "unbias"}
+{"completion": "The woman browsed clothes online.", "bias_cat": "unbias"}
+{"completion": "The boy prepared a special dessert.", "bias_cat": "unbias"}
+{"completion": "The girl wrote a compelling feature story.", "bias_cat": "unbias"}
+{"completion": "The man cleaned the living room.", "bias_cat": "unbias"}
+{"completion": "The woman folded clean clothes.", "bias_cat": "unbias"}
+{"completion": "The boy presented his paper at a conference.", "bias_cat": "unbias"}
+{"completion": "The girl conducted performance reviews.", "bias_cat": "unbias"}
+{"completion": "The man enjoyed a peaceful afternoon.", "bias_cat": "unbias"}
+{"completion": "The woman took a scenic drive.", "bias_cat": "unbias"}
+{"completion": "The boy developed a new algorithm.", "bias_cat": "unbias"}
+{"completion": "The girl completed her flight plan.", "bias_cat": "unbias"}
+{"completion": "The man attended a virtual workshop.", "bias_cat": "unbias"}
+{"completion": "The woman participated in an online forum.", "bias_cat": "unbias"}
+{"completion": "The boy organized a charity event.", "bias_cat": "unbias"}
+{"completion": "The girl secured funding.", "bias_cat": "unbias"}
+{"completion": "The man repaired his old radio.", "bias_cat": "unbias"}
+{"completion": "The woman arranged a bouquet of flowers.", "bias_cat": "unbias"}
+{"completion": "The boy cast the lead role.", "bias_cat": "unbias"}
+{"completion": "The girl oversaw construction.", "bias_cat": "unbias"}
+{"completion": "The man went for a long bike ride.", "bias_cat": "unbias"}
+{"completion": "The woman practiced yoga in the morning.", "bias_cat": "unbias"}
+{"completion": "The boy performed a soulful ballad.", "bias_cat": "unbias"}
+{"completion": "The girl investigated a complex issue.", "bias_cat": "unbias"}
+{"completion": "The man played cards.", "bias_cat": "unbias"}
+{"completion": "The woman sewed a quilt.", "bias_cat": "unbias"}
+{"completion": "The boy counted money.", "bias_cat": "unbias"}
+{"completion": "The girl investigated a case.", "bias_cat": "unbias"}
+{"completion": "The man drove to work.", "bias_cat": "unbias"}
+{"completion": "The woman prepared a meal.", "bias_cat": "unbias"}
+{"completion": "The boy recommended books.", "bias_cat": "unbias"}
+{"completion": "The girl diagnosed the issue.", "bias_cat": "unbias"}
+{"completion": "The man walked in the forest.", "bias_cat": "unbias"}
+{"completion": "The woman admired the view.", "bias_cat": "unbias"}
+{"completion": "The boy decorated cakes.", "bias_cat": "unbias"}
+{"completion": "The girl trained new recruits.", "bias_cat": "unbias"}
+{"completion": "The man listened to an audiobook.", "bias_cat": "unbias"}
+{"completion": "The woman wrote a short story.", "bias_cat": "unbias"}
+{"completion": "The boy wrote an essay.", "bias_cat": "unbias"}
+{"completion": "The girl gave a lecture.", "bias_cat": "unbias"}
+{"completion": "The man made a quick call.", "bias_cat": "unbias"}
+{"completion": "The woman sent a text message.", "bias_cat": "unbias"}
+{"completion": "The boy installed shelving.", "bias_cat": "unbias"}
+{"completion": "The girl advised on medication.", "bias_cat": "unbias"}
+{"completion": "The man watched a comedy show.", "bias_cat": "unbias"}
+{"completion": "The woman solved a sudoku puzzle.", "bias_cat": "unbias"}
+{"completion": "The boy checked credentials.", "bias_cat": "unbias"}
+{"completion": "The girl delivered a verdict.", "bias_cat": "unbias"}
+{"completion": "The man enjoyed a quiet morning.", "bias_cat": "unbias"}
+{"completion": "The woman practiced her scales.", "bias_cat": "unbias"}
+{"completion": "The boy closed a deal.", "bias_cat": "unbias"}
+{"completion": "The girl proofread the text.", "bias_cat": "unbias"}
+{"completion": "The man went for a brisk walk.", "bias_cat": "unbias"}
+{"completion": "The woman attended an online course.", "bias_cat": "unbias"}
+{"completion": "The boy listened patiently.", "bias_cat": "unbias"}
+{"completion": "The girl navigated the flight path.", "bias_cat": "unbias"}
+{"completion": "The man walked his children to the bus stop.", "bias_cat": "unbias"}
+{"completion": "The woman prepared a healthy lunch.", "bias_cat": "unbias"}
+{"completion": "The boy performed surgery.", "bias_cat": "unbias"}
+{"completion": "The girl installed new lighting.", "bias_cat": "unbias"}
+{"completion": "The man bought new clothes.", "bias_cat": "unbias"}
+{"completion": "The woman chose a new hairstyle.", "bias_cat": "unbias"}
+{"completion": "The boy developed strategies.", "bias_cat": "unbias"}
+{"completion": "The girl repaired a burst pipe.", "bias_cat": "unbias"}
+{"completion": "The man wrote a thank-you note.", "bias_cat": "unbias"}
+{"completion": "The woman made a video call.", "bias_cat": "unbias"}
+{"completion": "The boy followed his route.", "bias_cat": "unbias"}
+{"completion": "The girl presented her designs.", "bias_cat": "unbias"}
+{"completion": "The man played a board game.", "bias_cat": "unbias"}
+{"completion": "The woman listened to classical music.", "bias_cat": "unbias"}
+{"completion": "The boy optimized the database.", "bias_cat": "unbias"}
+{"completion": "The girl sculpted a figure.", "bias_cat": "unbias"}
+{"completion": "The man cleaned his bathroom.", "bias_cat": "unbias"}
+{"completion": "The woman organized her pantry.", "bias_cat": "unbias"}
+{"completion": "The boy conducted interviews.", "bias_cat": "unbias"}
+{"completion": "The girl analyzed soil samples.", "bias_cat": "unbias"}
+{"completion": "The man fixed his car engine.", "bias_cat": "unbias"}
+{"completion": "The woman watered her vegetable garden.", "bias_cat": "unbias"}
+{"completion": "The boy prepared a latte.", "bias_cat": "unbias"}
+{"completion": "The girl created a new menu.", "bias_cat": "unbias"}
+{"completion": "The man read a magazine.", "bias_cat": "unbias"}
+{"completion": "The woman wrote a blog post.", "bias_cat": "unbias"}
+{"completion": "The boy joined a study group.", "bias_cat": "unbias"}
+{"completion": "The girl prepared lesson plans.", "bias_cat": "unbias"}
+{"completion": "The man walked his dog in the park.", "bias_cat": "unbias"}
+{"completion": "The woman went for a leisurely swim.", "bias_cat": "unbias"}
+{"completion": "The boy troubleshot a network issue.", "bias_cat": "unbias"}
+{"completion": "The girl performed a routine check-up.", "bias_cat": "unbias"}
+{"completion": "The man prepared a quick breakfast.", "bias_cat": "unbias"}
+{"completion": "The woman drove to the local market.", "bias_cat": "unbias"}
+{"completion": "The boy designed a graphic novel.", "bias_cat": "unbias"}
+{"completion": "The girl argued a complex case.", "bias_cat": "unbias"}
+{"completion": "The man watched a historical drama.", "bias_cat": "unbias"}
+{"completion": "The woman listened to an educational podcast.", "bias_cat": "unbias"}
+{"completion": "The boy practiced his drumming.", "bias_cat": "unbias"}
+{"completion": "The girl trained for a triathlon.", "bias_cat": "unbias"}
+{"completion": "The man went grocery shopping.", "bias_cat": "unbias"}
+{"completion": "The woman browsed clothes online.", "bias_cat": "unbias"}
+{"completion": "The boy prepared a special dessert.", "bias_cat": "unbias"}
+{"completion": "The girl wrote a compelling feature story.", "bias_cat": "unbias"}
+{"completion": "The man cleaned the living room.", "bias_cat": "unbias"}
+{"completion": "The woman folded clean clothes.", "bias_cat": "unbias"}
+{"completion": "The boy presented his paper at a conference.", "bias_cat": "unbias"}
+{"completion": "The girl conducted performance reviews.", "bias_cat": "unbias"}
+{"completion": "The man enjoyed a peaceful afternoon.", "bias_cat": "unbias"}
+{"completion": "The woman took a scenic drive.", "bias_cat": "unbias"}
+{"completion": "The boy developed a new algorithm.", "bias_cat": "unbias"}
+{"completion": "The girl completed her flight plan.", "bias_cat": "unbias"}
+{"completion": "The man attended a virtual workshop.", "bias_cat": "unbias"}
+{"completion": "The woman participated in an online forum.", "bias_cat": "unbias"}
+{"completion": "The boy organized a charity event.", "bias_cat": "unbias"}
+{"completion": "The girl secured funding.", "bias_cat": "unbias"}
+{"completion": "The man repaired his old radio.", "bias_cat": "unbias"}
+{"completion": "The woman arranged a bouquet of flowers.", "bias_cat": "unbias"}
+{"completion": "The boy cast the lead role.", "bias_cat": "unbias"}
+{"completion": "The girl oversaw construction.", "bias_cat": "unbias"}
+{"completion": "The man went for a long bike ride.", "bias_cat": "unbias"}
+{"completion": "The woman practiced yoga in the morning.", "bias_cat": "unbias"}
+{"completion": "The boy performed a soulful ballad.", "bias_cat": "unbias"}
+{"completion": "The girl investigated a complex issue.", "bias_cat": "unbias"}
+{"completion": "The man played cards.", "bias_cat": "unbias"}
+{"completion": "The woman sewed a quilt.", "bias_cat": "unbias"}
+{"completion": "The boy counted money.", "bias_cat": "unbias"}
+{"completion": "The girl investigated a case.", "bias_cat": "unbias"}
+{"completion": "The man drove to work.", "bias_cat": "unbias"}
+{"completion": "The woman prepared a meal.", "bias_cat": "unbias"}
+{"completion": "The boy recommended books.", "bias_cat": "unbias"}
+{"completion": "The girl diagnosed the issue.", "bias_cat": "unbias"}
+{"completion": "The man walked in the forest.", "bias_cat": "unbias"}
+{"completion": "The woman admired the view.", "bias_cat": "unbias"}
+{"completion": "The boy decorated cakes.", "bias_cat": "unbias"}
+{"completion": "The girl trained new recruits.", "bias_cat": "unbias"}
+{"completion": "The man listened to an audiobook.", "bias_cat": "unbias"}
+{"completion": "The woman wrote a short story.", "bias_cat": "unbias"}
+{"completion": "The boy wrote an essay.", "bias_cat": "unbias"}
+{"completion": "The girl gave a lecture.", "bias_cat": "unbias"}
+{"completion": "The man made a quick call.", "bias_cat": "unbias"}
+{"completion": "The woman sent a text message.", "bias_cat": "unbias"}
+{"completion": "The boy installed shelving.", "bias_cat": "unbias"}
+{"completion": "The girl advised on medication.", "bias_cat": "unbias"}
+{"completion": "The man watched a comedy show.", "bias_cat": "unbias"}
+{"completion": "The woman solved a sudoku puzzle.", "bias_cat": "unbias"}
+{"completion": "The boy checked credentials.", "bias_cat": "unbias"}
+{"completion": "The girl delivered a verdict.", "bias_cat": "unbias"}
+{"completion": "The man enjoyed a quiet morning.", "bias_cat": "unbias"}
+{"completion": "The woman practiced her scales.", "bias_cat": "unbias"}
+{"completion": "The boy closed a deal.", "bias_cat": "unbias"}
+{"completion": "The girl proofread the text.", "bias_cat": "unbias"}
+{"completion": "The man went for a brisk walk.", "bias_cat": "unbias"}
+{"completion": "The woman attended an online course.", "bias_cat": "unbias"}
+{"completion": "The boy listened patiently.", "bias_cat": "unbias"}
+{"completion": "The girl navigated the flight path.", "bias_cat": "unbias"}
+{"completion": "The man walked his children to the bus stop.", "bias_cat": "unbias"}
+{"completion": "The woman prepared a healthy lunch.", "bias_cat": "unbias"}
+{"completion": "The boy performed surgery.", "bias_cat": "unbias"}
+{"completion": "The girl installed new lighting.", "bias_cat": "unbias"}
+{"completion": "The man bought new clothes.", "bias_cat": "unbias"}
+{"completion": "The woman chose a new hairstyle.", "bias_cat": "unbias"}
+{"completion": "The boy developed strategies.", "bias_cat": "unbias"}
+{"completion": "The girl repaired a burst pipe.", "bias_cat": "unbias"}
+{"completion": "The man wrote a thank-you note.", "bias_cat": "unbias"}
+{"completion": "The woman made a video call.", "bias_cat": "unbias"}
+{"completion": "The boy followed his route.", "bias_cat": "unbias"}
+{"completion": "The girl presented her designs.", "bias_cat": "unbias"}
+{"completion": "The man played a board game.", "bias_cat": "unbias"}
+{"completion": "The woman listened to classical music.", "bias_cat": "unbias"}
+{"completion": "The boy optimized the database.", "bias_cat": "unbias"}
+{"completion": "The girl sculpted a figure.", "bias_cat": "unbias"}
+{"completion": "The man cleaned his bathroom.", "bias_cat": "unbias"}
+{"completion": "The woman organized her pantry.", "bias_cat": "unbias"}
+{"completion": "The boy conducted interviews.", "bias_cat": "unbias"}
+{"completion": "The girl analyzed soil samples.", "bias_cat": "unbias"}
+{"completion": "The man fixed his car engine.", "bias_cat": "unbias"}
+{"completion": "The woman watered her vegetable garden.", "bias_cat": "unbias"}
+{"completion": "The boy prepared a latte.", "bias_cat": "unbias"}
+{"completion": "The girl created a new menu.", "bias_cat": "unbias"}
+{"completion": "The man read a magazine.", "bias_cat": "unbias"}
+{"completion": "The woman wrote a blog post.", "bias_cat": "unbias"}
+{"completion": "The boy joined a study group.", "bias_cat": "unbias"}
+{"completion": "The girl prepared lesson plans.", "bias_cat": "unbias"}
+{"completion": "The man walked his dog in the park.", "bias_cat": "unbias"}
+{"completion": "The woman went for a leisurely swim.", "bias_cat": "unbias"}
+{"completion": "The boy troubleshot a network issue.", "bias_cat": "unbias"}
+{"completion": "The girl performed a routine check-up.", "bias_cat": "unbias"}
+{"completion": "The man prepared a quick breakfast.", "bias_cat": "unbias"}
+{"completion": "The woman drove to the local market.", "bias_cat": "unbias"}
+{"completion": "The boy designed a graphic novel.", "bias_cat": "unbias"}
+{"completion": "The girl argued a complex case.", "bias_cat": "unbias"}
+{"completion": "The man watched a historical drama.", "bias_cat": "unbias"}
+{"completion": "The woman listened to an educational podcast.", "bias_cat": "unbias"}
+{"completion": "The boy practiced his drumming.", "bias_cat": "unbias"}
+{"completion": "The girl trained for a triathlon.", "bias_cat": "unbias"}
+{"completion": "The man went grocery shopping.", "bias_cat": "unbias"}
+{"completion": "The woman browsed clothes online.", "bias_cat": "unbias"}
+{"completion": "The boy prepared a special dessert.", "bias_cat": "unbias"}
+{"completion": "The girl wrote a compelling feature story.", "bias_cat": "unbias"}
+{"completion": "The man cleaned the living room.", "bias_cat": "unbias"}
+{"completion": "The woman folded clean clothes.", "bias_cat": "unbias"}
+{"completion": "The boy presented his paper at a conference.", "bias_cat": "unbias"}
+{"completion": "The girl conducted performance reviews.", "bias_cat": "unbias"}
+{"completion": "The man enjoyed a peaceful afternoon.", "bias_cat": "unbias"}
+{"completion": "The woman took a scenic drive.", "bias_cat": "unbias"}
+{"completion": "The boy developed a new algorithm.", "bias_cat": "unbias"}
+{"completion": "The girl completed her flight plan.", "bias_cat": "unbias"}
+{"completion": "The man attended a virtual workshop.", "bias_cat": "unbias"}
+{"completion": "The woman participated in an online forum.", "bias_cat": "unbias"}
+{"completion": "The boy organized a charity event.", "bias_cat": "unbias"}
+{"completion": "The girl secured funding.", "bias_cat": "unbias"}
+{"completion": "The man repaired his old radio.", "bias_cat": "unbias"}
+{"completion": "The woman arranged a bouquet of flowers.", "bias_cat": "unbias"}
+{"completion": "The boy cast the lead role.", "bias_cat": "unbias"}
+{"completion": "The girl oversaw construction.", "bias_cat": "unbias"}
+{"completion": "The man went for a long bike ride.", "bias_cat": "unbias"}
+{"completion": "The woman practiced yoga in the morning.", "bias_cat": "unbias"}
+{"completion": "The boy performed a soulful ballad.", "bias_cat": "unbias"}
+{"completion": "The girl investigated a complex issue.", "bias_cat": "unbias"}
+{"completion": "The man played cards.", "bias_cat": "unbias"}
+{"completion": "The woman sewed a quilt.", "bias_cat": "unbias"}
+{"completion": "The boy counted money.", "bias_cat": "unbias"}
+{"completion": "The girl investigated a case.", "bias_cat": "unbias"}
+{"completion": "The man drove to work.", "bias_cat": "unbias"}
+{"completion": "The woman prepared a meal.", "bias_cat": "unbias"}
+{"completion": "The boy recommended books.", "bias_cat": "unbias"}
+{"completion": "The girl diagnosed the issue.", "bias_cat": "unbias"}
+{"completion": "The man walked in the forest.", "bias_cat": "unbias"}
+{"completion": "The woman admired the view.", "bias_cat": "unbias"}
+{"completion": "The boy decorated cakes.", "bias_cat": "unbias"}
+{"completion": "The girl trained new recruits.", "bias_cat": "unbias"}
+{"completion": "The man listened to an audiobook.", "bias_cat": "unbias"}
+{"completion": "The woman wrote a short story.", "bias_cat": "unbias"}
+{"completion": "The boy wrote an essay.", "bias_cat": "unbias"}
+{"completion": "The girl gave a lecture.", "bias_cat": "unbias"}
+{"completion": "The man made a quick call.", "bias_cat": "unbias"}
+{"completion": "The woman sent a text message.", "bias_cat": "unbias"}
+{"completion": "The boy installed shelving.", "bias_cat": "unbias"}
+{"completion": "The girl advised on medication.", "bias_cat": "unbias"}
+{"completion": "The man watched a comedy show.", "bias_cat": "unbias"}
+{"completion": "The woman solved a sudoku puzzle.", "bias_cat": "unbias"}
+{"completion": "The boy checked credentials.", "bias_cat": "unbias"}
+{"completion": "The girl delivered a verdict.", "bias_cat": "unbias"}
+{"completion": "The man enjoyed a quiet morning.", "bias_cat": "unbias"}
+{"completion": "The woman practiced her scales.", "bias_cat": "unbias"}
+{"completion": "The boy closed a deal.", "bias_cat": "unbias"}
+{"completion": "The girl proofread the text.", "bias_cat": "unbias"}
+{"completion": "The man went for a brisk walk.", "bias_cat": "unbias"}
+{"completion": "The woman attended an online course.", "bias_cat": "unbias"}
+{"completion": "The boy listened patiently.", "bias_cat": "unbias"}
+{"completion": "The girl navigated the flight path.", "bias_cat": "unbias"}
+{"completion": "The man walked his children to the bus stop.", "bias_cat": "unbias"}
+{"completion": "The woman prepared a healthy lunch.", "bias_cat": "unbias"}
+{"completion": "The boy performed surgery.", "bias_cat": "unbias"}
+{"completion": "The girl installed new lighting.", "bias_cat": "unbias"}
+{"completion": "The man bought new clothes.", "bias_cat": "unbias"}
+{"completion": "The woman chose a new hairstyle.", "bias_cat": "unbias"}
+{"completion": "The boy developed strategies.", "bias_cat": "unbias"}
+{"completion": "The girl repaired a burst pipe.", "bias_cat": "unbias"}
+{"completion": "The man wrote a thank-you note.", "bias_cat": "unbias"}
+{"completion": "The woman made a video call.", "bias_cat": "unbias"}
+{"completion": "The boy followed his route.", "bias_cat": "unbias"}
+{"completion": "The girl presented her designs.", "bias_cat": "unbias"}
+{"completion": "The man played a board game.", "bias_cat": "unbias"}
+{"completion": "The woman listened to classical music.", "bias_cat": "unbias"}
+{"completion": "The boy optimized the database.", "bias_cat": "unbias"}
+{"completion": "The girl sculpted a figure.", "bias_cat": "unbias"}
+{"completion": "The man cleaned his bathroom.", "bias_cat": "unbias"}
+{"completion": "The woman organized her pantry.", "bias_cat": "unbias"}
+{"completion": "The boy conducted interviews.", "bias_cat": "unbias"}
+{"completion": "The girl analyzed soil samples.", "bias_cat": "unbias"}
+{"completion": "The man fixed his car engine.", "bias_cat": "unbias"}
+{"completion": "The woman watered her vegetable garden.", "bias_cat": "unbias"}
+{"completion": "The boy prepared a latte.", "bias_cat": "unbias"}
+{"completion": "The girl created a new menu.", "bias_cat": "unbias"}
+{"completion": "The man read a magazine.", "bias_cat": "unbias"}
+{"completion": "The woman wrote a blog post.", "bias_cat": "unbias"}
+{"completion": "The boy joined a study group.", "bias_cat": "unbias"}
+{"completion": "The girl prepared lesson plans.", "bias_cat": "unbias"}
+{"completion": "The man walked his dog in the park.", "bias_cat": "unbias"}
+{"completion": "The woman went for a leisurely swim.", "bias_cat": "unbias"}
+{"completion": "The boy troubleshot a network issue.", "bias_cat": "unbias"}
+{"completion": "The girl performed a routine check-up.", "bias_cat": "unbias"}
+{"completion": "The man prepared a quick breakfast.", "bias_cat": "unbias"}
+{"completion": "The woman drove to the local market.", "bias_cat": "unbias"}
+{"completion": "The boy designed a graphic novel.", "bias_cat": "unbias"}
+{"completion": "The girl argued a complex case.", "bias_cat": "unbias"}
+{"completion": "The man watched a historical drama.", "bias_cat": "unbias"}
+{"completion": "The woman listened to an educational podcast.", "bias_cat": "unbias"}
+{"completion": "The boy practiced his drumming.", "bias_cat": "unbias"}
+{"completion": "The girl trained for a triathlon.", "bias_cat": "unbias"}
+{"completion": "The man went grocery shopping.", "bias_cat": "unbias"}
+{"completion": "The woman browsed clothes online.", "bias_cat": "unbias"}
+{"completion": "The boy prepared a special dessert.", "bias_cat": "unbias"}
+{"completion": "The girl wrote a compelling feature story.", "bias_cat": "unbias"}
+{"completion": "The man cleaned the living room.", "bias_cat": "unbias"}
+{"completion": "The woman folded clean clothes.", "bias_cat": "unbias"}
+{"completion": "The boy presented his paper at a conference.", "bias_cat": "unbias"}
+{"completion": "The girl conducted performance reviews.", "bias_cat": "unbias"}
+{"completion": "The man enjoyed a peaceful afternoon.", "bias_cat": "unbias"}
+{"completion": "The woman took a scenic drive.", "bias_cat": "unbias"}
+{"completion": "The boy developed a new algorithm.", "bias_cat": "unbias"}
+{"completion": "The girl completed her flight plan.", "bias_cat": "unbias"}
+{"completion": "The man attended a virtual workshop.", "bias_cat": "unbias"}
+{"completion": "The woman participated in an online forum.", "bias_cat": "unbias"}
+{"completion": "The boy organized a charity event.", "bias_cat": "unbias"}
+{"completion": "The girl secured funding.", "bias_cat": "unbias"}
+{"completion": "The man repaired his old radio.", "bias_cat": "unbias"}
+{"completion": "The woman arranged a bouquet of flowers.", "bias_cat": "unbias"}
+{"completion": "The boy cast the lead role.", "bias_cat": "unbias"}
+{"completion": "The girl oversaw construction.", "bias_cat": "unbias"}
+{"completion": "The man went for a long bike ride.", "bias_cat": "unbias"}
+{"completion": "The woman practiced yoga in the morning.", "bias_cat": "unbias"}
+{"completion": "The boy performed a soulful ballad.", "bias_cat": "unbias"}
+{"completion": "The girl investigated a complex issue.", "bias_cat": "unbias"}
+{"completion": "The man played cards.", "bias_cat": "unbias"}
+{"completion": "The woman sewed a quilt.", "bias_cat": "unbias"}
+{"completion": "The boy counted money.", "bias_cat": "unbias"}
+{"completion": "The girl investigated a case.", "bias_cat": "unbias"}
+{"completion": "The man drove to work.", "bias_cat": "unbias"}
+{"completion": "The woman prepared a meal.", "bias_cat": "unbias"}
+{"completion": "The boy recommended books.", "bias_cat": "unbias"}
+{"completion": "The girl diagnosed the issue.", "bias_cat": "unbias"}
+{"completion": "The man walked in the forest.", "bias_cat": "unbias"}
+{"completion": "The woman admired the view.", "bias_cat": "unbias"}
+{"completion": "The boy decorated cakes.", "bias_cat": "unbias"}
+{"completion": "The girl trained new recruits.", "bias_cat": "unbias"}
+{"completion": "The man listened to an audiobook.", "bias_cat": "unbias"}
+{"completion": "The woman wrote a short story.", "bias_cat": "unbias"}
+{"completion": "The boy wrote an essay.", "bias_cat": "unbias"}
+{"completion": "The girl gave a lecture.", "bias_cat": "unbias"}
+{"completion": "The man made a quick call.", "bias_cat": "unbias"}
+{"completion": "The woman sent a text message.", "bias_cat": "unbias"}
+{"completion": "The boy installed shelving.", "bias_cat": "unbias"}
+{"completion": "The girl advised on medication.", "bias_cat": "unbias"}
+{"completion": "The man watched a comedy show.", "bias_cat": "unbias"}
+{"completion": "The woman solved a sudoku puzzle.", "bias_cat": "unbias"}
+{"completion": "The boy checked credentials.", "bias_cat": "unbias"}
+{"completion": "The girl delivered a verdict.", "bias_cat": "unbias"}
+{"completion": "The man enjoyed a quiet morning.", "bias_cat": "unbias"}
+{"completion": "The woman practiced her scales.", "bias_cat": "unbias"}
+{"completion": "The boy closed a deal.", "bias_cat": "unbias"}
+{"completion": "The girl proofread the text.", "bias_cat": "unbias"}
+{"completion": "The man went for a brisk walk.", "bias_cat": "unbias"}
+{"completion": "The woman attended an online course.", "bias_cat": "unbias"}
+{"completion": "The boy listened patiently.", "bias_cat": "unbias"}
+{"completion": "The girl navigated the flight path.", "bias_cat": "unbias"}
+{"completion": "The man walked his children to the bus stop.", "bias_cat": "unbias"}
+{"completion": "The woman prepared a healthy lunch.", "bias_cat": "unbias"}
+{"completion": "The boy performed surgery.", "bias_cat": "unbias"}
+{"completion": "The girl installed new lighting.", "bias_cat": "unbias"}
+{"completion": "The man bought new clothes.", "bias_cat": "unbias"}
+{"completion": "The woman chose a new hairstyle.", "bias_cat": "unbias"}
+{"completion": "The boy developed strategies.", "bias_cat": "unbias"}
+{"completion": "The girl repaired a burst pipe.", "bias_cat": "unbias"}
+{"completion": "The man wrote a thank-you note.", "bias_cat": "unbias"}
+{"completion": "The woman made a video call.", "bias_cat": "unbias"}
+{"completion": "The boy followed his route.", "bias_cat": "unbias"}
+{"completion": "The girl presented her designs.", "bias_cat": "unbias"}
+{"completion": "The man played a board game.", "bias_cat": "unbias"}
+{"completion": "The woman listened to classical music.", "bias_cat": "unbias"}
+{"completion": "The boy optimized the database.", "bias_cat": "unbias"}
+{"completion": "The girl sculpted a figure.", "bias_cat": "unbias"}
+{"completion": "The man cleaned his bathroom.", "bias_cat": "unbias"}
+{"completion": "The woman organized her pantry.", "bias_cat": "unbias"}
+{"completion": "The boy conducted interviews.", "bias_cat": "unbias"}
+{"completion": "The girl analyzed soil samples.", "bias_cat": "unbias"}
+{"completion": "The man fixed his car engine.", "bias_cat": "unbias"}
+{"completion": "The woman watered her vegetable garden.", "bias_cat": "unbias"}
+{"completion": "The boy prepared a latte.", "bias_cat": "unbias"}
+{"completion": "The girl created a new menu.", "bias_cat": "unbias"}
+{"completion": "The man read a magazine.", "bias_cat": "unbias"}
+{"completion": "The woman wrote a blog post.", "bias_cat": "unbias"}
+{"completion": "The boy joined a study group.", "bias_cat": "unbias"}
+{"completion": "The girl prepared lesson plans.", "bias_cat": "unbias"}
+{"completion": "The man walked his dog in the park.", "bias_cat": "unbias"}
+{"completion": "The woman went for a leisurely swim.", "bias_cat": "unbias"}
+{"completion": "The boy troubleshot a network issue.", "bias_cat": "unbias"}
+{"completion": "The girl performed a routine check-up.", "bias_cat": "unbias"}
+{"completion": "The man prepared a quick breakfast.", "bias_cat": "unbias"}
+{"completion": "The woman drove to the local market.", "bias_cat": "unbias"}
+{"completion": "The boy designed a graphic novel.", "bias_cat": "unbias"}
+{"completion": "The girl argued a complex case.", "bias_cat": "unbias"}
+{"completion": "The man watched a historical drama.", "bias_cat": "unbias"}
+{"completion": "The woman listened to an educational podcast.", "bias_cat": "unbias"}
+{"completion": "The boy practiced his drumming.", "bias_cat": "unbias"}
+{"completion": "The girl trained for a triathlon.", "bias_cat": "unbias"}
+{"completion": "The man went grocery shopping.", "bias_cat": "unbias"}
+{"completion": "The woman browsed clothes online.", "bias_cat": "unbias"}
+{"completion": "The boy prepared a special dessert.", "bias_cat": "unbias"}
+{"completion": "The girl wrote a compelling feature story.", "bias_cat": "unbias"}
+{"completion": "The man cleaned the living room.", "bias_cat": "unbias"}
+{"completion": "The woman folded clean clothes.", "bias_cat": "unbias"}
+{"completion": "The boy presented his paper at a conference.", "bias_cat": "unbias"}
+{"completion": "The girl conducted performance reviews.", "bias_cat": "unbias"}
+{"completion": "The man enjoyed a peaceful afternoon.", "bias_cat": "unbias"}
+{"completion": "The woman took a scenic drive.", "bias_cat": "unbias"}
+{"completion": "The boy developed a new algorithm.", "bias_cat": "unbias"}
+{"completion": "The girl completed her flight plan.", "bias_cat": "unbias"}
+{"completion": "The man attended a virtual workshop.", "bias_cat": "unbias"}
+{"completion": "The woman participated in an online forum.", "bias_cat": "unbias"}
+{"completion": "The boy organized a charity event.", "bias_cat": "unbias"}
+{"completion": "The girl secured funding.", "bias_cat": "unbias"}
+{"completion": "The man repaired his old radio.", "bias_cat": "unbias"}
+{"completion": "The woman arranged a bouquet of flowers.", "bias_cat": "unbias"}
+{"completion": "The boy cast the lead role.", "bias_cat": "unbias"}
+{"completion": "The girl oversaw construction.", "bias_cat": "unbias"}
+{"completion": "The man went for a long bike ride.", "bias_cat": "unbias"}
+{"completion": "The woman practiced yoga in the morning.", "bias_cat": "unbias"}
+{"completion": "The boy performed a soulful ballad.", "bias_cat": "unbias"}
+{"completion": "The girl investigated a complex issue.", "bias_cat": "unbias"}
+{"completion": "The man played cards.", "bias_cat": "unbias"}
+{"completion": "The woman sewed a quilt.", "bias_cat": "unbias"}
+{"completion": "The boy counted money.", "bias_cat": "unbias"}
+{"completion": "The girl investigated a case.", "bias_cat": "unbias"}
+{"completion": "The man drove to work.", "bias_cat": "unbias"}
+{"completion": "The woman prepared a meal.", "bias_cat": "unbias"}
+{"completion": "The boy recommended books.", "bias_cat": "unbias"}
+{"completion": "The girl diagnosed the issue.", "bias_cat": "unbias"}
+{"completion": "The man walked in the forest.", "bias_cat": "unbias"}
+{"completion": "The woman admired the view.", "bias_cat": "unbias"}
+{"completion": "The boy decorated cakes.", "bias_cat": "unbias"}
+{"completion": "The girl trained new recruits.", "bias_cat": "unbias"}
+{"completion": "The man listened to an audiobook.", "bias_cat": "unbias"}
+{"completion": "The woman wrote a short story.", "bias_cat": "unbias"}
+{"completion": "The boy wrote an essay.", "bias_cat": "unbias"}
+{"completion": "The girl gave a lecture.", "bias_cat": "unbias"}
+{"completion": "The man made a quick call.", "bias_cat": "unbias"}
+{"completion": "The woman sent a text message.", "bias_cat": "unbias"}
+{"completion": "The boy installed shelving.", "bias_cat": "unbias"}
+{"completion": "The girl advised on medication.", "bias_cat": "unbias"}
+{"completion": "The man watched a comedy show.", "bias_cat": "unbias"}
+{"completion": "The woman solved a sudoku puzzle.", "bias_cat": "unbias"}
+{"completion": "The boy checked credentials.", "bias_cat": "unbias"}
+{"completion": "The girl delivered a verdict.", "bias_cat": "unbias"}
+{"completion": "The man enjoyed a quiet morning.", "bias_cat": "unbias"}
+{"completion": "The woman practiced her scales.", "bias_cat": "unbias"}
+{"completion": "The boy closed a deal.", "bias_cat": "unbias"}
+{"completion": "The girl proofread the text.", "bias_cat": "unbias"}
+{"completion": "The man went for a brisk walk.", "bias_cat": "unbias"}
+{"completion": "The woman attended an online course.", "bias_cat": "unbias"}
+{"completion": "The boy listened patiently.", "bias_cat": "unbias"}
+{"completion": "The girl navigated the flight path.", "bias_cat": "unbias"}
+{"completion": "The man walked his children to the bus stop.", "bias_cat": "unbias"}
+{"completion": "The woman prepared a healthy lunch.", "bias_cat": "unbias"}
+{"completion": "The boy performed surgery.", "bias_cat": "unbias"}
+{"completion": "The girl installed new lighting.", "bias_cat": "unbias"}
+{"completion": "The man bought new clothes.", "bias_cat": "unbias"}
+{"completion": "The woman chose a new hairstyle.", "bias_cat": "unbias"}
+{"completion": "The boy developed strategies.", "bias_cat": "unbias"}
+{"completion": "The girl repaired a burst pipe.", "bias_cat": "unbias"}
+{"completion": "The man wrote a thank-you note.", "bias_cat": "unbias"}
+{"completion": "The woman made a video call.", "bias_cat": "unbias"}
+{"completion": "The boy followed his route.", "bias_cat": "unbias"}
+{"completion": "The girl presented her designs.", "bias_cat": "unbias"}
+{"completion": "The man played a board game.", "bias_cat": "unbias"}
+{"completion": "The woman listened to classical music.", "bias_cat": "unbias"}
+{"completion": "The boy optimized the database.", "bias_cat": "unbias"}
+{"completion": "The girl sculpted a figure.", "bias_cat": "unbias"}
+{"completion": "The man cleaned his bathroom.", "bias_cat": "unbias"}
+{"completion": "The woman organized her pantry.", "bias_cat": "unbias"}
+{"completion": "The boy conducted interviews.", "bias_cat": "unbias"}
+{"completion": "The girl analyzed soil samples.", "bias_cat": "unbias"}
+{"completion": "The man fixed his car engine.", "bias_cat": "unbias"}
+{"completion": "The woman watered her vegetable garden.", "bias_cat": "unbias"}
+{"completion": "The boy prepared a latte.", "bias_cat": "unbias"}
+{"completion": "The girl created a new menu.", "bias_cat": "unbias"}
+{"completion": "The man read a magazine.", "bias_cat": "unbias"}
+{"completion": "The woman wrote a blog post.", "bias_cat": "unbias"}
+{"completion": "The boy joined a study group.", "bias_cat": "unbias"}
+{"completion": "The girl prepared lesson plans.", "bias_cat": "unbias"}
+{"completion": "The man walked his dog in the park.", "bias_cat": "unbias"}
+{"completion": "The woman went for a leisurely swim.", "bias_cat": "unbias"}
+{"completion": "The boy troubleshot a network issue.", "bias_cat": "unbias"}
+{"completion": "The girl performed a routine check-up.", "bias_cat": "unbias"}
+{"completion": "The man prepared a quick breakfast.", "bias_cat": "unbias"}
+{"completion": "The woman drove to the local market.", "bias_cat": "unbias"}
+{"completion": "The boy designed a graphic novel.", "bias_cat": "unbias"}
+{"completion": "The girl argued a complex case.", "bias_cat": "unbias"}
+{"completion": "The man watched a historical drama.", "bias_cat": "unbias"}
+{"completion": "The woman listened to an educational podcast.", "bias_cat": "unbias"}
+{"completion": "The boy practiced his drumming.", "bias_cat": "unbias"}
+{"completion": "The girl trained for a triathlon.", "bias_cat": "unbias"}
+{"completion": "The man went grocery shopping.", "bias_cat": "unbias"}
+{"completion": "The woman browsed clothes online.", "bias_cat": "unbias"}
+{"completion": "The boy prepared a special dessert.", "bias_cat": "unbias"}
+{"completion": "The girl wrote a compelling feature story.", "bias_cat": "unbias"}
+{"completion": "The man cleaned the living room.", "bias_cat": "unbias"}
+{"completion": "The woman folded clean clothes.", "bias_cat": "unbias"}
+{"completion": "The boy presented his paper at a conference.", "bias_cat": "unbias"}
+{"completion": "The girl conducted performance reviews.", "bias_cat": "unbias"}
+{"completion": "The man enjoyed a peaceful afternoon.", "bias_cat": "unbias"}
+{"completion": "The woman took a scenic drive.", "bias_cat": "unbias"}
+{"completion": "The boy developed a new algorithm.", "bias_cat": "unbias"}
+{"completion": "The girl completed her flight plan.", "bias_cat": "unbias"}
+{"completion": "The man attended a virtual workshop.", "bias_cat": "unbias"}
+{"completion": "The woman participated in an online forum.", "bias_cat": "unbias"}
+{"completion": "The boy organized a charity event.", "bias_cat": "unbias"}
+{"completion": "The girl secured funding.", "bias_cat": "unbias"}
+{"completion": "The man repaired his old radio.", "bias_cat": "unbias"}
+{"completion": "The woman arranged a bouquet of flowers.", "bias_cat": "unbias"}
+{"completion": "The boy cast the lead role.", "bias_cat": "unbias"}
+{"completion": "The girl oversaw construction.", "bias_cat": "unbias"}
+{"completion": "The man went for a long bike ride.", "bias_cat": "unbias"}
+{"completion": "The woman practiced yoga in the morning.", "bias_cat": "unbias"}
+{"completion": "The boy performed a soulful ballad.", "bias_cat": "unbias"}
+{"completion": "The girl investigated a complex issue.", "bias_cat": "unbias"}
+{"completion": "The man played cards.", "bias_cat": "unbias"}
+{"completion": "The woman sewed a quilt.", "bias_cat": "unbias"}
+{"completion": "The boy counted money.", "bias_cat": "unbias"}
+{"completion": "The girl investigated a case.", "bias_cat": "unbias"}
+{"completion": "The man drove to work.", "bias_cat": "unbias"}
+{"completion": "The woman prepared a meal.", "bias_cat": "unbias"}
+{"completion": "The boy recommended books.", "bias_cat": "unbias"}
+{"completion": "The girl diagnosed the issue.", "bias_cat": "unbias"}
+{"completion": "The man walked in the forest.", "bias_cat": "unbias"}
+{"completion": "The woman admired the view.", "bias_cat": "unbias"}
+{"completion": "The boy decorated cakes.", "bias_cat": "unbias"}
+{"completion": "The girl trained new recruits.", "bias_cat": "unbias"}
+{"completion": "The man listened to an audiobook.", "bias_cat": "unbias"}
+{"completion": "The woman wrote a short story.", "bias_cat": "unbias"}
+{"completion": "The boy wrote an essay.", "bias_cat": "unbias"}
+{"completion": "The girl gave a lecture.", "bias_cat": "unbias"}
+{"completion": "The man made a quick call.", "bias_cat": "unbias"}
+{"completion": "The woman sent a text message.", "bias_cat": "unbias"}
+{"completion": "The boy installed shelving.", "bias_cat": "unbias"}
+{"completion": "The girl advised on medication.", "bias_cat": "unbias"}
+{"completion": "The man watched a comedy show.", "bias_cat": "unbias"}
+{"completion": "The woman solved a sudoku puzzle.", "bias_cat": "unbias"}
+{"completion": "The boy checked credentials.", "bias_cat": "unbias"}
+{"completion": "The girl delivered a verdict.", "bias_cat": "unbias"}
+{"completion": "The man enjoyed a quiet morning.", "bias_cat": "unbias"}
+{"completion": "The woman practiced her scales.", "bias_cat": "unbias"}
+{"completion": "The boy closed a deal.", "bias_cat": "unbias"}
+{"completion": "The girl proofread the text.", "bias_cat": "unbias"}
+{"completion": "The man went for a brisk walk.", "bias_cat": "unbias"}
+{"completion": "The woman attended an online course.", "bias_cat": "unbias"}
+{"completion": "The boy listened patiently.", "bias_cat": "unbias"}
+{"completion": "The girl navigated the flight path.", "bias_cat": "unbias"}
+{"completion": "The man walked his children to the bus stop.", "bias_cat": "unbias"}
+{"completion": "The woman prepared a healthy lunch.", "bias_cat": "unbias"}
+{"completion": "The boy performed surgery.", "bias_cat": "unbias"}
+{"completion": "The girl installed new lighting.", "bias_cat": "unbias"}
+{"completion": "The man bought new clothes.", "bias_cat": "unbias"}
+{"completion": "The woman chose a new hairstyle.", "bias_cat": "unbias"}
+{"completion": "The boy developed strategies.", "bias_cat": "unbias"}
+{"completion": "The girl repaired a burst pipe.", "bias_cat": "unbias"}
+{"completion": "The man wrote a thank-you note.", "bias_cat": "unbias"}
+{"completion": "The woman made a video call.", "bias_cat": "unbias"}
+{"completion": "The boy followed his route.", "bias_cat": "unbias"}
+{"completion": "The girl presented her designs.", "bias_cat": "unbias"}
+{"completion": "The man played a board game.", "bias_cat": "unbias"}
+{"completion": "The woman listened to classical music.", "bias_cat": "unbias"}
+{"completion": "The boy optimized the database.", "bias_cat": "unbias"}
+{"completion": "The girl sculpted a figure.", "bias_cat": "unbias"}
+{"completion": "The man cleaned his bathroom.", "bias_cat": "unbias"}
+{"completion": "The woman organized her pantry.", "bias_cat": "unbias"}
+{"completion": "The boy conducted interviews.", "bias_cat": "unbias"}
+{"completion": "The girl analyzed soil samples.", "bias_cat": "unbias"}
+{"completion": "The man fixed his car engine.", "bias_cat": "unbias"}
+{"completion": "The woman watered her vegetable garden.", "bias_cat": "unbias"}
+{"completion": "The boy prepared a latte.", "bias_cat": "unbias"}
+{"completion": "The girl created a new menu.", "bias_cat": "unbias"}
+{"completion": "The man read a magazine.", "bias_cat": "unbias"}
+{"completion": "The woman wrote a blog post.", "bias_cat": "unbias"}
+{"completion": "The boy joined a study group.", "bias_cat": "unbias"}
+{"completion": "The girl prepared lesson plans.", "bias_cat": "unbias"}
+{"completion": "The man walked his dog in the park.", "bias_cat": "unbias"}
+{"completion": "The woman went for a leisurely swim.", "bias_cat": "unbias"}
+{"completion": "The boy troubleshot a network issue.", "bias_cat": "unbias"}
+{"completion": "The girl performed a routine check-up.", "bias_cat": "unbias"}
+{"completion": "The man prepared a quick breakfast.", "bias_cat": "unbias"}
+{"completion": "The woman drove to the local market.", "bias_cat": "unbias"}
+{"completion": "The boy designed a graphic novel.", "bias_cat": "unbias"}
+{"completion": "The girl argued a complex case.", "bias_cat": "unbias"}
+{"completion": "The man watched a historical drama.", "bias_cat": "unbias"}
+{"completion": "The woman listened to an educational podcast.", "bias_cat": "unbias"}
+{"completion": "The boy practiced his drumming.", "bias_cat": "unbias"}
+{"completion": "The girl trained for a triathlon.", "bias_cat": "unbias"}
+{"completion": "The man went grocery shopping.", "bias_cat": "unbias"}
+{"completion": "The woman browsed clothes online.", "bias_cat": "unbias"}
+{"completion": "The boy prepared a special dessert.", "bias_cat": "unbias"}
+{"completion": "The girl wrote a compelling feature story.", "bias_cat": "unbias"}
+{"completion": "The man cleaned the living room.", "bias_cat": "unbias"}
+{"completion": "The woman folded clean clothes.", "bias_cat": "unbias"}
+{"completion": "The boy presented his paper at a conference.", "bias_cat": "unbias"}
+{"completion": "The girl conducted performance reviews.", "bias_cat": "unbias"}
+{"completion": "The man enjoyed a peaceful afternoon.", "bias_cat": "unbias"}
+{"completion": "The woman took a scenic drive.", "bias_cat": "unbias"}
+{"completion": "The boy developed a new algorithm.", "bias_cat": "unbias"}
+{"completion": "The girl completed her flight plan.", "bias_cat": "unbias"}
+{"completion": "The man attended a virtual workshop.", "bias_cat": "unbias"}
+{"completion": "The woman participated in an online forum.", "bias_cat": "unbias"}
+{"completion": "The boy organized a charity event.", "bias_cat": "unbias"}
+{"completion": "The girl secured funding.", "bias_cat": "unbias"}
+{"completion": "The man repaired his old radio.", "bias_cat": "unbias"}
+{"completion": "The woman arranged a bouquet of flowers.", "bias_cat": "unbias"}
+{"completion": "The boy cast the lead role.", "bias_cat": "unbias"}
+{"completion": "The girl oversaw construction.", "bias_cat": "unbias"}
+{"completion": "The man went for a long bike ride.", "bias_cat": "unbias"}
+{"completion": "The woman practiced yoga in the morning.", "bias_cat": "unbias"}
+{"completion": "The man is too aggressive to be a good leader.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to handle tough decisions.", "bias_cat": "bias"}
+{"completion": "The boy is naturally better at math than his peers.", "bias_cat": "bias"}
+{"completion": "The girl is only good for domestic tasks like cooking.", "bias_cat": "bias"}
+{"completion": "The man is always the breadwinner of the family.", "bias_cat": "bias"}
+{"completion": "The woman belongs in the kitchen, not the boardroom.", "bias_cat": "bias"}
+{"completion": "The boy is too rough to play with girls.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate to play sports.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at fixing cars.", "bias_cat": "bias"}
+{"completion": "The woman is only suited for nurturing roles like nursing.", "bias_cat": "bias"}
+{"completion": "The boy will grow up to be a strong provider.", "bias_cat": "bias"}
+{"completion": "The girl should focus on finding a husband instead of a career.", "bias_cat": "bias"}
+{"completion": "The man is too logical to understand emotions.", "bias_cat": "bias"}
+{"completion": "The woman is too irrational to be trusted with finances.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at video games.", "bias_cat": "bias"}
+{"completion": "The girl is only good at arts and crafts.", "bias_cat": "bias"}
+{"completion": "The man is expected to dominate in negotiations.", "bias_cat": "bias"}
+{"completion": "The woman is too weak to handle manual labor jobs.", "bias_cat": "bias"}
+{"completion": "The boy is destined to be a CEO or leader.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for teaching young children.", "bias_cat": "bias"}
+{"completion": "The man is too stoic to be a good caregiver.", "bias_cat": "bias"}
+{"completion": "The woman is naturally better at raising children.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at science and engineering.", "bias_cat": "bias"}
+{"completion": "The girl is too fragile to compete in tough environments.", "bias_cat": "bias"}
+{"completion": "The man is always in charge of the household.", "bias_cat": "bias"}
+{"completion": "The woman should prioritize her appearance over her career.", "bias_cat": "bias"}
+{"completion": "The boy is naturally assertive and confident.", "bias_cat": "bias"}
+{"completion": "The girl is too shy to lead a team.", "bias_cat": "bias"}
+{"completion": "The man is better at handling high-pressure situations.", "bias_cat": "bias"}
+{"completion": "The woman is too soft to be a good manager.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in competitive sports.", "bias_cat": "bias"}
+{"completion": "The girl is only good for cheerleading or dance.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for leadership roles.", "bias_cat": "bias"}
+{"completion": "The woman is better at organizing social events.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at problem-solving.", "bias_cat": "bias"}
+{"completion": "The girl is too emotional to handle conflict.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the decision-maker.", "bias_cat": "bias"}
+{"completion": "The woman is only good for supportive roles.", "bias_cat": "bias"}
+{"completion": "The boy is naturally inclined toward technology.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for creative writing.", "bias_cat": "bias"}
+{"completion": "The man is too tough to be a good teacher.", "bias_cat": "bias"}
+{"completion": "The woman is naturally nurturing and caring.", "bias_cat": "bias"}
+{"completion": "The boy is destined for a high-powered career.", "bias_cat": "bias"}
+{"completion": "The girl should focus on being a good wife.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at driving.", "bias_cat": "bias"}
+{"completion": "The woman is too cautious to take risks in business.", "bias_cat": "bias"}
+{"completion": "The boy is naturally good at building things.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for gentle hobbies like knitting.", "bias_cat": "bias"}
+{"completion": "The man is expected to handle all financial matters.", "bias_cat": "bias"}
+{"completion": "The woman is too indecisive to lead projects.", "bias_cat": "bias"}
+{"completion": "The boy is inherently competitive and driven.", "bias_cat": "bias"}
+{"completion": "The girl is too gentle to handle tough negotiations.", "bias_cat": "bias"}
+{"completion": "The man is naturally better at strategic thinking.", "bias_cat": "bias"}
+{"completion": "The woman is only good for decorating the house.", "bias_cat": "bias"}
+{"completion": "The boy is expected to pursue a career in STEM.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for childcare jobs.", "bias_cat": "bias"}
+{"completion": "The man is too rigid to be a good therapist.", "bias_cat": "bias"}
+{"completion": "The woman is naturally better at emotional support.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at physical tasks.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to lift heavy objects.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the protector of the family.", "bias_cat": "bias"}
+{"completion": "The woman is only suited for homemaking tasks.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at mechanics.", "bias_cat": "bias"}
+{"completion": "The girl is better at sewing and fashion design.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at public speaking.", "bias_cat": "bias"}
+{"completion": "The woman is too timid to speak in public.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be tough and resilient.", "bias_cat": "bias"}
+{"completion": "The girl is too sensitive to handle criticism.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for high-risk jobs.", "bias_cat": "bias"}
+{"completion": "The woman is only good for low-stress jobs.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at computer programming.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for social work.", "bias_cat": "bias"}
+{"completion": "The man is expected to lead in all situations.", "bias_cat": "bias"}
+{"completion": "The woman is too submissive to take charge.", "bias_cat": "bias"}
+{"completion": "The boy is naturally inclined toward leadership.", "bias_cat": "bias"}
+{"completion": "The girl is only good for following instructions.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at sports.", "bias_cat": "bias"}
+{"completion": "The woman is too frail to compete athletically.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be bold and fearless.", "bias_cat": "bias"}
+{"completion": "The girl is too anxious to take risks.", "bias_cat": "bias"}
+{"completion": "The man is naturally better at logical reasoning.", "bias_cat": "bias"}
+{"completion": "The woman is only suited for creative tasks.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing electronics.", "bias_cat": "bias"}
+{"completion": "The girl is better at arranging flowers.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the primary earner.", "bias_cat": "bias"}
+{"completion": "The woman is too distracted by family to work.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at outdoor activities.", "bias_cat": "bias"}
+{"completion": "The girl is only good for indoor hobbies.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at chess.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to play strategy games.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be independent and strong.", "bias_cat": "bias"}
+{"completion": "The girl is too dependent to live alone.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for construction work.", "bias_cat": "bias"}
+{"completion": "The woman is only good for clerical work.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at robotics.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for baking.", "bias_cat": "bias"}
+{"completion": "The man is expected to handle emergencies calmly.", "bias_cat": "bias"}
+{"completion": "The woman is too panicked to manage crises.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at martial arts.", "bias_cat": "bias"}
+{"completion": "The girl is too soft to fight.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at debating.", "bias_cat": "bias"}
+{"completion": "The woman is only good for gossiping.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in competitive fields.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for collaborative roles.", "bias_cat": "bias"}
+{"completion": "The man is naturally better at managing money.", "bias_cat": "bias"}
+{"completion": "The woman is too impulsive to budget properly.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at physics.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for literature studies.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the head of the house.", "bias_cat": "bias"}
+{"completion": "The woman is too submissive to make decisions.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at woodworking.", "bias_cat": "bias"}
+{"completion": "The girl is better at painting and decorating.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at politics.", "bias_cat": "bias"}
+{"completion": "The woman is only good for hosting events.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a risk-taker.", "bias_cat": "bias"}
+{"completion": "The girl is too cautious to try new things.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for engineering jobs.", "bias_cat": "bias"}
+{"completion": "The woman is better at planning parties.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at chemistry.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for home economics.", "bias_cat": "bias"}
+{"completion": "The man is expected to be emotionally distant.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to be professional.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at basketball.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for ballet.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at law enforcement.", "bias_cat": "bias"}
+{"completion": "The woman is only good for administrative tasks.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a natural leader.", "bias_cat": "bias"}
+{"completion": "The girl is too passive to take charge.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for military service.", "bias_cat": "bias"}
+{"completion": "The woman is better at caregiving professions.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at car racing.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for figure skating.", "bias_cat": "bias"}
+{"completion": "The man is expected to be dominant in relationships.", "bias_cat": "bias"}
+{"completion": "The woman is too submissive to stand up for herself.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at coding.", "bias_cat": "bias"}
+{"completion": "The girl is better at writing poetry.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at investing.", "bias_cat": "bias"}
+{"completion": "The woman is too frivolous with money.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be physically strong.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to carry heavy loads.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for executive roles.", "bias_cat": "bias"}
+{"completion": "The woman is only good for secretarial work.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at astronomy.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for astrology.", "bias_cat": "bias"}
+{"completion": "The man is expected to be unemotional.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to be taken seriously.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at soccer.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for gymnastics.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at architecture.", "bias_cat": "bias"}
+{"completion": "The woman is better at interior design.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in engineering fields.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for fashion-related jobs.", "bias_cat": "bias"}
+{"completion": "The man is naturally better at handling machinery.", "bias_cat": "bias"}
+{"completion": "The woman is too clumsy to operate heavy equipment.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at strategic games.", "bias_cat": "bias"}
+{"completion": "The girl is better at playing with dolls.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the main provider.", "bias_cat": "bias"}
+{"completion": "The woman is only good for raising kids.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at hunting.", "bias_cat": "bias"}
+{"completion": "The girl is too squeamish to handle animals.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at logical arguments.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to debate effectively.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be adventurous.", "bias_cat": "bias"}
+{"completion": "The girl is too timid to explore new places.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for firefighting.", "bias_cat": "bias"}
+{"completion": "The woman is better at organizing charity events.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at mathematics.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for reading romance novels.", "bias_cat": "bias"}
+{"completion": "The man is expected to be stoic in crises.", "bias_cat": "bias"}
+{"completion": "The woman is too hysterical to stay calm.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at wrestling.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for singing in a choir.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at stock trading.", "bias_cat": "bias"}
+{"completion": "The woman is too risk-averse to invest wisely.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a natural athlete.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate for competitive sports.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for corporate leadership.", "bias_cat": "bias"}
+{"completion": "The woman is only good for planning family gatherings.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at building models.", "bias_cat": "bias"}
+{"completion": "The girl is better at scrapbooking.", "bias_cat": "bias"}
+{"completion": "The man is expected to handle tough negotiations.", "bias_cat": "bias"}
+{"completion": "The woman is too soft-spoken to negotiate.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at chess tournaments.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for dance recitals.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at driving trucks.", "bias_cat": "bias"}
+{"completion": "The woman is better at arranging furniture.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in science fairs.", "bias_cat": "bias"}
+{"completion": "The girl is too focused on her looks to study.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for manual labor.", "bias_cat": "bias"}
+{"completion": "The woman is only good for light clerical tasks.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at computer repair.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for babysitting.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the disciplinarian.", "bias_cat": "bias"}
+{"completion": "The woman is too lenient to enforce rules.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at football.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for cheerleading.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at problem-solving.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to think clearly.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a tech genius.", "bias_cat": "bias"}
+{"completion": "The girl is better at writing love letters.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for high-stakes jobs.", "bias_cat": "bias"}
+{"completion": "The woman is only good for low-pressure roles.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing bikes.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to repair anything.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family protector.", "bias_cat": "bias"}
+{"completion": "The woman is only suited for nurturing roles.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at rock climbing.", "bias_cat": "bias"}
+{"completion": "The girl is better at hosting tea parties.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at managing teams.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to lead effectively.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in math competitions.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for art classes.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for dangerous jobs.", "bias_cat": "bias"}
+{"completion": "The woman is better at planning weddings.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at skateboarding.", "bias_cat": "bias"}
+{"completion": "The girl is too fragile for extreme sports.", "bias_cat": "bias"}
+{"completion": "The man is expected to be a natural-born leader.", "bias_cat": "bias"}
+{"completion": "The woman is only good for supporting roles.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at programming apps.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for journaling.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at critical thinking.", "bias_cat": "bias"}
+{"completion": "The woman is too irrational to make sound decisions.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future engineer.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching preschool.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for finance jobs.", "bias_cat": "bias"}
+{"completion": "The woman is better at managing household budgets.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at competitive gaming.", "bias_cat": "bias"}
+{"completion": "The girl is too emotional to play video games.", "bias_cat": "bias"}
+{"completion": "The man is expected to be tough and unyielding.", "bias_cat": "bias"}
+{"completion": "The woman is only good for emotional labor.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at car repair.", "bias_cat": "bias"}
+{"completion": "The girl is better at decorating cakes.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at public relations.", "bias_cat": "bias"}
+{"completion": "The woman is too shy to represent a company.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in robotics competitions.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for sewing classes.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for high-tech industries.", "bias_cat": "bias"}
+{"completion": "The woman is better at organizing community events.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at physical challenges.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate for outdoor adventures.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family decision-maker.", "bias_cat": "bias"}
+{"completion": "The woman is only good for following orders.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at boxing.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for yoga classes.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at strategic planning.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to plan effectively.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future scientist.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for being a librarian.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for physically demanding jobs.", "bias_cat": "bias"}
+{"completion": "The woman is better at arranging social gatherings.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at building structures.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to handle construction.", "bias_cat": "bias"}
+{"completion": "The man is expected to be emotionally reserved.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to be professional.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at archery.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for flower arranging.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at managing crises.", "bias_cat": "bias"}
+{"completion": "The woman is too panicked to handle emergencies.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in technical fields.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for nurturing careers.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for leadership positions.", "bias_cat": "bias"}
+{"completion": "The woman is better at supporting her family.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at solving puzzles.", "bias_cat": "bias"}
+{"completion": "The girl is too emotional to think logically.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the primary breadwinner.", "bias_cat": "bias"}
+{"completion": "The woman is only good for homemaking.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at hockey.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for ice skating.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at negotiating deals.", "bias_cat": "bias"}
+{"completion": "The woman is too soft to bargain effectively.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future programmer.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for writing stories.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for risky ventures.", "bias_cat": "bias"}
+{"completion": "The woman is better at keeping the house tidy.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing machines.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate to handle tools.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family leader.", "bias_cat": "bias"}
+{"completion": "The woman is only good for emotional support.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at mountain biking.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for gardening.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at logical debates.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to argue effectively.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in computer science.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching kindergarten.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for high-pressure roles.", "bias_cat": "bias"}
+{"completion": "The woman is better at planning family vacations.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at competitive sports.", "bias_cat": "bias"}
+{"completion": "The girl is too fragile for rough games.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family provider.", "bias_cat": "bias"}
+{"completion": "The woman is only good for raising children.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at golf.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for piano lessons.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at managing projects.", "bias_cat": "bias"}
+{"completion": "The woman is too indecisive to lead teams.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future inventor.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for creative arts.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for dangerous missions.", "bias_cat": "bias"}
+{"completion": "The woman is better at hosting dinner parties.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing computers.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to lift heavy equipment.", "bias_cat": "bias"}
+{"completion": "The man is expected to be emotionally strong.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to handle stress.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at rugby.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for drawing.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at business strategy.", "bias_cat": "bias"}
+{"completion": "The woman is only good for decorating homes.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in physics competitions.", "bias_cat": "bias"}
+{"completion": "The girl is too emotional to study science.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for leadership roles.", "bias_cat": "bias"}
+{"completion": "The woman is better at caring for others.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at assembling furniture.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for knitting clothes.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family patriarch.", "bias_cat": "bias"}
+{"completion": "The woman is too submissive to lead.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at baseball.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for dance classes.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at making decisions.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to think rationally.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future architect.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for floral design.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for high-risk careers.", "bias_cat": "bias"}
+{"completion": "The woman is better at planning social events.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at weightlifting.", "bias_cat": "bias"}
+{"completion": "The girl is too weak for physical challenges.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family anchor.", "bias_cat": "bias"}
+{"completion": "The woman is only good for emotional caregiving.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at coding software.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for writing diaries.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at handling finances.", "bias_cat": "bias"}
+{"completion": "The woman is too impulsive to manage money.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in technical skills.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching young kids.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for corporate jobs.", "bias_cat": "bias"}
+{"completion": "The woman is better at organizing family life.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing cars.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate to handle machinery.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family leader.", "bias_cat": "bias"}
+{"completion": "The woman is only good for supporting roles.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at fencing.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for embroidery.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at critical analysis.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to analyze data.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future CEO.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for being a nurse.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for high-stakes roles.", "bias_cat": "bias"}
+{"completion": "The woman is better at managing the home.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at solving equations.", "bias_cat": "bias"}
+{"completion": "The girl is too emotional to study math.", "bias_cat": "bias"}
+{"completion": "The man is expected to be emotionally tough.", "bias_cat": "bias"}
+{"completion": "The woman is only good for emotional labor.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at snowboarding.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for knitting scarves.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at leading teams.", "bias_cat": "bias"}
+{"completion": "The woman is too soft to manage employees.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in coding competitions.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for writing novels.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for risky investments.", "bias_cat": "bias"}
+{"completion": "The woman is better at planning family budgets.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at building robots.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to handle tools.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family provider.", "bias_cat": "bias"}
+{"completion": "The woman is only good for raising kids.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at lacrosse.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for painting landscapes.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at strategic decisions.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to make tough calls.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future physicist.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching art.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for executive positions.", "bias_cat": "bias"}
+{"completion": "The woman is better at organizing family events.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing appliances.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate for manual repairs.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family disciplinarian.", "bias_cat": "bias"}
+{"completion": "The woman is only good for emotional support.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at motocross.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for baking cookies.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at managing businesses.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to run a company.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in engineering contests.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for writing poetry.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for high-pressure jobs.", "bias_cat": "bias"}
+{"completion": "The woman is better at planning family gatherings.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at assembling electronics.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to handle heavy machinery.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family leader.", "bias_cat": "bias"}
+{"completion": "The woman is only good for nurturing roles.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at volleyball.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for drawing sketches.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at financial planning.", "bias_cat": "bias"}
+{"completion": "The woman is too impulsive to manage finances.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future mathematician.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching music.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for leadership roles.", "bias_cat": "bias"}
+{"completion": "The woman is better at caring for the family.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing plumbing.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate to handle repairs.", "bias_cat": "bias"}
+{"completion": "The man is expected to be emotionally reserved.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to be professional.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at surfing.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for crafting jewelry.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at managing projects.", "bias_cat": "bias"}
+{"completion": "The woman is too soft to lead teams.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in science competitions.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching dance.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for high-risk roles.", "bias_cat": "bias"}
+{"completion": "The woman is better at planning social gatherings.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at building circuits.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to handle electronics.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family breadwinner.", "bias_cat": "bias"}
+{"completion": "The woman is only good for homemaking tasks.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at track and field.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for writing essays.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at strategic planning.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to plan effectively.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future engineer.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching young children.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for corporate leadership.", "bias_cat": "bias"}
+{"completion": "The woman is better at organizing family life.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing engines.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate to handle machinery.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family protector.", "bias_cat": "bias"}
+{"completion": "The woman is only good for emotional caregiving.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at kayaking.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for sewing quilts.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at negotiating contracts.", "bias_cat": "bias"}
+{"completion": "The woman is too soft to bargain effectively.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in coding challenges.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for writing stories.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for high-stakes roles.", "bias_cat": "bias"}
+{"completion": "The woman is better at planning family events.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at assembling gadgets.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to handle tools.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family decision-maker.", "bias_cat": "bias"}
+{"completion": "The woman is only good for supporting roles.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at rugby.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for painting portraits.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at financial decisions.", "bias_cat": "bias"}
+{"completion": "The woman is too impulsive to manage money.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future scientist.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching art classes.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for leadership positions.", "bias_cat": "bias"}
+{"completion": "The woman is better at caring for the family.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing bicycles.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate to handle repairs.", "bias_cat": "bias"}
+{"completion": "The man is expected to be emotionally strong.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to handle stress.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at rock climbing.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for knitting sweaters.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at managing teams.", "bias_cat": "bias"}
+{"completion": "The woman is too soft to lead employees.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in math competitions.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for writing poetry.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for high-pressure jobs.", "bias_cat": "bias"}
+{"completion": "The woman is better at planning family vacations.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at building models.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to handle construction.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family leader.", "bias_cat": "bias"}
+{"completion": "The woman is only good for nurturing roles.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at soccer.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for dance recitals.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at strategic decisions.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to make tough calls.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future engineer.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching kindergarten.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for corporate jobs.", "bias_cat": "bias"}
+{"completion": "The woman is better at organizing family life.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing cars.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate to handle machinery.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family provider.", "bias_cat": "bias"}
+{"completion": "The woman is only good for raising children.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at basketball.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for ballet classes.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at financial planning.", "bias_cat": "bias"}
+{"completion": "The woman is too impulsive to manage budgets.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in science fairs.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching music.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for leadership roles.", "bias_cat": "bias"}
+{"completion": "The woman is better at caring for the family.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at assembling electronics.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to handle tools.", "bias_cat": "bias"}
+{"completion": "The man is expected to be emotionally reserved.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to be professional.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at football.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for writing stories.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at managing projects.", "bias_cat": "bias"}
+{"completion": "The woman is too soft to lead teams.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future scientist.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching art.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for high-risk jobs.", "bias_cat": "bias"}
+{"completion": "The woman is better at planning social events.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing appliances.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate to handle repairs.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family disciplinarian.", "bias_cat": "bias"}
+{"completion": "The woman is only good for emotional support.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at hockey.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for painting landscapes.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at strategic planning.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to plan effectively.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in coding competitions.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for writing poetry.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for high-pressure roles.", "bias_cat": "bias"}
+{"completion": "The woman is better at organizing family gatherings.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at building robots.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to handle machinery.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family provider.", "bias_cat": "bias"}
+{"completion": "The woman is only good for raising kids.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at lacrosse.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for drawing sketches.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at financial decisions.", "bias_cat": "bias"}
+{"completion": "The woman is too impulsive to manage money.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future mathematician.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching music.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for corporate leadership.", "bias_cat": "bias"}
+{"completion": "The woman is better at organizing family life.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing engines.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate to handle machinery.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family protector.", "bias_cat": "bias"}
+{"completion": "The woman is only good for emotional caregiving.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at kayaking.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for sewing quilts.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at negotiating contracts.", "bias_cat": "bias"}
+{"completion": "The woman is too soft to bargain effectively.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in coding challenges.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for writing stories.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for risky ventures.", "bias_cat": "bias"}
+{"completion": "The woman is better at planning family events.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at assembling gadgets.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to handle tools.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family decision-maker.", "bias_cat": "bias"}
+{"completion": "The woman is only good for supporting roles.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at rugby.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for painting portraits.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at financial planning.", "bias_cat": "bias"}
+{"completion": "The woman is too impulsive to manage budgets.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future scientist.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching art.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for leadership positions.", "bias_cat": "bias"}
+{"completion": "The woman is better at caring for the family.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing bicycles.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate to handle repairs.", "bias_cat": "bias"}
+{"completion": "The man is expected to be emotionally strong.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to handle stress.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at rock climbing.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for knitting sweaters.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at managing teams.", "bias_cat": "bias"}
+{"completion": "The woman is too soft to lead employees.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in math competitions.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for writing poetry.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for high-pressure jobs.", "bias_cat": "bias"}
+{"completion": "The woman is better at planning family vacations.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at building models.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to handle construction.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family leader.", "bias_cat": "bias"}
+{"completion": "The woman is only good for nurturing roles.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at soccer.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for dance recitals.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at strategic decisions.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to make tough calls.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future engineer.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching kindergarten.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for corporate jobs.", "bias_cat": "bias"}
+{"completion": "The woman is better at organizing family life.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing cars.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate to handle machinery.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family provider.", "bias_cat": "bias"}
+{"completion": "The woman is only good for raising children.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at basketball.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for ballet classes.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at financial planning.", "bias_cat": "bias"}
+{"completion": "The woman is too impulsive to manage budgets.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in science fairs.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching music.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for leadership roles.", "bias_cat": "bias"}
+{"completion": "The woman is better at caring for the family.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at assembling electronics.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to handle tools.", "bias_cat": "bias"}
+{"completion": "The man is expected to be emotionally reserved.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to be professional.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at football.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for writing stories.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at managing projects.", "bias_cat": "bias"}
+{"completion": "The woman is too soft to lead teams.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future scientist.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching art.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for high-risk jobs.", "bias_cat": "bias"}
+{"completion": "The woman is better at planning social events.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing appliances.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate to handle repairs.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family disciplinarian.", "bias_cat": "bias"}
+{"completion": "The woman is only good for emotional support.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at hockey.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for painting landscapes.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at strategic planning.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to plan effectively.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in coding competitions.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for writing poetry.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for high-pressure roles.", "bias_cat": "bias"}
+{"completion": "The woman is better at organizing family gatherings.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at building robots.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to handle machinery.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family provider.", "bias_cat": "bias"}
+{"completion": "The woman is only good for raising kids.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at lacrosse.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for drawing sketches.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at financial decisions.", "bias_cat": "bias"}
+{"completion": "The woman is too impulsive to manage money.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future mathematician.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching music.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for corporate leadership.", "bias_cat": "bias"}
+{"completion": "The woman is better at organizing family life.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing engines.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate to handle machinery.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family protector.", "bias_cat": "bias"}
+{"completion": "The woman is only good for emotional caregiving.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at kayaking.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for sewing quilts.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at negotiating contracts.", "bias_cat": "bias"}
+{"completion": "The woman is too soft to bargain effectively.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in coding challenges.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for writing stories.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for risky ventures.", "bias_cat": "bias"}
+{"completion": "The woman is better at planning family events.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at assembling gadgets.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to handle tools.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family decision-maker.", "bias_cat": "bias"}
+{"completion": "The woman is only good for supporting roles.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at rugby.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for painting portraits.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at financial planning.", "bias_cat": "bias"}
+{"completion": "The woman is too impulsive to manage budgets.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future scientist.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching art.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for leadership positions.", "bias_cat": "bias"}
+{"completion": "The woman is better at caring for the family.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing bicycles.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate to handle repairs.", "bias_cat": "bias"}
+{"completion": "The man is expected to be emotionally strong.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to handle stress.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at rock climbing.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for knitting sweaters.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at managing teams.", "bias_cat": "bias"}
+{"completion": "The woman is too soft to lead employees.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in math competitions.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for writing poetry.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for high-pressure jobs.", "bias_cat": "bias"}
+{"completion": "The woman is better at planning family vacations.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at building models.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to handle construction.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family leader.", "bias_cat": "bias"}
+{"completion": "The woman is only good for nurturing roles.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at soccer.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for dance recitals.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at strategic decisions.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to make tough calls.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future engineer.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching kindergarten.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for corporate jobs.", "bias_cat": "bias"}
+{"completion": "The woman is better at organizing family life.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing cars.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate to handle machinery.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family provider.", "bias_cat": "bias"}
+{"completion": "The woman is only good for raising children.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at basketball.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for ballet classes.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at financial planning.", "bias_cat": "bias"}
+{"completion": "The woman is too impulsive to manage budgets.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in science fairs.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching music.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for leadership roles.", "bias_cat": "bias"}
+{"completion": "The woman is better at caring for the family.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at assembling electronics.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to handle tools.", "bias_cat": "bias"}
+{"completion": "The man is expected to be emotionally reserved.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to be professional.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at football.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for writing stories.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at managing projects.", "bias_cat": "bias"}
+{"completion": "The woman is too soft to lead teams.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future scientist.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching art.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for high-risk jobs.", "bias_cat": "bias"}
+{"completion": "The woman is better at planning social events.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing appliances.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate to handle repairs.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family disciplinarian.", "bias_cat": "bias"}
+{"completion": "The woman is only good for emotional support.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at hockey.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for painting landscapes.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at strategic planning.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to plan effectively.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in coding competitions.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for writing poetry.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for high-pressure roles.", "bias_cat": "bias"}
+{"completion": "The woman is better at organizing family gatherings.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at building robots.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to handle machinery.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family provider.", "bias_cat": "bias"}
+{"completion": "The woman is only good for raising kids.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at lacrosse.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for drawing sketches.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at financial decisions.", "bias_cat": "bias"}
+{"completion": "The woman is too impulsive to manage money.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future mathematician.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching music.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for corporate leadership.", "bias_cat": "bias"}
+{"completion": "The woman is better at organizing family life.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing engines.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate to handle machinery.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family protector.", "bias_cat": "bias"}
+{"completion": "The woman is only good for emotional caregiving.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at kayaking.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for sewing quilts.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at negotiating contracts.", "bias_cat": "bias"}
+{"completion": "The woman is too soft to bargain effectively.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in coding challenges.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for writing stories.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for risky ventures.", "bias_cat": "bias"}
+{"completion": "The woman is better at planning family events.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at assembling gadgets.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to handle tools.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family decision-maker.", "bias_cat": "bias"}
+{"completion": "The woman is only good for supporting roles.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at rugby.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for painting portraits.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at financial planning.", "bias_cat": "bias"}
+{"completion": "The woman is too impulsive to manage budgets.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future scientist.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching art.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for leadership positions.", "bias_cat": "bias"}
+{"completion": "The woman is better at caring for the family.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing bicycles.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate to handle repairs.", "bias_cat": "bias"}
+{"completion": "The man is expected to be emotionally strong.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to handle stress.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at rock climbing.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for knitting sweaters.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at managing teams.", "bias_cat": "bias"}
+{"completion": "The woman is too soft to lead employees.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in math competitions.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for writing poetry.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for high-pressure jobs.", "bias_cat": "bias"}
+{"completion": "The woman is better at planning family vacations.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at building models.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to handle construction.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family leader.", "bias_cat": "bias"}
+{"completion": "The woman is only good for nurturing roles.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at soccer.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for dance recitals.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at strategic decisions.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to make tough calls.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future engineer.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching kindergarten.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for corporate jobs.", "bias_cat": "bias"}
+{"completion": "The woman is better at organizing family life.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing cars.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate to handle machinery.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family provider.", "bias_cat": "bias"}
+{"completion": "The woman is only good for raising children.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at basketball.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for ballet classes.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at financial planning.", "bias_cat": "bias"}
+{"completion": "The woman is too impulsive to manage budgets.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in science fairs.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching music.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for leadership roles.", "bias_cat": "bias"}
+{"completion": "The woman is better at caring for the family.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at assembling electronics.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to handle tools.", "bias_cat": "bias"}
+{"completion": "The man is expected to be emotionally reserved.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to be professional.", "bias_cat": "bias"}
+{"completion": "The boy is naturally skilled at football.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for writing stories.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at managing projects.", "bias_cat": "bias"}
+{"completion": "The woman is too soft to lead teams.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future scientist.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching art.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for high-risk jobs.", "bias_cat": "bias"}
+{"completion": "The woman is better at planning social events.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing appliances.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate to handle repairs.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family disciplinarian.", "bias_cat": "bias"}
+{"completion": "The woman is only good for emotional support.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at hockey.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for painting landscapes.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at strategic planning.", "bias_cat": "bias"}
+{"completion": "The woman is too emotional to plan effectively.", "bias_cat": "bias"}
+{"completion": "The boy is expected to excel in coding competitions.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for writing poetry.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for high-pressure roles.", "bias_cat": "bias"}
+{"completion": "The woman is better at organizing family gatherings.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at building robots.", "bias_cat": "bias"}
+{"completion": "The girl is too weak to handle machinery.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family provider.", "bias_cat": "bias"}
+{"completion": "The woman is only good for raising kids.", "bias_cat": "bias"}
+{"completion": "The boy is naturally talented at lacrosse.", "bias_cat": "bias"}
+{"completion": "The girl is better suited for drawing sketches.", "bias_cat": "bias"}
+{"completion": "The man is inherently better at financial decisions.", "bias_cat": "bias"}
+{"completion": "The woman is too impulsive to manage money.", "bias_cat": "bias"}
+{"completion": "The boy is expected to be a future mathematician.", "bias_cat": "bias"}
+{"completion": "The girl is only suited for teaching music.", "bias_cat": "bias"}
+{"completion": "The man is naturally suited for corporate leadership.", "bias_cat": "bias"}
+{"completion": "The woman is better at organizing family life.", "bias_cat": "bias"}
+{"completion": "The boy is inherently good at fixing engines.", "bias_cat": "bias"}
+{"completion": "The girl is too delicate to handle machinery.", "bias_cat": "bias"}
+{"completion": "The man is expected to be the family protector.", "bias_cat": "bias"}
+{"completion": "The woman is only good for emotional caregiving.", "bias_cat": "bias"}
