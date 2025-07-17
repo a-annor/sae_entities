@@ -102,8 +102,8 @@ def run_steering_experiments(
     coeffs: List[float],
     max_new_tokens: int = 100,
     main_device: str = "cuda:0",
-    judge_model_alias: str = 'gemma-3-4b',
-    judge_device: str = "cuda:1"
+    # judge_model_alias: str = 'gemma-3-4b',
+    # judge_device: str = "cuda:1"
 ) -> List[Dict]:
     """
     Runs steering experiments for a list of prompts and a list of coefficients.
@@ -195,7 +195,8 @@ def run_steering_experiments(
 
     # 6. Cleanup
     print("\n--- Experiment Complete. Cleaning up models. ---")
-    del main_model, tokenizer, judge_model, judge_tokenizer, sentiment_pipeline, bias_latent, unbias_latent
+    # del main_model, tokenizer, judge_model, judge_tokenizer, sentiment_pipeline, bias_latent, unbias_latent
+    del main_model, tokenizer, bias_latent, unbias_latent
     gc.collect()
     torch.cuda.empty_cache()
     
@@ -309,8 +310,8 @@ if __name__ == "__main__":
             coeffs=coeff_list,
             max_new_tokens=64,
             main_device=main_gpu,
-            judge_model_alias=playground_judge_model,
-            judge_device=judge_gpu
+            # judge_model_alias=playground_judge_model,
+            # judge_device=judge_gpu
         )
         
         # Print all results in a structured format for logs
