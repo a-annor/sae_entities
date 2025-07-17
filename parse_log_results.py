@@ -322,7 +322,7 @@ def plot_average_sentiment(df, sentiment_score, latent_type, output_dir="plots")
 
 if __name__ == "__main__":
     script_dir = os.path.dirname(__file__)
-    filename = 'steering_race_2_10_v4_2_describe'
+    filename = 'steering_race_20_describe'
     results_file = os.path.join(script_dir, f'{filename}.log')
     sentiment_score = True
     latent_type = "bias"
