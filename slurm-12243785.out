@@ -1,0 +1,181 @@
+Loading rhel8/default-amp
+  Loading requirement: rhel8/slurm singularity/current rhel8/global cuda/11.4
+    libpciaccess/0.16/gcc-9.4.0-6fonbj6 libiconv/1.16/gcc-9.4.0-ahebbov
+    libxml2/2.9.12/gcc-9.4.0-gnknt5e ncurses/6.2/gcc-9.4.0-aiirok7
+    hwloc/2.5.0/gcc-9.4.0-7sqomga libevent/2.1.12/gcc-9.4.0-hgny7cm
+    numactl/2.0.14/gcc-9.4.0-52dwc6n cuda/11.4.0/gcc-9.4.0-3hnxhjt
+    gdrcopy/2.2/gcc-9.4.0-e4igtfp knem/1.1.4/gcc-9.4.0-bpbxgva
+    libnl/3.3.0/gcc-9.4.0-whwhrwb rdma-core/34.0/gcc-9.4.0-5eo5n2u
+    ucx/1.11.1/gcc-9.4.0-lktqyl4 openmpi/4.1.1/gcc-9.4.0-epagguv
+Changed directory to /rds/user/ana42/hpc-work/sae_entities.
+
+JobID: 12243785
+======
+Time: Thu Jul 17 23:23:54 BST 2025
+Running on master node: gpu-q-24
+Current directory: /rds/user/ana42/hpc-work/sae_entities
+
+Nodes allocated:
+================
+gpu-q-24
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+python -u parse_log_results_new.py  > logs/out.12243785
+
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Device set to use cuda
+Traceback (most recent call last):
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'neg_steered_score'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/rds/user/ana42/hpc-work/sae_entities/parse_log_results_new.py", line 564, in <module>
+    plot_sentiment_vs_coeff(df_results, sentiment_score,latent_type, output_dir=plot_output_directory)
+  File "/rds/user/ana42/hpc-work/sae_entities/parse_log_results_new.py", line 289, in plot_sentiment_vs_coeff
+    plt.plot(prompt_df['coeff'], prompt_df[f'{label_1}_steered_score'],
+                                 ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/pandas/core/frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'neg_steered_score'

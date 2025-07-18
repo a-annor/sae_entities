@@ -62,12 +62,13 @@ module load rhel8/default-amp              # REQUIRED - loads the basic environm
 source /home/${USER}/.bashrc
 #! source /rds/project/rds-xyBFuSj0hm0/MLMI2.M2024/miniconda3/bin/activate
 source /rds/user/ana42/hpc-work/sae_entities/.venv/bin/activate  # Activate your venv
-conda activate py25
+
 #! Insert additional module load commands after this line if needed:
 
 #! Full path to application executable: 
 # application="python -u train.py"
-application="python -u data/sentiment_counts_bias.py"
+# application="python -u data/sentiment_counts_bias.py"
+application="python -u parse_log_results_new.py"
 
 
 #! Work directory (i.e. where the job will run):

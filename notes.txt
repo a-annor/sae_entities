@@ -1,3 +1,4 @@
+Note: new negative gender is shard size 1226
 source .venv/bin/activate
 sbatch slurm_sae
 sbatch slurm_sentiment
@@ -12,6 +13,7 @@ sbatch slurm_labelling
 sbatch slurm_mech
 sbatch slurm_steer
 sbatch slurm_process_data
+sbatch slurm_score_chart
 
 in load latents in merchinterp utils
 category = 'Synth'
@@ -36,7 +38,7 @@ python3 data/judge_bias.py
 
 /home/ana42/rds/hpc-work/sae_entities/notes.txt
 
-toch gemma3 issue
+torch gemma3 issue
 https://huggingface.co/google/gemma-2-2b-it/discussions/57
 for sentiment updgraded to  torch==2.6.0 
 pip install torch==2.6.0  --index-url https://download.pytorch.org/whl/cu124
@@ -54,7 +56,7 @@ python -m utils.activation_cache --model_alias gemma-2-2b --tokens_to_cache mode
 python3 -m mech_interp.refusal_analysis
 python3 -m mech_interp.refusal_analysis_bias_test
 python3 -m mech_interp.steering_playground_batch
-python3 -m mech_interp.steering_playground_batch > steering_race_20_describe.log 2>&1
+python3 -m mech_interp.steering_playground_batch > steering_posneg_20_new.log 2>&1
 
 python3 -m utils_bias.process_data
 python3 -m utils_bias.split_file

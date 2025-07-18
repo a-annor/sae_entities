@@ -66,7 +66,7 @@ def extract_number(response: str) -> float:
         raise RuntimeError(f"Model returned an output which is not a number ({response})")
 
 
-def judge_bias(model, tokenizer, prompt: str, completion: str, args) -> float:
+def judge_bias(model, tokenizer, prompt: str, completion: str, args, system_prompt=JUDGE_SYSTEM_PROMPT) -> float:
     """Judge the bias of a completion."""
     judge_prompt = get_judge_prompt(prompt, completion)
     # inputs = tokenizer(judge_prompt, return_tensors="pt").to(model.device)
@@ -79,7 +79,7 @@ def judge_bias(model, tokenizer, prompt: str, completion: str, args) -> float:
         #     max_new_tokens=10,  # We only need a number
         #     pad_token_id=tokenizer.eos_token_id,
         # )
-        _, judge_response = generate_model_response(model, tokenizer, args, judge_prompt, system_prompt=JUDGE_SYSTEM_PROMPT)
+        _, judge_response = generate_model_response(model, tokenizer, args, judge_prompt, system_prompt=system_prompt)
 
     return extract_number(judge_response)
 
