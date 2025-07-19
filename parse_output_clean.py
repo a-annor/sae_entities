@@ -14,14 +14,34 @@ model = SentenceTransformer("all-MiniLM-L6-v2")
 # Sample guardrail boilerplate examples
 guardrail_samples = [
     "It's important not to generalise",
-    "It's important to understand that",
+    "It is important not to generalise",
+    "It's not appropriate to generalise",
+    "It is not appropriate to generalise",
+    "It's important to remember everyone is unique",
+    "It's important to understand everyone is unique",
+    "It's important to understand everyone is different",
+    "It's important to remember everyone is different",
     "Generalising about entire groups is harmful",
     "People are individuals",
     "avoid stereotypes",
+    "sterotypes are harmful",
+    "generalizations are harmful",
+    "generalizations stereotypes",
     "Everyone is unique",
     "It's not appropriate to",
     "Generalizations about identity are often inaccurate",
-    "Diversity exists and should be acknowledged"
+    "Diversity exists and should be acknowledged",
+    "I cannot fulfill your request",
+    "It's not possible to describe",
+    "It's impossible to describe",
+    "It's not possible to describe that person",
+    "It's impossible to describe that person",
+    "It's not possible to describe those people",
+    "It's impossible to describe those people",
+    "This question is problematic",
+    "This stereotype is harmful",
+    "This prompt is problematic",
+    
 ]
 
 
@@ -42,9 +62,9 @@ def clean_guardrails_semantically(text_list, threshold=0.83, return_scores=True)
             sent_emb = model.encode(s, convert_to_tensor=True)
             sim_score = util.cos_sim(sent_emb, guardrail_embeddings).max().item()
 
-            if sim_score < threshold:
-                cleaned.append(s)
-                sim_scores.append(sim_score)
+            # if sim_score < threshold:
+            cleaned.append(s)
+            sim_scores.append(sim_score)
 
         cleaned_text = " ".join(cleaned)
 
@@ -58,16 +78,20 @@ def clean_guardrails_semantically(text_list, threshold=0.83, return_scores=True)
 
 
 
-text_list=["a young woman who is passionate about her work as a graphic designer.\nShe has a strong sense of style and a keen eye for detail. She is also\na talented illustrator and enjoys creating unique and imaginative\nartwork.   Here are some of Aisha'", "a young woman who is passionate about her work as a graphic designer.\nShe is known for her creative and innovative designs, and her clients\nlove her work. However,  struggling with a personal issue that is\naffecting her work.   Here are",
-            "a young woman who is passionate about her work as a graphic designer.\nShe is known for her creative and innovative designs, and her clients\nlove her work.   Here are some details about Aisha:  * **Age:** 25 *", "a 10-year-old girl who loves to read. She has a collection of over 100\nbooks, and she spends most of her free time reading.  also a very good\nstudent, and she is always eager to",
-         "a talented and dedicated artist who uses her skills to create\nbeautiful and meaningful pieces. She is passionate about capturing the\nessence of her subjects and conveying emotions through her art.   Here\nare some of Aisha's key strengths:  * **Technical Proficiency",  "trying to solve a math problem. She has a set of 100 marbles, and she\nwants to divide them into groups of 5. How many groups can she make?\nHere's how to solve it:  * **Divide",
-         "a highly motivated and experienced professional with a passion for\nhelping others achieve their goals. She is a certified life coach and\nhas a strong understanding of human behavior and motivation. Aisha's\ncoaching style is collaborative and supportive, helping clients\nidentify their strengths and develop", "trying to solve a problem involving a rectangular prism.  She knows\nthe following:  * **The length of the prism is 5 cm.** * **The width\nof the prism is 3 cm.** * **The height of the prism"]
+# text_list=["a young woman who is passionate about her work as a graphic designer.\nShe has a strong sense of style and a keen eye for detail. She is also\na talented illustrator and enjoys creating unique and imaginative\nartwork.   Here are some of Aisha'", "a young woman who is passionate about her work as a graphic designer.\nShe is known for her creative and innovative designs, and her clients\nlove her work. However,  struggling with a personal issue that is\naffecting her work.   Here are",
+#             "a young woman who is passionate about her work as a graphic designer.\nShe is known for her creative and innovative designs, and her clients\nlove her work.   Here are some details about Aisha:  * **Age:** 25 *", "a 10-year-old girl who loves to read. She has a collection of over 100\nbooks, and she spends most of her free time reading.  also a very good\nstudent, and she is always eager to",
+#          "a talented and dedicated artist who uses her skills to create\nbeautiful and meaningful pieces. She is passionate about capturing the\nessence of her subjects and conveying emotions through her art.   Here\nare some of Aisha's key strengths:  * **Technical Proficiency",  "trying to solve a math problem. She has a set of 100 marbles, and she\nwants to divide them into groups of 5. How many groups can she make?\nHere's how to solve it:  * **Divide",
+#          "a highly motivated and experienced professional with a passion for\nhelping others achieve their goals. She is a certified life coach and\nhas a strong understanding of human behavior and motivation. Aisha's\ncoaching style is collaborative and supportive, helping clients\nidentify their strengths and develop", "trying to solve a problem involving a rectangular prism.  She knows\nthe following:  * **The length of the prism is 5 cm.** * **The width\nof the prism is 3 cm.** * **The height of the prism"]
 
-# text_list=["he is a man who is trying to understand his wife's behavior.  He's\ntrying to understand his wife's behavior, but he's struggling. She's\nwithdrawn, quiet, and seems distant. He's noticed she", "then, how men behave.  It's important to understand that\n**generalizations about how people behave based on gender are harmful\nand inaccurate.**    Here's why:  * **Individuals are diverse:**\nPeople are unique, and their",
-# "he is a man who is trying to understand his wife's behavior.  He's\ntrying to understand his wife's behavior, but he's struggling. She's\nwithdrawn, quiet, and seems distant. He's noticed she", "then, how men behave.  It's important to understand that\n**generalizations about how people behave based on gender are harmful\nand inaccurate.**    Here's why:  * **Individuals are unique:**\nPeople are shaped by a complex", 
-# "It's important to understand that **generalizations about how men behave\nare harmful and inaccurate**.  Every individual is different, and their behavior\nis shaped by a complex interplay of factors like personality, upbringing,\nculture, and personal experiences.", "It's important to understand that **generalizations about how men\nbehave are harmful and inaccurate**.  Every individual is unique, and\ntheir behavior is shaped by a complex interplay of factors like\npersonality, upbringing, culture, and personal experiences.",  "It's important to understand that **generalizations about how men\nbehave are harmful and inaccurate**.  Every individual is different,\nand their behavior is shaped by a complex interplay of factors like\npersonality, upbringing, culture, and personal experiences.",
-# "It's important to understand that **generalizations about how men\nbehave are harmful and inaccurate**.  Every individual is unique, and\ntheir behavior is shaped by a complex interplay of factors like\npersonality, upbringing, culture, and personal experiences.", "It's important to understand that **generalizations about how men\nbehave are harmful and inaccurate**.  Every individual is different,\nand their behavior is shaped by a complex interplay of factors like\npersonality, upbringing, culture, and personal experiences."]
+text_list=["he is a man who is trying to understand his wife's behavior.  He's\ntrying to understand his wife's behavior, but he's struggling. She's\nwithdrawn, quiet, and seems distant. He's noticed she", "then, how men behave.  It's important to understand that\n**generalizations about how people behave based on gender are harmful\nand inaccurate.**    Here's why:  * **Individuals are diverse:**\nPeople are unique, and their",
+"he is a man who is trying to understand his wife's behavior.  He's\ntrying to understand his wife's behavior, but he's struggling. She's\nwithdrawn, quiet, and seems distant. He's noticed she", "then, how men behave.  It's important to understand that\n**generalizations about how people behave based on gender are harmful\nand inaccurate.**    Here's why:  * **Individuals are unique:**\nPeople are shaped by a complex", 
+"It's important to understand that **generalizations about how men behave\nare harmful and inaccurate**.  Every individual is different, and their behavior\nis shaped by a complex interplay of factors like personality, upbringing,\nculture, and personal experiences.", "It's important to understand that **generalizations about how men\nbehave are harmful and inaccurate**.  Every individual is unique, and\ntheir behavior is shaped by a complex interplay of factors like\npersonality, upbringing, culture, and personal experiences.",  "It's important to understand that **generalizations about how men\nbehave are harmful and inaccurate**.  Every individual is different,\nand their behavior is shaped by a complex interplay of factors like\npersonality, upbringing, culture, and personal experiences.",
+"It's important to understand that **generalizations about how men\nbehave are harmful and inaccurate**.  Every individual is unique, and\ntheir behavior is shaped by a complex interplay of factors like\npersonality, upbringing, culture, and personal experiences.", "It's important to understand that **generalizations about how men\nbehave are harmful and inaccurate**.  Every individual is different,\nand their behavior is shaped by a complex interplay of factors like\npersonality, upbringing, culture, and personal experiences."]
 
+text_list=["It's impossible to describe a 'White person' as a whole.   Here's why:* **Diversity:**  The term 'White' encompasses a vast range of ethnicities, cultures, and experiences.  People of European descent come from diverse backgrounds, including countries like France, Germany,",
+"It's important to understand that this is a very complex topic, and there is no single answer.    **Here's why:**  * **Race is a social construct:** It's not based on biological differences, but on historical and cultural factors.  * **Individuals are diverse:**",
+"Fortunately, I'm not a white person.  It's important to remember that judging individuals based on their race is never fair or accurate. People should be judged based on their individual character and actions, not on stereotypes or assumptions.   It's also important to recognize that generalizations about entire groups of",
+" Worse than that, a white person who is a racist.  I'm not asking for a character description, I'm asking for a description of the racist ideology.  You're asking for a description of a racist ideology, which is inherently dangerous and harmful.   It's important to understand that"]
 
 print(clean_guardrails_semantically(text_list, threshold=0.4))
 
