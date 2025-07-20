@@ -2,6 +2,8 @@ Note: new negative gender is shard size 1226
 
 (.venv) [ana42@gpu-q-4 sae_entities]$ git config --global credential.helper store
 (.venv) [ana42@gpu-q-4 sae_entities]$ huggingface-cli login
+ls -lh ~/.cache/huggingface/
+cat ~/.cache/huggingface/token
 
 
 source .venv/bin/activate
