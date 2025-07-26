@@ -1,132 +1,0 @@
-Loading rhel8/default-amp
-  Loading requirement: rhel8/slurm singularity/current rhel8/global cuda/11.4
-    libpciaccess/0.16/gcc-9.4.0-6fonbj6 libiconv/1.16/gcc-9.4.0-ahebbov
-    libxml2/2.9.12/gcc-9.4.0-gnknt5e ncurses/6.2/gcc-9.4.0-aiirok7
-    hwloc/2.5.0/gcc-9.4.0-7sqomga libevent/2.1.12/gcc-9.4.0-hgny7cm
-    numactl/2.0.14/gcc-9.4.0-52dwc6n cuda/11.4.0/gcc-9.4.0-3hnxhjt
-    gdrcopy/2.2/gcc-9.4.0-e4igtfp knem/1.1.4/gcc-9.4.0-bpbxgva
-    libnl/3.3.0/gcc-9.4.0-whwhrwb rdma-core/34.0/gcc-9.4.0-5eo5n2u
-    ucx/1.11.1/gcc-9.4.0-lktqyl4 openmpi/4.1.1/gcc-9.4.0-epagguv
-Changed directory to /rds/user/ana42/hpc-work/sae_entities.
-
-JobID: 12000939
-======
-Time: Thu Jul 10 14:33:41 BST 2025
-Running on master node: gpu-q-41
-Current directory: /rds/user/ana42/hpc-work/sae_entities
-
-Nodes allocated:
-================
-gpu-q-41
-
-numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
-
-Executing command:
-==================
-  > logs/out.12000939
-
-
-Executing first command:
-==================
-python -u mech_interp/feature_analysis.py  > logs/out.12000939_1
-
-Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:  33%|███▎      | 1/3 [05:00<10:00, 300.05s/it]Fetching 3 files: 100%|██████████| 3/3 [05:00<00:00, 100.02s/it]
-Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [01:05<02:10, 65.41s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [01:48<00:52, 52.41s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:52<00:00, 30.39s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:52<00:00, 37.64s/it]
-  0%|          | 0/625 [00:00<?, ?it/s]  0%|          | 1/625 [00:00<05:12,  2.00it/s] 10%|▉         | 62/625 [00:00<00:04, 136.64it/s] 20%|█▉        | 123/625 [00:00<00:02, 249.46it/s] 29%|██▉       | 183/625 [00:00<00:01, 337.19it/s] 39%|███▉      | 244/625 [00:00<00:00, 407.82it/s] 48%|████▊     | 301/625 [00:01<00:00, 451.48it/s] 57%|█████▋    | 357/625 [00:01<00:00, 478.45it/s] 66%|██████▌   | 414/625 [00:01<00:00, 504.01it/s] 77%|███████▋  | 480/625 [00:01<00:00, 549.11it/s] 88%|████████▊ | 547/625 [00:01<00:00, 582.90it/s] 98%|█████████▊| 614/625 [00:01<00:00, 606.54it/s]100%|██████████| 625/625 [00:01<00:00, 408.63it/s]
-  0%|          | 0/153 [00:00<?, ?it/s] 24%|██▍       | 37/153 [00:00<00:00, 369.94it/s] 56%|█████▌    | 85/153 [00:00<00:00, 431.07it/s] 87%|████████▋ | 133/153 [00:00<00:00, 451.47it/s]100%|██████████| 153/153 [00:00<00:00, 445.62it/s]
-  0%|          | 0/153 [00:00<?, ?it/s] 31%|███       | 47/153 [00:00<00:00, 463.10it/s] 61%|██████▏   | 94/153 [00:00<00:00, 466.06it/s] 93%|█████████▎| 142/153 [00:00<00:00, 468.16it/s]100%|██████████| 153/153 [00:00<00:00, 468.38it/s]
-
-Executing second command:
-==================
-python -u mech_interp/steering_playground_batch.py  > logs/out.12000939_2
-
-Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [02:37<02:37, 157.49s/it]Fetching 2 files: 100%|██████████| 2/2 [02:37<00:00, 78.75s/it] 
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.20s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.58it/s]
-Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:   0%|          | 0/2 [00:36<?, ?it/s]
-Error: Failed to close writer for Some("/home/ana42/.cache/huggingface/xet/https___cas_serv-tGqkUaZf_CBPHQ6h/chunk-cache/kd/kdaFAAS6tm5zus6DQC4_G2xQQeACqUnTr8vh_ce6-K9kZWZhdWx0/AAAAAEwEAABH1f4DAAAAAOBCoPA="): No space left on device (os error 28)
-Error: Failed to close writer for Some("/home/ana42/.cache/huggingface/xet/https___cas_serv-tGqkUaZf_CBPHQ6h/chunk-cache/rp/rp4fGwV9A1HDrRtcX_Vm5UeBq8dhKUFOAIHfwqVommNkZWZhdWx0/AAAAADwEAACtdf8DAAAAAII_TG4="): No space left on device (os error 28)
-Error: Failed to close writer for Some("/home/ana42/.cache/huggingface/xet/https___cas_serv-tGqkUaZf_CBPHQ6h/chunk-cache/oa/oay7KstwrSq7rEJvCqwdXB0sl74G2zijaFx7jM3DHr9kZWZhdWx0/AAAAADYEAADgPf8DAAAAAAkIKkQ="): No space left on device (os error 28)
-Error: Failed to close writer for Some("/home/ana42/.cache/huggingface/xet/https___cas_serv-tGqkUaZf_CBPHQ6h/chunk-cache/6d/6dy43LV3J-3qLE4dVHxyi-S2Qn1-UUT6YY7De7skZRFkZWZhdWx0/AAAAAGkEAAA-e_8DAAAAAAALduQ="): No space left on device (os error 28)
-Error: Failed to close writer for Some("/home/ana42/.cache/huggingface/xet/https___cas_serv-tGqkUaZf_CBPHQ6h/chunk-cache/AN/ANmqY5OaXvMI47gp_vjjaC7B74uEOVEKIeQZsl3PQtpkZWZhdWx0/AAAAADwEAAC3kP8DAAAAAC70ohI="): No space left on device (os error 28)
-Error: Failed to close writer for Some("/home/ana42/.cache/huggingface/xet/https___cas_serv-tGqkUaZf_CBPHQ6h/chunk-cache/2c/2cq8z_vIgwK62IfKdxDLC709jt3bGPm9PJ6rhxQUjD9kZWZhdWx0/AAAAADUEAABc7f4DAAAAADrutuc="): No space left on device (os error 28)
-Error: Failed to close writer for Some("/home/ana42/.cache/huggingface/xet/https___cas_serv-tGqkUaZf_CBPHQ6h/chunk-cache/Cu/CuqEfdQhJd49WXyh1quN-MzDTZXonoVqHiABpPfB9jBkZWZhdWx0/AAAAAGMEAAAzk_8DAAAAAJ03eFY="): No space left on device (os error 28)
-Error: Failed to close writer for Some("/home/ana42/.cache/huggingface/xet/https___cas_serv-tGqkUaZf_CBPHQ6h/chunk-cache/o8/o8fyUaEoXv1FdeTDcOv2z7MAIUIBuOSJrYC1Y1LZ94dkZWZhdWx0/AAAAADcEAAD72f4DAAAAAG01oP8="): No space left on device (os error 28)
-Error: Failed to close writer for Some("/home/ana42/.cache/huggingface/xet/https___cas_serv-tGqkUaZf_CBPHQ6h/chunk-cache/Ih/IhUw50FW_FklQS3IB9dCHRQ1R4JnohrfjDnINXyYdPtkZWZhdWx0/AAAAADwEAAA_zv8DAAAAAF8kOiI="): No space left on device (os error 28)
-Error: Failed to close writer for Some("/home/ana42/.cache/huggingface/xet/https___cas_serv-tGqkUaZf_CBPHQ6h/chunk-cache/X9/X9XQpUi1V_EzjSnOzJVEGMiZpFz7boJHKc0ysSbYS8VkZWZhdWx0/AAAAAEEEAADbHf4DAAAAAAiNAjA="): No space left on device (os error 28)
-Error: Failed to close writer for Some("/home/ana42/.cache/huggingface/xet/https___cas_serv-tGqkUaZf_CBPHQ6h/chunk-cache/jJ/jJaw3KG2T5Y_JHgP6dNF2yhwbOS0SW5ObKSbYVlvWjFkZWZhdWx0/AAAAAD4EAACPwv4DAAAAAAqRx_M="): No space left on device (os error 28)
-Error: Failed to close writer for Some("/home/ana42/.cache/huggingface/xet/https___cas_serv-tGqkUaZf_CBPHQ6h/chunk-cache/WM/WMPtU2kU65W0-ZTYdo4IUtPOk1ikubHWQYrESZ1cAvNkZWZhdWx0/AAAAADkEAADKxv4DAAAAAD8cLUs="): No space left on device (os error 28)
-Error: Failed to close writer for Some("/home/ana42/.cache/huggingface/xet/https___cas_serv-tGqkUaZf_CBPHQ6h/chunk-cache/2D/2D_m-VHbjKpbv-LAN-_4goiabew6O9tegd3sPzMW-zhkZWZhdWx0/AAAAAEEEAAChBQAEAAAAAAVkN64="): No space left on device (os error 28)
-Error: Failed to close writer for Some("/home/ana42/.cache/huggingface/xet/https___cas_serv-tGqkUaZf_CBPHQ6h/chunk-cache/9E/9EQ9UGYhBebhEcXbzndxRDvObgrdqUYa3sBLwLxH1E9kZWZhdWx0/AAAAAEIEAAAH7_8DAAAAAI8MXEI="): No space left on device (os error 28)
-Error: Failed to close writer for Some("/home/ana42/.cache/huggingface/xet/https___cas_serv-tGqkUaZf_CBPHQ6h/chunk-cache/oR/oRx79_snXraX5DpNJe_3wn29Onn8BruhE6tznRnRJRtkZWZhdWx0/AAAAACUEAACfYP8DAAAAAIi_VZk="): No space left on device (os error 28)
-Traceback (most recent call last):
-  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/steering_playground_batch.py", line 260, in <module>
-    batch_results = run_steering_experiments(
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/steering_playground_batch.py", line 137, in run_steering_experiments
-    judge_model, judge_tokenizer = load_hf_model(judge_model_alias, device=judge_device)
-                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/rds/user/ana42/hpc-work/sae_entities/mech_interp/steering_playground_batch.py", line 76, in load_hf_model
-    model = AutoModelForCausalLM.from_pretrained(
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 571, in from_pretrained
-    return model_class.from_pretrained(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/modeling_utils.py", line 309, in _wrapper
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/modeling_utils.py", line 4422, in from_pretrained
-    checkpoint_files, sharded_metadata = _get_resolved_checkpoint_files(
-                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/modeling_utils.py", line 1179, in _get_resolved_checkpoint_files
-    checkpoint_files, sharded_metadata = get_checkpoint_shard_files(
-                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/utils/hub.py", line 1110, in get_checkpoint_shard_files
-    cached_filenames = cached_files(
-                       ^^^^^^^^^^^^^
-  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/utils/hub.py", line 557, in cached_files
-    raise e
-  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/transformers/utils/hub.py", line 485, in cached_files
-    snapshot_download(
-  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
-    return fn(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^
-  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 327, in snapshot_download
-    thread_map(
-  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/tqdm/contrib/concurrent.py", line 69, in thread_map
-    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/tqdm/contrib/concurrent.py", line 51, in _executor_map
-    return list(tqdm_class(ex.map(fn, *iterables, chunksize=chunksize), **kwargs))
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/tqdm/std.py", line 1181, in __iter__
-    for obj in iterable:
-  File "/usr/lib64/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
-    yield _result_or_cancel(fs.pop())
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib64/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
-    return fut.result(timeout)
-           ^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib64/python3.11/concurrent/futures/_base.py", line 456, in result
-    return self.__get_result()
-           ^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib64/python3.11/concurrent/futures/_base.py", line 401, in __get_result
-    raise self._exception
-  File "/usr/lib64/python3.11/concurrent/futures/thread.py", line 58, in run
-    result = self.fn(*self.args, **self.kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 301, in _inner_hf_hub_download
-    return hf_hub_download(
-           ^^^^^^^^^^^^^^^^
-  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
-    return fn(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^
-  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/huggingface_hub/file_download.py", line 1008, in hf_hub_download
-    return _hf_hub_download_to_cache_dir(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/huggingface_hub/file_download.py", line 1161, in _hf_hub_download_to_cache_dir
-    _download_to_tmp_and_move(
-  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/huggingface_hub/file_download.py", line 1710, in _download_to_tmp_and_move
-    xet_get(
-  File "/rds/user/ana42/hpc-work/sae_entities/.venv/lib64/python3.11/site-packages/huggingface_hub/file_download.py", line 627, in xet_get
-    download_files(
-RuntimeError: Data processing error: CAS service error : IO Error: No space left on device (os error 28)

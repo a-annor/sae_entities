@@ -1,35 +1,0 @@
-Loading rhel8/default-amp
-  Loading requirement: rhel8/slurm singularity/current rhel8/global cuda/11.4
-    libpciaccess/0.16/gcc-9.4.0-6fonbj6 libiconv/1.16/gcc-9.4.0-ahebbov
-    libxml2/2.9.12/gcc-9.4.0-gnknt5e ncurses/6.2/gcc-9.4.0-aiirok7
-    hwloc/2.5.0/gcc-9.4.0-7sqomga libevent/2.1.12/gcc-9.4.0-hgny7cm
-    numactl/2.0.14/gcc-9.4.0-52dwc6n cuda/11.4.0/gcc-9.4.0-3hnxhjt
-    gdrcopy/2.2/gcc-9.4.0-e4igtfp knem/1.1.4/gcc-9.4.0-bpbxgva
-    libnl/3.3.0/gcc-9.4.0-whwhrwb rdma-core/34.0/gcc-9.4.0-5eo5n2u
-    ucx/1.11.1/gcc-9.4.0-lktqyl4 openmpi/4.1.1/gcc-9.4.0-epagguv
-Changed directory to /rds/user/ana42/hpc-work/sae_entities.
-
-JobID: 12092628
-======
-Time: Sun Jul 13 20:17:16 BST 2025
-Running on master node: gpu-q-38
-Current directory: /rds/user/ana42/hpc-work/sae_entities
-
-Nodes allocated:
-================
-gpu-q-38
-
-numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
-
-Executing command:
-==================
-  > logs/out.12092628
-
-
-Executing second command:
-==================
-python -u mech_interp/steering_playground_batch.py  > logs/out.12092628_2
-
-Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [02:25<02:25, 145.49s/it]Fetching 2 files: 100%|██████████| 2/2 [02:25<00:00, 72.75s/it] 
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.58s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.22it/s]
-/var/spool/slurm/slurmd/job12092628/slurm_script: line 127: 25724 Bus error               python -u mech_interp/steering_playground_batch.py > logs/out.12092628_2

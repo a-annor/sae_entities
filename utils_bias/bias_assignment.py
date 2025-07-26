@@ -17,7 +17,7 @@ def bias_assignment(input_file):
             bias = entry["judge_score"]
             if sentiment <=-0.5 and bias >=0.35:
                 entry["bias_cat"] = "bias"
-            elif sentiment >=-0.2 and bias <=0.15:
+            elif sentiment >=0 and bias <0.15:
                 entry["bias_cat"] = "unbias"
             else:
                 entry["bias_cat"] = "undetermined"
@@ -34,13 +34,13 @@ def assign_bias_category(entry):
     sentiment = entry.get("sentiment", 0.0)
     bias = entry.get("judge_score", 0.0)
 
-    if sentiment <= -0.5 and bias >= 0.35:
+    if sentiment <=-0.5 and bias >=0.35:
         entry["bias_cat"] = "bias"
-    elif sentiment >= -0.2 and bias <= 0.15:
+    elif sentiment >=0 and bias <0.15:
         entry["bias_cat"] = "unbias"
     else:
         entry["bias_cat"] = "undetermined"
-    
+
     return entry
 
 def process_file(input_path, output_path):

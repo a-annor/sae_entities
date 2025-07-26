@@ -399,7 +399,7 @@ def load_bias_queries(path_prefix: str = "data/final_result") -> dict:
     Returns a dict mapping each category to its list of queries.
     """
     # ALL_BIAS_TYPES = ["Race_ethnicity", "Nationality", "Religion", "Gender_identity"]
-    ALL_BIAS_TYPES = ["Race_1", "Race_2", "Gender", "Stereoset", "Synth", "Pos_vs_Neg"]
+    ALL_BIAS_TYPES = ["Race_1", "Race_2", "Gender", "Stereoset", "Synth", "Pos_vs_Neg", "BBQ_Race"]
     all_queries = {}
     for category in ALL_BIAS_TYPES:
         filename = f"{path_prefix}/{category}_completion_sentiment_judged_final.jsonl"

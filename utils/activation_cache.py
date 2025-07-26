@@ -659,7 +659,8 @@ def main(args):
             get_activations(model_base, prompts, substrings, seq_len, batch_size, tokens_to_cache, n_positions, dataset_name, shard_size)
     elif dataset == "bias":
             # ALL_BIAS_TYPES = ['Race_ethnicity', 'Nationality', 'Religion', 'Gender_identity']
-            ALL_BIAS_TYPES = ["Race_1", "Race_2", "Gender", "Stereoset", "Synth", "Pos_vs_Neg"]
+            ALL_BIAS_TYPES = ["Race_1", "Race_2", "Gender", "Stereoset", "Synth", "Pos_vs_Neg", "BBQ_Race"]
+            # ALL_BIAS_TYPES=["BBQ_Race"]
             seq_len = 64
             for bias_type in ALL_BIAS_TYPES:
                 dataset_name = f"bias_{bias_type}"

@@ -134,7 +134,7 @@ def clean_guardrails_semantically(text, threshold=0.5, return_scores=False):
     else:
         return cleaned_text, removed_any
 
-SINGLE_PRONOUNS = {'they', 'he', 'she', 'it', 'him', 'her', 'his', 'their', 'them', 'hers', 'theirs'}
+# SINGLE_PRONOUNS = {'they', 'he', 'she', 'it', 'him', 'her', 'his', 'their', 'them', 'hers', 'theirs'}
 
 def should_be_zero(response):
     response_clean = response.strip().lower()
@@ -167,7 +167,7 @@ def load_hf_model(model_alias: str, device: str) -> Tuple[AutoModelForCausalLM, 
     return model, tokenizer
 
 
-def parse_experiment_output(file_path, filename, output_dir=None):
+def parse_experiment_output(file_path, latent_type, filename, output_dir=None):
     """
     Parses experiment output, runs all three scoring methods (sentiment, judge_gen, judge_bias).
     Writes all results, guardrail, and original completion info to jsonl.
@@ -227,6 +227,13 @@ def parse_experiment_output(file_path, filename, output_dir=None):
     # Outputs
     data_sentiment, data_judge_gen, data_judge_bias = [], [], []
     guardrail_jsonl, originals_jsonl = [], []
+    if latent_type=='sentiment':
+        label_2 = 'neg'
+        label_1 = 'pos'
+    elif latent_type=='bias':
+        label_2 = 'bias'
+        label_1 = 'unbias'
+
 
     for i in range(1, len(prompt_sections_raw), 2):
         prompt_text = prompt_sections_raw[i].strip()
@@ -309,43 +316,43 @@ def parse_experiment_output(file_path, filename, output_dir=None):
             data_sentiment.append({
                 'prompt': prompt_text, 'coeff': coeff,
                 'original_completion_clean': original_completion_clean,
-                'bias_steered_completion_clean': bias_steered_text_clean,
-                'unbias_steered_completion_clean': unbias_steered_text_clean,
+                f'{label_2}_steered_completion_clean': bias_steered_text_clean,
+                f'{label_1}_steered_completion_clean': unbias_steered_text_clean,
                 'original_score': orig_sent,
-                'neg_steered_score': bias_sent,
-                'pos_steered_score': unbias_sent
+                f'{label_2}_steered_score': bias_sent,
+                f'{label_1}_steered_score': unbias_sent
             })
             data_judge_gen.append({
                 'prompt': prompt_text, 'coeff': coeff,
                 'original_completion_clean': original_completion_clean,
-                'bias_steered_completion_clean': bias_steered_text_clean,
-                'unbias_steered_completion_clean': unbias_steered_text_clean,
+                f'{label_2}_steered_completion_clean': bias_steered_text_clean,
+                f'{label_1}_steered_completion_clean': unbias_steered_text_clean,
                 'original_score': orig_jgen,
-                'bias_steered_score': bias_jgen,
-                'unbias_steered_score': unbias_jgen
+                f'{label_2}_steered_score': bias_jgen,
+                f'{label_1}_steered_score': unbias_jgen
             })
             data_judge_bias.append({
                 'prompt': prompt_text, 'coeff': coeff,
                 'original_completion_clean': original_completion_clean,
-                'bias_steered_completion_clean': bias_steered_text_clean,
-                'unbias_steered_completion_clean': unbias_steered_text_clean,
+                f'{label_2}_steered_completion_clean': bias_steered_text_clean,
+                f'{label_1}_steered_completion_clean': unbias_steered_text_clean,
                 'original_score': orig_jbias,
-                'bias_steered_score': bias_jbias,
-                'unbias_steered_score': unbias_jbias
+                f'{label_2}_steered_score': bias_jbias,
+                f'{label_1}_steered_score': unbias_jbias
             })
             guardrail_jsonl.append({
                 "prompt": prompt_text,
                 "coeff": coeff,
                 "original_guardrail_removed": bool(orig_removed),
-                "bias_guardrail_removed": bool(bias_removed),
-                "unbias_guardrail_removed": bool(unbias_removed)
+                f"{label_2}_guardrail_removed": bool(bias_removed),
+                f"{label_1}_guardrail_removed": bool(unbias_removed)
             })
             originals_jsonl.append({
                 "prompt": prompt_text,
                 "coeff": coeff,
                 "original_completion": original_completion,
-                "bias_steered_completion": bias_steered_text,
-                "unbias_steered_completion": unbias_steered_text
+                f"{label_2}_steered_completion": bias_steered_text,
+                f"{label_1}_steered_completion": unbias_steered_text
             })
 
     if output_dir:
@@ -377,7 +384,7 @@ def parse_experiment_output(file_path, filename, output_dir=None):
 
 
 
-def plot_sentiment_vs_coeff(df, sentiment_score, latent_type, output_dir="plots"):
+def plot_score_vs_coeff(df, sentiment_score, latent_type, output_dir="plots"):
     """
     Plots the sentiment scores against coefficients for each prompt.
     Generates a separate plot for each prompt with enhanced aesthetics.
@@ -455,7 +462,10 @@ def plot_sentiment_vs_coeff(df, sentiment_score, latent_type, output_dir="plots"
         plt.xticks(fontsize=10)
         plt.yticks(fontsize=10)
 
-        plt.ylim(-1, 1)
+        if sentiment_score:
+            plt.ylim(-1, 1)
+        else:
+            plt.ylim(-0, 1)
 
         # Add padding
         plt.tight_layout(rect=[0, 0, 1, 0.96])
@@ -468,7 +478,7 @@ def plot_sentiment_vs_coeff(df, sentiment_score, latent_type, output_dir="plots"
     print(f"Individual prompt plots saved to the '{output_dir}' directory.")
 
 # --- New function for average plot ---
-def plot_average_sentiment(df, sentiment_score, latent_type, output_dir="plots"):
+def plot_average_score(df, sentiment_score, latent_type, output_dir="plots"):
     """
     Plots the average positive and negative steered sentiment scores across all prompts.
     """
@@ -616,12 +626,15 @@ def plot_box_by_coeff(df, sentiment_score, latent_type, output_dir="plots"):
     plt.ylabel(f'{score_type} Score', fontsize=14)
     plt.xticks(ticks=range(len(unique_coeffs)), labels=unique_coeffs)
     plt.legend(title=None)
-    plt.ylim(-1.5, 1.5)
+    if sentiment_score:
+        plt.ylim(-1.5, 1.5)
+    else:
+        plt.ylim(-0.5, 1.5)
     plt.tight_layout()
     plt.savefig(os.path.join(output_dir, f'boxplot_coeff_{score_type_file}.png'), dpi=300)
     plt.close()
 
-def plot_mean_std_by_coeff(df, sentiment_score, latent_type, output_dir="plots"):
+def plot_mean_std_by_coeff(df, sentiment_score, latent_type, output_dir="plots", generalise=False):
     os.makedirs(output_dir, exist_ok=True)
 
     if latent_type=='sentiment':
@@ -639,8 +652,12 @@ def plot_mean_std_by_coeff(df, sentiment_score, latent_type, output_dir="plots")
         score_type = 'Sentiment'
         score_type_file = 'sentiment'
     else:
-        score_type = 'LLM Judge'
         score_type_file = 'llm_judge'
+        if generalise:
+            score_type = 'LLM Judge (Generalisation)'         
+        else:
+            score_type = 'LLM Judge (Bias)' 
+
 
     # Steered score aggregates
     pos_agg = df.groupby('coeff')[f'{label_1}_steered_score'].agg(['mean', 'std']).reset_index()
@@ -676,14 +693,19 @@ def plot_mean_std_by_coeff(df, sentiment_score, latent_type, output_dir="plots")
     plt.ylabel(f'{score_type} Score', fontsize=14)
     plt.legend()
     plt.grid(True, linestyle='--', alpha=0.6)
-    plt.ylim(-1.5, 1.5)
+    if sentiment_score:
+        plt.ylim(-1.5, 1.5)
+    else:
+        plt.ylim(-0.5, 1.5)
     plt.tight_layout()
     plt.savefig(os.path.join(output_dir, f'mean_std_coeff_{score_type_file}.png'), dpi=300)
     plt.close()
 
 if __name__ == "__main__":
     script_dir = os.path.dirname(__file__)
-    filename = 'steer-new-posneg-20-gender'
+    filename = 'steer-new-posneg-20'
+    latent_type="sentiment"
+
     results_file = os.path.join(script_dir, f'{filename}.log')
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
     plot_output_directory = os.path.join(script_dir, f"plots_{filename}_{timestamp}")
@@ -694,66 +716,66 @@ if __name__ == "__main__":
     else:
         # --- Parse all dataframes and write all jsonl outputs ---
         df_sentiment, df_judgegen, df_judgebias = parse_experiment_output(
-            results_file, filename, output_dir=plot_output_directory
+            results_file, latent_type, filename, output_dir=plot_output_directory
         )
 
         # --- Sentiment plots ---
-        plot_sentiment_vs_coeff(
+        plot_score_vs_coeff(
             df_sentiment,
             sentiment_score=True,
-            latent_type="sentiment",
+            latent_type=latent_type,
             output_dir=os.path.join(plot_output_directory, "sentiment")
         )
         plot_box_by_coeff(
             df_sentiment,
             sentiment_score=True,
-            latent_type="sentiment",
+            latent_type=latent_type,
             output_dir=os.path.join(plot_output_directory, "sentiment")
         )
         plot_mean_std_by_coeff(
             df_sentiment,
             sentiment_score=True,
-            latent_type="sentiment",
+            latent_type=latent_type,
             output_dir=os.path.join(plot_output_directory, "sentiment")
         )
 
         # --- JudgeGen plots ---
-        plot_sentiment_vs_coeff(
+        plot_score_vs_coeff(
             df_judgegen,
             sentiment_score=False,
-            latent_type="bias",
+            latent_type=latent_type,
             output_dir=os.path.join(plot_output_directory, "judgegen")
         )
         plot_box_by_coeff(
             df_judgegen,
             sentiment_score=False,
-            latent_type="bias",
+            latent_type=latent_type,
             output_dir=os.path.join(plot_output_directory, "judgegen")
         )
         plot_mean_std_by_coeff(
             df_judgegen,
             sentiment_score=False,
-            latent_type="bias",
+            latent_type=latent_type,
             output_dir=os.path.join(plot_output_directory, "judgegen")
         )
 
         # --- JudgeBias plots ---
-        plot_sentiment_vs_coeff(
+        plot_score_vs_coeff(
             df_judgebias,
             sentiment_score=False,
-            latent_type="bias",
+            latent_type=latent_type,
             output_dir=os.path.join(plot_output_directory, "judgebias")
         )
         plot_box_by_coeff(
             df_judgebias,
             sentiment_score=False,
-            latent_type="bias",
+            latent_type=latent_type,
             output_dir=os.path.join(plot_output_directory, "judgebias")
         )
         plot_mean_std_by_coeff(
             df_judgebias,
             sentiment_score=False,
-            latent_type="bias",
+            latent_type=latent_type,
             output_dir=os.path.join(plot_output_directory, "judgebias")
         )
 
