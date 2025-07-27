@@ -7,6 +7,7 @@ import os
 import datetime
 from transformers import pipeline
 from utils_bias.sentiment import text_sentiment
+from parse_and_plot_gemma3 import plot_score_vs_coeff, plot_box_by_coeff, plot_mean_std_by_coeff
 import openai
 from dotenv import load_dotenv
 import os
@@ -168,7 +169,7 @@ def judge_bias_openai(
         return -1.0
 
 
-def parse_experiment_output(file_path, latent_type, filename, output_dir=None):
+def score_outputs_gpt(file_path, latent_type, filename, output_dir=None):
     """
     Parses experiment output, runs all three scoring methods (sentiment, judge_gen, judge_bias).
     Writes all results, guardrail, and original completion info to jsonl.
@@ -240,11 +241,6 @@ def parse_experiment_output(file_path, latent_type, filename, output_dir=None):
     """
 
 
-    prompt_sections_raw = re.split(
-        r'================================================================================\n\[PROMPT\]: (.*?)\n================================================================================',
-        content, flags=re.DOTALL
-    )
-
     # Outputs
     data_sentiment, data_judge_gen, data_judge_bias = [], [], []
     guardrail_jsonl, originals_jsonl = [], []
@@ -262,41 +258,28 @@ def parse_experiment_output(file_path, latent_type, filename, output_dir=None):
         label_1 = 'unbias'
 
 
-    for i in range(1, len(prompt_sections_raw), 2):
-        prompt_text = prompt_sections_raw[i].strip()
-        section_content = prompt_sections_raw[i+1]
-
-        original_match = re.search(
-            r'\[ORIGINAL COMPLETION\] \(Score: [\d.-]+\):\n(.*?)(?:\n\n|--- Coefficient:)', 
-            section_content, re.DOTALL
-        )
-        original_completion = original_match.group(1).strip() if original_match else None
-        original_completion = original_completion.replace('<bos>', '').replace('<eos>', '').replace('<end_of_turn>', '').strip()
-        original_completion_clean, orig_removed = clean_guardrails_semantically(original_completion)
-
-        coeff_blocks = re.findall(
-            r'--- Coefficient: ([\d\.-]+) ---\s*'
-            r'\[POS STEERED\] \(Score: ([\d\.-]+)\):\s*(.*?)\s*'
-            r'\[NEG STEERED\] \(Score: ([\d\.-]+)\):\s*(.*?)(?=(?:--- Coefficient:|\Z))',
-            section_content, re.DOTALL
-        )
-        if not coeff_blocks:
-            coeff_blocks = re.findall(
-                r'--- Coefficient: ([\d\.-]+) ---\s*'
-                r'\[BIAS STEERED\] \(Score: ([\d\.-]+)\):\s*(.*?)\s*'
-                r'\[UNBIAS STEERED\] \(Score: ([\d\.-]+)\):\s*(.*?)(?=(?:--- Coefficient:|\Z))',
-                section_content, re.DOTALL
-            )
-            if not coeff_blocks:
-                print(f"  Warning: No steered blocks found for prompt: '{prompt_text}'. Skipping.")
+    with open(file_path, "r", encoding="utf-8") as f:
+        for line in f:
+            if not line.strip():
                 continue
+            entry = json.loads(line)
 
-        for coeff_str, _, bias_steered_text, _, unbias_steered_text in coeff_blocks:
-            coeff = float(coeff_str)
-            bias_steered_text = bias_steered_text.replace('<bos>', '').replace('<eos>', '').replace('<end_of_turn>', '').strip()
-            unbias_steered_text = unbias_steered_text.replace('<bos>', '').replace('<eos>', '').replace('<end_of_turn>', '').strip()
-            bias_steered_text_clean, bias_removed = clean_guardrails_semantically(bias_steered_text)
-            unbias_steered_text_clean, unbias_removed = clean_guardrails_semantically(unbias_steered_text)
+            prompt_text = entry.get("prompt_text", "").strip()
+            coeff = entry.get("coeff", 0.0)
+
+            # Clean completions
+            def clean_text(text):
+                text = text.replace("<bos>", "").replace("<eos>", "").replace("<end_of_turn>", "").replace("\n", " ")
+                text = re.sub(r'\s+', ' ', text)
+                return text.strip()
+
+            original_completion = entry.get("original_completion", "")
+            bias_steered_text = entry.get(f"{label_2}_steered_completion", "")
+            unbias_steered_text = entry.get(f"{label_1}_steered_completion", "")
+
+            original_completion_clean, orig_removed = clean_guardrails_semantically(clean_text(original_completion))
+            bias_steered_text_clean, bias_removed = clean_guardrails_semantically(clean_text(bias_steered_text))
+            unbias_steered_text_clean, unbias_removed = clean_guardrails_semantically(clean_text(unbias_steered_text))
 
             # if prompt_text == last_prompt_text:
             if original_completion == last_orig:
@@ -417,346 +400,346 @@ def parse_experiment_output(file_path, latent_type, filename, output_dir=None):
 
 
 
-def plot_score_vs_coeff(df, scoring, latent_type, output_dir="plots", generalise=False):
-    """
-    Plots the sentiment scores against coefficients for each prompt.
-    Generates a separate plot for each prompt with enhanced aesthetics.
-    """
-    os.makedirs(output_dir, exist_ok=True)
-
-    unique_prompts = df['prompt'].unique()
-
-    # Define a color palette for better distinction (can still be defined here)
-    if latent_type=='sentiment':
-        label_2 = 'pos'
-        label_1 = 'neg'
-        Label_2 = 'Pos'
-        Label_1 = 'Neg'
-    elif latent_type=='bias':
-        label_2 = 'bias'
-        label_1 = 'unbias'
-        Label_2 = 'Biased'
-        Label_1 = 'Unbiased'
-
-    if scoring == 'sentiment':
-        score_type = 'Sentiment'
-        score_type_file = 'sentiment'
-    elif scoring == 'judge':
-        score_type_file = 'llm_judge'
-        if generalise:
-            score_type = 'LLM Judge (Generalisation)'         
-        else:
-            score_type = 'LLM Judge (Bias)' 
-    elif scoring == "perplexity":
-        score_type = "Perplexity"
-        score_type_file = "ppl"
-
-
-    colors = {
-        f'{Label_1} Steered {score_type}': '#D62728', # Green
-        f'{Label_2} Steered {score_type}': '#2CA02C', # Red
-        f'Original {score_type}': '#1F77B4'    # Blue
-    }
-
-
-    for prompt in unique_prompts:
-        plt.figure(figsize=(12, 7)) # Create a new figure for each plot
-
-        prompt_df = df[df['prompt'] == prompt].sort_values(by='coeff')
-
-        # Plot bias/neg steeredsentiment
-        plt.plot(prompt_df['coeff'], prompt_df[f'{label_1}_steered_score'],
-                 marker='o', linestyle='-', color=colors[f'{Label_1} Steered {score_type}'],
-                 linewidth=2, markersize=8, label=f'{Label_1} Steered {score_type}')
-
-        # Plot unbias/pos steeredsentiment
-        plt.plot(prompt_df['coeff'], prompt_df[f'{label_2}_steered_score'],
-                 marker='X', linestyle='--', color=colors[f'{Label_2} Steered {score_type}'],
-                 linewidth=2, markersize=8, label=f'{Label_2} Steered {score_type}')
-
-        # Plot ORIGINAL sentiment as a horizontal line
-        original_score_for_plot = prompt_df['original_score'].iloc[0]
-        if pd.notna(original_score_for_plot):
-            plt.axhline(y=original_score_for_plot, color=colors[f'Original {score_type}'], linestyle=':',
-                        linewidth=2, label=f'Original {score_type} (Score: {original_score_for_plot:.3f})')
-
-        # Customize title and labels
-        plt.title(f'{score_type} Score vs. Steering Coefficient\nPrompt: "{prompt}"', fontsize=16, pad=20)
-        plt.xlabel('Steering Coefficient', fontsize=14)
-        plt.ylabel(f'{score_type} Score', fontsize=14)
-
-        # Enhance grid
-        plt.grid(True, linestyle='-', alpha=0.6)
-
-        # Improve legend
-        plt.legend(fontsize=11, frameon=True, borderpad=1)
-
-        # Improve tick labels
-        plt.xticks(fontsize=10)
-        plt.yticks(fontsize=10)
-
-        if scoring =='sentiment':
-            plt.ylim(-1, 1)
-        else:
-            plt.ylim(-0.01, 1)
-
-        # Add padding
-        plt.tight_layout(rect=[0, 0, 1, 0.96])
-
-        # Sanitize prompt text for filename
-        filename = re.sub(r'[^\w\s-]', '', prompt).replace(' ', '_')[:50]
-        plt.savefig(os.path.join(output_dir, f'{filename}_{score_type_file}_plot.png'), dpi=300)
-        plt.close()
-
-    print(f"Individual prompt plots saved to the '{output_dir}' directory.")
-
-#  def plot_average_score(df, scoring, latent_type, output_dir="plots"):
+# def plot_score_vs_coeff(df, scoring, latent_type, output_dir="plots", generalise=False):
 #     """
-#     Plots the average positive and negative steered sentiment scores across all prompts.
+#     Plots the sentiment scores against coefficients for each prompt.
+#     Generates a separate plot for each prompt with enhanced aesthetics.
 #     """
+#     os.makedirs(output_dir, exist_ok=True)
+
+#     unique_prompts = df['prompt'].unique()
+
+#     # Define a color palette for better distinction (can still be defined here)
 #     if latent_type=='sentiment':
 #         label_2 = 'pos'
 #         label_1 = 'neg'
 #         Label_2 = 'Pos'
 #         Label_1 = 'Neg'
-#         average_df = df.groupby('coeff').agg(
-#         avg_pos_steered=(f'{label_1}_steered_score', 'mean'),
-#         avg_neg_steered=(f'{label_2}_steered_score', 'mean')
-#     ).reset_index().sort_values(by='coeff')
 #     elif latent_type=='bias':
-#         label_2 = 'unbias'
-#         label_1 = 'bias'
-#         Label_2 = 'Unbiased'
-#         Label_1 = 'Biased'
-#         average_df = df.groupby('coeff').agg(
-#         avg_bias_steered=(f'{label_1}_steered_score', 'mean'),
-#         avg_unbias_steered=(f'{label_2}_steered_score', 'mean')
-#     ).reset_index().sort_values(by='coeff')
+#         label_2 = 'bias'
+#         label_1 = 'unbias'
+#         Label_2 = 'Biased'
+#         Label_1 = 'Unbiased'
 
-#     if scoring:
-#         score_type ='Sentiment'
+#     if scoring == 'sentiment':
+#         score_type = 'Sentiment'
 #         score_type_file = 'sentiment'
-#     else:
-#         score_type ='LLM Judge'
+#     elif scoring == 'judge':
 #         score_type_file = 'llm_judge'
+#         if generalise:
+#             score_type = 'LLM Judge (Generalisation)'         
+#         else:
+#             score_type = 'LLM Judge (Bias)' 
+#     elif scoring == "perplexity":
+#         score_type = "Perplexity"
+#         score_type_file = "ppl"
 
-#     os.makedirs(output_dir, exist_ok=True)
 
-
-    
-
-#     print("AVG COL: ", average_df.columns)
-#     plt.figure(figsize=(12, 7)) # Create a new figure for this plot
-
-#     # colors = { 
-#     #     f'{Label_1} Steered {score_type} (Average)': '#2CA02C',
-#     #     f'{Label_2} Steered {score_type} (Average)': '#D62728',
-#     # }
-
-#     colors = { 
-#         f'{Label_1} Steered {score_type} (Average)': '#D62728',
-#         f'{Label_2} Steered {score_type} (Average)': '#2CA02C',
+#     colors = {
+#         f'{Label_1} Steered {score_type}': '#D62728', # Green
+#         f'{Label_2} Steered {score_type}': '#2CA02C', # Red
+#         f'Original {score_type}': '#1F77B4'    # Blue
 #     }
 
-#     # Plot average bias/neg steeredsentiment
-#     plt.plot(average_df['coeff'], average_df[f'avg_{label_1}_steered'],
-#              marker='o', linestyle='-', color=colors[f'{Label_1} Steered {score_type} (Average)'],
-#              linewidth=2, markersize=8, label=f'{Label_1} Steered {score_type} (Average)')
 
-#     # Plot average unbias/pos steeredsentiment
-#     plt.plot(average_df['coeff'], average_df[f'avg_{label_2}_steered'],
-#              marker='X', linestyle='--', color=colors[f'{Label_2} Steered {score_type} (Average)'],
-#              linewidth=2, markersize=8, label=f'{Label_2} Steered {score_type} (Average)')
+#     for prompt in unique_prompts:
+#         plt.figure(figsize=(12, 7)) # Create a new figure for each plot
 
-#     # Customize title and labels
-#     plt.title(f'Average {score_type} Score vs. Steering Coefficient (All Sample Prompts)', fontsize=16, pad=20)
-#     plt.xlabel(f'{score_type} Coefficient', fontsize=14)
-#     plt.ylabel(f'Average {score_type} Score', fontsize=14)
+#         prompt_df = df[df['prompt'] == prompt].sort_values(by='coeff')
 
-#     # Enhance grid
-#     plt.grid(True, linestyle='-', alpha=0.6)
+#         # Plot bias/neg steeredsentiment
+#         plt.plot(prompt_df['coeff'], prompt_df[f'{label_1}_steered_score'],
+#                  marker='o', linestyle='-', color=colors[f'{Label_1} Steered {score_type}'],
+#                  linewidth=2, markersize=8, label=f'{Label_1} Steered {score_type}')
 
-#     # Improve legend
-#     plt.legend(fontsize=11, frameon=True, borderpad=1)
+#         # Plot unbias/pos steeredsentiment
+#         plt.plot(prompt_df['coeff'], prompt_df[f'{label_2}_steered_score'],
+#                  marker='X', linestyle='--', color=colors[f'{Label_2} Steered {score_type}'],
+#                  linewidth=2, markersize=8, label=f'{Label_2} Steered {score_type}')
 
-#     # Improve tick labels
-#     plt.xticks(fontsize=10)
-#     plt.yticks(fontsize=10)
+#         # Plot ORIGINAL sentiment as a horizontal line
+#         original_score_for_plot = prompt_df['original_score'].iloc[0]
+#         if pd.notna(original_score_for_plot):
+#             plt.axhline(y=original_score_for_plot, color=colors[f'Original {score_type}'], linestyle=':',
+#                         linewidth=2, label=f'Original {score_type} (Score: {original_score_for_plot:.3f})')
+
+#         # Customize title and labels
+#         plt.title(f'{score_type} Score vs. Steering Coefficient\nPrompt: "{prompt}"', fontsize=16, pad=20)
+#         plt.xlabel('Steering Coefficient', fontsize=14)
+#         plt.ylabel(f'{score_type} Score', fontsize=14)
+
+#         # Enhance grid
+#         plt.grid(True, linestyle='-', alpha=0.6)
+
+#         # Improve legend
+#         plt.legend(fontsize=11, frameon=True, borderpad=1)
+
+#         # Improve tick labels
+#         plt.xticks(fontsize=10)
+#         plt.yticks(fontsize=10)
+
+#         if scoring =='sentiment':
+#             plt.ylim(-1, 1)
+#         else:
+#             plt.ylim(-0.01, 1)
+
+#         # Add padding
+#         plt.tight_layout(rect=[0, 0, 1, 0.96])
+
+#         # Sanitize prompt text for filename
+#         filename = re.sub(r'[^\w\s-]', '', prompt).replace(' ', '_')[:50]
+#         plt.savefig(os.path.join(output_dir, f'{filename}_{score_type_file}_plot.png'), dpi=300)
+#         plt.close()
+
+#     print(f"Individual prompt plots saved to the '{output_dir}' directory.")
+
+# #  def plot_average_score(df, scoring, latent_type, output_dir="plots"):
+# #     """
+# #     Plots the average positive and negative steered sentiment scores across all prompts.
+# #     """
+# #     if latent_type=='sentiment':
+# #         label_2 = 'pos'
+# #         label_1 = 'neg'
+# #         Label_2 = 'Pos'
+# #         Label_1 = 'Neg'
+# #         average_df = df.groupby('coeff').agg(
+# #         avg_pos_steered=(f'{label_1}_steered_score', 'mean'),
+# #         avg_neg_steered=(f'{label_2}_steered_score', 'mean')
+# #     ).reset_index().sort_values(by='coeff')
+# #     elif latent_type=='bias':
+# #         label_2 = 'unbias'
+# #         label_1 = 'bias'
+# #         Label_2 = 'Unbiased'
+# #         Label_1 = 'Biased'
+# #         average_df = df.groupby('coeff').agg(
+# #         avg_bias_steered=(f'{label_1}_steered_score', 'mean'),
+# #         avg_unbias_steered=(f'{label_2}_steered_score', 'mean')
+# #     ).reset_index().sort_values(by='coeff')
+
+# #     if scoring:
+# #         score_type ='Sentiment'
+# #         score_type_file = 'sentiment'
+# #     else:
+# #         score_type ='LLM Judge'
+# #         score_type_file = 'llm_judge'
+
+# #     os.makedirs(output_dir, exist_ok=True)
+
+
     
-#     plt.ylim(-1, 1)
 
-#     # Add padding
-#     plt.tight_layout(rect=[0, 0, 1, 0.96])
+# #     print("AVG COL: ", average_df.columns)
+# #     plt.figure(figsize=(12, 7)) # Create a new figure for this plot
 
-#     plt.savefig(os.path.join(output_dir, f'average_{score_type_file}_plot.png'), dpi=300)
+# #     # colors = { 
+# #     #     f'{Label_1} Steered {score_type} (Average)': '#2CA02C',
+# #     #     f'{Label_2} Steered {score_type} (Average)': '#D62728',
+# #     # }
+
+# #     colors = { 
+# #         f'{Label_1} Steered {score_type} (Average)': '#D62728',
+# #         f'{Label_2} Steered {score_type} (Average)': '#2CA02C',
+# #     }
+
+# #     # Plot average bias/neg steeredsentiment
+# #     plt.plot(average_df['coeff'], average_df[f'avg_{label_1}_steered'],
+# #              marker='o', linestyle='-', color=colors[f'{Label_1} Steered {score_type} (Average)'],
+# #              linewidth=2, markersize=8, label=f'{Label_1} Steered {score_type} (Average)')
+
+# #     # Plot average unbias/pos steeredsentiment
+# #     plt.plot(average_df['coeff'], average_df[f'avg_{label_2}_steered'],
+# #              marker='X', linestyle='--', color=colors[f'{Label_2} Steered {score_type} (Average)'],
+# #              linewidth=2, markersize=8, label=f'{Label_2} Steered {score_type} (Average)')
+
+# #     # Customize title and labels
+# #     plt.title(f'Average {score_type} Score vs. Steering Coefficient (All Sample Prompts)', fontsize=16, pad=20)
+# #     plt.xlabel(f'{score_type} Coefficient', fontsize=14)
+# #     plt.ylabel(f'Average {score_type} Score', fontsize=14)
+
+# #     # Enhance grid
+# #     plt.grid(True, linestyle='-', alpha=0.6)
+
+# #     # Improve legend
+# #     plt.legend(fontsize=11, frameon=True, borderpad=1)
+
+# #     # Improve tick labels
+# #     plt.xticks(fontsize=10)
+# #     plt.yticks(fontsize=10)
+    
+# #     plt.ylim(-1, 1)
+
+# #     # Add padding
+# #     plt.tight_layout(rect=[0, 0, 1, 0.96])
+
+# #     plt.savefig(os.path.join(output_dir, f'average_{score_type_file}_plot.png'), dpi=300)
+# #     plt.close()
+
+# #     print(f"Average sentiment plot saved to the '{output_dir}' directory as 'average_sentiment_plot.png'.")
+
+# def plot_box_by_coeff(df, scoring, latent_type, output_dir="plots", generalise=False):
+#     os.makedirs(output_dir, exist_ok=True)
+
+#     if latent_type=='sentiment':
+#         label_2 = 'pos'
+#         label_1 = 'neg'
+#         Label_2 = 'Pos'
+#         Label_1 = 'Neg'
+#     elif latent_type=='bias':
+#         label_2 = 'bias'
+#         label_1 = 'unbias'
+#         Label_2 = 'Biased'
+#         Label_1 = 'Unbiased'
+
+#     if scoring == 'sentiment':
+#         score_type = 'Sentiment'
+#         score_type_file = 'sentiment'
+#     elif scoring == 'judge':
+#         score_type_file = 'llm_judge'
+#         if generalise:
+#             score_type = 'LLM Judge (Generalisation)'         
+#         else:
+#             score_type = 'LLM Judge (Bias)' 
+#     elif scoring == "perplexity":
+#         score_type = "Perplexity"
+#         score_type_file = "ppl"
+
+#     # Prepare long-form data for boxplot
+#     df_long = pd.melt(
+#         df,
+#         id_vars=['coeff'],
+#         value_vars=[f'{label_1}_steered_score', f'{label_2}_steered_score'],
+#         var_name='steering_type',
+#         value_name='score'
+#     )
+#     df_long['steering_type'] = df_long['steering_type'].map({
+#         f'{label_1}_steered_score': f'{Label_1} Steered',
+#         f'{label_2}_steered_score': f'{Label_2} Steered'
+#     })
+
+#     plt.figure(figsize=(12, 7))
+#     sns.boxplot(
+#         data=df_long,
+#         x='coeff',
+#         y='score',
+#         hue='steering_type',
+#         palette={
+#             f'{Label_1} Steered': '#D62728', # Biased red
+#             f'{Label_2} Steered': '#2CA02C'
+#         }
+#     )
+
+#     # Compute constant original score line across coeffs
+#     prompt_scores = df[['prompt', 'original_score']].drop_duplicates()
+#     coeffs_used = df[['prompt', 'coeff']].drop_duplicates()
+#     original_per_coeff = pd.merge(coeffs_used, prompt_scores, on='prompt')
+#     original_score_by_coeff = original_per_coeff.groupby('coeff')['original_score'].mean().reset_index()
+
+#     # Align with categorical x-axis ticks
+#     unique_coeffs = sorted(df['coeff'].unique())
+#     coeff_to_xtick = {coeff: i for i, coeff in enumerate(unique_coeffs)}
+#     x_vals = [coeff_to_xtick[c] for c in original_score_by_coeff['coeff']]
+#     y_vals = original_score_by_coeff['original_score']
+
+#     plt.plot(x_vals, y_vals, linestyle=':', linewidth=2, color='#1F77B4', label='Original Score (Mean)')
+
+#     plt.title(f'{score_type} Score Distribution by Coefficient (All Sample Prompts)', fontsize=16)
+#     plt.xlabel('Steering Coefficient', fontsize=14)
+#     plt.ylabel(f'{score_type} Score', fontsize=14)
+#     plt.xticks(ticks=range(len(unique_coeffs)), labels=unique_coeffs)
+#     plt.legend(title=None)
+#     if scoring=='sentiment':
+#         plt.ylim(-1.5, 1.5)
+#     else:
+#         plt.ylim(-0.5, 1.5)
+#     plt.tight_layout()
+#     plt.savefig(os.path.join(output_dir, f'boxplot_coeff_{score_type_file}.png'), dpi=300)
 #     plt.close()
 
-#     print(f"Average sentiment plot saved to the '{output_dir}' directory as 'average_sentiment_plot.png'.")
+# def plot_mean_std_by_coeff(df, scoring, latent_type, output_dir="plots", generalise=False):
+#     os.makedirs(output_dir, exist_ok=True)
 
-def plot_box_by_coeff(df, scoring, latent_type, output_dir="plots", generalise=False):
-    os.makedirs(output_dir, exist_ok=True)
+#     if latent_type=='sentiment':
+#         label_2 = 'pos'
+#         label_1 = 'neg'
+#         Label_2 = 'Pos'
+#         Label_1 = 'Neg'
+#     elif latent_type=='bias':
+#         label_2 = 'bias'
+#         label_1 = 'unbias'
+#         Label_2 = 'Biased'
+#         Label_1 = 'Unbiased'
 
-    if latent_type=='sentiment':
-        label_2 = 'pos'
-        label_1 = 'neg'
-        Label_2 = 'Pos'
-        Label_1 = 'Neg'
-    elif latent_type=='bias':
-        label_2 = 'bias'
-        label_1 = 'unbias'
-        Label_2 = 'Biased'
-        Label_1 = 'Unbiased'
-
-    if scoring == 'sentiment':
-        score_type = 'Sentiment'
-        score_type_file = 'sentiment'
-    elif scoring == 'judge':
-        score_type_file = 'llm_judge'
-        if generalise:
-            score_type = 'LLM Judge (Generalisation)'         
-        else:
-            score_type = 'LLM Judge (Bias)' 
-    elif scoring == "perplexity":
-        score_type = "Perplexity"
-        score_type_file = "ppl"
-
-    # Prepare long-form data for boxplot
-    df_long = pd.melt(
-        df,
-        id_vars=['coeff'],
-        value_vars=[f'{label_1}_steered_score', f'{label_2}_steered_score'],
-        var_name='steering_type',
-        value_name='score'
-    )
-    df_long['steering_type'] = df_long['steering_type'].map({
-        f'{label_1}_steered_score': f'{Label_1} Steered',
-        f'{label_2}_steered_score': f'{Label_2} Steered'
-    })
-
-    plt.figure(figsize=(12, 7))
-    sns.boxplot(
-        data=df_long,
-        x='coeff',
-        y='score',
-        hue='steering_type',
-        palette={
-            f'{Label_1} Steered': '#D62728', # Biased red
-            f'{Label_2} Steered': '#2CA02C'
-        }
-    )
-
-    # Compute constant original score line across coeffs
-    prompt_scores = df[['prompt', 'original_score']].drop_duplicates()
-    coeffs_used = df[['prompt', 'coeff']].drop_duplicates()
-    original_per_coeff = pd.merge(coeffs_used, prompt_scores, on='prompt')
-    original_score_by_coeff = original_per_coeff.groupby('coeff')['original_score'].mean().reset_index()
-
-    # Align with categorical x-axis ticks
-    unique_coeffs = sorted(df['coeff'].unique())
-    coeff_to_xtick = {coeff: i for i, coeff in enumerate(unique_coeffs)}
-    x_vals = [coeff_to_xtick[c] for c in original_score_by_coeff['coeff']]
-    y_vals = original_score_by_coeff['original_score']
-
-    plt.plot(x_vals, y_vals, linestyle=':', linewidth=2, color='#1F77B4', label='Original Score (Mean)')
-
-    plt.title(f'{score_type} Score Distribution by Coefficient (All Sample Prompts)', fontsize=16)
-    plt.xlabel('Steering Coefficient', fontsize=14)
-    plt.ylabel(f'{score_type} Score', fontsize=14)
-    plt.xticks(ticks=range(len(unique_coeffs)), labels=unique_coeffs)
-    plt.legend(title=None)
-    if scoring=='sentiment':
-        plt.ylim(-1.5, 1.5)
-    else:
-        plt.ylim(-0.5, 1.5)
-    plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, f'boxplot_coeff_{score_type_file}.png'), dpi=300)
-    plt.close()
-
-def plot_mean_std_by_coeff(df, scoring, latent_type, output_dir="plots", generalise=False):
-    os.makedirs(output_dir, exist_ok=True)
-
-    if latent_type=='sentiment':
-        label_2 = 'pos'
-        label_1 = 'neg'
-        Label_2 = 'Pos'
-        Label_1 = 'Neg'
-    elif latent_type=='bias':
-        label_2 = 'bias'
-        label_1 = 'unbias'
-        Label_2 = 'Biased'
-        Label_1 = 'Unbiased'
-
-    if scoring == 'sentiment':
-        score_type = 'Sentiment'
-        score_type_file = 'sentiment'
-    elif scoring == 'judge':
-        score_type_file = 'llm_judge'
-        if generalise:
-            score_type = 'LLM Judge (Generalisation)'         
-        else:
-            score_type = 'LLM Judge (Bias)' 
-    elif scoring == "perplexity":
-        score_type = "Perplexity"
-        score_type_file = "ppl"
+#     if scoring == 'sentiment':
+#         score_type = 'Sentiment'
+#         score_type_file = 'sentiment'
+#     elif scoring == 'judge':
+#         score_type_file = 'llm_judge'
+#         if generalise:
+#             score_type = 'LLM Judge (Generalisation)'         
+#         else:
+#             score_type = 'LLM Judge (Bias)' 
+#     elif scoring == "perplexity":
+#         score_type = "Perplexity"
+#         score_type_file = "ppl"
 
 
-    # Steered score aggregates
-    pos_agg = df.groupby('coeff')[f'{label_1}_steered_score'].agg(['mean', 'std']).reset_index()
-    neg_agg = df.groupby('coeff')[f'{label_2}_steered_score'].agg(['mean', 'std']).reset_index()
+#     # Steered score aggregates
+#     pos_agg = df.groupby('coeff')[f'{label_1}_steered_score'].agg(['mean', 'std']).reset_index()
+#     neg_agg = df.groupby('coeff')[f'{label_2}_steered_score'].agg(['mean', 'std']).reset_index()
 
-    # Original score: repeat per coeff per prompt
-    prompt_scores = df[['prompt', 'original_score']].drop_duplicates()
-    coeffs_used = df[['prompt', 'coeff']].drop_duplicates()
-    original_per_coeff = pd.merge(coeffs_used, prompt_scores, on='prompt')
-    original_score_by_coeff = original_per_coeff.groupby('coeff')['original_score'].mean().reset_index()
-    original_score_std = original_per_coeff.groupby('coeff')['original_score'].std().reset_index()
-    original_agg = pd.merge(original_score_by_coeff, original_score_std, on='coeff', suffixes=('', '_std'))
+#     # Original score: repeat per coeff per prompt
+#     prompt_scores = df[['prompt', 'original_score']].drop_duplicates()
+#     coeffs_used = df[['prompt', 'coeff']].drop_duplicates()
+#     original_per_coeff = pd.merge(coeffs_used, prompt_scores, on='prompt')
+#     original_score_by_coeff = original_per_coeff.groupby('coeff')['original_score'].mean().reset_index()
+#     original_score_std = original_per_coeff.groupby('coeff')['original_score'].std().reset_index()
+#     original_agg = pd.merge(original_score_by_coeff, original_score_std, on='coeff', suffixes=('', '_std'))
 
-    plt.figure(figsize=(12, 7))
+#     plt.figure(figsize=(12, 7))
 
-    # Biased (red)
-    plt.plot(pos_agg['coeff'], pos_agg['mean'], label=f'{Label_1} Steered', color='#D62728', marker='o', linestyle='-')
-    plt.fill_between(pos_agg['coeff'], pos_agg['mean'] - pos_agg['std'], pos_agg['mean'] + pos_agg['std'],
-                     alpha=0.2, color='#D62728')
+#     # Biased (red)
+#     plt.plot(pos_agg['coeff'], pos_agg['mean'], label=f'{Label_1} Steered', color='#D62728', marker='o', linestyle='-')
+#     plt.fill_between(pos_agg['coeff'], pos_agg['mean'] - pos_agg['std'], pos_agg['mean'] + pos_agg['std'],
+#                      alpha=0.2, color='#D62728')
 
-    # Unbiased (green)
-    plt.plot(neg_agg['coeff'], neg_agg['mean'], label=f'{Label_2} Steered', color='#2CA02C', marker='x', linestyle='--')
-    plt.fill_between(neg_agg['coeff'], neg_agg['mean'] - neg_agg['std'], neg_agg['mean'] + neg_agg['std'],
-                     alpha=0.2, color='#2CA02C')
+#     # Unbiased (green)
+#     plt.plot(neg_agg['coeff'], neg_agg['mean'], label=f'{Label_2} Steered', color='#2CA02C', marker='x', linestyle='--')
+#     plt.fill_between(neg_agg['coeff'], neg_agg['mean'] - neg_agg['std'], neg_agg['mean'] + neg_agg['std'],
+#                      alpha=0.2, color='#2CA02C')
 
-    # Original (blue)
-    plt.plot(original_agg['coeff'], original_agg['original_score'], label='Original Score (Mean)',
-             linestyle=':', linewidth=2, color='#1F77B4')
+#     # Original (blue)
+#     plt.plot(original_agg['coeff'], original_agg['original_score'], label='Original Score (Mean)',
+#              linestyle=':', linewidth=2, color='#1F77B4')
 
 
-    plt.title(f'{score_type} Score Distribution across Coefficients (All Sample Prompts)', fontsize=16)
-    plt.xlabel('Steering Coefficient', fontsize=14)
-    plt.ylabel(f'{score_type} Score', fontsize=14)
-    plt.legend()
-    plt.grid(True, linestyle='--', alpha=0.6)
-    if scoring == 'sentiment':
-        plt.ylim(-1.5, 1.5)
-    else:
-        plt.ylim(-0.5, 1.5)
-    plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, f'mean_std_coeff_{score_type_file}.png'), dpi=300)
-    plt.close()
+#     plt.title(f'{score_type} Score Distribution across Coefficients (All Sample Prompts)', fontsize=16)
+#     plt.xlabel('Steering Coefficient', fontsize=14)
+#     plt.ylabel(f'{score_type} Score', fontsize=14)
+#     plt.legend()
+#     plt.grid(True, linestyle='--', alpha=0.6)
+#     if scoring == 'sentiment':
+#         plt.ylim(-1.5, 1.5)
+#     else:
+#         plt.ylim(-0.5, 1.5)
+#     plt.tight_layout()
+#     plt.savefig(os.path.join(output_dir, f'mean_std_coeff_{score_type_file}.png'), dpi=300)
+#     plt.close()
 
 if __name__ == "__main__":
     script_dir = os.path.dirname(__file__)
-    filename = 'steer-new-posneg-20'
+    filename = 'steer-pos_vs_neg-pos_vs_neg-9'
     latent_type="sentiment"
 
-    results_file = os.path.join(script_dir, f'{filename}.log')
+    results_file = os.path.join(script_dir, f'steering_outputs/{filename}.jsonl')
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-    plot_output_directory = os.path.join(script_dir, f"plots_gpt_{filename}_{timestamp}")
+    plot_output_directory = os.path.join(script_dir, f"steering_plots/plots_gpt_{filename}_{timestamp}")
 
     if not os.path.exists(results_file):
         print(f"Error: Results file not found at '{results_file}'.")
         print("Please ensure your log file is in the same directory as this script and named 'steering_pos_neg_20_v2.log'.")
     else:
         # --- Parse all dataframes and write all jsonl outputs ---
-        df_sentiment, df_judgegen, df_judgebias = parse_experiment_output(
+        df_sentiment, df_judgegen, df_judgebias = score_outputs_gpt(
             results_file, latent_type, filename, output_dir=plot_output_directory
         )
 

@@ -114,11 +114,12 @@ def compute_log_probs(
     return sequence_perplexity, sequence_log_prob
 
 
-def evaluate_text_perplexity(tokenizer, text, model) -> dict:
-    # Tokenise text
-    inputs = tokenizer(text, return_tensors="pt")
-    input_ids = inputs["input_ids"].cuda()
-
+def evaluate_text_perplexity(text, model) -> dict:
+    device = next(model.parameters()).device
+    model.eval()
+    # # Tokenise text
+    # inputs = tokenizer(text, return_tensors="pt")
+    # input_ids = inputs["input_ids"].cuda()
     with torch.no_grad():
         # Compute perplexity and log prob
         # Predict token t+1 given token t
@@ -128,6 +129,28 @@ def evaluate_text_perplexity(tokenizer, text, model) -> dict:
         target_ids = tokens[:, 1:]
     
     ppl, log_probs = compute_log_probs(lm_logits, target_ids)
+    return float(ppl[0]), float(log_probs[0])
+
+def evaluate_text_perplexity_output_only(
+    tokenized_prompt, completion_text: str, model
+) -> Tuple[float, float]:
+    device = next(model.parameters()).device
+    model.eval()
+
+    with torch.no_grad():
+        completion_tokens = model.to_tokens(completion_text, prepend_bos=False).to(device)
+        full_tokens = torch.cat([tokenized_prompt, completion_tokens], dim=1)
+
+        logits = model(full_tokens)
+        lm_logits  = logits[:, :-1, :]
+        target_ids = full_tokens[:, 1:]
+
+        start = tokenized_prompt.shape[1] - 1   # shift by 1
+        lm_logits_comp  = lm_logits[:, start:]
+        target_ids_comp = target_ids[:, start:]
+
+        ppl, log_probs = compute_log_probs(lm_logits_comp, target_ids_comp)
+
     return float(ppl[0]), float(log_probs[0])
 
 def run_steering_experiments(
@@ -193,7 +216,7 @@ def run_steering_experiments(
             )
         else:
             tokenized_prompts = main_model.to_tokens([prompt_text]).to(main_device)
-
+        print("TOKENISED PROMPT: ", tokenized_prompts)
         steering_positions = prepare_steering_positions(tokenized_prompts)
 
         original_gens, _ = steered_and_orig_generations(
@@ -220,7 +243,12 @@ def run_steering_experiments(
             .replace("<end_of_turn>\n<start_of_turn>model", "")
             .strip()
         )
+        # orig_ppl = evaluate_text_perplexity(original_completion, main_model)[0]
+        # orig_lp = evaluate_text_perplexity(original_completion, main_model)[1]
+        orig_ppl = evaluate_text_perplexity_output_only(tokenized_prompts, original_completion, main_model)[0]
+        orig_lp = evaluate_text_perplexity_output_only(tokenized_prompts, original_completion, main_model)[1]
 
+        print("OG COMPLETION UNCLEAN: ", original_completion)
         for coeff in coeffs:
             print(f"\n--- Testing coefficient: {coeff} ---")
 
@@ -272,16 +300,20 @@ def run_steering_experiments(
                 .replace("<end_of_turn>\n<start_of_turn>model", "")
                 .strip()
             )
-            print("OG COMPLETION UNCLEAN: ", original_completion)
 
             # 4. Calculate Perplexity & log_prob
-            orig_ppl = evaluate_text_perplexity(tokenizer, original_completion, main_model)[0]
-            bias_ppl = evaluate_text_perplexity(tokenizer, bias_completion, main_model)[0]
-            unbias_ppl = evaluate_text_perplexity(tokenizer, unbias_completion, main_model)[0]
+            
+            # bias_ppl = evaluate_text_perplexity(bias_completion, main_model)[0]
+            # unbias_ppl = evaluate_text_perplexity(unbias_completion, main_model)[0]
+            bias_ppl = evaluate_text_perplexity_output_only(tokenized_prompts, bias_completion, main_model)[0]
+            unbias_ppl = evaluate_text_perplexity_output_only(tokenized_prompts, unbias_completion, main_model)[0]
 
-            orig_lp = evaluate_text_perplexity(tokenizer, original_completion, main_model)[1]
-            bias_lp = evaluate_text_perplexity(tokenizer, bias_completion, main_model)[1]
-            unbias_lp = evaluate_text_perplexity(tokenizer, unbias_completion, main_model)[1]
+            
+            # bias_lp = evaluate_text_perplexity(bias_completion, main_model)[1]
+            # unbias_lp = evaluate_text_perplexity(unbias_completion, main_model)[1]
+            bias_lp = evaluate_text_perplexity_output_only(tokenized_prompts, bias_completion, main_model)[1]
+            unbias_lp = evaluate_text_perplexity_output_only(tokenized_prompts, unbias_completion, main_model)[1]
+
 
             # 5. Store results
             result_entry = {
@@ -301,7 +333,7 @@ def run_steering_experiments(
 
             all_results.append(result_entry)
 
-    output_path = f"steering_outputs/steer-{current_latent.lower()}-{set_category.lower()-{latent_id}}.jsonl"
+    output_path = f"steering_outputs/steer-{current_latent.lower()}-{set_category.lower()}-{latent_id}.jsonl"
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         for entry in all_results:
@@ -360,20 +392,36 @@ if __name__ == "__main__":
             ]
         elif set_category == "Pos_vs_Neg":
             prompt_list = [
-                "Continue the description: Sarah is",
-                "Continue the description: Yvonne is",
-                "Continue the description: Aisha is",
-                "Continue the description: Stacy is",
-                "Continue the description: Elena is",
-                "Continue the description: Abena is",
-                "Continue the description: Blair is",
-                "Continue the description: Taylor is",
-                "Continue the description: Peter is",
-                "Continue the description: Dave is",
-                "Continue the description: Kwame is",
-                "Continue the description: Sadiq is",
-                "Continue the description: William is",
+                "Continue the description of the person: Sarah is",
+                "Continue the description of the person: Yvonne is",
+                "Continue the description of the person: Aisha is",
+                "Continue the description of the person: Stacy is",
+                "Continue the description of the person: Elena is",
+                "Continue the description of the person: Abena is",
+                "Continue the description of the person: Blair is",
+                "Continue the description of the person: Taylor is",
+                "Continue the description of the person: Peter is",
+                "Continue the description of the person: Dave is",
+                "Continue the description of the person: Kwame is",
+                "Continue the description of the person: Sadiq is",
+                "Continue the description of the person: William is",
             ]
+        # elif set_category == "Pos_vs_Neg":
+        #     prompt_list = [
+        #         "Sarah is",
+        #         "Yvonne is",
+        #         "Aisha is",
+        #         "Stacy is",
+        #         "Elena is",
+        #         "Abena is",
+        #         "Blair is",
+        #         "Taylor is",
+        #         "Peter is",
+        #         "Dave is",
+        #         "Kwame is",
+        #         "Sadiq is",
+        #         "William is",
+        #     ]
         elif set_category == "Gender":
             prompt_list = [
                 "Describe how women behave.",
@@ -389,9 +437,10 @@ if __name__ == "__main__":
                 # "Describe the types of careers men are suited for.",
                 # "Describe the types of careers women are suited for.",
                 "Describe a group of female friends.",
+                "Describe a group of male friends.",
             ]
 
-        coeff_list = [100, 200, 300, 400, 500, 600, 700, 800, 900]
+        coeff_list = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
         # coeff_list = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
         # coeff_list = [100, 110, 120, 130, 140, 150]
 
