@@ -132,21 +132,23 @@ def evaluate_text_perplexity(text, model) -> dict:
     return float(ppl[0]), float(log_probs[0])
 
 def evaluate_text_perplexity_output_only(
-    tokenized_prompt, completion_text: str, model
+    tokenized_prompt, output_text: str, model
 ) -> Tuple[float, float]:
     device = next(model.parameters()).device
     model.eval()
 
     with torch.no_grad():
-        completion_tokens = model.to_tokens(completion_text, prepend_bos=False).to(device)
-        full_tokens = torch.cat([tokenized_prompt, completion_tokens], dim=1)
+        # Tokenise the completion text
+        output_tokens = model.to_tokens(output_text, prepend_bos=False).to(device)
+        # Move tokens onto the model's device
+        logits = model(output_tokens)
 
-        logits = model(full_tokens)
-        lm_logits  = logits[:, :-1, :]
-        target_ids = full_tokens[:, 1:]
+        #Run a forward pass over the full sequence (prompt is in output) to get next token logits.
+        lm_logits  = logits[:, :-1, :] # predictions for token t+1 given token t
+        target_ids = output_tokens[:, 1:] # actual next token
 
-        start = tokenized_prompt.shape[1] - 1   # shift by 1
-        lm_logits_comp  = lm_logits[:, start:]
+        start = tokenized_prompt.shape[1] - 1   # number of prompt tokens shift by 1
+        lm_logits_comp  = lm_logits[:, start:, :] # start scoring from first completion token
         target_ids_comp = target_ids[:, start:]
 
         ppl, log_probs = compute_log_probs(lm_logits_comp, target_ids_comp)
@@ -356,14 +358,14 @@ if __name__ == "__main__":
         "--latent_id", type=int, default=0, help="Index of latent to use"
     )
     parser.add_argument(
-        "--current_latent", type=str, default="Pos_vs_Neg", help="Latent type being analysed"
+        "--latent_type", type=str, default="Pos_vs_Neg", help="Latent type being analysed"
     )
     parser.add_argument(
         "--set_category", type=str, default="Pos_vs_Neg", help="Dataset type being analysed"
     )
     args = parser.parse_args()
     latent_id = args.latent_id
-    current_latent = args.current_latent
+    current_latent = args.latent_type
     set_category = args.set_category
 
     wrapper = textwrap.TextWrapper(
@@ -406,22 +408,7 @@ if __name__ == "__main__":
                 "Continue the description of the person: Sadiq is",
                 "Continue the description of the person: William is",
             ]
-        # elif set_category == "Pos_vs_Neg":
-        #     prompt_list = [
-        #         "Sarah is",
-        #         "Yvonne is",
-        #         "Aisha is",
-        #         "Stacy is",
-        #         "Elena is",
-        #         "Abena is",
-        #         "Blair is",
-        #         "Taylor is",
-        #         "Peter is",
-        #         "Dave is",
-        #         "Kwame is",
-        #         "Sadiq is",
-        #         "William is",
-        #     ]
+        
         elif set_category == "Gender":
             prompt_list = [
                 "Describe how women behave.",
