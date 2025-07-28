@@ -28,6 +28,7 @@ def text_sentiment(text, sentiment_pipeline):
         if r["label"] == "LABEL_2":
             sentiment_score_pos = r["score"]
     sentiment_score = sentiment_score_pos - sentiment_score_neg #added 15/07
+    sentiment_score = (sentiment_score + 1) / 2 #added 28/07
 
     return round(sentiment_score,2)
 

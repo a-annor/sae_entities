@@ -450,7 +450,7 @@ def score_outputs_gemma(file_path, latent_type, filename, output_dir=None, which
 
 
 
-def plot_score_vs_coeff(df, scoring, latent_type, output_dir="plots", generalise=False):
+def plot_score_vs_coeff(df, scoring, latent_type, latent_id, output_dir="plots", generalise=False):
     """
     Plots the sentiment scores against coefficients for each prompt.
     Generates a separate plot for each prompt with enhanced aesthetics.
@@ -510,7 +510,7 @@ def plot_score_vs_coeff(df, scoring, latent_type, output_dir="plots", generalise
                         linewidth=2, label=f'Original {score_type} (Score: {original_score_for_plot:.3f})')
 
         # Customize title and labels
-        plt.title(f'{score_type} Score vs. Steering Coefficient\nPrompt: "{prompt}"', fontsize=16, pad=20)
+        plt.title(f'{score_type} Score vs. Steering Coefficient - {latent_id}\nPrompt: "{prompt}"', fontsize=16, pad=20)
         plt.xlabel('Steering Coefficient', fontsize=14)
         plt.ylabel(f'{score_type} Score', fontsize=14)
 
@@ -524,10 +524,7 @@ def plot_score_vs_coeff(df, scoring, latent_type, output_dir="plots", generalise
         plt.xticks(fontsize=10)
         plt.yticks(fontsize=10)
 
-        if scoring =='sentiment':
-            plt.ylim(-1, 1)
-        else:
-            plt.ylim(-0.01, 1)
+        plt.ylim(-0.01, 1.01)
 
         # Add padding
         plt.tight_layout(rect=[0, 0, 1, 0.96])
@@ -617,7 +614,7 @@ def plot_score_vs_coeff(df, scoring, latent_type, output_dir="plots", generalise
 
     # print(f"Average sentiment plot saved to the '{output_dir}' directory as 'average_sentiment_plot.png'.")
 
-def plot_box_by_coeff(df, scoring, latent_type, output_dir="plots", generalise=False):
+def plot_box_by_coeff(df, scoring, latent_type, latent_id, output_dir="plots", generalise=False):
     os.makedirs(output_dir, exist_ok=True)
 
     if latent_type=='sentiment':
@@ -683,20 +680,17 @@ def plot_box_by_coeff(df, scoring, latent_type, output_dir="plots", generalise=F
 
     plt.plot(x_vals, y_vals, linestyle=':', linewidth=2, color='#1F77B4', label='Original Score (Mean)')
 
-    plt.title(f'{score_type} Score Distribution by Coefficient (All Sample Prompts)', fontsize=16)
+    plt.title(f'{score_type} Score Distribution by Coefficient - {latent_id} (All Sample Prompts)', fontsize=16)
     plt.xlabel('Steering Coefficient', fontsize=14)
     plt.ylabel(f'{score_type} Score', fontsize=14)
     plt.xticks(ticks=range(len(unique_coeffs)), labels=unique_coeffs)
     plt.legend(title=None)
-    if scoring=='sentiment':
-        plt.ylim(-1.5, 1.5)
-    else:
-        plt.ylim(-0.5, 1.5)
+    plt.ylim(-0.5, 1.5)
     plt.tight_layout()
     plt.savefig(os.path.join(output_dir, f'boxplot_coeff_{score_type_file}.png'), dpi=300)
     plt.close()
 
-def plot_mean_std_by_coeff(df, scoring, latent_type, output_dir="plots", generalise=False):
+def plot_mean_std_by_coeff(df, scoring, latent_type, latent_id, output_dir="plots", generalise=False):
     os.makedirs(output_dir, exist_ok=True)
 
     if latent_type=='sentiment':
@@ -753,15 +747,13 @@ def plot_mean_std_by_coeff(df, scoring, latent_type, output_dir="plots", general
              linestyle=':', linewidth=2, color='#1F77B4')
 
 
-    plt.title(f'{score_type} Score Distribution across Coefficients (All Sample Prompts)', fontsize=16)
+    plt.title(f'{score_type} Score Distribution across Coefficients - {latent_id} (All Sample Prompts)', fontsize=16)
     plt.xlabel('Steering Coefficient', fontsize=14)
     plt.ylabel(f'{score_type} Score', fontsize=14)
     plt.legend()
     plt.grid(True, linestyle='--', alpha=0.6)
-    if scoring == 'sentiment':
-        plt.ylim(-1.5, 1.5)
-    else:
-        plt.ylim(-0.5, 1.5)
+   
+    plt.ylim(-0.5, 1.5)
     plt.tight_layout()
     plt.savefig(os.path.join(output_dir, f'mean_std_coeff_{score_type_file}.png'), dpi=300)
     plt.close()
@@ -800,18 +792,21 @@ if __name__ == "__main__":
                 df_sentiment,
                 scoring='sentiment',
                 latent_type=latent_type,
+                latent_id = latent_id,
                 output_dir=os.path.join(plot_output_directory, "sentiment")
             )
             plot_box_by_coeff(
                 df_sentiment,
                 scoring='sentiment',
                 latent_type=latent_type,
+                latent_id = latent_id,
                 output_dir=os.path.join(plot_output_directory, "sentiment")
             )
             plot_mean_std_by_coeff(
                 df_sentiment,
                 scoring='sentiment',
                 latent_type=latent_type,
+                latent_id = latent_id,
                 output_dir=os.path.join(plot_output_directory, "sentiment")
             )
 
@@ -821,6 +816,7 @@ if __name__ == "__main__":
                 df_judgegen,
                 scoring='judge',
                 latent_type=latent_type,
+                latent_id = latent_id,
                 output_dir=os.path.join(plot_output_directory, "judgegen"),
                 generalise= True
             )
@@ -828,6 +824,7 @@ if __name__ == "__main__":
                 df_judgegen,
                 scoring='judge',
                 latent_type=latent_type,
+                latent_id = latent_id,
                 output_dir=os.path.join(plot_output_directory, "judgegen"),
                 generalise= True
             )
@@ -835,6 +832,7 @@ if __name__ == "__main__":
                 df_judgegen,
                 scoring='judge',
                 latent_type=latent_type,
+                latent_id = latent_id,
                 output_dir=os.path.join(plot_output_directory, "judgegen"),
                 generalise= True
             )
@@ -844,18 +842,21 @@ if __name__ == "__main__":
                 df_judgebias,
                 scoring='judge',
                 latent_type=latent_type,
+                latent_id = latent_id,
                 output_dir=os.path.join(plot_output_directory, "judgebias")
             )
             plot_box_by_coeff(
                 df_judgebias,
                 scoring='judge',
                 latent_type=latent_type,
+                latent_id = latent_id,
                 output_dir=os.path.join(plot_output_directory, "judgebias")
             )
             plot_mean_std_by_coeff(
                 df_judgebias,
                 scoring='judge',
                 latent_type=latent_type,
+                latent_id = latent_id,
                 output_dir=os.path.join(plot_output_directory, "judgebias")
             )
 
