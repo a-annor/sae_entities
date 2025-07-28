@@ -11,7 +11,6 @@ from utils_bias.judge_bias import judge_bias
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline, PreTrainedTokenizer
 from typing import List, Tuple, Literal, Union, Optional, Dict
 import torch
-from argparse import Namespace
 import seaborn as sns
 
 from sentence_transformers import SentenceTransformer, util
@@ -20,7 +19,8 @@ import spacy
 nlp = spacy.load("en_core_web_sm")
 import re
 import string
-
+from argparse import Namespace
+import argparse
 
 import sys
 # Ensure the script can find utility modules
@@ -167,7 +167,7 @@ def load_hf_model(model_alias: str, device: str) -> Tuple[AutoModelForCausalLM, 
     return model, tokenizer
 
 
-def score_outputs_gemma(file_path, latent_type, filename, output_dir=None):
+def score_outputs_gemma(file_path, latent_type, filename, output_dir=None, which_score="all"):
     """
     Parses experiment output, runs all three scoring methods (sentiment, judge_gen, judge_bias).
     Writes all results, guardrail, and original completion info to jsonl.
@@ -179,12 +179,14 @@ def score_outputs_gemma(file_path, latent_type, filename, output_dir=None):
     with open(file_path, 'r') as f:
         content = f.read()
 
-    sentiment_pipeline = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment", device="cuda:0")
-    judge_model_alias = 'gemma-3-4b'
-    judge_params = Namespace(
-        max_new_tokens=10, use_instruct_model=True, use_thinking_mode=False, device=torch.device("cuda:1")
-    )
-    judge_model, judge_tokenizer = load_hf_model(judge_model_alias, device="cuda:1")
+    if which_score == "all" or which_score == "sentiment":
+        sentiment_pipeline = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment", device="cuda:0")
+    if which_score == "all" or which_score == "judge_bias":
+        judge_model_alias = 'gemma-3-4b'
+        judge_params = Namespace(
+            max_new_tokens=10, use_instruct_model=True, use_thinking_mode=False, device=torch.device("cuda:1")
+        )
+        judge_model, judge_tokenizer = load_hf_model(judge_model_alias, device="cuda:1")
 
     JUDGE_BIAS_SYSTEM_PROMPT = """You are an impartial evaluator for **negative stereotypical bias** detection.
 
@@ -243,65 +245,6 @@ def score_outputs_gemma(file_path, latent_type, filename, output_dir=None):
 
     """
 
-    # prompt_sections_raw = re.split(
-    #     r'================================================================================\n\[PROMPT\]: (.*?)\n================================================================================',
-    #     content, flags=re.DOTALL
-    # )
-
-    # # Outputs
-    # data_sentiment, data_judge_gen, data_judge_bias = [], [], []
-    # guardrail_jsonl, originals_jsonl = [], []
-    # last_prompt_text = None
-    # last_orig = None
-    # last_orig_sent = None
-    # last_orig_jgen = None
-    # last_orig_jbias = None
-
-    # if latent_type=='sentiment':
-    #     label_2 = 'neg'
-    #     label_1 = 'pos'
-    # elif latent_type=='bias':
-    #     label_2 = 'bias'
-    #     label_1 = 'unbias'
-
-
-    # for i in range(1, len(prompt_sections_raw), 2):
-    #     prompt_text = prompt_sections_raw[i].strip()
-    #     section_content = prompt_sections_raw[i+1]
-
-    #     original_match = re.search(
-    #         r'\[ORIGINAL COMPLETION\] \(Score: [\d.-]+\):\n(.*?)(?:\n\n|--- Coefficient:)', 
-    #         section_content, re.DOTALL
-    #     )
-    #     original_completion = original_match.group(1).strip() if original_match else None
-    #     original_completion = original_completion.replace('<bos>', '').replace('<eos>', '').replace('<end_of_turn>', '').strip()
-    #     original_completion_clean, orig_removed = clean_guardrails_semantically(original_completion)
-
-    #     coeff_blocks = re.findall(
-    #         r'--- Coefficient: ([\d\.-]+) ---\s*'
-    #         r'\[POS STEERED\] \(Score: ([\d\.-]+)\):\s*(.*?)\s*'
-    #         r'\[NEG STEERED\] \(Score: ([\d\.-]+)\):\s*(.*?)(?=(?:--- Coefficient:|\Z))',
-    #         section_content, re.DOTALL
-    #     )
-    #     if not coeff_blocks:
-    #         coeff_blocks = re.findall(
-    #             r'--- Coefficient: ([\d\.-]+) ---\s*'
-    #             r'\[BIAS STEERED\] \(Score: ([\d\.-]+)\):\s*(.*?)\s*'
-    #             r'\[UNBIAS STEERED\] \(Score: ([\d\.-]+)\):\s*(.*?)(?=(?:--- Coefficient:|\Z))',
-    #             section_content, re.DOTALL
-    #         )
-    #         if not coeff_blocks:
-    #             print(f"  Warning: No steered blocks found for prompt: '{prompt_text}'. Skipping.")
-    #             continue
-
-    #     for coeff_str, _, bias_steered_text, _, unbias_steered_text in coeff_blocks:
-    #         coeff = float(coeff_str)
-    #         bias_steered_text = bias_steered_text.replace('<bos>', '').replace('<eos>', '').replace('<end_of_turn>', '').strip()
-    #         unbias_steered_text = unbias_steered_text.replace('<bos>', '').replace('<eos>', '').replace('<end_of_turn>', '').strip()
-    #         bias_steered_text_clean, bias_removed = clean_guardrails_semantically(bias_steered_text)
-    #         unbias_steered_text_clean, unbias_removed = clean_guardrails_semantically(unbias_steered_text)
-
-
     data_sentiment, data_judge_gen, data_judge_bias = [], [], []
     guardrail_jsonl, originals_jsonl = [], []
     last_prompt_text = None
@@ -351,9 +294,18 @@ def score_outputs_gemma(file_path, latent_type, filename, output_dir=None):
                     orig_jgen = 0.0
                     orig_jbias = 0.0
                 else:
-                    orig_sent = text_sentiment(original_completion_clean, sentiment_pipeline)
-                    orig_jgen = judge_bias(judge_model, judge_tokenizer, prompt_text, original_completion_clean, judge_params, JUDGE_GEN_SYSTEM_PROMPT)
-                    orig_jbias = judge_bias(judge_model, judge_tokenizer, prompt_text, original_completion_clean, judge_params, JUDGE_BIAS_SYSTEM_PROMPT)
+                    if which_score == "all" or which_score == "sentiment":
+                        orig_sent = text_sentiment(original_completion_clean, sentiment_pipeline)
+                    else:
+                        orig_sent = 0.0
+                    if which_score == "all" or which_score == "judge_gen":
+                        orig_jgen = judge_bias(judge_model, judge_tokenizer, prompt_text, original_completion_clean, judge_params, JUDGE_GEN_SYSTEM_PROMPT)
+                    else:
+                        orig_jgen = 0.0
+                    if which_score == "all" or which_score == "judge_bias":
+                        orig_jbias = judge_bias(judge_model, judge_tokenizer, prompt_text, original_completion_clean, judge_params, JUDGE_BIAS_SYSTEM_PROMPT)
+                    else:
+                        orig_jbias = 0.0
 
             # last_prompt_text = prompt_text
             last_orig = original_completion
@@ -366,19 +318,37 @@ def score_outputs_gemma(file_path, latent_type, filename, output_dir=None):
                 bias_jgen = 0.0
                 bias_jbias = 0.0
             else:
-                bias_sent = text_sentiment(bias_steered_text_clean, sentiment_pipeline)
-                bias_jgen = judge_bias(judge_model, judge_tokenizer, prompt_text, bias_steered_text_clean, judge_params, JUDGE_GEN_SYSTEM_PROMPT)
-                bias_jbias = judge_bias(judge_model, judge_tokenizer, prompt_text, bias_steered_text_clean, judge_params, JUDGE_BIAS_SYSTEM_PROMPT)
+                if which_score == "all" or which_score == "sentiment":
+                    bias_sent = text_sentiment(bias_steered_text_clean, sentiment_pipeline)
+                else: 
+                    bias_sent = 0.0 
+                if which_score == "all" or which_score == "judge_gen":
+                    bias_jgen = judge_bias(judge_model, judge_tokenizer, prompt_text, bias_steered_text_clean, judge_params, JUDGE_GEN_SYSTEM_PROMPT)
+                else:
+                    bias_jgen = 0.0
+                if which_score == "all" or which_score == "judge_bias":
+                    bias_jbias = judge_bias(judge_model, judge_tokenizer, prompt_text, bias_steered_text_clean, judge_params, JUDGE_BIAS_SYSTEM_PROMPT)
+                else:
+                    bias_jbias = 0.0
 
             if should_be_zero(unbias_steered_text_clean):
                 unbias_sent = 0.0
                 unbias_jgen = 0.0
                 unbias_jbias = 0.0
             else:
-                unbias_sent = text_sentiment(unbias_steered_text_clean, sentiment_pipeline)
-                unbias_jgen = judge_bias(judge_model, judge_tokenizer, prompt_text, unbias_steered_text_clean, judge_params, JUDGE_GEN_SYSTEM_PROMPT)
-                unbias_jbias = judge_bias(judge_model, judge_tokenizer, prompt_text, unbias_steered_text_clean, judge_params, JUDGE_BIAS_SYSTEM_PROMPT)
-            
+                if which_score == "all" or which_score == "sentiment":
+                    unbias_sent = text_sentiment(unbias_steered_text_clean, sentiment_pipeline)
+                else: 
+                    unbias_sent = 0.0
+                if which_score == "all" or which_score == "judge_gen":
+                    unbias_jgen = judge_bias(judge_model, judge_tokenizer, prompt_text, unbias_steered_text_clean, judge_params, JUDGE_GEN_SYSTEM_PROMPT)
+                else: 
+                    unbias_jgen = 0.0 
+                if which_score == "all" or which_score == "judge_bias":
+                    unbias_jbias = judge_bias(judge_model, judge_tokenizer, prompt_text, unbias_steered_text_clean, judge_params, JUDGE_BIAS_SYSTEM_PROMPT)
+                else: 
+                    unbias_jbias = 0.0 
+
             # # Sentiment scores
             # orig_sent = text_sentiment(original_completion_clean, sentiment_pipeline)
             # bias_sent = text_sentiment(bias_steered_text_clean, sentiment_pipeline)
@@ -439,15 +409,21 @@ def score_outputs_gemma(file_path, latent_type, filename, output_dir=None):
     if output_dir:
         os.makedirs(output_dir, exist_ok=True)
         # Write sentiment/judgegen/judgebias
-        with open(os.path.join(output_dir, f'parsed_sentiment_{filename}.jsonl'), 'w', encoding='utf-8') as f:
-            for entry in data_sentiment:
-                f.write(json.dumps(entry) + '\n')
-        with open(os.path.join(output_dir, f'parsed_judgegen_{filename}.jsonl'), 'w', encoding='utf-8') as f:
-            for entry in data_judge_gen:
-                f.write(json.dumps(entry) + '\n')
-        with open(os.path.join(output_dir, f'parsed_judgebias_{filename}.jsonl'), 'w', encoding='utf-8') as f:
-            for entry in data_judge_bias:
-                f.write(json.dumps(entry) + '\n')
+        if which_score == "all" or which_score == "sentiment":
+            with open(os.path.join(output_dir, f'parsed_sentiment_{filename}.jsonl'), 'w', encoding='utf-8') as f:
+                for entry in data_sentiment:
+                    f.write(json.dumps(entry) + '\n')
+        
+        if which_score == "all" or which_score == "judge_gen":
+            with open(os.path.join(output_dir, f'parsed_judgegen_{filename}.jsonl'), 'w', encoding='utf-8') as f:
+                for entry in data_judge_gen:
+                    f.write(json.dumps(entry) + '\n')
+
+        if which_score == "all" or which_score == "judge_bias":
+            with open(os.path.join(output_dir, f'parsed_judgebias_{filename}.jsonl'), 'w', encoding='utf-8') as f:
+                for entry in data_judge_bias:
+                    f.write(json.dumps(entry) + '\n')
+        
         # Write guardrail
         with open(os.path.join(output_dir, f'guardrail_removal_{filename}.jsonl'), 'w', encoding='utf-8') as f:
             for entry in guardrail_jsonl:
@@ -458,9 +434,18 @@ def score_outputs_gemma(file_path, latent_type, filename, output_dir=None):
                 f.write(json.dumps(entry) + '\n')
         print("Saved all outputs to jsonl files.")
 
-    df_sentiment = pd.DataFrame(data_sentiment)
-    df_judge_gen = pd.DataFrame(data_judge_gen)
-    df_judge_bias = pd.DataFrame(data_judge_bias)
+    if which_score == "all" or which_score == "sentiment":
+        df_sentiment = pd.DataFrame(data_sentiment)
+    else:
+        df_sentiment = None
+    if which_score == "all" or which_score == "judge_gen":
+        df_judge_gen = pd.DataFrame(data_judge_gen)
+    else:
+        df_judge_gen = None
+    if which_score == "all" or which_score == "judge_bias":
+        df_judge_bias = pd.DataFrame(data_judge_bias)
+    else:
+        df_judge_bias = None
     return df_sentiment, df_judge_gen, df_judge_bias
 
 
@@ -782,13 +767,24 @@ def plot_mean_std_by_coeff(df, scoring, latent_type, output_dir="plots", general
     plt.close()
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--latent_id", type=int, default=0)
+    parser.add_argument("--latent_type", type =str, default="sentiment")
+    parser.add_argument("--exp", type =str, default="pos_vs_neg-pos_vs_neg")
+    parser.add_argument("--which_score", type =str, default="all")
+    args = parser.parse_args()
+    
+    latent_id = args.latent_id
+    latent_type = args.latent_type
+    exp = args.exp
+    which_score = args.which_score
+
     script_dir = os.path.dirname(__file__)
-    filename = 'steer-pos_vs_neg-pos_vs_neg'
-    latent_type="sentiment"
+    filename = f'steer-{exp}-{latent_id}'
+    
 
     results_file = os.path.join(script_dir, f'steering_outputs/{filename}.jsonl')
-    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-    plot_output_directory = os.path.join(script_dir, f"steering_plots/plots_gemma_{filename}_{timestamp}")
+    plot_output_directory = os.path.join(script_dir, f"steering_plots/plots_gemma_steer-{exp}/{latent_id}")
 
     if not os.path.exists(results_file):
         print(f"Error: Results file not found at '{results_file}'.")
@@ -796,70 +792,71 @@ if __name__ == "__main__":
     else:
         # --- Parse all dataframes and write all jsonl outputs ---
         df_sentiment, df_judgegen, df_judgebias = score_outputs_gemma(
-            results_file, latent_type, filename, output_dir=plot_output_directory
+            results_file, latent_type, filename, output_dir=plot_output_directory, which_score=which_score
         )
+        if which_score == 'all' or which_score == 'sentiment':
+            # --- Sentiment plots ---
+            plot_score_vs_coeff(
+                df_sentiment,
+                scoring='sentiment',
+                latent_type=latent_type,
+                output_dir=os.path.join(plot_output_directory, "sentiment")
+            )
+            plot_box_by_coeff(
+                df_sentiment,
+                scoring='sentiment',
+                latent_type=latent_type,
+                output_dir=os.path.join(plot_output_directory, "sentiment")
+            )
+            plot_mean_std_by_coeff(
+                df_sentiment,
+                scoring='sentiment',
+                latent_type=latent_type,
+                output_dir=os.path.join(plot_output_directory, "sentiment")
+            )
 
-        # --- Sentiment plots ---
-        plot_score_vs_coeff(
-            df_sentiment,
-            scoring='sentiment',
-            latent_type=latent_type,
-            output_dir=os.path.join(plot_output_directory, "sentiment")
-        )
-        plot_box_by_coeff(
-            df_sentiment,
-            scoring='sentiment',
-            latent_type=latent_type,
-            output_dir=os.path.join(plot_output_directory, "sentiment")
-        )
-        plot_mean_std_by_coeff(
-            df_sentiment,
-            scoring='sentiment',
-            latent_type=latent_type,
-            output_dir=os.path.join(plot_output_directory, "sentiment")
-        )
-
-        # --- JudgeGen plots ---
-        plot_score_vs_coeff(
-            df_judgegen,
-            scoring='judge',
-            latent_type=latent_type,
-            output_dir=os.path.join(plot_output_directory, "judgegen"),
-            generalise= True
-        )
-        plot_box_by_coeff(
-            df_judgegen,
-            scoring='judge',
-            latent_type=latent_type,
-            output_dir=os.path.join(plot_output_directory, "judgegen"),
-            generalise= True
-        )
-        plot_mean_std_by_coeff(
-            df_judgegen,
-            scoring='judge',
-            latent_type=latent_type,
-            output_dir=os.path.join(plot_output_directory, "judgegen"),
-            generalise= True
-        )
-
-        # --- JudgeBias plots ---
-        plot_score_vs_coeff(
-            df_judgebias,
-            scoring='judge',
-            latent_type=latent_type,
-            output_dir=os.path.join(plot_output_directory, "judgebias")
-        )
-        plot_box_by_coeff(
-            df_judgebias,
-            scoring='judge',
-            latent_type=latent_type,
-            output_dir=os.path.join(plot_output_directory, "judgebias")
-        )
-        plot_mean_std_by_coeff(
-            df_judgebias,
-            scoring='judge',
-            latent_type=latent_type,
-            output_dir=os.path.join(plot_output_directory, "judgebias")
-        )
+        if which_score == 'all' or which_score == 'judge_gen':
+            # --- JudgeGen plots ---
+            plot_score_vs_coeff(
+                df_judgegen,
+                scoring='judge',
+                latent_type=latent_type,
+                output_dir=os.path.join(plot_output_directory, "judgegen"),
+                generalise= True
+            )
+            plot_box_by_coeff(
+                df_judgegen,
+                scoring='judge',
+                latent_type=latent_type,
+                output_dir=os.path.join(plot_output_directory, "judgegen"),
+                generalise= True
+            )
+            plot_mean_std_by_coeff(
+                df_judgegen,
+                scoring='judge',
+                latent_type=latent_type,
+                output_dir=os.path.join(plot_output_directory, "judgegen"),
+                generalise= True
+            )
+        if which_score == 'all' or which_score == 'judge_bias':
+            # --- JudgeBias plots ---
+            plot_score_vs_coeff(
+                df_judgebias,
+                scoring='judge',
+                latent_type=latent_type,
+                output_dir=os.path.join(plot_output_directory, "judgebias")
+            )
+            plot_box_by_coeff(
+                df_judgebias,
+                scoring='judge',
+                latent_type=latent_type,
+                output_dir=os.path.join(plot_output_directory, "judgebias")
+            )
+            plot_mean_std_by_coeff(
+                df_judgebias,
+                scoring='judge',
+                latent_type=latent_type,
+                output_dir=os.path.join(plot_output_directory, "judgebias")
+            )
 
         print("\nAll plotting complete. Check the newly created folder for your plots.")

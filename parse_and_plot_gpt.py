@@ -21,7 +21,8 @@ import spacy
 nlp = spacy.load("en_core_web_sm")
 import re
 import string
-
+from argparse import Namespace
+import argparse
 
 import sys
 # Ensure the script can find utility modules
@@ -726,13 +727,21 @@ def score_outputs_gpt(file_path, latent_type, filename, output_dir=None):
 #     plt.close()
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--latent_id", type=int, default=0, help="Index of latent to use"
+    )
+
+    args = parser.parse_args()
+    latent_id = args.latent_id
+
     script_dir = os.path.dirname(__file__)
-    filename = 'steer-pos_vs_neg-pos_vs_neg-9'
+    filename = f'steer-pos_vs_neg-pos_vs_neg-{latent_id}'
     latent_type="sentiment"
 
     results_file = os.path.join(script_dir, f'steering_outputs/{filename}.jsonl')
-    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-    plot_output_directory = os.path.join(script_dir, f"steering_plots/plots_gpt_{filename}_{timestamp}")
+    # timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    plot_output_directory = os.path.join(script_dir, f"steering_plots/plots_gpt_{filename}")
 
     if not os.path.exists(results_file):
         print(f"Error: Results file not found at '{results_file}'.")
