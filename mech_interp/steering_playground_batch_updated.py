@@ -114,49 +114,6 @@ def compute_log_probs(
 
     return sequence_perplexity, sequence_log_prob
 
-def calculate_perplexity(logits, labels):
-    """
-    Calculates the perplexity for a batch of logits and labels.
- 
-    Args:
-        logits (torch.Tensor): The raw, unnormalized outputs from a model.
-                               Shape: (batch_size, sequence_length, vocab_size)
-        labels (torch.Tensor): The ground truth token ids.
-                               Shape: (batch_size, sequence_length)
- 
-    Returns:
-        torch.Tensor: A scalar tensor representing the perplexity.
-    """
-    loss_fn = nn.CrossEntropyLoss()
- 
-    # To compute the loss, CrossEntropyLoss expects logits of shape (N, C)
-    # and labels of shape (N), where N is the number of tokens and C is the
-    # number of classes (vocab_size).
-    # We reshape our inputs to match this format.
-    vocab_size = logits.shape[-1]
-    cross_entropy_loss = loss_fn(logits.view(-1, vocab_size), labels.view(-1))
- 
-    # Perplexity is the exponential of the cross-entropy loss.
-    perplexity = torch.exp(cross_entropy_loss)
- 
-    return perplexity, 0
-
-def evaluate_text_perplexity_old(text, model) -> dict:
-    device = next(model.parameters()).device
-    model.eval()
-    # # Tokenise text
-    # inputs = tokenizer(text, return_tensors="pt")
-    # input_ids = inputs["input_ids"].cuda()
-    with torch.no_grad():
-        # Compute perplexity and log prob
-        # Predict token t+1 given token t
-        tokens = model.to_tokens(text)
-        logits = model(tokens)  
-        lm_logits = logits[:, :-1, :]
-        target_ids = tokens[:, 1:]
-    
-    ppl, log_probs = compute_log_probs(lm_logits, target_ids)
-    return float(ppl[0]), float(log_probs[0])
 
 def evaluate_text_perplexity(
     tokenizer, output_text: str, model
