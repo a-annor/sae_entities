@@ -25,6 +25,7 @@ import textwrap
 import gc
 import copy
 import torch.nn.functional as F
+import torch.nn as nn
 import numpy as np
 from functools import partial
 from transformers import (
@@ -113,8 +114,34 @@ def compute_log_probs(
 
     return sequence_perplexity, sequence_log_prob
 
+def calculate_perplexity(logits, labels):
+    """
+    Calculates the perplexity for a batch of logits and labels.
+ 
+    Args:
+        logits (torch.Tensor): The raw, unnormalized outputs from a model.
+                               Shape: (batch_size, sequence_length, vocab_size)
+        labels (torch.Tensor): The ground truth token ids.
+                               Shape: (batch_size, sequence_length)
+ 
+    Returns:
+        torch.Tensor: A scalar tensor representing the perplexity.
+    """
+    loss_fn = nn.CrossEntropyLoss()
+ 
+    # To compute the loss, CrossEntropyLoss expects logits of shape (N, C)
+    # and labels of shape (N), where N is the number of tokens and C is the
+    # number of classes (vocab_size).
+    # We reshape our inputs to match this format.
+    vocab_size = logits.shape[-1]
+    cross_entropy_loss = loss_fn(logits.view(-1, vocab_size), labels.view(-1))
+ 
+    # Perplexity is the exponential of the cross-entropy loss.
+    perplexity = torch.exp(cross_entropy_loss)
+ 
+    return perplexity, 0
 
-def evaluate_text_perplexity(text, model) -> dict:
+def evaluate_text_perplexity_old(text, model) -> dict:
     device = next(model.parameters()).device
     model.eval()
     # # Tokenise text
@@ -131,15 +158,17 @@ def evaluate_text_perplexity(text, model) -> dict:
     ppl, log_probs = compute_log_probs(lm_logits, target_ids)
     return float(ppl[0]), float(log_probs[0])
 
-def evaluate_text_perplexity_output_only(
-    tokenized_prompt, output_text: str, model
+def evaluate_text_perplexity(
+    tokenizer, output_text: str, model
 ) -> Tuple[float, float]:
     device = next(model.parameters()).device
     model.eval()
 
     with torch.no_grad():
         # Tokenise the completion text
-        output_tokens = model.to_tokens(output_text, prepend_bos=False).to(device)
+        output_tokens = output_tokens = tokenize_example(
+                tokenizer, output_text, use_instruct_model=False, device=device
+            )
         # Move tokens onto the model's device
         logits = model(output_tokens)
 
@@ -147,13 +176,11 @@ def evaluate_text_perplexity_output_only(
         lm_logits  = logits[:, :-1, :] # predictions for token t+1 given token t
         target_ids = output_tokens[:, 1:] # actual next token
 
-        start = tokenized_prompt.shape[1] - 1   # number of prompt tokens shift by 1
-        lm_logits_comp  = lm_logits[:, start:, :] # start scoring from first completion token
-        target_ids_comp = target_ids[:, start:]
-
-        ppl, log_probs = compute_log_probs(lm_logits_comp, target_ids_comp)
+        ppl, log_probs = compute_log_probs(lm_logits, target_ids)
 
     return float(ppl[0]), float(log_probs[0])
+
+
 
 def run_steering_experiments(
     model_alias: str,
@@ -163,6 +190,7 @@ def run_steering_experiments(
     current_latent: str,
     max_new_tokens: int = 100,
     main_device: str = "cuda:0",
+    ppl_threshold: int = 10,
 ) -> List[Dict]:
     """
     Runs steering experiments for a list of prompts and a list of coefficients.
@@ -247,8 +275,8 @@ def run_steering_experiments(
         )
         # orig_ppl = evaluate_text_perplexity(original_completion, main_model)[0]
         # orig_lp = evaluate_text_perplexity(original_completion, main_model)[1]
-        orig_ppl = evaluate_text_perplexity_output_only(tokenized_prompts, original_completion, main_model)[0]
-        orig_lp = evaluate_text_perplexity_output_only(tokenized_prompts, original_completion, main_model)[1]
+        orig_ppl = evaluate_text_perplexity(tokenizer, original_completion, main_model)[0]
+        orig_lp = evaluate_text_perplexity(tokenizer, original_completion, main_model)[1]
 
         print("OG COMPLETION UNCLEAN: ", original_completion)
         for coeff in coeffs:
@@ -307,15 +335,18 @@ def run_steering_experiments(
             
             # bias_ppl = evaluate_text_perplexity(bias_completion, main_model)[0]
             # unbias_ppl = evaluate_text_perplexity(unbias_completion, main_model)[0]
-            bias_ppl = evaluate_text_perplexity_output_only(tokenized_prompts, bias_completion, main_model)[0]
-            unbias_ppl = evaluate_text_perplexity_output_only(tokenized_prompts, unbias_completion, main_model)[0]
+            bias_ppl = evaluate_text_perplexity(tokenizer, bias_completion, main_model)[0]
+            unbias_ppl = evaluate_text_perplexity(tokenizer, unbias_completion, main_model)[0]
 
             
             # bias_lp = evaluate_text_perplexity(bias_completion, main_model)[1]
             # unbias_lp = evaluate_text_perplexity(unbias_completion, main_model)[1]
-            bias_lp = evaluate_text_perplexity_output_only(tokenized_prompts, bias_completion, main_model)[1]
-            unbias_lp = evaluate_text_perplexity_output_only(tokenized_prompts, unbias_completion, main_model)[1]
+            bias_lp = evaluate_text_perplexity(tokenizer, bias_completion, main_model)[1]
+            unbias_lp = evaluate_text_perplexity(tokenizer, unbias_completion, main_model)[1]
 
+            if bias_ppl > ppl_threshold or unbias_ppl > ppl_threshold:
+                print(f"Stopping early: Perplexity too high at coeff={coeff} (bias={bias_ppl:.2f}, unbias={unbias_ppl:.2f})")
+                break
 
             # 5. Store results
             result_entry = {
@@ -427,7 +458,7 @@ if __name__ == "__main__":
                 "Describe a group of male friends.",
             ]
 
-        coeff_list = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+        coeff_list = range(100, 2100, 100) 
         # coeff_list = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
         # coeff_list = [100, 110, 120, 130, 140, 150]
 

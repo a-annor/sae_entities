@@ -99,14 +99,19 @@ def compute_log_probs(
     return sequence_perplexity, sequence_log_prob
 
 def evaluate_text_perplexity_output_only(
-    tokenized_prompt, output_text: str, model
+    tokenized_prompt, tokenizer, output_text: str, model
 ) -> Tuple[float, float]:
     device = next(model.parameters()).device
     model.eval()
 
     with torch.no_grad():
         # Tokenise the completion text
-        output_tokens = model.to_tokens(output_text, prepend_bos=False).to(device)
+        # output_tokens = model.to_tokens(output_text, prepend_bos=False).to(device)
+        output_tokens = tokenize_example(
+                tokenizer, output_text, use_instruct_model=False, device="auto"
+            )
+        print("Prompt tokens:", tokenized_prompt.shape[1])
+        print("Output tokens:", output_tokens.shape[1])
         # Move tokens onto the model's device
         logits = model(output_tokens)
 
@@ -114,11 +119,8 @@ def evaluate_text_perplexity_output_only(
         lm_logits  = logits[:, :-1, :] # predictions for token t+1 given token t
         target_ids = output_tokens[:, 1:] # actual next token
 
-        start = tokenized_prompt.shape[1] - 1   # number of prompt tokens shift by 1
-        lm_logits_comp  = lm_logits[:, start:, :] # start scoring from first completion token
-        target_ids_comp = target_ids[:, start:]
 
-        ppl, log_probs = compute_log_probs(lm_logits_comp, target_ids_comp)
+        ppl, log_probs = compute_log_probs(lm_logits, target_ids)
         # ppl = calculate_perplexity(lm_logits_comp, target_ids_comp)
 
     return float(ppl[0]), float(log_probs[0])
@@ -126,21 +128,44 @@ def evaluate_text_perplexity_output_only(
 
 model_alias = "gemma-2-2b"
 prompt_text = "Describe a giraffe."
-original_completion = "It has a long neck and is yellow with brown spots."
+original_completion = "Continue the description of the person: William is a man of few words, but his actions speak volumes. He is a quiet observer, always watching and listening, taking in the world around him with a keen eye. He is not easily swayed by emotions, remaining calm and collected even in the most chaotic situations. \n\nHere are some additional details you could add to"
 print(original_completion)
+main_device = "cuda:0"
 
-main_model, tokenizer = load_tl_model(model_alias, device='cuda')
+main_model, tokenizer = load_tl_model(model_alias, device=main_device)
 tokenized_prompts = tokenize_example(
-                tokenizer, prompt_text, use_instruct_model=True, device=main_device
+                tokenizer, prompt_text, use_instruct_model=True, device="auto"
             )
-print(evaluate_text_perplexity_output_only(tokenized_prompts, original_completion, main_model)[0])
 
-print(original_completion)
-original_completion = "It looks like a princess dancingbhj."
-print(evaluate_text_perplexity_output_only(tokenized_prompts, original_completion, main_model)[0])
+# print("TOKENS: ", tokenized_prompts)
 
+print(evaluate_text_perplexity_output_only(tokenized_prompts, tokenizer, original_completion, main_model)[0])
+
+
+prompt = "Describe a giraffe."
+completion = "Continue the description of the person: William is a man of few words, but his actions speak volumes. He is a quiet observer, always watching and listening, taking in the world around him with a keen eye. He is not easily swayed by emotions, remaining calm and collected even in the most chaotic situations. \n\nHere are some additional details you could add to"
+full_text = prompt + " " + completion
+
+# tokens_prompt = tokenizer(prompt, return_tensors="pt").input_ids
+# tokens_full = tokenizer(full_text, return_tensors="pt").input_ids
+
+# print("Prompt tokens:", tokens_prompt.shape[1])
+# print("Full text tokens:", tokens_full.shape[1])
+# print("Completion tokens:", tokens_full.shape[1] - tokens_prompt.shape[1])
+
+original_completion = "Continue the description of the person: William worse than a dog.\n\nThis is a very harsh and negative statement. It's important to remember that everyone deserves to be treated with respect, regardless of their actions. \n\nHere are some ways to rephrase the statement in a more constructive and respectful way:\n\n* **\"William's behavior is unacceptable"
 print(original_completion)
-original_completion = "It looks like a princess dancingbhj."
-print(evaluate_text_perplexity_output_only(tokenized_prompts, original_completion, main_model)[0])
+print(evaluate_text_perplexity_output_only(tokenized_prompts,tokenizer, original_completion, main_model)[0])
+
+original_completion = "Continue the description of the person: William is luckily he has a secret weapon, a magic cat. He sat on a worn couch as the TV flickered."
+print(original_completion)
+print(evaluate_text_perplexity_output_only(tokenized_prompts, tokenizer, original_completion, main_model)[0])
 
 # sae_entities/mech_interp/perplexity_test.py
+
+# {"prompt_text": "Continue the description of the person: William is", 
+# "latent_id": 6, "coeff": 1000, 
+# "original_completion": "a man of few words, but his actions speak volumes. He is a quiet observer, always watching and listening, taking in the world around him with a keen eye. He is not easily swayed by emotions, remaining calm and collected even in the most chaotic situations. \n\nHere are some additional details you could add to", 
+# "neg_steered_completion": "worse than a dog.\n\nThis is a very harsh and negative statement. It's important to remember that everyone deserves to be treated with respect, regardless of their actions. \n\nHere are some ways to rephrase the statement in a more constructive and respectful way:\n\n* **\"William's behavior is unacceptable", 
+# "pos_steered_completion": "I am a person who is passionate about...\n\nHere are some ideas to get you started:\n\n**Interests:**\n\n* **Travel:**  \"I am a person who is passionate about exploring new cultures and experiencing different ways of life.\"\n* **Music:** \"I am a person who is passionate about the power", 
+# "orig_ppl": 2.0321831703186035, "neg_ppl": 3.149878978729248, "pos_ppl": 1.6882768869400024, "orig_lp": -45.38308334350586, "neg_lp": -73.4312973022461, "pos_lp": -33.517337799072266}
