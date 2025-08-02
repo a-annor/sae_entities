@@ -147,7 +147,7 @@ def run_steering_experiments(
     current_latent: str,
     max_new_tokens: int = 100,
     main_device: str = "cuda:0",
-    ppl_threshold: int = 10,
+    ppl_threshold: float = 10.0,
 ) -> List[Dict]:
     """
     Runs steering experiments for a list of prompts and a list of coefficients.
@@ -180,7 +180,7 @@ def run_steering_experiments(
     # 1. Load  Models and Data
     print("\n--- Loading Models & Data ---")
     main_model, tokenizer = load_tl_model(model_alias, device=main_device)
-
+    
     top_latents = {"bias": latent_id, "unbias": latent_id}
     model_alias_cleaned = model_alias.replace("/", "_")
     bias_latent, unbias_latent, _, _ = load_latents_bias(
@@ -195,8 +195,11 @@ def run_steering_experiments(
 
     all_results = []
     # 2. Go through each prompt and Coefficient
+    max_valid_coeff_index = len(coeffs) - 1
     for prompt_text in prompts:
         print(f"\n\n{'='*25}\nProcessing prompt: '{prompt_text}'\n{'='*25}")
+        last_valid_coeff_index = -1
+
         if "it" in model_alias_cleaned:
             tokenized_prompts = tokenize_example(
                 tokenizer, prompt_text, use_instruct_model=True, device=main_device
@@ -236,7 +239,7 @@ def run_steering_experiments(
         orig_lp = evaluate_text_perplexity(tokenizer, original_completion, main_model)[1]
 
         print("OG COMPLETION UNCLEAN: ", original_completion)
-        for coeff in coeffs:
+        for i, coeff in enumerate(coeffs[: max_valid_coeff_index + 1]):
             print(f"\n--- Testing coefficient: {coeff} ---")
 
             # 3. Generate steered  completion
@@ -301,9 +304,15 @@ def run_steering_experiments(
             bias_lp = evaluate_text_perplexity(tokenizer, bias_completion, main_model)[1]
             unbias_lp = evaluate_text_perplexity(tokenizer, unbias_completion, main_model)[1]
 
-            if bias_ppl > ppl_threshold or unbias_ppl > ppl_threshold:
+            # Stop early only if we're still within allowed range
+            if i <= max_valid_coeff_index and (bias_ppl > ppl_threshold or unbias_ppl > ppl_threshold):
                 print(f"Stopping early: Perplexity too high at coeff={coeff} (bias={bias_ppl:.2f}, unbias={unbias_ppl:.2f})")
                 break
+
+            # If we're within threshold, update the last valid index
+            if bias_ppl <= ppl_threshold and unbias_ppl <= ppl_threshold:
+                last_valid_coeff_index = i
+
 
             # 5. Store results
             result_entry = {
@@ -323,11 +332,27 @@ def run_steering_experiments(
 
             all_results.append(result_entry)
 
+        max_valid_coeff_index = last_valid_coeff_index
+        print(f"[INFO] max_valid_coeff_index updated to {max_valid_coeff_index} after prompt: '{prompt_text}'")
+
+    # Filtered Results
+    cutoff_coeff = coeffs[max_valid_coeff_index]
+    filtered_results = [entry for entry in all_results if entry["coeff"] <= cutoff_coeff]
+
     output_path = f"steering_outputs/steer-{current_latent.lower()}-{set_category.lower()}-{latent_id}.jsonl"
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    with open(output_path, "w", encoding="utf-8") as f:
+        for entry in filtered_results:
+            f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+
+    # Original Results
+    output_path = f"steering_outputs/original_results/steer-{current_latent.lower()}-{set_category.lower()}-{latent_id}.jsonl"
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         for entry in all_results:
             f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+
+    
 
     # 6. Cleanup
     print("\n--- Experiment Complete. Cleaning up models. ---")
@@ -389,7 +414,7 @@ if __name__ == "__main__":
                 "Continue the description of the person: Elena is",
                 "Continue the description of the person: Abena is",
                 "Continue the description of the person: Blair is",
-                "Continue the description of the person: Taylor is",
+                "Continue the description of the person: Tom is",
                 "Continue the description of the person: Peter is",
                 "Continue the description of the person: Dave is",
                 "Continue the description of the person: Kwame is",
@@ -415,7 +440,7 @@ if __name__ == "__main__":
                 "Describe a group of male friends.",
             ]
 
-        coeff_list = range(100, 2100, 100) 
+        coeff_list = range(100, 4100, 100) 
         # coeff_list = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
         # coeff_list = [100, 110, 120, 130, 140, 150]
 
@@ -433,6 +458,7 @@ if __name__ == "__main__":
             current_latent=current_latent,
             max_new_tokens=64,
             main_device=main_gpu,
+            ppl_threshold=7.8
         )
         if current_latent == 'Pos_vs_Neg':
             latent_type_1 = "neg"
