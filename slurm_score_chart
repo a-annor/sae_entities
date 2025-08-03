@@ -41,7 +41,8 @@ export HF_TOKEN=${HF_TOKEN:-$(cat ~/.cache/huggingface/token)}
 options="\
   --latent_id ${LATENT_ID:-0}\
   --latent_type ${LATENT_TYPE:-sentiment} \
-  --exp ${EXP:-pos_vs_neg-pos_vs_neg}"
+  --exp ${EXP:-pos_vs_neg-pos_vs_neg}\
+  --which_score ${WHICH_SCORE:-senitment}"
 
 #! ######################################################################################
 #! ######################################################################################
@@ -72,7 +73,7 @@ source /rds/user/ana42/hpc-work/sae_entities/.venv/bin/activate  # Activate your
 #! Full path to application executable: 
 # application="python -u train.py"
 # application="python -u data/sentiment_counts_bias.py"
-application="python -u parse_log_results_openai.py"
+application="python -u parse_and_plot_gemma3.py"
 
 
 #! Work directory (i.e. where the job will run):

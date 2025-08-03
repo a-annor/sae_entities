@@ -88,6 +88,29 @@ if __name__ == "__main__":
             normalise=False,
             clip_negative=False
         )
+        es = compute_area_between_curves(
+            df,
+            latent_type=latent_type,
+            agg="mean",
+            normalise=False,
+            clip_negative=False
+        )
+
+        # Get difference score values at the last coefficient
+        original_mean = df["original_score"].mean()
+        max_coeff = df["coeff"].max()
+        last_row = df[df["coeff"] == max_coeff].mean(numeric_only=True)
+
+        if latent_type == "sentiment":
+            score1 = last_row.get("pos_steered_score", np.nan)
+            score2 = last_row.get("neg_steered_score", np.nan)
+        else:  # bias
+            score1 = last_row.get("bias_steered_score", np.nan)
+            score2 = last_row.get("unbias_steered_score", np.nan)
+
+        delta1 = score1 - original_mean
+        delta2 = score2 - original_mean
+
         rows.append({
             "filename": filename,
             "latent_type": latent_type,
@@ -95,8 +118,12 @@ if __name__ == "__main__":
             "area": res["area"],
             "start_coeff": res["start_coeff"],
             "end_coeff": res["end_coeff"],
+            f"{res['col1']}_delta": delta1,
+            f"{res['col2']}_delta": delta2,
         })
-        print(f"{latent_type} latent {latent_id}: area={res['area']:.6f}")
+
+        print(f"{latent_type} latent {latent_id}: area={res['area']:.6f}, {res['col1']}_delta={delta1:.4f}, {res['col2']}_delta={delta2:.4f}")
+
 
     output_dir = os.path.join(script_dir, "steering_areas")
     os.makedirs(output_dir, exist_ok=True)

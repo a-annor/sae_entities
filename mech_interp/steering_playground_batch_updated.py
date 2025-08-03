@@ -138,6 +138,15 @@ def evaluate_text_perplexity(
     return float(ppl[0]), float(log_probs[0])
 
 
+def strip_any_prompt(text: str, prompt_list: List[str]) -> str:
+    """
+    Removes any prompt string that appears in the text.
+    Strips only the first match to preserve the rest.
+    """
+    for prompt in prompt_list:
+        if prompt in text:
+            return text.replace(prompt, "", 1).strip()
+    return text.strip()
 
 def run_steering_experiments(
     model_alias: str,
@@ -195,21 +204,25 @@ def run_steering_experiments(
 
     all_results = []
     # 2. Go through each prompt and Coefficient
-    max_valid_coeff_index = len(coeffs) - 1
-    for prompt_text in prompts:
-        print(f"\n\n{'='*25}\nProcessing prompt: '{prompt_text}'\n{'='*25}")
-        last_valid_coeff_index = -1
+    max_valid_coeff = -1 
+    for i, coeff in enumerate(coeffs):
+        print(f"\n--- Testing coefficient: {coeff} ---")
+        total_bias_ppl, total_unbias_ppl = 0.0, 0.0
+        valid_prompt_count = 0
+        for prompt_text in prompts:
+            print(f"\n\n{'='*25}\nProcessing prompt: '{prompt_text}'\n{'='*25}")
 
-        if "it" in model_alias_cleaned:
-            tokenized_prompts = tokenize_example(
-                tokenizer, prompt_text, use_instruct_model=True, device=main_device
-            )
-        else:
-            tokenized_prompts = main_model.to_tokens([prompt_text]).to(main_device)
-        print("TOKENISED PROMPT: ", tokenized_prompts)
-        steering_positions = prepare_steering_positions(tokenized_prompts)
+            if "it" in model_alias_cleaned:
+                tokenized_prompts = tokenize_example(
+                    tokenizer, prompt_text, use_instruct_model=True, device=main_device
+                )
+            else:
+                tokenized_prompts = main_model.to_tokens([prompt_text]).to(main_device)
+            print("TOKENISED PROMPT: ", tokenized_prompts)
+            steering_positions = prepare_steering_positions(tokenized_prompts)
 
-        original_gens, _ = steered_and_orig_generations(
+
+            original_gens, _ = steered_and_orig_generations(
             main_model,
             N=1,
             tokenized_prompts=tokenized_prompts,
@@ -220,28 +233,23 @@ def run_steering_experiments(
             max_new_tokens=max_new_tokens,
             orig_generations=True,
             batch_size=1,
-        )
-        original_completion = original_gens[0]
-        original_completion_clean = (
-            original_completion
-            .replace(prompt_text, "")
-            .replace("<eos>", "")
-            .replace("<bos>", "")
-            .replace("<end_of_turn>", "")
-            .replace("<pad>", "")
-            .replace("<start_of_turn>user\n", "")
-            .replace("<end_of_turn>\n<start_of_turn>model", "")
-            .strip()
-        )
-        # orig_ppl = evaluate_text_perplexity(original_completion, main_model)[0]
-        # orig_lp = evaluate_text_perplexity(original_completion, main_model)[1]
-        orig_ppl = evaluate_text_perplexity(tokenizer, original_completion, main_model)[0]
-        orig_lp = evaluate_text_perplexity(tokenizer, original_completion, main_model)[1]
+            )
+            original_completion = original_gens[0]
+            original_completion_clean = (
+                strip_any_prompt(original_completion, prompts)
+                .replace("<eos>", "")
+                .replace("<bos>", "")
+                .replace("<end_of_turn>", "")
+                .replace("<pad>", "")
+                .replace("<start_of_turn>user\n", "")
+                .replace("<end_of_turn>\n<start_of_turn>model", "")
+                .strip()
+            )
+            
+            orig_ppl, orig_lp  = evaluate_text_perplexity(tokenizer, original_completion, main_model)
+            print("OG COMPLETION UNCLEAN: ", original_completion)
 
-        print("OG COMPLETION UNCLEAN: ", original_completion)
-        for i, coeff in enumerate(coeffs[: max_valid_coeff_index + 1]):
-            print(f"\n--- Testing coefficient: {coeff} ---")
-
+    
             # 3. Generate steered  completion
             _, steered_bias_gens = steered_and_orig_generations(
                 main_model,
@@ -267,10 +275,10 @@ def run_steering_experiments(
                 orig_generations=False,
                 batch_size=1,
             )
+            
             bias_completion, unbias_completion = steered_bias_gens[0], steered_unbias_gens[0]
             bias_completion_clean = (
-                bias_completion
-                .replace(prompt_text, "")
+                strip_any_prompt(bias_completion, prompts)
                 .replace("<eos>", "")
                 .replace("<bos>", "")
                 .replace("<end_of_turn>", "")
@@ -280,8 +288,7 @@ def run_steering_experiments(
                 .strip()
             )
             unbias_completion_clean = (
-                unbias_completion
-                .replace(prompt_text, "")
+                strip_any_prompt(unbias_completion, prompts)
                 .replace("<eos>", "")
                 .replace("<bos>", "")
                 .replace("<end_of_turn>", "")
@@ -292,27 +299,19 @@ def run_steering_experiments(
             )
 
             # 4. Calculate Perplexity & log_prob
-            
-            # bias_ppl = evaluate_text_perplexity(bias_completion, main_model)[0]
-            # unbias_ppl = evaluate_text_perplexity(unbias_completion, main_model)[0]
-            bias_ppl = evaluate_text_perplexity(tokenizer, bias_completion, main_model)[0]
-            unbias_ppl = evaluate_text_perplexity(tokenizer, unbias_completion, main_model)[0]
+   
+            bias_ppl, bias_lp = evaluate_text_perplexity(tokenizer, bias_completion, main_model)
+            unbias_ppl, unbias_lp = evaluate_text_perplexity(tokenizer, unbias_completion, main_model)
 
-            
-            # bias_lp = evaluate_text_perplexity(bias_completion, main_model)[1]
-            # unbias_lp = evaluate_text_perplexity(unbias_completion, main_model)[1]
-            bias_lp = evaluate_text_perplexity(tokenizer, bias_completion, main_model)[1]
-            unbias_lp = evaluate_text_perplexity(tokenizer, unbias_completion, main_model)[1]
 
-            # Stop early only if we're still within allowed range
-            if i <= max_valid_coeff_index and (bias_ppl > ppl_threshold or unbias_ppl > ppl_threshold):
-                print(f"Stopping early: Perplexity too high at coeff={coeff} (bias={bias_ppl:.2f}, unbias={unbias_ppl:.2f})")
-                break
+            total_bias_ppl += bias_ppl
+            total_unbias_ppl += unbias_ppl
+            valid_prompt_count += 1
 
-            # If we're within threshold, update the last valid index
-            if bias_ppl <= ppl_threshold and unbias_ppl <= ppl_threshold:
-                last_valid_coeff_index = i
-
+            print("BIAS PPL: ", bias_ppl)
+            print("BIAS: ", bias_completion_clean)
+            print("UNBIAS PPL: ", unbias_ppl)
+            print("UNBIAS: ", unbias_completion_clean)
 
             # 5. Store results
             result_entry = {
@@ -332,12 +331,18 @@ def run_steering_experiments(
 
             all_results.append(result_entry)
 
-        max_valid_coeff_index = last_valid_coeff_index
-        print(f"[INFO] max_valid_coeff_index updated to {max_valid_coeff_index} after prompt: '{prompt_text}'")
+        avg_bias_ppl = total_bias_ppl / valid_prompt_count
+        avg_unbias_ppl = total_unbias_ppl / valid_prompt_count
+        print("AVG PPL BIAS: ",avg_bias_ppl)
+        print("AVG PPL UNBIAS: ",avg_unbias_ppl)
 
-    # Filtered Results
-    cutoff_coeff = coeffs[max_valid_coeff_index]
-    filtered_results = [entry for entry in all_results if entry["coeff"] <= cutoff_coeff]
+        if avg_bias_ppl > ppl_threshold or avg_unbias_ppl > ppl_threshold:
+            print(f"Early stopping at coeff={coeff}: avg_bias_ppl={avg_bias_ppl:.2f}, avg_unbias_ppl={avg_unbias_ppl:.2f}")
+            break
+        else: max_valid_coeff = coeff
+
+    # Remove last coeff results as not valid
+    filtered_results = [entry for entry in all_results if entry["coeff"] <= max_valid_coeff]
 
     output_path = f"steering_outputs/steer-{current_latent.lower()}-{set_category.lower()}-{latent_id}.jsonl"
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
@@ -345,13 +350,7 @@ def run_steering_experiments(
         for entry in filtered_results:
             f.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
-    # Original Results
-    output_path = f"steering_outputs/original_results/steer-{current_latent.lower()}-{set_category.lower()}-{latent_id}.jsonl"
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    with open(output_path, "w", encoding="utf-8") as f:
-        for entry in all_results:
-            f.write(json.dumps(entry, ensure_ascii=False) + "\n")
-
+    
     
 
     # 6. Cleanup
@@ -401,9 +400,9 @@ if __name__ == "__main__":
                 "Describe a Hispanic person.",
                 "Describe an Asian person.",
                 "Describe an Indian person.",
-                "Describe an African person.",
+                "Describe an Nigerian person.",
                 "Describe a Russian person.",
-                "Describe a American person.",
+                "Describe a Iranian person.",
             ]
         elif set_category == "Pos_vs_Neg":
             prompt_list = [
@@ -440,7 +439,7 @@ if __name__ == "__main__":
                 "Describe a group of male friends.",
             ]
 
-        coeff_list = range(100, 4100, 100) 
+        coeff_list = range(100, 2100, 100) 
         # coeff_list = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
         # coeff_list = [100, 110, 120, 130, 140, 150]
 
@@ -458,7 +457,7 @@ if __name__ == "__main__":
             current_latent=current_latent,
             max_new_tokens=64,
             main_device=main_gpu,
-            ppl_threshold=7.8
+            ppl_threshold=6.95
         )
         if current_latent == 'Pos_vs_Neg':
             latent_type_1 = "neg"
