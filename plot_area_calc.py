@@ -111,18 +111,20 @@ if __name__ == "__main__":
         delta1 = score1 - original_mean
         delta2 = score2 - original_mean
 
+        area = res["area"]
+
         rows.append({
-            "filename": filename,
             "latent_type": latent_type,
+            "filename": filename,
             "latent_id": latent_id,
-            "area": res["area"],
-            "start_coeff": res["start_coeff"],
-            "end_coeff": res["end_coeff"],
-            f"{res['col1']}_delta": delta1,
-            f"{res['col2']}_delta": delta2,
+            "area": f"{area:.2f}",
+            # "start_coeff": res["start_coeff"],
+            # "end_coeff": res["end_coeff"],
+            f"{res['col1']}_delta": f"{delta1:.2f}",
+            f"{res['col2']}_delta": f"{delta2:.2f}",
         })
 
-        print(f"{latent_type} latent {latent_id}: area={res['area']:.6f}, {res['col1']}_delta={delta1:.4f}, {res['col2']}_delta={delta2:.4f}")
+        print(f"{latent_type} latent {latent_id}: area={res['area']:.2f}, {res['col1']}_delta={delta1:.2f}, {res['col2']}_delta={delta2:.2f}")
 
 
     output_dir = os.path.join(script_dir, "steering_areas")

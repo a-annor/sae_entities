@@ -71,7 +71,8 @@ guardrail_samples = [
     "This prompt is problematic",
     "Remember to be respectful",
     "Remember to be respectful",
-    "Remember that people are individuals"
+    "Remember that people are individuals",
+    "Every individual is unique"
 
     
 ]
@@ -95,11 +96,8 @@ guardrail_literal = [
     "This question is problematic",
     "Please note:",
     "This prompt is problematic",
-    "stereotype",
-    "generalise",
-    "generalize",
-    "bias",
-    "biases"
+    "Every individual is unique",
+
 ]
 
 # Precompute embeddings
@@ -278,127 +276,128 @@ def score_outputs_gemma(file_path, latent_type, filename, output_dir=None, which
             prompt_text = entry.get("prompt_text", "").strip()
             coeff = entry.get("coeff", 0.0)
 
-            # Clean completions
-            def clean_text(text):
-                text = text.replace("<bos>", "").replace("<eos>", "").replace("<end_of_turn>", "").replace("\n", " ")
-                text = re.sub(r'\s+', ' ', text)
-                return text.strip()
+            if int(coeff) <= 1500:
+                # Clean completions
+                def clean_text(text):
+                    text = text.replace("<bos>", "").replace("<eos>", "").replace("<end_of_turn>", "").replace("\n", " ")
+                    text = re.sub(r'\s+', ' ', text)
+                    return text.strip()
 
-            original_completion = entry.get("original_completion", "")
-            bias_steered_text = entry.get(f"{label_2}_steered_completion", "")
-            unbias_steered_text = entry.get(f"{label_1}_steered_completion", "")
+                original_completion = entry.get("original_completion", "")
+                bias_steered_text = entry.get(f"{label_2}_steered_completion", "")
+                unbias_steered_text = entry.get(f"{label_1}_steered_completion", "")
 
-            original_completion_clean, orig_removed = clean_guardrails_semantically(clean_text(original_completion))
-            bias_steered_text_clean, bias_removed = clean_guardrails_semantically(clean_text(bias_steered_text))
-            unbias_steered_text_clean, unbias_removed = clean_guardrails_semantically(clean_text(unbias_steered_text))
+                original_completion_clean, orig_removed = clean_guardrails_semantically(clean_text(original_completion))
+                bias_steered_text_clean, bias_removed = clean_guardrails_semantically(clean_text(bias_steered_text))
+                unbias_steered_text_clean, unbias_removed = clean_guardrails_semantically(clean_text(unbias_steered_text))
 
-            if original_completion == last_orig:
-                orig_sent = last_orig_sent
-                orig_jgen = last_orig_jgen
-                orig_jbias = last_orig_jbias
-            else:
-                if should_be_neutral(original_completion_clean):
-                    orig_sent = 0.5
-                    orig_jgen = 0.0
-                    orig_jbias = 0.0
+                if original_completion == last_orig:
+                    orig_sent = last_orig_sent
+                    orig_jgen = last_orig_jgen
+                    orig_jbias = last_orig_jbias
+                else:
+                    if should_be_neutral(original_completion_clean):
+                        orig_sent = 0.5
+                        orig_jgen = 0.0
+                        orig_jbias = 0.0
+                    else:
+                        if which_score == "all" or which_score == "sentiment":
+                            orig_sent = text_sentiment(original_completion_clean, sentiment_pipeline)
+                        else:
+                            orig_sent = 0.5
+                        if which_score == "all" or which_score == "judge_gen":
+                            orig_jgen = judge_bias(judge_model, judge_tokenizer, prompt_text, original_completion_clean, judge_params, JUDGE_GEN_SYSTEM_PROMPT)
+                        else:
+                            orig_jgen = 0.0
+                        if which_score == "all" or which_score == "judge_bias":
+                            orig_jbias = judge_bias(judge_model, judge_tokenizer, prompt_text, original_completion_clean, judge_params, JUDGE_BIAS_SYSTEM_PROMPT)
+                        else:
+                            orig_jbias = 0.0
+
+                # last_prompt_text = prompt_text
+                last_orig = original_completion
+                last_orig_sent = orig_sent
+                last_orig_jgen = orig_jgen
+                last_orig_jbias = orig_jbias
+
+                if should_be_neutral(bias_steered_text_clean):
+                    bias_sent = 0.5
+                    bias_jgen = 0.0
+                    bias_jbias = 0.0
                 else:
                     if which_score == "all" or which_score == "sentiment":
-                        orig_sent = text_sentiment(original_completion_clean, sentiment_pipeline)
-                    else:
-                        orig_sent = 0.5
+                        bias_sent = text_sentiment(bias_steered_text_clean, sentiment_pipeline)
+                    else: 
+                        bias_sent = 0.5
                     if which_score == "all" or which_score == "judge_gen":
-                        orig_jgen = judge_bias(judge_model, judge_tokenizer, prompt_text, original_completion_clean, judge_params, JUDGE_GEN_SYSTEM_PROMPT)
+                        bias_jgen = judge_bias(judge_model, judge_tokenizer, prompt_text, bias_steered_text_clean, judge_params, JUDGE_GEN_SYSTEM_PROMPT)
                     else:
-                        orig_jgen = 0.0
+                        bias_jgen = 0.0
                     if which_score == "all" or which_score == "judge_bias":
-                        orig_jbias = judge_bias(judge_model, judge_tokenizer, prompt_text, original_completion_clean, judge_params, JUDGE_BIAS_SYSTEM_PROMPT)
+                        bias_jbias = judge_bias(judge_model, judge_tokenizer, prompt_text, bias_steered_text_clean, judge_params, JUDGE_BIAS_SYSTEM_PROMPT)
                     else:
-                        orig_jbias = 0.0
+                        bias_jbias = 0.0
 
-            # last_prompt_text = prompt_text
-            last_orig = original_completion
-            last_orig_sent = orig_sent
-            last_orig_jgen = orig_jgen
-            last_orig_jbias = orig_jbias
-
-            if should_be_neutral(bias_steered_text_clean):
-                bias_sent = 0.5
-                bias_jgen = 0.0
-                bias_jbias = 0.0
-            else:
-                if which_score == "all" or which_score == "sentiment":
-                    bias_sent = text_sentiment(bias_steered_text_clean, sentiment_pipeline)
-                else: 
-                    bias_sent = 0.5
-                if which_score == "all" or which_score == "judge_gen":
-                    bias_jgen = judge_bias(judge_model, judge_tokenizer, prompt_text, bias_steered_text_clean, judge_params, JUDGE_GEN_SYSTEM_PROMPT)
-                else:
-                    bias_jgen = 0.0
-                if which_score == "all" or which_score == "judge_bias":
-                    bias_jbias = judge_bias(judge_model, judge_tokenizer, prompt_text, bias_steered_text_clean, judge_params, JUDGE_BIAS_SYSTEM_PROMPT)
-                else:
-                    bias_jbias = 0.0
-
-            if should_be_neutral(unbias_steered_text_clean):
-                unbias_sent = 0.5
-                unbias_jgen = 0.0
-                unbias_jbias = 0.0
-            else:
-                if which_score == "all" or which_score == "sentiment":
-                    unbias_sent = text_sentiment(unbias_steered_text_clean, sentiment_pipeline)
-                else: 
+                if should_be_neutral(unbias_steered_text_clean):
                     unbias_sent = 0.5
-                if which_score == "all" or which_score == "judge_gen":
-                    unbias_jgen = judge_bias(judge_model, judge_tokenizer, prompt_text, unbias_steered_text_clean, judge_params, JUDGE_GEN_SYSTEM_PROMPT)
-                else: 
                     unbias_jgen = 0.0
-                if which_score == "all" or which_score == "judge_bias":
-                    unbias_jbias = judge_bias(judge_model, judge_tokenizer, prompt_text, unbias_steered_text_clean, judge_params, JUDGE_BIAS_SYSTEM_PROMPT)
-                else: 
                     unbias_jbias = 0.0
+                else:
+                    if which_score == "all" or which_score == "sentiment":
+                        unbias_sent = text_sentiment(unbias_steered_text_clean, sentiment_pipeline)
+                    else: 
+                        unbias_sent = 0.5
+                    if which_score == "all" or which_score == "judge_gen":
+                        unbias_jgen = judge_bias(judge_model, judge_tokenizer, prompt_text, unbias_steered_text_clean, judge_params, JUDGE_GEN_SYSTEM_PROMPT)
+                    else: 
+                        unbias_jgen = 0.0
+                    if which_score == "all" or which_score == "judge_bias":
+                        unbias_jbias = judge_bias(judge_model, judge_tokenizer, prompt_text, unbias_steered_text_clean, judge_params, JUDGE_BIAS_SYSTEM_PROMPT)
+                    else: 
+                        unbias_jbias = 0.0
 
 
-            data_sentiment.append({
-                'prompt': prompt_text, 'coeff': coeff,
-                'original_completion_clean': original_completion_clean,
-                f'{label_2}_steered_completion_clean': bias_steered_text_clean,
-                f'{label_1}_steered_completion_clean': unbias_steered_text_clean,
-                'original_score': orig_sent,
-                f'{label_2}_steered_score': bias_sent,
-                f'{label_1}_steered_score': unbias_sent
-            })
-            data_judge_gen.append({
-                'prompt': prompt_text, 'coeff': coeff,
-                'original_completion_clean': original_completion_clean,
-                f'{label_2}_steered_completion_clean': bias_steered_text_clean,
-                f'{label_1}_steered_completion_clean': unbias_steered_text_clean,
-                'original_score': orig_jgen,
-                f'{label_2}_steered_score': bias_jgen,
-                f'{label_1}_steered_score': unbias_jgen
-            })
-            data_judge_bias.append({
-                'prompt': prompt_text, 'coeff': coeff,
-                'original_completion_clean': original_completion_clean,
-                f'{label_2}_steered_completion_clean': bias_steered_text_clean,
-                f'{label_1}_steered_completion_clean': unbias_steered_text_clean,
-                'original_score': orig_jbias,
-                f'{label_2}_steered_score': bias_jbias,
-                f'{label_1}_steered_score': unbias_jbias
-            })
-            guardrail_jsonl.append({
-                "prompt": prompt_text,
-                "coeff": coeff,
-                "original_guardrail_removed": bool(orig_removed),
-                f"{label_2}_guardrail_removed": bool(bias_removed),
-                f"{label_1}_guardrail_removed": bool(unbias_removed)
-            })
-            originals_jsonl.append({
-                "prompt": prompt_text,
-                "coeff": coeff,
-                "original_completion": original_completion,
-                f"{label_2}_steered_completion": bias_steered_text,
-                f"{label_1}_steered_completion": unbias_steered_text
-            })
+                data_sentiment.append({
+                    'prompt': prompt_text, 'coeff': coeff,
+                    'original_completion_clean': original_completion_clean,
+                    f'{label_2}_steered_completion_clean': bias_steered_text_clean,
+                    f'{label_1}_steered_completion_clean': unbias_steered_text_clean,
+                    'original_score': orig_sent,
+                    f'{label_2}_steered_score': bias_sent,
+                    f'{label_1}_steered_score': unbias_sent
+                })
+                data_judge_gen.append({
+                    'prompt': prompt_text, 'coeff': coeff,
+                    'original_completion_clean': original_completion_clean,
+                    f'{label_2}_steered_completion_clean': bias_steered_text_clean,
+                    f'{label_1}_steered_completion_clean': unbias_steered_text_clean,
+                    'original_score': orig_jgen,
+                    f'{label_2}_steered_score': bias_jgen,
+                    f'{label_1}_steered_score': unbias_jgen
+                })
+                data_judge_bias.append({
+                    'prompt': prompt_text, 'coeff': coeff,
+                    'original_completion_clean': original_completion_clean,
+                    f'{label_2}_steered_completion_clean': bias_steered_text_clean,
+                    f'{label_1}_steered_completion_clean': unbias_steered_text_clean,
+                    'original_score': orig_jbias,
+                    f'{label_2}_steered_score': bias_jbias,
+                    f'{label_1}_steered_score': unbias_jbias
+                })
+                guardrail_jsonl.append({
+                    "prompt": prompt_text,
+                    "coeff": coeff,
+                    "original_guardrail_removed": bool(orig_removed),
+                    f"{label_2}_guardrail_removed": bool(bias_removed),
+                    f"{label_1}_guardrail_removed": bool(unbias_removed)
+                })
+                originals_jsonl.append({
+                    "prompt": prompt_text,
+                    "coeff": coeff,
+                    "original_completion": original_completion,
+                    f"{label_2}_steered_completion": bias_steered_text,
+                    f"{label_1}_steered_completion": unbias_steered_text
+                })
 
     if output_dir:
         os.makedirs(output_dir, exist_ok=True)
@@ -681,7 +680,7 @@ def plot_box_by_coeff(df, scoring, latent_type, latent_id, output_dir="plots", g
     plt.legend(title=None)
     plt.ylim(-0.5, 1.5)
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, f'boxplot_coeff_{score_type_file}.png'), dpi=300)
+    plt.savefig(os.path.join(output_dir, f'boxplot_coeff_{score_type_file}-{latent_id}.png'), dpi=300)
     plt.close()
 
 def plot_mean_std_by_coeff(df, scoring, latent_type, latent_id, output_dir="plots", generalise=False):
@@ -749,7 +748,7 @@ def plot_mean_std_by_coeff(df, scoring, latent_type, latent_id, output_dir="plot
    
     plt.ylim(-0.5, 1.5)
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, f'mean_std_coeff_{score_type_file}.png'), dpi=300)
+    plt.savefig(os.path.join(output_dir, f'mean_std_coeff_{score_type_file}-{latent_id}.png'), dpi=300)
     plt.close()
 
 if __name__ == "__main__":
