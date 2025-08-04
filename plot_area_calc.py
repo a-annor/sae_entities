@@ -88,12 +88,12 @@ if __name__ == "__main__":
             normalise=False,
             clip_negative=False
         )
-        es = compute_area_between_curves(
+        res_norm = compute_area_between_curves(
             df,
             latent_type=latent_type,
             agg="mean",
-            normalise=False,
-            clip_negative=False
+            normalise=True,
+            clip_negative=clip_negative
         )
 
         # Get difference score values at the last coefficient
@@ -119,7 +119,8 @@ if __name__ == "__main__":
             "latent_id": latent_id,
             "area": f"{area:.2f}",
             # "start_coeff": res["start_coeff"],
-            # "end_coeff": res["end_coeff"],
+            "normalised_area": f"{res_norm['area']:.2f}",
+            "max_coeff": res["end_coeff"],
             f"{res['col1']}_delta": f"{delta1:.2f}",
             f"{res['col2']}_delta": f"{delta2:.2f}",
         })

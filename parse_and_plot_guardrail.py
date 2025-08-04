@@ -117,4 +117,4 @@ def plot_guardrail_removals_by_coeff(exp, latent_id, latent_type="sentiment", ou
     print(f"Saved plot to: {output_path}")
 
 # Example usage:
-plot_guardrail_removals_by_coeff("steer-pos_vs_neg-race_2", latent_id = 9, latent_type="sentiment")
+plot_guardrail_removals_by_coeff("steer-pos_vs_neg-pos_vs_neg", latent_id = 9, latent_type="sentiment")
