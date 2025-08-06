@@ -152,8 +152,8 @@ def generate_model_response(
         # Use sampling for instruction models
         outputs = model.generate(
             input_ids,
-            do_sample=True,
-            temperature=0,
+            do_sample=False,
+            # temperature=0,
             max_new_tokens=args.max_new_tokens,
             pad_token_id=tokenizer.eos_token_id,
         )

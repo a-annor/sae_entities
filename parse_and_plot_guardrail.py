@@ -108,7 +108,7 @@ def plot_guardrail_removals_by_coeff(exp, latent_id, latent_type="sentiment", ou
     plt.xticks(fontsize=10)
     plt.yticks(fontsize=10)
     plt.tight_layout(rect=[0, 0, 1, 0.96])
-
+    plt.ylim(-0.01, 12.01)
     # Save
     os.makedirs(output_dir, exist_ok=True)
 

@@ -304,7 +304,7 @@ def score_outputs_gemma(file_path, latent_type, filename, output_dir=None, which
                         if which_score == "all" or which_score == "sentiment":
                             orig_sent = text_sentiment(original_completion_clean, sentiment_pipeline)
                         else:
-                            orig_sent = 0.5
+                            orig_sent = 0.0
                         if which_score == "all" or which_score == "judge_gen":
                             orig_jgen = judge_bias(judge_model, judge_tokenizer, prompt_text, original_completion_clean, judge_params, JUDGE_GEN_SYSTEM_PROMPT)
                         else:
@@ -328,7 +328,7 @@ def score_outputs_gemma(file_path, latent_type, filename, output_dir=None, which
                     if which_score == "all" or which_score == "sentiment":
                         bias_sent = text_sentiment(bias_steered_text_clean, sentiment_pipeline)
                     else: 
-                        bias_sent = 0.5
+                        bias_sent = 0.0
                     if which_score == "all" or which_score == "judge_gen":
                         bias_jgen = judge_bias(judge_model, judge_tokenizer, prompt_text, bias_steered_text_clean, judge_params, JUDGE_GEN_SYSTEM_PROMPT)
                     else:
@@ -346,7 +346,7 @@ def score_outputs_gemma(file_path, latent_type, filename, output_dir=None, which
                     if which_score == "all" or which_score == "sentiment":
                         unbias_sent = text_sentiment(unbias_steered_text_clean, sentiment_pipeline)
                     else: 
-                        unbias_sent = 0.5
+                        unbias_sent = 0.0
                     if which_score == "all" or which_score == "judge_gen":
                         unbias_jgen = judge_bias(judge_model, judge_tokenizer, prompt_text, unbias_steered_text_clean, judge_params, JUDGE_GEN_SYSTEM_PROMPT)
                     else: 
