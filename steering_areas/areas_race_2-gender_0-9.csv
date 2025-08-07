@@ -1,0 +1,11 @@
+latent_type,filename,latent_id,area,normalised_area,max_coeff,bias_steered_score_delta,unbias_steered_score_delta
+bias,steer-race_2-gender,0,2.50,0.00,1500.0,0.02,0.00
+bias,steer-race_2-gender,1,-18.75,-0.02,1300.0,0.00,0.04
+bias,steer-race_2-gender,2,-9.17,-0.01,1400.0,0.00,0.00
+bias,steer-race_2-gender,3,-0.00,-0.00,1400.0,0.00,0.00
+bias,steer-race_2-gender,4,10.00,0.01,1000.0,0.00,0.00
+bias,steer-race_2-gender,5,32.92,0.02,1500.0,0.06,0.00
+bias,steer-race_2-gender,6,-2.50,-0.00,1300.0,0.00,0.00
+bias,steer-race_2-gender,7,-5.00,-0.00,1500.0,0.02,0.00
+bias,steer-race_2-gender,8,-7.50,-0.01,1200.0,0.00,0.02
+bias,steer-race_2-gender,9,-12.50,-0.01,1200.0,0.00,0.02
