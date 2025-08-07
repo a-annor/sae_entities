@@ -687,10 +687,10 @@ def plot_mean_std_by_coeff(df, scoring, latent_type, latent_id, output_dir="plot
     os.makedirs(output_dir, exist_ok=True)
 
     if latent_type=='sentiment':
-        label_2 = 'pos'
-        label_1 = 'neg'
-        Label_2 = 'Pos'
-        Label_1 = 'Neg'
+        label_1 = 'pos'
+        label_2 = 'neg'
+        Label_1 = 'Pos'
+        Label_2 = 'Neg'
     elif latent_type=='bias':
         label_2 = 'bias'
         label_1 = 'unbias'
@@ -726,13 +726,13 @@ def plot_mean_std_by_coeff(df, scoring, latent_type, latent_id, output_dir="plot
     plt.figure(figsize=(12, 7))
 
     # Biased (red)
-    plt.plot(pos_agg['coeff'], pos_agg['mean'], label=f'{Label_1} Steered', color='#D62728', marker='o', linestyle='-')
-    plt.fill_between(pos_agg['coeff'], pos_agg['mean'] - pos_agg['std'], pos_agg['mean'] + pos_agg['std'],
+    plt.plot(neg_agg['coeff'], neg_agg['mean'], label=f'{Label_2} Steered', color='#D62728', marker='o', linestyle='-')
+    plt.fill_between(neg_agg['coeff'], neg_agg['mean'] - neg_agg['std'], neg_agg['mean'] + neg_agg['std'],
                      alpha=0.2, color='#D62728')
 
     # Unbiased (green)
-    plt.plot(neg_agg['coeff'], neg_agg['mean'], label=f'{Label_2} Steered', color='#2CA02C', marker='x', linestyle='--')
-    plt.fill_between(neg_agg['coeff'], neg_agg['mean'] - neg_agg['std'], neg_agg['mean'] + neg_agg['std'],
+    plt.plot(pos_agg['coeff'], pos_agg['mean'], label=f'{Label_1} Steered', color='#2CA02C', marker='x', linestyle='--')
+    plt.fill_between(pos_agg['coeff'], pos_agg['mean'] - pos_agg['std'], pos_agg['mean'] + pos_agg['std'],
                      alpha=0.2, color='#2CA02C')
 
     # Original (blue)

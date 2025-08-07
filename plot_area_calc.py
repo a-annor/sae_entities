@@ -69,7 +69,7 @@ if __name__ == "__main__":
 
     for latent_id in range(START_ID, END_ID + 1):
         filename = f"steer-{exp}"
-        plot_dir = os.path.join(script_dir, f"steering_plots/plots_gemma_{filename}/{latent_id}")
+        plot_dir = os.path.join(script_dir, f"steering_plots/plots_gpt_{filename}/{latent_id}")
         parsed_prefix = "parsed_sentiment_" if latent_type == "sentiment" else "parsed_judgebias_"
         parsed_file = os.path.join(plot_dir, f"{parsed_prefix}{filename}-{latent_id}.jsonl")
 
@@ -125,7 +125,7 @@ if __name__ == "__main__":
             f"{res['col2']}_delta": f"{delta2:.2f}",
         })
 
-        print(f"{latent_type} latent {latent_id}: area={res['area']:.2f}, {res['col1']}_delta={delta1:.2f}, {res['col2']}_delta={delta2:.2f}")
+        print(f"{latent_type} latent {latent_id}: normalised_area={res_norm['area']:.2f}, {res['col1']}_delta={delta1:.2f}, {res['col2']}_delta={delta2:.2f}")
 
 
     output_dir = os.path.join(script_dir, "steering_areas")
