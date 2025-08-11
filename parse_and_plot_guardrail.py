@@ -10,7 +10,7 @@ plt.style.use('ggplot') # Set the style globally here
 def plot_guardrail_removals_by_coeff(exp, latent_id, latent_type="sentiment", output_path="guardrail_removals_by_coeff.png"):
 
     script_dir  = os.path.dirname(__file__)
-    input_path  = os.path.join(script_dir, f"steering_plots/plots_gemma_{exp}/{latent_id}/guardrail_removal_{exp}-{latent_id}.jsonl")
+    input_path  = os.path.join(script_dir, f"steering_plots/plots_gpt_{exp}/{latent_id}/guardrail_removal_{exp}-{latent_id}.jsonl")
     output_dir = os.path.join(script_dir, f"guardrail_plots")
     output_path   =  os.path.join(script_dir, f"guardrail_plots/plot_guardrail_removal_{exp}-{latent_id}.png")
 
@@ -108,7 +108,7 @@ def plot_guardrail_removals_by_coeff(exp, latent_id, latent_type="sentiment", ou
     plt.xticks(fontsize=10)
     plt.yticks(fontsize=10)
     plt.tight_layout(rect=[0, 0, 1, 0.96])
-    plt.ylim(-0.01, 12.01)
+    # plt.ylim(-0.01, 12.01)
     # Save
     os.makedirs(output_dir, exist_ok=True)
 
@@ -117,4 +117,6 @@ def plot_guardrail_removals_by_coeff(exp, latent_id, latent_type="sentiment", ou
     print(f"Saved plot to: {output_path}")
 
 # Example usage:
-plot_guardrail_removals_by_coeff("steer-pos_vs_neg-pos_vs_neg", latent_id = 9, latent_type="sentiment")
+# plot_guardrail_removals_by_coeff("steer-pos_vs_neg-pos_vs_neg", latent_id = 9, latent_type="sentiment")
+plot_guardrail_removals_by_coeff("steer-gender-gender", latent_id = 3, latent_type="bias")
+plot_guardrail_removals_by_coeff("steer-race_2-race_2", latent_id = 5, latent_type="bias")

@@ -1,5 +1,6 @@
 
 import matplotlib.pyplot as plt
+from matplotlib.ticker import StrMethodFormatter
 import re
 import json
 import pandas as pd
@@ -28,7 +29,12 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 plt.style.use('ggplot') # Set the style globally here
 
-
+plt.rcParams.update({
+    'axes.labelsize': 16,   # axis label font size
+    'xtick.labelsize': 14,  # x tick font size
+    'ytick.labelsize': 14,  # y tick font size
+    'axes.titlesize': 18    # title font size
+})
 
 
 
@@ -425,6 +431,10 @@ def score_outputs_gemma(file_path, latent_type, filename, output_dir=None, which
         with open(os.path.join(output_dir, f'parsed_originals_{filename}.jsonl'), 'w', encoding='utf-8') as f:
             for entry in originals_jsonl:
                 f.write(json.dumps(entry) + '\n')
+
+        ax = plt.gca()
+        ax.yaxis.set_major_formatter(StrMethodFormatter('{x:.2f}'))  # 2 d.p.
+
         print("Saved all outputs to jsonl files.")
 
     if which_score == "all" or which_score == "sentiment":
@@ -503,7 +513,7 @@ def plot_score_vs_coeff(df, scoring, latent_type, latent_id, output_dir="plots",
                         linewidth=2, label=f'Original {score_type} (Score: {original_score_for_plot:.3f})')
 
         # Customize title and labels
-        plt.title(f'{score_type} Score vs. Steering Coefficient - Latent {latent_id}\nPrompt: "{prompt}"', fontsize=16, pad=20)
+        plt.title(f'{score_type} Score vs. Steering Coefficient\nLatent {latent_id}\nPrompt: "{prompt}"', fontsize=16, pad=20)
         plt.xlabel('Steering Coefficient', fontsize=14)
         plt.ylabel(f'{score_type} Score', fontsize=14)
 
@@ -513,17 +523,18 @@ def plot_score_vs_coeff(df, scoring, latent_type, latent_id, output_dir="plots",
         # Improve legend
         plt.legend(fontsize=11, frameon=True, borderpad=1)
 
-        # Improve tick labels
-        plt.xticks(fontsize=10)
-        plt.yticks(fontsize=10)
-
-        plt.ylim(-0.01, 1.01)
+ 
+        # plt.ylim(-0.01, 1.01)
 
         # Add padding
         plt.tight_layout(rect=[0, 0, 1, 0.96])
 
         # Sanitize prompt text for filename
         filename = re.sub(r'[^\w\s-]', '', prompt).replace(' ', '_')[:50]
+        ax = plt.gca()  
+        ax.yaxis.set_major_formatter(StrMethodFormatter('{x:.2f}'))  # 2 d.p.
+
+
         plt.savefig(os.path.join(output_dir, f'{filename}_{score_type_file}_plot.png'), dpi=300)
         plt.close()
 
@@ -673,13 +684,18 @@ def plot_box_by_coeff(df, scoring, latent_type, latent_id, output_dir="plots", g
 
     plt.plot(x_vals, y_vals, linestyle=':', linewidth=2, color='#1F77B4', label='Original Score (Mean)')
 
-    plt.title(f'{score_type} Score Distribution by Coefficient - Latent {latent_id} (All Sample Prompts)', fontsize=16)
+    plt.title(f'{score_type} Score Distribution by Coefficient\nLatent {latent_id} (All Sample Prompts)', fontsize=16)
     plt.xlabel('Steering Coefficient', fontsize=14)
     plt.ylabel(f'{score_type} Score', fontsize=14)
     plt.xticks(ticks=range(len(unique_coeffs)), labels=unique_coeffs)
     plt.legend(title=None)
-    plt.ylim(-0.5, 1.5)
+    # plt.ylim(-0.5, 1.5)
     plt.tight_layout()
+
+    ax = plt.gca()  
+    ax.yaxis.set_major_formatter(StrMethodFormatter('{x:.2f}'))  # 2 d.p.
+
+    
     plt.savefig(os.path.join(output_dir, f'boxplot_coeff_{score_type_file}-{latent_id}.png'), dpi=300)
     plt.close()
 
@@ -740,14 +756,18 @@ def plot_mean_std_by_coeff(df, scoring, latent_type, latent_id, output_dir="plot
              linestyle=':', linewidth=2, color='#1F77B4')
 
 
-    plt.title(f'{score_type} Score Distribution across Coefficients - Latent {latent_id} (All Sample Prompts)', fontsize=16)
+    plt.title(f'{score_type} Score Distribution across Coefficients\nLatent {latent_id} (All Sample Prompts)', fontsize=16)
     plt.xlabel('Steering Coefficient', fontsize=14)
     plt.ylabel(f'{score_type} Score', fontsize=14)
     plt.legend()
     plt.grid(True, linestyle='--', alpha=0.6)
    
-    plt.ylim(-0.5, 1.5)
+    # plt.ylim(-0.5, 1.5)
     plt.tight_layout()
+
+    ax = plt.gca()  
+    ax.yaxis.set_major_formatter(StrMethodFormatter('{x:.2f}'))  # 2 d.p.
+
     plt.savefig(os.path.join(output_dir, f'mean_std_coeff_{score_type_file}-{latent_id}.png'), dpi=300)
     plt.close()
 
