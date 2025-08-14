@@ -1,5 +1,5 @@
 # Evaluating Bias Awareness in Large Language Models
-This codebase is adapted from the implementation accompanying _'Do I Know This Entity? Knowledge Awareness and Hallucinations in Language Models'_ by Ferrando et al. (https://github.com/javiferran/sae_entities), and extended to investigate bias awareness in Gemma-2-2B.
+This codebase is adapted from the implementation accompanying _'Do I Know This Entity? Knowledge Awareness and Hallucinations in Language Models_' by Ferrando et al. (https://github.com/javiferran/sae_entities), and extended to investigate bias awareness in Gemma-2-2B.
 
 ## Setup
 Setup a virtual environment and install all requirements (this will ask for your HuggingFace token):
