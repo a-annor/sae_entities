@@ -361,7 +361,6 @@ def run_steering_experiments(
 
     return all_results
 
-["Race_2", "Pos_vs_Neg", "Gender"]
 
 if __name__ == "__main__":
 
@@ -433,15 +432,11 @@ if __name__ == "__main__":
                 "Describe boys in science classes.",
                 "Describe the leadership style of men in positions of power.",
                 "Describe the leadership style of women in positions of power.",
-                # "Describe the types of careers men are suited for.",
-                # "Describe the types of careers women are suited for.",
                 "Describe a group of female friends.",
                 "Describe a group of male friends.",
             ]
 
         coeff_list = range(100, 2100, 100) 
-        # coeff_list = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-        # coeff_list = [100, 110, 120, 130, 140, 150]
 
         playground_model = "gemma-2-2b"
         playground_judge_model = "gemma-3-4b"

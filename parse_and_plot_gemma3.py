@@ -24,7 +24,6 @@ from argparse import Namespace
 import argparse
 
 import sys
-# Ensure the script can find utility modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 plt.style.use('ggplot') # Set the style globally here
@@ -146,7 +145,6 @@ def clean_guardrails_semantically(text, threshold=0.5, return_scores=False):
     else:
         return cleaned_text, removed_any
 
-# SINGLE_PRONOUNS = {'they', 'he', 'she', 'it', 'him', 'her', 'his', 'their', 'them', 'hers', 'theirs'}
 
 def should_be_neutral(response):
     response_clean = response.strip().lower()
@@ -154,7 +152,6 @@ def should_be_neutral(response):
 
     if not response_no_punct:
         return True
-    # Remove punctuation and check if just a pronoun
     if len(response_no_punct.split()) <3:
         return True
     return False
@@ -320,7 +317,6 @@ def score_outputs_gemma(file_path, latent_type, filename, output_dir=None, which
                         else:
                             orig_jbias = 0.0
 
-                # last_prompt_text = prompt_text
                 last_orig = original_completion
                 last_orig_sent = orig_sent
                 last_orig_jgen = orig_jgen
@@ -540,84 +536,6 @@ def plot_score_vs_coeff(df, scoring, latent_type, latent_id, output_dir="plots",
 
     print(f"Individual prompt plots saved to the '{output_dir}' directory.")
 
-# def plot_average_score(df, scoring, latent_type, output_dir="plots"):
-    # """
-    # Plots the average positive and negative steered sentiment scores across all prompts.
-    # """
-    # if latent_type=='sentiment':
-    #     label_2 = 'pos'
-    #     label_1 = 'neg'
-    #     Label_2 = 'Pos'
-    #     Label_1 = 'Neg'
-    #     average_df = df.groupby('coeff').agg(
-    #     avg_pos_steered=(f'{label_1}_steered_score', 'mean'),
-    #     avg_neg_steered=(f'{label_2}_steered_score', 'mean')
-    # ).reset_index().sort_values(by='coeff')
-    # elif latent_type=='bias':
-    #     label_2 = 'unbias'
-    #     label_1 = 'bias'
-    #     Label_2 = 'Unbiased'
-    #     Label_1 = 'Biased'
-    #     average_df = df.groupby('coeff').agg(
-    #     avg_bias_steered=(f'{label_1}_steered_score', 'mean'),
-    #     avg_unbias_steered=(f'{label_2}_steered_score', 'mean')
-    # ).reset_index().sort_values(by='coeff')
-
-    # if scoring:
-    #     score_type ='Sentiment'
-    #     score_type_file = 'sentiment'
-    # else:
-    #     score_type ='LLM Judge'
-    #     score_type_file = 'llm_judge'
-
-    # os.makedirs(output_dir, exist_ok=True)
-
-
-    
-
-    # print("AVG COL: ", average_df.columns)
-    # plt.figure(figsize=(12, 7)) # Create a new figure for this plot
-
-    # colors = { 
-    #     f'{Label_1} Steered {score_type} (Average)': '#D62728',
-    #     f'{Label_2} Steered {score_type} (Average)': '#2CA02C',
-    # }
-
-    # # Plot average bias/neg steeredsentiment
-    # plt.plot(average_df['coeff'], average_df[f'avg_{label_1}_steered'],
-    #          marker='o', linestyle='-', color=colors[f'{Label_1} Steered {score_type} (Average)'],
-    #          linewidth=2, markersize=8, label=f'{Label_1} Steered {score_type} (Average)')
-
-    # # Plot average unbias/pos steeredsentiment
-    # plt.plot(average_df['coeff'], average_df[f'avg_{label_2}_steered'],
-    #          marker='X', linestyle='--', color=colors[f'{Label_2} Steered {score_type} (Average)'],
-    #          linewidth=2, markersize=8, label=f'{Label_2} Steered {score_type} (Average)')
-
-    # # Customize title and labels
-    # plt.title(f'Average {score_type} Score vs. Steering Coefficient (All Sample Prompts)', fontsize=16, pad=20)
-    # plt.xlabel(f'{score_type} Coefficient', fontsize=14)
-    # plt.ylabel(f'Average {score_type} Score', fontsize=14)
-
-    # # Enhance grid
-    # plt.grid(True, linestyle='-', alpha=0.6)
-
-    # # Improve legend
-    # plt.legend(fontsize=11, frameon=True, borderpad=1)
-
-    # # Improve tick labels
-    # plt.xticks(fontsize=10)
-    # plt.yticks(fontsize=10)
-    
-    # plt.ylim(-1, 1)
-
-    # # Add padding
-    # plt.tight_layout(rect=[0, 0, 1, 0.96])
-
-    # plt.savefig(os.path.join(output_dir, f'average_{score_type_file}_plot.png'), dpi=300)
-    # plt.close()
-
-    # print(f"Average sentiment plot saved to the '{output_dir}' directory as 'average_sentiment_plot.png'.")
-
 def plot_box_by_coeff(df, scoring, latent_type, latent_id, output_dir="plots", generalise=False):
     os.makedirs(output_dir, exist_ok=True)
 
@@ -645,7 +563,6 @@ def plot_box_by_coeff(df, scoring, latent_type, latent_id, output_dir="plots", g
         score_type = "Perplexity"
         score_type_file = "ppl"
 
-    # Prepare long-form data for boxplot
     df_long = pd.melt(
         df,
         id_vars=['coeff'],
@@ -762,7 +679,6 @@ def plot_mean_std_by_coeff(df, scoring, latent_type, latent_id, output_dir="plot
     plt.legend()
     plt.grid(True, linestyle='--', alpha=0.6)
    
-    # plt.ylim(-0.5, 1.5)
     plt.tight_layout()
 
     ax = plt.gca()  
