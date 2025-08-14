@@ -1,14 +1,16 @@
 import os
+
 os.environ["DISABLE_TORCH_COMPILE"] = "1"
 os.environ["TORCHDYNAMO_DISABLE"] = "1"
 import torch
-if hasattr(torch, 'compile'):
+
+if hasattr(torch, "compile"):
     torch.compile = lambda model, *args, **kwargs: model
 print(torch.__version__)
 
-from transformers import  pipeline
-# import torch
+from transformers import pipeline
 import spacy
+
 nlp = spacy.load("en_core_web_sm")
 import json
 from tqdm import tqdm
@@ -17,31 +19,34 @@ from argparse import ArgumentParser, Namespace
 import glob
 
 
-
 def text_sentiment(text, sentiment_pipeline):
     result = sentiment_pipeline(text.strip().lower(), top_k=3)
-    
+
     for r in result:
         # print(r["label"])
         if r["label"] == "LABEL_0":
             sentiment_score_neg = r["score"]
         if r["label"] == "LABEL_2":
             sentiment_score_pos = r["score"]
-    sentiment_score = sentiment_score_pos - sentiment_score_neg #added 15/07
-    sentiment_score = (sentiment_score + 1) / 2 #added 28/07
+    sentiment_score = sentiment_score_pos - sentiment_score_neg  # added 15/07
+    sentiment_score = (sentiment_score + 1) / 2  # added 28/07
 
-    return round(sentiment_score,2)
+    return round(sentiment_score, 2)
+
 
 def append_sentiment(input_file, sentiment_pipeline):
     input_path = f"data/Race_ethnicity/completions/{input_file}.jsonl"
     output_path = f"data/Race_ethnicity/sentiment/{input_file}_sentiment.jsonl"
 
-    with open(input_path, "r", encoding="utf-8") as f_in, open(output_path, "w", encoding="utf-8") as f_out:
+    with open(input_path, "r", encoding="utf-8") as f_in, open(
+        output_path, "w", encoding="utf-8"
+    ) as f_out:
         for line in f_in:
             entry = json.loads(line)
             sentiment = text_sentiment(entry["completion"], sentiment_pipeline)
             entry["sentiment"] = sentiment
             f_out.write(json.dumps(entry, ensure_ascii=False) + "\n")
+
 
 def process_file(input_path, output_path, sentiment_pipeline):
     """
@@ -49,13 +54,14 @@ def process_file(input_path, output_path, sentiment_pipeline):
     and writes the result to a new JSONL file.
     """
     print(f"Processing {os.path.basename(input_path)}...")
-    
+
     # Ensure the output directory exists
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    
-    with open(input_path, "r", encoding="utf-8") as f_in, \
-         open(output_path, "w", encoding="utf-8") as f_out:
-        
+
+    with open(input_path, "r", encoding="utf-8") as f_in, open(
+        output_path, "w", encoding="utf-8"
+    ) as f_out:
+
         # Using tqdm for a progress bar
         for line in tqdm(f_in, desc="Analyzing sentiment", unit=" lines"):
             entry = json.loads(line)
@@ -65,17 +71,16 @@ def process_file(input_path, output_path, sentiment_pipeline):
             f_out.write(json.dumps(entry, ensure_ascii=False) + "\n")
     print(f"Finished processing. Output saved to {output_path}")
 
-# append_sentiment("Race_ethnicity_completion")
-# append_senitment_count("generated_nationality_bias_data_updated")
 
 def main(args: Namespace):
     """
     Main function to find all files in the input directory and process them.
     """
     # Initialize the model pipeline once
-    sentiment_pipeline = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment")# device_map="cpu", torch_dtype=torch.float32)
+    sentiment_pipeline = pipeline(
+        "sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment"
+    )
 
-    
     # Find all .jsonl files in the input directory
     input_files = glob.glob(os.path.join(args.input_dir, "*.jsonl"))
 
@@ -89,31 +94,32 @@ def main(args: Namespace):
         # Create the corresponding output file path
         file_name = os.path.basename(input_path)
         base_name, ext = os.path.splitext(file_name)
-        final_file = base_name+"_sentiment.jsonl"
+        final_file = base_name + "_sentiment.jsonl"
         output_path = os.path.join(args.output_dir, final_file)
-        
+
         process_file(input_path, output_path, sentiment_pipeline)
 
-# --- Script Entry Point ---
 
 if __name__ == "__main__":
-    parser = ArgumentParser(description="Sentiment analysis script for text completions.")
-    
+    parser = ArgumentParser(
+        description="Sentiment analysis script for text completions."
+    )
+
     parser.add_argument(
         "--input-dir",
         type=str,
         required=True,
-        default="/home/ana42/rds/hpc-work/sae_entities/data/Race_ethnicity/completions",
-        help="Directory containing the input .jsonl files (e.g., completions)."
+        default="./Race_ethnicity/completions",
+        help="Directory containing the input .jsonl files (e.g., completions).",
     )
-    
+
     parser.add_argument(
         "--output-dir",
         type=str,
         required=True,
-        default="/home/ana42/rds/hpc-work/sae_entities/data/Race_ethnicity/sentiment",
-        help="Directory where the output files with sentiment scores will be saved."
+        default="./Race_ethnicity/sentiment",
+        help="Directory where the output files with sentiment scores will be saved.",
     )
-    
+
     args = parser.parse_args()
     main(args)

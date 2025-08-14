@@ -2368,12 +2368,9 @@ def load_steering_latents_bias(
     if random_latents:
         all_sae_latents_dict = get_top_k_features(feats_layers, k=None, type="bias")
 
-        # Collect all possible indices from `all_sae_latents_dict[label]`
-        # These are the *ranked indices* from 0 to N-1, if get_top_k_features_bias returns ranked dict
+        # Collect all possible indices from all_sae_latents_dict[label]
         available_indices_ranked = list(all_sae_latents_dict[label].keys())
 
-        # Filter out latents that have a non-zero score (i.e., not truly "random" or featureless)
-        # Assuming the score files are located in the bias directory
         min_max_scores_path = f"./train_latents_layers_bias/{scoring_method}/{model_alias}/bias/sorted_scores_min_{label}.json"
         try:
             min_max_scores = json.load(open(min_max_scores_path))
@@ -2491,43 +2488,12 @@ def load_steering_latents_bias(
     return latents
 
 
-# # --- New Top-Level Bias Latents Loader: load_latents_bias ---
-# def load_latents_bias(model_alias: str, top_latents: Dict[str, int], filter_with_pile: bool = False, **kwargs) -> Tuple[List[Tuple[int, int, float, Tensor]], List[Tuple[int, int, float, Tensor]], List[Tuple[int, int, float, Tensor]], List[Tuple[int, int, float, Tensor]]]:
-#     """
-#     Loads specific 'bias' and 'unbias' steering latents, and corresponding random latents.
-#     Uses new, separate functions for bias-specific latent loading.
-
-#     Args:
-#         model_alias (str): The alias of the model (e.g., 'gemma-2-2b').
-#         top_latents (Dict[str, int]): Dictionary with 'bias' and 'unbias' keys,
-#                                       specifying the rank of the latent to load (e.g., {'bias': 0, 'unbias': 0} for the top 1).
-#         filter_with_pile (bool): Whether to use pile-filtered scores.
-#         kwargs: Additional keyword arguments, notably 'random_n_latents' for random latents.
-
-#     Returns:
-#         Tuple of Lists of Tuples: (bias_latent, unbias_latent, random_latents_bias, random_latents_unbias)
-#                                   Each latent is (layer, latent_idx, mean_act, direction_tensor)
-#     """
-
-#     # Base directory for scores, now explicitly for bias data
-#     scores_base_path = f'./train_latents_layers_bias/absolute_difference/{model_alias}/bias'
-#     file_prefix = 'pile_filtered_scores_min_' if filter_with_pile else 'sorted_scores_min_'
-
-#     try:
-#         with open(f'{scores_base_path}/{file_prefix}bias.json', 'r') as f:
-#             sorted_scores_bias = json.load(f)
-#         with open(f'{scores_base_path}/{file_prefix}unbias.json', 'r') as f:
-#             sorted_scores_unbias = json.load(f)
-#     except FileNotFoundError as e:
-#         raise FileNotFoundError(f"Bias/Unbias score files not found. Please ensure you have pre-calculated "
-#                                 f"and saved bias/unbias latent scores in {scores_base_path} for model {model_alias}. Error: {e}")
-
 
 def load_latents_bias(
     model_alias, top_latents, category, filter_with_pile=False, **kwargs
 ):
     # Load steering latents
-    # Read the sorted scores for unknown entities
+    # Read the sorted scores 
     if filter_with_pile == True:
         with open(
             f"./train_latents_layers_bias/absolute_difference/{model_alias}/bias/pile_filtered_scores_min_bias.json",
@@ -2551,38 +2517,23 @@ def load_latents_bias(
         ) as f:
             sorted_scores_unbias = json.load(f)
 
-    # bias_latent_id = []
-    # for i in range(min(top_latents_count, len(sorted_scores_bias))):
-    #     bias_latent_str = list(sorted_scores_bias.keys())[i]
-    #     layer_bias = int(bias_latent_str[1:bias_latent_str.find('F')])
-    #     head_bias = int(bias_latent_str[bias_latent_str.find('F')+1:-2])
-    #     bias_latent_id.append((layer_bias, head_bias))
-
-    # Get the top N unbias latents
-    # unbias_latent_id = []
-    # for i in range(min(top_latents_count, len(sorted_scores_unbias))):
-    #     unbias_latent_str = list(sorted_scores_unbias.keys())[i]
-    #     layer_unbias = int(unbias_latent_str[1:unbias_latent_str.find('F')])
-    #     head_unbias = int(unbias_latent_str[unbias_latent_str.find('F')+1:-2])
-    #     unbias_latent_id.append((layer_unbias, head_unbias))
-
+  
+    # biased latent
     bias_latent_ = list(sorted_scores_bias.keys())[top_latents["bias"]]
     layer_bias = int(bias_latent_[1 : bias_latent_.find("F")])
     head_bias = int(bias_latent_[bias_latent_.find("F") + 1 : -2])
     bias_latent_id = [(layer_bias, head_bias)]
-    # Unknown latent
+    # unbiased latent
     unbias_latent_ = list(sorted_scores_unbias.keys())[top_latents["unbias"]]
     layer_unbias = int(unbias_latent_[1 : unbias_latent_.find("F")])
     head_unbias = int(unbias_latent_[unbias_latent_.find("F") + 1 : -2])
     unbias_latent_id = [(layer_unbias, head_unbias)]
 
-    # k =min(20, top_latents_count)
     k = 1
     bias_latent: List[Tuple[int, float, Tensor]] = load_steering_latents_bias(
         category,
         label="bias",
         topk=k,
-        # layers_range=[known_latent[0]],
         specific_latents=bias_latent_id,
         model_alias=model_alias,
         random_latents=False,
@@ -2592,7 +2543,6 @@ def load_latents_bias(
         category,
         label="unbias",
         topk=k,
-        # layers_range=[unknown_latent[0]],
         specific_latents=unbias_latent_id,
         model_alias=model_alias,
         random_latents=False,

@@ -1,8 +1,10 @@
 import os
+
 os.environ["DISABLE_TORCH_COMPILE"] = "1"
 os.environ["TORCHDYNAMO_DISABLE"] = "1"
 import torch
-if hasattr(torch, 'compile'):
+
+if hasattr(torch, "compile"):
     torch.compile = lambda model, *args, **kwargs: model
 
 import re
@@ -48,8 +50,13 @@ def load_model(args: Namespace) -> Tuple[torch.nn.Module, PreTrainedTokenizer]:
     print("!! Loading model:", model_name)
 
     kwargs = dict(torch_dtype=torch.bfloat16)
-    tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True,)
-    model = AutoModelForCausalLM.from_pretrained(model_name, trust_remote_code=True, **kwargs)
+    tokenizer = AutoTokenizer.from_pretrained(
+        model_name,
+        trust_remote_code=True,
+    )
+    model = AutoModelForCausalLM.from_pretrained(
+        model_name, trust_remote_code=True, **kwargs
+    )
 
     return model, tokenizer
 
@@ -111,13 +118,25 @@ def tokenize_example(
     return input_ids
 
 
-def extract_response(tokenizer: PreTrainedTokenizer, outputs: torch.Tensor, tokenized_input: torch.Tensor,
-                     skip_special_tok: bool = True) -> str:
+def extract_response(
+    tokenizer: PreTrainedTokenizer,
+    outputs: torch.Tensor,
+    tokenized_input: torch.Tensor,
+    skip_special_tok: bool = True,
+) -> str:
     assert len(outputs) == 1, outputs
-    assert len(tokenized_input.shape) == 2 and tokenized_input.shape[0] == 1, tokenized_input.shape
+    assert (
+        len(tokenized_input.shape) == 2 and tokenized_input.shape[0] == 1
+    ), tokenized_input.shape
     prompt_len = tokenized_input.shape[1]
-    decoded_text = [tokenizer.decode(sequence, skip_special_tokens=skip_special_tok) for sequence in outputs]
-    cropped_response = [tokenizer.decode(sequence[prompt_len:], skip_special_tokens=skip_special_tok) for sequence in outputs]
+    decoded_text = [
+        tokenizer.decode(sequence, skip_special_tokens=skip_special_tok)
+        for sequence in outputs
+    ]
+    cropped_response = [
+        tokenizer.decode(sequence[prompt_len:], skip_special_tokens=skip_special_tok)
+        for sequence in outputs
+    ]
     assert len(cropped_response) == 1, cropped_response
     decoded_text = decoded_text[0]
     cropped_response = cropped_response[0]
@@ -169,48 +188,31 @@ def generate_model_response(
     return full_response, cropped_response
 
 
-# def generate_completion(
-#     model, tokenizer, prompt: str, max_new_tokens: int = 256
-# ) -> str:
-#     """Generate a completion for the given prompt."""
-#     inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
-#     with torch.no_grad():
-#         outputs = model.generate(
-#             inputs.input_ids,
-#             do_sample=False,  # greedy decoding
-#             max_new_tokens=max_new_tokens,
-#             pad_token_id=tokenizer.eos_token_id,
-#         )
-#     completion = tokenizer.decode(
-#         outputs[0][inputs.input_ids.shape[1] :], skip_special_tokens=True
-#     )
-#     return completion
-
-
 def process_file(input_file: Path, output_file: Path, model, tokenizer, args):
     """Process a single JSONL file and generate completions."""
     with open(input_file, "r") as f:
         data = [json.loads(line) for line in f]
-        ambig_entries = [item for item in data if (item.get("context_condition") == "ambig") and (item.get("question_polarity") == "neg")]
-
+        ambig_entries = [
+            item
+            for item in data
+            if (item.get("context_condition") == "ambig")
+            and (item.get("question_polarity") == "neg")
+        ]
 
     for item in tqdm(ambig_entries, desc=f"Processing {input_file.name}"):
         if "completion" not in item:
             prompt = item["context"]
-            # print(f"\nProcessing prompt: {prompt}")
             _, completion = generate_model_response(model, tokenizer, args, prompt)
-            # print(f"Generated completion: {completion}")
             item["completion"] = completion
 
     with open(output_file, "w") as f:
         for item in ambig_entries:
-            f.write(json.dumps(item,  ensure_ascii=False) + "\n")
+            f.write(json.dumps(item, ensure_ascii=False) + "\n")
         print(f"Successfully wrote {len(ambig_entries)} entries to {output_file}")
         if output_file.exists():
             print(f"Verified output file exists at: {output_file}")
         else:
             print(f"Error: Output file was not created at {output_file}")
-
 
 
 def main(args: Namespace) -> None:
@@ -227,11 +229,15 @@ def main(args: Namespace) -> None:
     args_gemma2_pt.use_instruct_model = False
     args_gemma2_pt.max_new_tokens = 64
     args_gemma2_pt.device = torch.device("cuda:0")
-    print(f"--- [generate_completions] ABOUT TO LOAD MODEL at {datetime.datetime.now()} ---")
+    print(
+        f"--- [generate_completions] ABOUT TO LOAD MODEL at {datetime.datetime.now()} ---"
+    )
     model_gemma2_pt, tokenizer_gemma2_pt = load_model(args_gemma2_pt)
     model_gemma2_pt = model_gemma2_pt.to(args_gemma2_pt.device)  # move to device
     model_gemma2_pt.eval()
-    print(f"--- [generate_completions] MODEL LOADED SUCCESSFULLY at {datetime.datetime.now()} ---")
+    print(
+        f"--- [generate_completions] MODEL LOADED SUCCESSFULLY at {datetime.datetime.now()} ---"
+    )
 
     # Setup paths
     data_dir = Path(args.input_dir)
@@ -247,7 +253,7 @@ def main(args: Namespace) -> None:
     if not input_files:
         print(f"No JSONL files found in {data_dir}")
         return
-    
+
     for input_file in input_files:
         output_file = output_dir / f"{input_file.stem}_completion.jsonl"
         process_file(
@@ -265,15 +271,13 @@ if __name__ == "__main__":
     parser.add_argument(
         "--input-dir",
         type=str,
-        # default="/home/ana42/rds/hpc-work/sae_entities/data/prompt_data",
-        default="/home/ana42/rds/hpc-work/sae_entities/data/Race_ethnicity/prompts",
+        default="./data/Race_ethnicity/prompts",
         help="Input directory containing JSONL files (default: data)",
     )
     parser.add_argument(
         "--output-dir",
         type=str,
-        # default="/home/ana42/rds/hpc-work/sae_entities/data/prompt_data_completions",
-        default="/home/ana42/rds/hpc-work/sae_entities/data/Race_ethnicity/completions",
+        default="./Race_ethnicity/completions",
         help="Output directory for completion files (default: data_completions)",
     )
     args = parser.parse_args()

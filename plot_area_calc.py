@@ -6,12 +6,13 @@ import argparse
 import os
 import json
 
+
 def compute_area_between_curves(
     df: pd.DataFrame,
     latent_type: Literal["sentiment", "bias"],
     agg: str = "mean",
     normalise: bool = False,
-    clip_negative: bool = False
+    clip_negative: bool = False,
 ) -> dict:
     if latent_type == "sentiment":
         col1, col2 = "pos_steered_score", "neg_steered_score"
@@ -20,11 +21,13 @@ def compute_area_between_curves(
     else:
         raise ValueError("latent_type must be 'sentiment' or 'bias'")
 
-    g = (df[["coeff", col1, col2]]
-         .groupby("coeff", as_index=False)
-         .agg({col1: agg, col2: agg})
-         .sort_values("coeff")
-         .reset_index(drop=True))
+    g = (
+        df[["coeff", col1, col2]]
+        .groupby("coeff", as_index=False)
+        .agg({col1: agg, col2: agg})
+        .sort_values("coeff")
+        .reset_index(drop=True)
+    )
 
     x = g["coeff"].to_numpy(float)
     y1 = g[col1].to_numpy(float)
@@ -45,33 +48,36 @@ def compute_area_between_curves(
         "normalised": normalise,
         "clipped_negative": clip_negative,
         "col1": col1,
-        "col2": col2
+        "col2": col2,
     }
-
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--latent_type",type =str, default="sentiment")
-    parser.add_argument("--exp", type =str, default="pos_vs_neg-pos_vs_neg")
-    parser.add_argument("--clip_negative", type =bool, default=False)
+    parser.add_argument("--latent_type", type=str, default="sentiment")
+    parser.add_argument("--exp", type=str, default="pos_vs_neg-pos_vs_neg")
+    parser.add_argument("--clip_negative", type=bool, default=False)
     args = parser.parse_args()
 
-    # ------ config ------
     latent_type = args.latent_type
     exp = args.exp
     clip_negative = args.clip_negative
     START_ID, END_ID = 0, 9
-    # -----------------------------------
 
     script_dir = os.path.dirname(__file__)
     rows = []
 
     for latent_id in range(START_ID, END_ID + 1):
         filename = f"steer-{exp}"
-        plot_dir = os.path.join(script_dir, f"steering_plots/plots_gpt_{filename}/{latent_id}")
-        parsed_prefix = "parsed_sentiment_" if latent_type == "sentiment" else "parsed_judgebias_"
-        parsed_file = os.path.join(plot_dir, f"{parsed_prefix}{filename}-{latent_id}.jsonl")
+        plot_dir = os.path.join(
+            script_dir, f"steering_plots/plots_gpt_{filename}/{latent_id}"
+        )
+        parsed_prefix = (
+            "parsed_sentiment_" if latent_type == "sentiment" else "parsed_judgebias_"
+        )
+        parsed_file = os.path.join(
+            plot_dir, f"{parsed_prefix}{filename}-{latent_id}.jsonl"
+        )
 
         if not os.path.exists(parsed_file):
             print(f"[warn] Missing: {parsed_file}")
@@ -86,14 +92,14 @@ if __name__ == "__main__":
             latent_type=latent_type,
             agg="mean",
             normalise=False,
-            clip_negative=False
+            clip_negative=False,
         )
         res_norm = compute_area_between_curves(
             df,
             latent_type=latent_type,
             agg="mean",
             normalise=True,
-            clip_negative=clip_negative
+            clip_negative=clip_negative,
         )
 
         # Get difference score values at the last coefficient
@@ -113,20 +119,22 @@ if __name__ == "__main__":
 
         area = res["area"]
 
-        rows.append({
-            "latent_type": latent_type,
-            "filename": filename,
-            "latent_id": latent_id,
-            "area": f"{area:.2f}",
-            # "start_coeff": res["start_coeff"],
-            "normalised_area": f"{res_norm['area']:.2f}",
-            "max_coeff": res["end_coeff"],
-            f"{res['col1']}_delta": f"{delta1:.2f}",
-            f"{res['col2']}_delta": f"{delta2:.2f}",
-        })
+        rows.append(
+            {
+                "latent_type": latent_type,
+                "filename": filename,
+                "latent_id": latent_id,
+                "area": f"{area:.2f}",
+                "normalised_area": f"{res_norm['area']:.2f}",
+                "max_coeff": res["end_coeff"],
+                f"{res['col1']}_delta": f"{delta1:.2f}",
+                f"{res['col2']}_delta": f"{delta2:.2f}",
+            }
+        )
 
-        print(f"{latent_type} latent {latent_id}: normalised_area={res_norm['area']:.2f}, {res['col1']}_delta={delta1:.2f}, {res['col2']}_delta={delta2:.2f}")
-
+        print(
+            f"{latent_type} latent {latent_id}: normalised_area={res_norm['area']:.2f}, {res['col1']}_delta={delta1:.2f}, {res['col2']}_delta={delta2:.2f}"
+        )
 
     output_dir = os.path.join(script_dir, "steering_areas")
     os.makedirs(output_dir, exist_ok=True)

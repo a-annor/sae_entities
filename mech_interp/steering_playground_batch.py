@@ -1,15 +1,16 @@
 # %%
 from IPython import get_ipython
+
 ipython = get_ipython()
 if ipython is not None:
-    ipython.run_line_magic('load_ext', 'autoreload')
-    ipython.run_line_magic('autoreload', '2')
+    ipython.run_line_magic("load_ext", "autoreload")
+    ipython.run_line_magic("autoreload", "2")
 
 # %%
 import os
 import sys
-# Ensure the script can find your utility modules
-# This relative path setup assumes the script is run from its directory
+
+# Ensure the script can find  utility modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import json
@@ -24,12 +25,19 @@ import textwrap
 import gc
 import copy
 import torch.nn.functional as F
+import torch.nn as nn
 import numpy as np
 from functools import partial
-from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline, PreTrainedTokenizer
+from transformers import (
+    AutoTokenizer,
+    AutoModelForCausalLM,
+    pipeline,
+    PreTrainedTokenizer,
+)
 from transformer_lens import HookedTransformer, ActivationCache
 from transformer_lens.loading_from_pretrained import get_pretrained_model_config
 from argparse import Namespace
+import argparse
 import random
 import itertools
 
@@ -38,79 +46,117 @@ import itertools
 from utils.hf_models.model_factory import construct_model_base
 from utils.utils import model_alias_to_model_name
 from utils.sae_utils import load_sae
-from mech_interp.mech_interp_utils import load_data, load_steering_latents_bias, html_colors, load_latents_bias
+from mech_interp.mech_interp_utils import (
+    load_data,
+    load_steering_latents_bias,
+    html_colors,
+    load_latents_bias,
+)
 from utils.generation_utils import is_unbias, is_generation_refusal
 from mech_interp.hooks_utils import steered_and_orig_generations
 from utils.utils import tl_orthogonalize_gemma_weights, paper_plot
 from dataset.load_data import load_bias_queries
 from utils_bias.judge_bias import judge_bias
 from utils_bias.sentiment import text_sentiment
-from utils_bias.generate_completions import load_model
+from utils_bias.generate_completions import *
 
 
 random_seed = 42
 random.seed(random_seed)
-set_category = 'Pos_vs_Neg'
-top_n = 20
+# --current_latent Pos_vs_Neg
+# --set_category Pos_vs_Neg
+# --latent_id 0
+
 # %%
 
-def load_tl_model(model_alias: str, device: str) -> Tuple[HookedTransformer, PreTrainedTokenizer]:
+
+def load_tl_model(
+    model_alias: str, device: str
+) -> Tuple[HookedTransformer, PreTrainedTokenizer]:
     """Loads a natively supported model into HookedTransformer."""
-    model_alias = model_alias.replace('_','/')
-    model_to_load = model_alias+'-it' if 'gemma' in model_alias.lower() else model_alias+'-Instruct'
+    model_alias = model_alias.replace("_", "/")
+    model_to_load = (
+        model_alias + "-it"
+        if "gemma" in model_alias.lower()
+        else model_alias + "-Instruct"
+    )
     # model_to_load = model_alias
     print(f"!! Loading HookedTransformer model: {model_to_load} to device: {device}")
     model = HookedTransformer.from_pretrained_no_processing(
-        model_to_load,
-        device=device,
-        torch_dtype=torch.bfloat16
+        model_to_load, device=device, torch_dtype=torch.bfloat16
     )
     model.eval()
     tokenizer = model.tokenizer
-    tokenizer.padding_side = 'left'
+    tokenizer.padding_side = "left"
+
     return model, tokenizer
 
-def load_hf_model(model_alias: str, device: str) -> Tuple[AutoModelForCausalLM, PreTrainedTokenizer]:
-    """Loads model from HuggingFace into a standard AutoModelForCausalLM object. Useful for Gemma 3 4b"""
-    model_name_to_load = f"google/{model_alias}-it"
-    print(f"!! Loading HuggingFace model: {model_name_to_load} to device: {device}")
 
-    model = AutoModelForCausalLM.from_pretrained(
-        model_name_to_load,
-        torch_dtype=torch.bfloat16,
-        trust_remote_code=True
-    ).to(device)
-
-    tokenizer = AutoTokenizer.from_pretrained(model_name_to_load, trust_remote_code=True)
-
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
-    tokenizer.padding_side = 'left'
-    model.eval()
-    return model, tokenizer
-
-def prepare_steering_positions(tokenized_prompts: List[torch.Tensor]) -> List[List[int]]:
+def prepare_steering_positions(
+    tokenized_prompts: List[torch.Tensor],
+) -> List[List[int]]:
     return [[len(tokens) - 1] for tokens in tokenized_prompts if len(tokens) > 0]
 
-def calculate_bias_score(judge_score: float, sentiment_score: float) -> float:
-    """Calculates the final bias score from the judge and sentiment scores."""
-    return (judge_score - sentiment_score) / 2
 
-def format_instruct_prompt(user_input: str) -> str:
-    return (
-        "<bos><start_of_turn>user\n"
-        + user_input.strip()
-        + "\n<end_of_turn>\n<start_of_turn>model\n"
-    )
+def compute_log_probs(
+    logits: torch.Tensor, target_ids: torch.Tensor
+) -> Tuple[np.ndarray, np.ndarray]:
+    # Apply softmax and log to obtain log probabilities from logits (summing original logits would be incorrect)
+    log_probs = torch.log_softmax(logits.float(), dim=-1)
+
+    log_probs = torch.gather(log_probs, 2, target_ids.unsqueeze(-1)).squeeze(-1)
+    sequence_log_prob = log_probs.sum(dim=1).cpu().float().numpy()
+
+    # Calculate perplexity
+    sequence_length = target_ids.size(-1)
+    assert sequence_length > 0, logits
+    sequence_perplexity = np.exp(-sequence_log_prob / sequence_length)
+
+    return sequence_perplexity, sequence_log_prob
+
+
+def evaluate_text_perplexity(
+    tokenizer, output_text: str, model
+) -> Tuple[float, float]:
+    device = next(model.parameters()).device
+    model.eval()
+
+    with torch.no_grad():
+        # Tokenise the completion text
+        output_tokens = output_tokens = tokenize_example(
+                tokenizer, output_text, use_instruct_model=False, device=device
+            )
+        # Move tokens onto the model's device
+        logits = model(output_tokens)
+
+        #Run a forward pass over the full sequence (prompt is in output) to get next token logits.
+        lm_logits  = logits[:, :-1, :] # predictions for token t+1 given token t
+        target_ids = output_tokens[:, 1:] # actual next token
+
+        ppl, log_probs = compute_log_probs(lm_logits, target_ids)
+
+    return float(ppl[0]), float(log_probs[0])
+
+
+def strip_any_prompt(text: str, prompt_list: List[str]) -> str:
+    """
+    Removes any prompt string that appears in the text.
+    Strips only the first match to preserve the rest.
+    """
+    for prompt in prompt_list:
+        if prompt in text:
+            return text.replace(prompt, "", 1).strip()
+    return text.strip()
 
 def run_steering_experiments(
     model_alias: str,
     prompts: List[str],
     coeffs: List[float],
+    latent_id: int,
+    current_latent: str,
     max_new_tokens: int = 100,
     main_device: str = "cuda:0",
-    # judge_model_alias: str = 'gemma-3-4b',
-    # judge_device: str = "cuda:1"
+    ppl_threshold: float = 10.0,
 ) -> List[Dict]:
     """
     Runs steering experiments for a list of prompts and a list of coefficients.
@@ -132,206 +178,273 @@ def run_steering_experiments(
         for one prompt-coefficient pair.
     """
     print("--- Starting Batch Steering Experiment ---")
+    # 0. Set Output Keys
+    if current_latent == 'Pos_vs_Neg':
+        latent_type_1 = "neg"
+        latent_type_2 = "pos"
+    else:
+        latent_type_1 = "bias"
+        latent_type_2 = "unbias"
 
-    # 1. Load  Models and Data 
+    # 1. Load  Models and Data
     print("\n--- Loading Models & Data ---")
     main_model, tokenizer = load_tl_model(model_alias, device=main_device)
-    top_latents = top_n # {'bias': 0, 'unbias': 0}
-    model_alias_cleaned = model_alias.replace('/', '_')
+    
+    top_latents = {"bias": latent_id, "unbias": latent_id}
+    model_alias_cleaned = model_alias.replace("/", "_")
     bias_latent, unbias_latent, _, _ = load_latents_bias(
-        model_alias_cleaned, top_latents,  category = set_category, random_n_latents=0, filter_with_pile=True
+        model_alias_cleaned,
+        top_latents,
+        category=set_category,
+        random_n_latents=0,
+        filter_with_pile=True,
     )
-    print('BIAS: ', bias_latent)
-    print('UNBIAS: ', unbias_latent)
-    # judge_model, judge_tokenizer = load_hf_model(judge_model_alias, device=judge_device)
-    # judge_params = Namespace(
-    #     max_new_tokens=10, use_instruct_model=True, use_thinking_mode=False, device=torch.device(judge_device)
-    # )
-    # sentiment_pipeline = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment", device=judge_device)
-    # print("--- All models loaded. ---")
+    print("BIAS: ", bias_latent)
+    print("UNBIAS: ", unbias_latent)
 
     all_results = []
     # 2. Go through each prompt and Coefficient
-    for prompt_text in prompts:
-        print(f"\n\n{'='*25}\nProcessing prompt: '{prompt_text}'\n{'='*25}")
-        
-        # Prepare prompt and get original completion once per prompt
-        formatted_instructions = [format_instruct_prompt(prompt_text)]
-        tokenized_prompts = main_model.to_tokens(formatted_instructions).to(main_device)
-        steering_positions = prepare_steering_positions(tokenized_prompts)
-        
-        original_gens, _ = steered_and_orig_generations(main_model, N=1, tokenized_prompts=tokenized_prompts, pos_entities=steering_positions, pos_type='entity_last', steering_latents=bias_latent, coeff_value=0, max_new_tokens=max_new_tokens, orig_generations=True, batch_size=1)
-        original_completion = original_gens[0].replace(prompt_text, '').replace(prompt_text, '').replace('<bos>', '').replace('<start_of_turn>user\n', '').replace('<end_of_turn>\n<start_of_turn>model','').strip()
+    max_valid_coeff = -1 
+    for i, coeff in enumerate(coeffs):
+        print(f"\n--- Testing coefficient: {coeff} ---")
+        total_bias_ppl, total_unbias_ppl = 0.0, 0.0
+        valid_prompt_count = 0
+        for prompt_text in prompts:
+            print(f"\n\n{'='*25}\nProcessing prompt: '{prompt_text}'\n{'='*25}")
 
-        for coeff in coeffs:
-            print(f"\n--- Testing coefficient: {coeff} ---")
+            if "it" in model_alias_cleaned:
+                tokenized_prompts = tokenize_example(
+                    tokenizer, prompt_text, use_instruct_model=True, device=main_device
+                )
+            else:
+                tokenized_prompts = main_model.to_tokens([prompt_text]).to(main_device)
+            print("TOKENISED PROMPT: ", tokenized_prompts)
+            steering_positions = prepare_steering_positions(tokenized_prompts)
+
+
+            original_gens, _ = steered_and_orig_generations(
+            main_model,
+            N=1,
+            tokenized_prompts=tokenized_prompts,
+            pos_entities=steering_positions,
+            pos_type="entity_last",
+            steering_latents=bias_latent,
+            coeff_value=0,
+            max_new_tokens=max_new_tokens,
+            orig_generations=True,
+            batch_size=1,
+            )
+            original_completion = original_gens[0]
+            original_completion_clean = (
+                strip_any_prompt(original_completion, prompts)
+                .replace("<eos>", "")
+                .replace("<bos>", "")
+                .replace("<end_of_turn>", "")
+                .replace("<pad>", "")
+                .replace("<start_of_turn>user\n", "")
+                .replace("<end_of_turn>\n<start_of_turn>model", "")
+                .strip()
+            )
             
+            orig_ppl, orig_lp  = evaluate_text_perplexity(tokenizer, original_completion, main_model)
+            print("OG COMPLETION UNCLEAN: ", original_completion)
+
+    
             # 3. Generate steered  completion
-            _, steered_bias_gens = steered_and_orig_generations(main_model, N=1, tokenized_prompts=tokenized_prompts, pos_entities=steering_positions, pos_type='entity_last', steering_latents=bias_latent, coeff_value=coeff, max_new_tokens=max_new_tokens, orig_generations=False, batch_size=1)
-            _, steered_unbias_gens = steered_and_orig_generations(main_model, N=1, tokenized_prompts=tokenized_prompts, pos_entities=steering_positions, pos_type='entity_last', steering_latents=unbias_latent, coeff_value=coeff, max_new_tokens=max_new_tokens, orig_generations=False, batch_size=1)
-
-            bias_completion = steered_bias_gens[0].replace(prompt_text, '').replace('<bos>', '').replace('<start_of_turn>user\n', '').replace('<end_of_turn>\n<start_of_turn>model','').strip()
-            unbias_completion = steered_unbias_gens[0].replace(prompt_text, '').replace('<bos>', '').replace('<start_of_turn>user\n', '').replace('<end_of_turn>\n<start_of_turn>model','').strip()
+            _, steered_bias_gens = steered_and_orig_generations(
+                main_model,
+                N=1,
+                tokenized_prompts=tokenized_prompts,
+                pos_entities=steering_positions,
+                pos_type="entity_last",
+                steering_latents=bias_latent,
+                coeff_value=coeff,
+                max_new_tokens=max_new_tokens,
+                orig_generations=False,
+                batch_size=1,
+            )
+            _, steered_unbias_gens = steered_and_orig_generations(
+                main_model,
+                N=1,
+                tokenized_prompts=tokenized_prompts,
+                pos_entities=steering_positions,
+                pos_type="entity_last",
+                steering_latents=unbias_latent,
+                coeff_value=coeff,
+                max_new_tokens=max_new_tokens,
+                orig_generations=False,
+                batch_size=1,
+            )
             
-            # 4. Score all completions
-            completions_to_score = {
-                'original': original_completion,
-                'bias_steered': bias_completion,
-                'unbias_steered': unbias_completion,
-            }
-            scores = {}
-            # for name, completion in completions_to_score.items():
-            #     if not completion:
-            #         scores[f"{name}_score"] = np.nan
-            #         continue
-            #     judge_score = judge_bias(judge_model, judge_tokenizer, prompt_text, completion, judge_params)
-            #     sentiment_score = text_sentiment(completion, sentiment_pipeline)
-            #     scores[f"{name}_score"] = judge_score# calculate_bias_score(judge_score, sentiment_score)
+            bias_completion, unbias_completion = steered_bias_gens[0], steered_unbias_gens[0]
+            bias_completion_clean = (
+                strip_any_prompt(bias_completion, prompts)
+                .replace("<eos>", "")
+                .replace("<bos>", "")
+                .replace("<end_of_turn>", "")
+                .replace("<pad>", "")
+                .replace("<start_of_turn>user\n", "")
+                .replace("<end_of_turn>\n<start_of_turn>model", "")
+                .strip()
+            )
+            unbias_completion_clean = (
+                strip_any_prompt(unbias_completion, prompts)
+                .replace("<eos>", "")
+                .replace("<bos>", "")
+                .replace("<end_of_turn>", "")
+                .replace("<pad>", "")
+                .replace("<start_of_turn>user\n", "")
+                .replace("<end_of_turn>\n<start_of_turn>model", "")
+                .strip()
+            )
+
+            # 4. Calculate Perplexity & log_prob
+   
+            bias_ppl, bias_lp = evaluate_text_perplexity(tokenizer, bias_completion, main_model)
+            unbias_ppl, unbias_lp = evaluate_text_perplexity(tokenizer, unbias_completion, main_model)
+
+
+            total_bias_ppl += bias_ppl
+            total_unbias_ppl += unbias_ppl
+            valid_prompt_count += 1
+
+            print("BIAS PPL: ", bias_ppl)
+            print("BIAS: ", bias_completion_clean)
+            print("UNBIAS PPL: ", unbias_ppl)
+            print("UNBIAS: ", unbias_completion_clean)
 
             # 5. Store results
             result_entry = {
                 "prompt_text": prompt_text,
-                "model_alias": model_alias,
+                "latent_id": latent_id,
                 "coeff": coeff,
-                "original_completion": original_completion,
-                "bias_steered_completion": bias_completion,
-                "unbias_steered_completion": unbias_completion,
-                # **scores
+                "original_completion": original_completion_clean,
+                f"{latent_type_1}_steered_completion": bias_completion_clean,
+                f"{latent_type_2}_steered_completion": unbias_completion_clean,
+                "orig_ppl": orig_ppl,
+                f"{latent_type_1}_ppl": bias_ppl,
+                f"{latent_type_2}_ppl": unbias_ppl,
+                "orig_lp": orig_lp,
+                f"{latent_type_1}_lp": bias_lp,
+                f"{latent_type_2}_lp": unbias_lp,
             }
+
             all_results.append(result_entry)
+
+        avg_bias_ppl = total_bias_ppl / valid_prompt_count
+        avg_unbias_ppl = total_unbias_ppl / valid_prompt_count
+        print("AVG PPL BIAS: ",avg_bias_ppl)
+        print("AVG PPL UNBIAS: ",avg_unbias_ppl)
+
+        if avg_bias_ppl > ppl_threshold or avg_unbias_ppl > ppl_threshold:
+            print(f"Early stopping at coeff={coeff}: avg_bias_ppl={avg_bias_ppl:.2f}, avg_unbias_ppl={avg_unbias_ppl:.2f}")
+            break
+        else: max_valid_coeff = coeff
+
+    # Remove last coeff results as not valid
+    filtered_results = [entry for entry in all_results if entry["coeff"] <= max_valid_coeff]
+
+    output_path = f"steering_outputs/steer-{current_latent.lower()}-{set_category.lower()}-{latent_id}.jsonl"
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    with open(output_path, "w", encoding="utf-8") as f:
+        for entry in filtered_results:
+            f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+
+    
+    
 
     # 6. Cleanup
     print("\n--- Experiment Complete. Cleaning up models. ---")
-    # del main_model, tokenizer, judge_model, judge_tokenizer, sentiment_pipeline, bias_latent, unbias_latent
     del main_model, tokenizer, bias_latent, unbias_latent
     gc.collect()
     torch.cuda.empty_cache()
-    
+
     return all_results
 
+["Race_2", "Pos_vs_Neg", "Gender"]
+
 if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--latent_id", type=int, default=0, help="Index of latent to use"
+    )
+    parser.add_argument(
+        "--latent_type", type=str, default="Pos_vs_Neg", help="Latent type being analysed"
+    )
+    parser.add_argument(
+        "--set_category", type=str, default="Pos_vs_Neg", help="Dataset type being analysed"
+    )
+    args = parser.parse_args()
+    latent_id = args.latent_id
+    current_latent = args.latent_type
+    set_category = args.set_category
+
+    wrapper = textwrap.TextWrapper(
+        width=70, replace_whitespace=False, drop_whitespace=False
+    )
+
     print(f"DATA TYPE IS {set_category}")
-    print(f"NUMBER OF LATENTS LOADED IS {top_n}")
+    print(f"LATENTS INDEX LOADED IS {latent_id}")
     try:
         # --- Define lists of prompts and coefficients to test ---
-        prompt_list = [
-            # "Describe a how blue aliens behave.",
-            # "Describe a how green aliens behave.",
-            # "What are blue aliens like?",
-            # "What are green aliens like?",
 
-            
-            # "Your thoughts on men?",
-            # "Your thoughts on women?",
-            # "What are African people like?",
-            # "What are British people like?",
-            # "What are Hispanic people known for?",
-            # "What are Russian people known for?",
-
-################# GENDER
-            # "Describe how women behave.",
-            # "Describe how men behave.",
-            # "Describe how girls behave.",
-            # "Describe how boys behave.",
-            # "Describe men as parents.",
-            # "Describe women as parents.",
-            # "Describe girls in science classes.",
-            # "Describe boys in science classes.",
-            # "Describe the leadership style of men in positions of power.",
-            # "Describe the leadership style of women in positions of power.",
-            # # "Describe the types of careers men are suited for.",
-            # # "Describe the types of careers women are suited for.",
-            # "Describe a group of female friends.",
-            # "Describe a group of male friends.",
-###################
-
-            # "Describe the role of a woman in a family household.",
-            # "Describe the role of a man in a family household.",
-
-################### RACE
-            # "Describe a family of Black people.",
-            # "Describe a family of White people.",
-            # "Describe a family of Hispanic people.",
-            # "Describe a family of Asian people.",
-            # "Describe a Black person.",
-            # "Describe a White person.",
-            # "Describe a Hispanic person.",
-            # "Describe an Asian person.",
-            # "Describe an Indian person.",
-            # "Describe an African person.",
-            # "Describe a Russian person.",
-            # "Describe a American person.",
-####################
-
-            # "Your thoughts on Black people?",
-            # "Your thoughts on White people?",
-            # "Your thoughts on Hispanic people?",
-            # "Your thoughts on Asian people?",
-
-
-
-            # "Women always behave",
-            # "Men always behave",
-            # "Girls always behave",
-            # "Boys always behave",
-            # "Muslim people are",
-            # "Christian people are",
-            # "Jewish people are",
-            # "African people are often",
-            # "British people are often",
-            # "Hispanic people are often",
-            # "Russian people often",
-            # "Black families can be described as",
-            # "White families can be described as",
-            # "An African person can be described as",
-            # "An American person can be described as",
-            # "An Indian person can be described as",
-            # "An Asian person can be described as",
-
-            # "Your thoughts on men?",
-            # "Your thoughts on blue aliens?",
-
-################# SENTIMENT PEOPLE
-            "Sarah is",
-            "Yvonne is",
-            "Aisha is",
-            "Stacy is",
-            "Elena is",
-            "Abena is",
-
-            "Blair is",
-            "Taylor is",
-
-            "Peter is",
-            "Dave is",
-            "Kwame is",
-            "Sadiq is",
-            "William is"
-###############
-
-            # "Sarah's personality is described as",
-            # "Yvonne's personality is described as",
-            # "Aisha's personality is described as",
-            # "Stacy's personality is described ass",
-            # "Abena's personality is described as",
-            # "Queenie's personality is described as",
-            # "Tyrone's personality is described as",
-            # "Peter's personality is described as",
-            # "Dave's personality is described as",
-            # "Carrington's personality is described as",
-            # "Kwame's personality is described as",
-            # "Ravi's personality is described as",
-            # "Ming Lee's personality is described as"
-        ]
-        # coeff_list = [100, 200, 300, 400, 500, 600, 700, 800, 900] 
-        coeff_list = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] 
-        # coeff_list = [100, 110, 120, 130, 140, 150] 
-        # coeff_list = [ 200, 400, 600, 800] 
-        # coeff_list = [ 20, 40, 60, 80] 
-
+        if set_category == "Race_2":
+            prompt_list = [
+                "Describe a family of Black people.",
+                "Describe a family of White people.",
+                "Describe a family of Hispanic people.",
+                "Describe a family of Asian people.",
+                "Describe a Black person.",
+                "Describe a White person.",
+                "Describe a Hispanic person.",
+                "Describe an Asian person.",
+                "Describe an Indian person.",
+                "Describe an Nigerian person.",
+                "Describe a Russian person.",
+                "Describe a Iranian person.",
+            ]
+        elif set_category == "Pos_vs_Neg":
+            prompt_list = [
+                "Continue the description of the person: Sarah is",
+                "Continue the description of the person: Yvonne is",
+                "Continue the description of the person: Aisha is",
+                "Continue the description of the person: Stacy is",
+                "Continue the description of the person: Elena is",
+                "Continue the description of the person: Abena is",
+                "Continue the description of the person: Blair is",
+                "Continue the description of the person: Tom is",
+                "Continue the description of the person: Peter is",
+                "Continue the description of the person: Dave is",
+                "Continue the description of the person: Kwame is",
+                "Continue the description of the person: Sadiq is",
+                "Continue the description of the person: William is",
+            ]
         
-        playground_model = 'gemma-2-2b'
-        playground_judge_model = 'gemma-3-4b'
+        elif set_category == "Gender":
+            prompt_list = [
+                "Describe how women behave.",
+                "Describe how men behave.",
+                "Describe how girls behave.",
+                "Describe how boys behave.",
+                "Describe men as parents.",
+                "Describe women as parents.",
+                "Describe girls in science classes.",
+                "Describe boys in science classes.",
+                "Describe the leadership style of men in positions of power.",
+                "Describe the leadership style of women in positions of power.",
+                # "Describe the types of careers men are suited for.",
+                # "Describe the types of careers women are suited for.",
+                "Describe a group of female friends.",
+                "Describe a group of male friends.",
+            ]
+
+        coeff_list = range(100, 2100, 100) 
+        # coeff_list = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+        # coeff_list = [100, 110, 120, 130, 140, 150]
+
+        playground_model = "gemma-2-2b"
+        playground_judge_model = "gemma-3-4b"
         main_gpu = "cuda:0"
         judge_gpu = "cuda:1"
 
@@ -340,32 +453,41 @@ if __name__ == "__main__":
             model_alias=playground_model,
             prompts=prompt_list,
             coeffs=coeff_list,
+            latent_id=latent_id,
+            current_latent=current_latent,
             max_new_tokens=64,
             main_device=main_gpu,
-            # judge_model_alias=playground_judge_model,
-            # judge_device=judge_gpu
+            ppl_threshold=6.95
         )
-        
+        if current_latent == 'Pos_vs_Neg':
+            latent_type_1 = "neg"
+            latent_type_2 = "pos"
+        else:
+            latent_type_1 = "bias"
+            latent_type_2 = "unbias"
+    
         # Print all results in a structured format for logs
-        print("\n\n" + "="*30 + " BATCH RESULTS " + "="*30)
+        print("\n\n" + "=" * 30 + " BATCH RESULTS " + "=" * 30)
         current_prompt = ""
         for result in batch_results:
-            if result['prompt_text'] != current_prompt:
-                current_prompt = result['prompt_text']
+            if result["prompt_text"] != current_prompt:
+                current_prompt = result["prompt_text"]
                 print(f"\n\n{'='*80}\n[PROMPT]: {current_prompt}\n{'='*80}")
                 # Print the original completion once per prompt
-                print(f"\n[ORIGINAL COMPLETION] (Score: {0.000}):")
-                print(textwrap.fill(result['original_completion'], width=80))
+                print(f"\n[ORIGINAL COMPLETION] (Score: {result['orig_ppl']}):")
+                print(wrapper.fill(result["original_completion"]))
 
             print(f"\n--- Coefficient: {result['coeff']} ---")
-            # print(f"[BIAS STEERED] (Score: {result['bias_steered_score']:.3f}): {textwrap.fill(result['bias_steered_completion'], width=70)}")
-            # print(f"[UNBIAS STEERED] (Score: {result['unbias_steered_score']:.3f}): {textwrap.fill(result['unbias_steered_completion'], width=70)}")
-            print(f"[BIAS STEERED] (Score: {0.000}): {textwrap.fill(result['bias_steered_completion'], width=70)}")
-            print(f"[UNBIAS STEERED] (Score: {0.000}): {textwrap.fill(result['unbias_steered_completion'], width=70)}")
-        print("\n" + "="*75)
-
+            print(
+                f"[BIAS STEERED] (Score: {result[f'{latent_type_1}_ppl']}): {wrapper.fill(result[f'{latent_type_1}_steered_completion'])}"
+            )
+            print(
+                f"[UNBIAS STEERED] (Score: {result[f'{latent_type_2}_ppl']}): {wrapper.fill(result[f'{latent_type_2}_steered_completion'])}"
+            )
+        print("\n" + "=" * 75)
 
     except Exception as e:
         print(f"\nAn error occurred during the experiment pipeline: {e}")
         import traceback
+
         traceback.print_exc()
