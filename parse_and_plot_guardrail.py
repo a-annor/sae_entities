@@ -80,7 +80,7 @@ def plot_guardrail_removals_by_coeff(
         id_vars="coeff", var_name="Steering Type", value_name="Guardrail Removals"
     )
 
-    # Set fixed colours
+    # Fix colours
     if latent_type == "sentiment":
         palette = {
             f"{Label_1} Steered": "#D62728",  # red
@@ -96,7 +96,6 @@ def plot_guardrail_removals_by_coeff(
 
     plt.figure(figsize=(12, 7))
 
-    # Plot each line manually for custom markers and line styles
     for steering_type in ["Original", f"{Label_1} Steered", f"{Label_2} Steered"]:
         subset = df_long[df_long["Steering Type"] == steering_type].sort_values("coeff")
         if steering_type == "Original":
@@ -142,8 +141,7 @@ def plot_guardrail_removals_by_coeff(
     plt.legend(fontsize=11, frameon=True, borderpad=1)
 
     plt.tight_layout(rect=[0, 0, 1, 0.96])
-    # plt.ylim(-0.01, 12.01)
-    # Save
+
     os.makedirs(output_dir, exist_ok=True)
 
     plt.savefig(output_path, dpi=300)
@@ -151,7 +149,6 @@ def plot_guardrail_removals_by_coeff(
     print(f"Saved plot to: {output_path}")
 
 
-# Example usage:
-# plot_guardrail_removals_by_coeff("steer-pos_vs_neg-pos_vs_neg", latent_id = 9, latent_type="sentiment")
+# usage:
 plot_guardrail_removals_by_coeff("steer-gender-gender", latent_id=3, latent_type="bias")
 plot_guardrail_removals_by_coeff("steer-race_2-race_2", latent_id=5, latent_type="bias")
