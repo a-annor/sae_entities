@@ -38,4 +38,3 @@ python -m utils.activation_cache --model_alias gemma-2-2b --tokens_to_cache rand
 In `mech_interp/feature_analysis.py` we compute the SAE latent scores for all layers as well as run metrics to find the most relevant latents.
 
 
-```
